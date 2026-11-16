@@ -4,163 +4,223 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#F7F5FF">
-<title>جذب | قدرت دیده‌شدن</title>
+<meta name="theme-color" content="#F5F3FF">
+<meta name="description" content="Growza24؛ پلتفرم رشد پیج اینستاگرام">
+<title>Growza24 | پلتفرم رشد اینستاگرام</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
- --bg:#F7F5FF;
- --ink:#211B35;
+ --bg:#F5F3FF;
+ --paper:#FFFFFF;
+ --ink:#201A32;
  --muted:#777187;
- --violet:#7046F5;
- --violet2:#9A7AFF;
- --orange:#FF725E;
- --pink:#FF8BB4;
- --lime:#D9FA78;
- --white:#fff;
- --line:#EAE5F5;
+ --purple:#7042F5;
+ --purple2:#A58AFF;
+ --purple3:#4822C7;
+ --lime:#D8FF39;
+ --coral:#FF6D68;
+ --pink:#FF9BC4;
+ --cyan:#75E9DD;
+ --line:#E8E2F4;
 }
 
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{
+ box-sizing:border-box;
+ -webkit-tap-highlight-color:transparent;
+}
 
 html{scroll-behavior:smooth}
 
 body{
  margin:0;
- font-family:'Vazirmatn',sans-serif;
- background:var(--bg);
+ background:
+  radial-gradient(ellipse at 95% 5%,#DCD1FF 0,transparent 28%),
+  radial-gradient(ellipse at 0% 48%,#FFE0E6 0,transparent 25%),
+  var(--bg);
  color:var(--ink);
+ font-family:'Vazirmatn',sans-serif;
  overflow-x:hidden;
- padding-bottom:100px;
+ padding-bottom:105px;
 }
 
-a{text-decoration:none;color:inherit}
+a{color:inherit;text-decoration:none}
 button{font-family:inherit}
-
-.page{
- width:min(100% - 34px,520px);
- margin:auto;
-}
+.page{width:min(100% - 34px,520px);margin:auto}
 
 /* HEADER */
 
 .header{
- height:78px;
+ min-height:91px;
  display:flex;
  align-items:center;
  justify-content:space-between;
+ gap:12px;
 }
 
 .brand{
  display:flex;
  align-items:center;
- gap:11px;
+ gap:12px;
+ min-width:0;
 }
 
-.brand-icon{
- width:46px;
- height:46px;
+.brand-photo{
+ width:58px;
+ height:58px;
+ flex-shrink:0;
+ overflow:hidden;
+ border-radius:19px;
+ background:linear-gradient(145deg,#D9FF54,#8B62FF);
+ padding:3px;
+ box-shadow:
+ 0 9px 22px #6541C633,
+ 0 0 0 4px #FFFFFFB5;
+}
+
+.brand-photo img{
+ display:block;
+ width:100%;
+ height:100%;
+ object-fit:cover;
  border-radius:16px;
- display:grid;
- place-items:center;
- color:white;
- background:linear-gradient(145deg,#A48AFF,#6439EC);
- box-shadow:0 8px 24px #7549ef40;
 }
 
-.brand-icon svg{width:26px;height:26px}
+.brand-info{
+ min-width:0;
+}
 
 .brand-name{
- font-size:24px;
- font-weight:900;
- letter-spacing:-1px;
+ direction:ltr;
+ text-align:left;
+ font-size:25px;
  line-height:1.2;
+ letter-spacing:-1.1px;
+ font-weight:900;
+ white-space:nowrap;
+}
+
+.brand-name .twentyfour{
+ color:#9BD600;
+ text-shadow:0 2px 0 #D8FF39;
 }
 
 .brand-caption{
- font-size:12px;
- color:#817A95;
- font-weight:700;
-}
-
-.header-status{
- display:flex;
- align-items:center;
- gap:8px;
- background:white;
- padding:9px 13px;
- border:1px solid var(--line);
- border-radius:30px;
+ direction:rtl;
+ text-align:right;
+ color:#777187;
  font-size:12px;
  font-weight:800;
+ margin-top:5px;
+ white-space:nowrap;
 }
 
-.status-dot{
+.header-pill{
+ flex-shrink:0;
+ display:flex;
+ align-items:center;
+ gap:7px;
+ padding:9px 12px;
+ border:1px solid #E4DDF2;
+ border-radius:30px;
+ background:#FFFFFFB8;
+ backdrop-filter:blur(12px);
+ font-size:11px;
+ font-weight:900;
+ color:#5D4A8A;
+}
+
+.header-pill i{
  width:8px;
  height:8px;
- background:#8ACB55;
  border-radius:50%;
- box-shadow:0 0 0 4px #8ACB5520;
+ background:#A5D900;
+ box-shadow:0 0 0 4px #D8FF3945;
 }
 
 /* HERO */
 
 .hero{
- padding-top:15px;
+ padding-top:13px;
+ position:relative;
 }
 
-.eyebrow{
+.hero-topline{
  display:flex;
  align-items:center;
- gap:9px;
+ justify-content:space-between;
+ gap:8px;
+ margin-bottom:15px;
+}
+
+.hero-kicker{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ color:var(--purple);
  font-size:13px;
- font-weight:800;
- color:var(--violet);
-}
-
-.eyebrow-line{
- width:26px;
- height:3px;
- border-radius:5px;
- background:var(--orange);
-}
-
-h1{
- margin:19px 0 0;
- font-size:clamp(43px,10.2vw,61px);
- line-height:1.39;
  font-weight:900;
- letter-spacing:-2.5px;
+ letter-spacing:.4px;
 }
 
-h1 .purple{
- color:var(--violet);
- position:relative;
+.kicker-mark{
+ width:27px;
+ height:4px;
+ border-radius:8px;
+ background:var(--coral);
+}
+
+.hero-index{
+ direction:ltr;
+ color:#9A93AA;
+ font-size:11px;
+ font-weight:900;
+ letter-spacing:2px;
+}
+
+.hero h1{
+ font-size:clamp(39px,10vw,55px);
+ line-height:1.48;
+ letter-spacing:-2px;
+ font-weight:900;
+ margin:0;
+}
+
+.hero h1 .line-two{
+ display:block;
+ color:var(--purple);
+}
+
+.hero h1 .lime-word{
  display:inline-block;
+ position:relative;
+ color:var(--ink);
+ z-index:0;
 }
 
-h1 .purple:after{
+.hero h1 .lime-word:before{
  content:"";
  position:absolute;
- height:11px;
- background:var(--lime);
- border-radius:8px;
- bottom:4px;
- right:0;
- left:0;
  z-index:-1;
+ height:15px;
+ left:-4px;
+ right:-4px;
+ bottom:9px;
+ background:var(--lime);
  transform:rotate(-2deg);
+ border-radius:4px;
 }
 
 .hero-description{
+ margin:12px 0 0;
+ color:#6F687E;
  font-size:16px;
  line-height:2.05;
  font-weight:600;
- color:#716B81;
- margin:13px 0 19px;
+ max-width:460px;
 }
 
 .hero-description strong{
@@ -168,368 +228,492 @@ h1 .purple:after{
  font-weight:900;
 }
 
-/* ARTWORK */
+/* VISUAL STAGE */
 
-.artwork{
- height:330px;
+.stage{
+ margin-top:24px;
+ min-height:300px;
  position:relative;
- margin:12px -5px 0;
- display:flex;
- align-items:center;
- justify-content:center;
+ border-radius:32px 32px 15px 32px;
+ overflow:hidden;
  isolation:isolate;
+ background:
+  radial-gradient(circle at 78% 20%,#A48AFF 0,transparent 32%),
+  radial-gradient(circle at 13% 88%,#FF8279 0,transparent 27%),
+  linear-gradient(135deg,#342052 0%,#5631B5 53%,#7042F5 100%);
+ box-shadow:
+  0 23px 48px #4D2A9B35,
+  inset 0 1px 0 #FFFFFF55;
 }
 
-.art-glow{
+.stage-grid{
  position:absolute;
- width:275px;
- height:275px;
- border-radius:50%;
- background:radial-gradient(circle,#D9C9FF 0%,#EDE6FF 50%,transparent 72%);
- filter:blur(13px);
- z-index:-2;
+ inset:0;
+ opacity:.17;
+ background-image:
+  linear-gradient(#FFFFFF 1px,transparent 1px),
+  linear-gradient(90deg,#FFFFFF 1px,transparent 1px);
+ background-size:27px 27px;
+ mask-image:linear-gradient(125deg,black,transparent 85%);
 }
 
-.orbit{
+.stage-orbit{
  position:absolute;
- width:285px;
- height:285px;
- border:1px solid #A58BFA50;
+ border:1px solid #FFFFFF45;
  border-radius:50%;
- transform:rotate(-22deg) scaleY(.77);
+ transform:rotate(-24deg);
 }
 
-.orbit.second{
- width:235px;
- height:235px;
- border:1px dashed #9A7AFF65;
- transform:rotate(42deg) scaleY(.82);
+.stage-orbit.o1{
+ width:320px;
+ height:180px;
+ top:52px;
+ left:50%;
+ margin-left:-160px;
 }
 
-.orbit-dot{
+.stage-orbit.o2{
+ width:370px;
+ height:220px;
+ top:31px;
+ left:50%;
+ margin-left:-185px;
+ border-style:dashed;
+ border-color:#FFFFFF36;
+}
+
+.stage-orbit.o3{
+ width:260px;
+ height:260px;
+ top:22px;
+ left:50%;
+ margin-left:-130px;
+ border-color:#D8FF3960;
+}
+
+.stage-top{
  position:absolute;
- width:13px;
- height:13px;
- border-radius:50%;
- background:var(--orange);
- top:48px;
- right:37px;
- box-shadow:0 0 0 7px #FF725E20;
+ top:17px;
+ right:18px;
+ left:18px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ color:#FFFFFFC9;
+ font-size:11px;
+ font-weight:900;
+ letter-spacing:1.4px;
+ direction:ltr;
 }
 
-.orbit-dot.two{
- width:10px;
- height:10px;
- background:var(--lime);
- top:auto;
- right:auto;
- bottom:62px;
- left:22px;
- box-shadow:0 0 0 6px #D9FA7830;
+.stage-top span:last-child{
+ color:var(--lime);
 }
 
 .core{
- width:211px;
- height:211px;
- position:relative;
- border-radius:42% 58% 52% 48% / 46% 43% 57% 54%;
+ position:absolute;
+ width:158px;
+ height:158px;
+ top:50%;
+ left:50%;
+ transform:translate(-50%,-48%) rotate(-9deg);
+ border-radius:43px 23px 43px 23px;
  background:
- radial-gradient(circle at 28% 24%,#B9A3FF 0%,transparent 34%),
- linear-gradient(145deg,#926BFF,#6036E9 68%,#4520C5);
+  linear-gradient(145deg,#A58AFF,#673BE6 60%,#4D28B7);
+ border:1px solid #FFFFFF80;
  box-shadow:
- 0 30px 60px #6540DB50,
- inset -15px -15px 35px #3213A850,
- inset 8px 8px 24px #FFFFFF35;
- display:flex;
- justify-content:center;
- align-items:center;
- animation:morph 8s ease-in-out infinite;
-}
-
-@keyframes morph{
- 0%,100%{border-radius:42% 58% 52% 48% / 46% 43% 57% 54%}
- 50%{border-radius:55% 45% 43% 57% / 55% 58% 42% 45%}
+  0 24px 45px #140B3965,
+  inset 0 2px 2px #FFFFFF9C,
+  inset 0 -8px 18px #3D20A45C;
+ display:grid;
+ place-items:center;
+ z-index:3;
 }
 
 .core:before{
  content:"";
  position:absolute;
- inset:12px;
- border:1px solid #FFFFFF40;
- border-radius:inherit;
+ inset:9px;
+ border:1px solid #FFFFFF42;
+ border-radius:34px 17px 34px 17px;
 }
 
-.core-symbol{
- width:94px;
- height:94px;
- border-radius:29px;
- background:#FFFFFF17;
- border:1px solid #FFFFFF55;
- backdrop-filter:blur(8px);
- display:grid;
- place-items:center;
- transform:rotate(-8deg);
+.core svg{
+ width:78px;
+ height:78px;
+ filter:drop-shadow(0 5px 5px #28115B55);
 }
 
-.core-symbol svg{
- width:57px;
- height:57px;
- stroke:white;
- stroke-width:1.7;
- fill:none;
- stroke-linecap:round;
- stroke-linejoin:round;
-}
-
-.core-word{
+.float-card{
  position:absolute;
- bottom:24px;
- color:white;
- font-size:12px;
- font-weight:900;
- letter-spacing:3px;
- direction:ltr;
-}
-
-/* Floating objects */
-
-.float{
- position:absolute;
- z-index:4;
+ z-index:5;
+ padding:10px 13px;
  display:flex;
  align-items:center;
  gap:9px;
- padding:11px 13px;
- background:#FFFFFFF2;
+ border-radius:15px;
+ background:#FFFFFFF0;
+ color:#302449;
+ box-shadow:0 13px 25px #140A3B45;
  border:1px solid #FFFFFF;
- border-radius:17px;
- box-shadow:0 12px 34px #3C286B20;
- backdrop-filter:blur(12px);
- animation:levitate 4s ease-in-out infinite;
-}
-
-.float svg{width:22px;height:22px;flex-shrink:0}
-
-.float b{
- display:block;
- font-size:13px;
- font-weight:900;
- line-height:1.5;
-}
-
-.float small{
- display:block;
- color:#8A8499;
- font-size:11px;
- font-weight:700;
-}
-
-.f1{top:23px;right:0}
-.f2{bottom:27px;left:0;animation-delay:-2s}
-.f3{
- top:54px;
- left:0;
- padding:12px;
- border-radius:16px;
- background:var(--lime);
- animation-delay:-1s;
-}
-
-.f3 svg{color:#3B4920}
-
-.f1 svg{color:var(--orange)}
-.f2 svg{color:var(--violet)}
-
-@keyframes levitate{
- 0%,100%{translate:0 0}
- 50%{translate:0 -9px}
-}
-
-/* ACTION */
-
-.action-area{
- margin-top:4px;
-}
-
-.main-button{
- min-height:62px;
- width:100%;
- border:0;
- border-radius:20px;
- background:linear-gradient(105deg,#835CFF,#633CE9);
- color:white;
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:10px 19px;
- box-shadow:0 13px 29px #7046F544;
- transition:.2s;
-}
-
-.main-button:active{transform:scale(.975)}
-
-.main-button .button-text{
- font-size:17px;
+ backdrop-filter:blur(10px);
+ font-size:12px;
  font-weight:900;
 }
 
-.button-arrow{
- width:39px;
- height:39px;
- border-radius:13px;
+.float-card .mini-icon{
+ width:30px;
+ height:30px;
+ border-radius:10px;
  display:grid;
  place-items:center;
- background:#FFFFFF22;
+ font-size:17px;
 }
 
-.button-arrow svg{width:22px;height:22px}
-
-.button-hint{
- text-align:center;
- color:#8B849C;
- font-size:12px;
- font-weight:700;
- margin-top:9px;
+.float-card.one{
+ right:14px;
+ top:76px;
+ transform:rotate(5deg);
 }
 
-/* GROWTH CHOICES */
-
-.choices{
- margin-top:30px;
+.float-card.one .mini-icon{
+ background:#E9E1FF;
 }
 
-.choices-title{
- font-size:19px;
- font-weight:900;
- margin:0 0 13px;
+.float-card.two{
+ left:13px;
+ bottom:61px;
+ transform:rotate(-6deg);
+ background:var(--lime);
 }
 
-.choice-grid{
+.float-card.two .mini-icon{
+ background:#FFFFFF;
+}
+
+.float-card.three{
+ right:17px;
+ bottom:20px;
+ transform:rotate(3deg);
+ background:#FFFFFFE8;
+}
+
+.float-card.three .mini-icon{
+ background:#FFE2E0;
+}
+
+.stage-star{
+ position:absolute;
+ z-index:4;
+ color:var(--lime);
+ font-size:27px;
+}
+
+.stage-star.s1{left:37px;top:65px}
+.stage-star.s2{right:91px;bottom:82px;font-size:17px}
+.stage-star.s3{left:105px;top:188px;font-size:13px;color:white}
+
+.stage-caption{
+ position:absolute;
+ bottom:17px;
+ left:17px;
+ direction:ltr;
+ color:#FFFFFFB8;
+ font-size:10px;
+ letter-spacing:2px;
+ font-weight:800;
+}
+
+/* MINI STATEMENT */
+
+.statement{
+ margin-top:16px;
  display:grid;
  grid-template-columns:1fr 1fr;
  gap:11px;
 }
 
-.choice{
- min-height:153px;
- padding:16px 14px;
- border-radius:23px;
+.statement-card{
+ min-height:100px;
+ padding:15px;
  position:relative;
  overflow:hidden;
+ border-radius:19px;
+ background:#FFFFFF;
+ border:1px solid #E9E3F4;
+ box-shadow:0 9px 22px #30204E0A;
 }
 
-.choice.followers{
- background:#EAE3FF;
+.statement-card:first-child{
+ border-radius:7px 21px 21px 21px;
 }
 
-.choice.engagement{
- background:#FFE7ED;
+.statement-card:last-child{
+ background:#E8FF9A;
+ border-color:#D5F56F;
+ border-radius:21px 7px 21px 21px;
 }
 
-.choice-icon{
- width:43px;
- height:43px;
- display:grid;
- place-items:center;
- background:#FFFFFFB5;
- border-radius:15px;
- margin-bottom:12px;
+.statement-card .symbol{
+ font-size:21px;
+ line-height:1;
+ margin-bottom:7px;
+ display:block;
 }
 
-.choice-icon svg{width:24px;height:24px}
-
-.followers .choice-icon{color:#7046F5}
-.engagement .choice-icon{color:#EF5D83}
-
-.choice h3{
- margin:0;
- font-size:17px;
+.statement-card strong{
+ display:block;
+ font-size:16px;
  font-weight:900;
  line-height:1.7;
 }
 
-.choice p{
- margin:4px 0 0;
- font-size:13px;
- line-height:1.8;
- color:#777085;
+.statement-card span{
+ display:block;
+ color:#80798D;
+ font-size:12px;
  font-weight:700;
+ line-height:1.7;
 }
 
-.choice-number{
+.statement-card:last-child span{
+ color:#4F5A25;
+}
+
+/* CHOOSE YOUR GROWTH */
+
+.choice-section{
+ margin-top:34px;
+}
+
+.section-overline{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ font-size:12px;
+ font-weight:900;
+ color:var(--purple);
+ letter-spacing:.5px;
+}
+
+.section-overline:before{
+ content:"";
+ width:23px;
+ height:4px;
+ border-radius:5px;
+ background:var(--coral);
+}
+
+.section-title{
+ font-size:27px;
+ font-weight:900;
+ line-height:1.6;
+ margin:7px 0 5px;
+ letter-spacing:-.7px;
+}
+
+.section-subtitle{
+ font-size:14px;
+ font-weight:600;
+ color:var(--muted);
+ margin:0;
+ line-height:2;
+}
+
+.choice-list{
+ margin-top:18px;
+ display:grid;
+ gap:13px;
+}
+
+.choice{
+ display:flex;
+ align-items:center;
+ gap:14px;
+ padding:16px;
+ min-height:105px;
+ position:relative;
+ overflow:hidden;
+ background:white;
+ border:1px solid #E8E1F2;
+ border-radius:22px 22px 8px 22px;
+ box-shadow:0 12px 25px #3D286D0B;
+}
+
+.choice:nth-child(2){
+ border-radius:8px 22px 22px 22px;
+ background:#29213C;
+ color:white;
+ border-color:#29213C;
+}
+
+.choice-icon{
+ width:57px;
+ height:57px;
+ flex-shrink:0;
+ border-radius:18px 9px 18px 9px;
+ display:grid;
+ place-items:center;
+ background:#EEE8FF;
+ color:var(--purple);
+}
+
+.choice:nth-child(2) .choice-icon{
+ background:var(--lime);
+ color:#2B2540;
+}
+
+.choice-icon svg{
+ width:29px;
+ height:29px;
+}
+
+.choice-info{
+ flex:1;
+ min-width:0;
+}
+
+.choice-info strong{
+ display:block;
+ font-size:18px;
+ font-weight:900;
+ line-height:1.6;
+}
+
+.choice-info span{
+ display:block;
+ margin-top:3px;
+ font-size:13px;
+ font-weight:600;
+ color:#898295;
+ line-height:1.8;
+}
+
+.choice:nth-child(2) .choice-info span{
+ color:#D1C9E0;
+}
+
+.choice-arrow{
+ width:34px;
+ height:34px;
+ flex-shrink:0;
+ display:grid;
+ place-items:center;
+ border-radius:12px;
+ background:#F2EEFF;
+ color:var(--purple);
+ font-size:20px;
+}
+
+.choice:nth-child(2) .choice-arrow{
+ background:#FFFFFF1C;
+ color:var(--lime);
+}
+
+/* CTA */
+
+.cta{
+ margin-top:32px;
+ padding:23px 20px 20px;
+ border-radius:28px 9px 28px 28px;
+ background:linear-gradient(135deg,#D9FF58,#B7EE38);
+ position:relative;
+ overflow:hidden;
+ box-shadow:0 17px 35px #9BCF2930;
+}
+
+.cta:before{
+ content:"24";
  position:absolute;
- top:13px;
- left:13px;
- color:#8C7CC0;
+ left:-7px;
+ top:-35px;
+ font-size:126px;
+ font-weight:900;
+ color:#FFFFFF50;
+ direction:ltr;
+ letter-spacing:-10px;
+}
+
+.cta:after{
+ content:"✳";
+ position:absolute;
+ right:15px;
+ top:12px;
+ font-size:38px;
+ color:#FFFFFFB8;
+}
+
+.cta-label{
+ direction:ltr;
+ text-align:right;
  font-size:11px;
  font-weight:900;
- direction:ltr;
+ letter-spacing:2px;
+ color:#566A16;
+ position:relative;
+ z-index:1;
 }
 
-/* MINI STATEMENT */
+.cta h2{
+ font-size:27px;
+ font-weight:900;
+ line-height:1.65;
+ margin:9px 0 4px;
+ position:relative;
+ z-index:1;
+}
 
-.mini-statement{
- margin-top:24px;
- padding:19px 20px;
- background:#262039;
- border-radius:23px;
- color:white;
+.cta p{
+ margin:0;
+ font-size:14px;
+ font-weight:700;
+ line-height:2;
+ color:#56612B;
+ position:relative;
+ z-index:1;
+}
+
+.cta-button{
+ min-height:57px;
+ margin-top:18px;
  display:flex;
  align-items:center;
  justify-content:space-between;
  gap:10px;
- overflow:hidden;
- position:relative;
-}
-
-.mini-statement:after{
- content:"";
- width:130px;
- height:130px;
- position:absolute;
- left:-50px;
- top:-85px;
- border:1px solid #FFFFFF24;
- border-radius:50%;
-}
-
-.mini-statement h3{
- font-size:19px;
- line-height:1.8;
- margin:0;
+ padding:10px 16px;
+ border-radius:16px;
+ color:white;
+ background:#2C2340;
+ font-size:16px;
  font-weight:900;
+ box-shadow:0 8px 15px #3323442C;
  position:relative;
- z-index:1;
+ z-index:2;
+ transition:transform .2s;
 }
 
-.mini-statement h3 span{color:var(--lime)}
+.cta-button:active{transform:scale(.975)}
 
-.mini-statement-icon{
- width:43px;
- height:43px;
- flex-shrink:0;
- display:grid;
- place-items:center;
- border-radius:15px;
- background:#FFFFFF16;
- color:var(--lime);
- position:relative;
- z-index:1;
+.cta-button svg{
+ width:23px;
+ height:23px;
 }
-
-.mini-statement-icon svg{width:24px;height:24px}
 
 /* FOOTER */
 
 .footer{
+ padding:26px 0 12px;
  text-align:center;
- color:#9A94A9;
+ color:#9891A8;
  font-size:12px;
- font-weight:600;
- padding:23px 0 9px;
+ font-weight:700;
 }
 
-/* NAVIGATION */
+.footer strong{
+ color:#6F50C5;
+}
+
+/* BOTTOM NAV - SAME SYSTEM AS GUIDE */
 
 .nav-shell{
  position:fixed;
@@ -538,7 +722,7 @@ h1 .purple:after{
  left:0;
  right:0;
  padding:10px 13px calc(10px + env(safe-area-inset-bottom));
- background:#F7F5FFEF;
+ background:#F5F3FFEF;
  backdrop-filter:blur(22px);
  -webkit-backdrop-filter:blur(22px);
  border-top:1px solid #E8E1F2;
@@ -580,15 +764,10 @@ h1 .purple:after{
 }
 
 .nav-item.active svg{stroke-width:2.5}
-
 .nav-item:active{transform:scale(.94)}
 
 @media(min-width:600px){
  .page{width:min(100% - 50px,520px)}
- .hero{padding-top:30px}
- h1{font-size:61px}
- .artwork{height:350px}
- .core{width:225px;height:225px}
  .nav-shell{
   width:min(calc(100% - 40px),520px);
   left:50%;
@@ -604,36 +783,50 @@ h1 .purple:after{
 
 @media(max-width:360px){
  .page{width:calc(100% - 26px)}
- h1{font-size:40px}
- .artwork{height:300px}
- .core{width:190px;height:190px}
- .orbit{width:250px;height:250px}
- .choice{padding:13px 11px}
- .choice h3{font-size:15px}
+ .brand-name{font-size:22px}
+ .brand-photo{width:53px;height:53px}
+ .brand-caption{font-size:11px}
+ .header-pill{font-size:10px;padding:8px}
+ .hero h1{font-size:37px}
+ .stage{min-height:275px}
+ .core{width:140px;height:140px}
+ .float-card{font-size:11px;padding:8px 10px}
+ .choice-info strong{font-size:16px}
+ .choice-info span{font-size:12px}
  .nav-item{font-size:11px}
+}
+
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{
+  animation:none!important;
+  transition:none!important;
+  scroll-behavior:auto!important;
+ }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
+
 <header class="page header">
 
  <a href="index.html" class="brand">
-  <div class="brand-icon">
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M3 17l6-6 4 4 8-10"/>
-    <path d="M14 5h7v7"/>
-   </svg>
+  <div class="brand-photo">
+   <img src="1.jpg" alt="نشان برند Growza24">
   </div>
-  <div>
-   <div class="brand-name">جَذب</div>
-   <div class="brand-caption">پلتفرم رشد اینستاگرام</div>
+
+  <div class="brand-info">
+   <div class="brand-name">
+    Growza<span class="twentyfour">24</span>
+   </div>
+   <div class="brand-caption">پلتفرم رشد پیج اینستاگرام</div>
   </div>
  </a>
 
- <div class="header-status">
-  <span class="status-dot"></span>
+ <div class="header-pill">
+  <i></i>
   مسیر رشد تو
  </div>
 
@@ -642,149 +835,186 @@ h1 .purple:after{
 
 <main class="page">
 
- <section class="hero">
+<!-- HERO -->
 
-  <div class="eyebrow">
-   <span class="eyebrow-line"></span>
-   YOUR NEXT LEVEL STARTS HERE
+<section class="hero">
+
+ <div class="hero-topline">
+  <div class="hero-kicker">
+   <span class="kicker-mark"></span>
+   GROW DIFFERENT
   </div>
+  <div class="hero-index">01 — GROWZA24</div>
+ </div>
 
-  <h1>
-   وقتشه پیجت<br>
-   <span class="purple">بترکونه!</span>
-  </h1>
+ <h1>
+  پیجت فقط<br>
+  <span class="line-two">نباید دیده <span class="lime-word">بشه!</span></span>
+ </h1>
 
-  <p class="hero-description">
-   محتوای خوب نباید دیده‌نشده باقی بماند.
-   <strong>بیا پیجت را از یک صفحه معمولی به یک پیج پربازدیدتر تبدیل کنیم.</strong>
-  </p>
+ <p class="hero-description">
+  باید <strong>توجه جلب کنه، مخاطب جذب کنه و در ذهن‌ها بمونه.</strong>
+  اینجا برای رشد پیجت، مسیرهای متفاوتی پیش روی توست.
+ </p>
 
- </section>
+</section>
 
 
- <!-- VISUAL IDENTITY -->
+<!-- VISUAL STAGE -->
 
- <section class="artwork" aria-label="تصویرسازی رشد پیج">
+<section class="stage">
 
-  <div class="art-glow"></div>
-  <div class="orbit"></div>
-  <div class="orbit second"></div>
+ <div class="stage-grid"></div>
+ <div class="stage-orbit o1"></div>
+ <div class="stage-orbit o2"></div>
+ <div class="stage-orbit o3"></div>
 
-  <span class="orbit-dot"></span>
-  <span class="orbit-dot two"></span>
+ <div class="stage-top">
+  <span>GROWZA24 / SOCIAL GROWTH</span>
+  <span>✦ LEVEL UP</span>
+ </div>
 
-  <div class="core">
-   <div class="core-symbol">
-    <svg viewBox="0 0 64 64">
-     <rect x="7" y="7" width="50" height="50" rx="16"/>
-     <circle cx="32" cy="32" r="11"/>
-     <circle cx="47" cy="17" r="3" fill="white" stroke="none"/>
-     <path d="M15 42l12-12 8 8 14-17"/>
+ <div class="core">
+  <svg viewBox="0 0 80 80" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M14 57 30 41l12 10 24-28"/>
+   <path d="M49 23h17v17"/>
+   <path d="M15 67h51"/>
+   <path d="M15 13v54"/>
+   <circle cx="30" cy="41" r="4" fill="#D8FF39" stroke="none"/>
+   <circle cx="42" cy="51" r="4" fill="#FF9BC4" stroke="none"/>
+   <circle cx="66" cy="23" r="4" fill="#D8FF39" stroke="none"/>
+  </svg>
+ </div>
+
+ <div class="float-card one">
+  <span class="mini-icon">↗</span>
+  رشد و دیده‌شدن
+ </div>
+
+ <div class="float-card two">
+  <span class="mini-icon">✦</span>
+  تعامل بیشتر
+ </div>
+
+ <div class="float-card three">
+  <span class="mini-icon">◎</span>
+  مخاطب بیشتر
+ </div>
+
+ <span class="stage-star s1">✳</span>
+ <span class="stage-star s2">✦</span>
+ <span class="stage-star s3">✧</span>
+
+ <div class="stage-caption">MAKE YOUR PRESENCE COUNT</div>
+
+</section>
+
+
+<!-- TWO VALUE CARDS -->
+
+<section class="statement">
+
+ <div class="statement-card">
+  <span class="symbol">◈</span>
+  <strong>دیده‌شدن بیشتر</strong>
+  <span>فرصتی برای معرفی بهتر پیج</span>
+ </div>
+
+ <div class="statement-card">
+  <span class="symbol">✳</span>
+  <strong>تعامل مؤثرتر</strong>
+  <span>فراتر از یک عدد ساده</span>
+ </div>
+
+</section>
+
+
+<!-- CHOICE -->
+
+<section class="choice-section">
+
+ <div class="section-overline">TWO WAYS TO GROW</div>
+
+ <h2 class="section-title">
+  رشد پیجت را<br>از کدام مسیر می‌خواهی؟
+ </h2>
+
+ <p class="section-subtitle">
+  هدف خودت را مشخص کن؛ مسیر مناسب را انتخاب کن.
+ </p>
+
+ <div class="choice-list">
+
+  <a href="activation.html" class="choice">
+
+   <div class="choice-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+     <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+     <circle cx="10" cy="7" r="4"/>
+     <path d="M20 8v6m-3-3h6"/>
     </svg>
    </div>
-   <div class="core-word">GROW BEYOND</div>
-  </div>
 
-  <div class="float f1">
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-    <circle cx="9" cy="7" r="4"/>
-    <path d="M19 8v6m3-3h-6"/>
-   </svg>
-   <div>
-    <b>مخاطب بیشتر</b>
-    <small>گسترش جامعه پیج</small>
+   <div class="choice-info">
+    <strong>افزایش فالوور</strong>
+    <span>برای گسترش جامعه دنبال‌کنندگان پیج</span>
    </div>
-  </div>
 
-  <div class="float f2">
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
-   </svg>
-   <div>
-    <b>تعامل بیشتر</b>
-    <small>توجه به محتوای شما</small>
-   </div>
-  </div>
+   <div class="choice-arrow">←</div>
 
-  <div class="float f3">
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-    <path d="M3 17l6-6 4 4 8-10"/>
-    <path d="M14 5h7v7"/>
-   </svg>
-  </div>
-
- </section>
-
-
- <!-- CTA -->
-
- <section class="action-area">
-  <a href="activation.html" class="main-button">
-   <span class="button-text">شروع رشد پیج من</span>
-   <span class="button-arrow">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
-     <path d="M19 12H5m7 7-7-7 7-7"/>
-    </svg>
-   </span>
   </a>
-  <div class="button-hint">اولین قدم برای یک حضور قدرتمندتر</div>
- </section>
 
 
- <!-- GROWTH TYPES -->
+  <a href="activation.html" class="choice">
 
- <section class="choices">
+   <div class="choice-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+     <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
+    </svg>
+   </div>
 
-  <h2 class="choices-title">کدام مسیر را انتخاب می‌کنی؟</h2>
+   <div class="choice-info">
+    <strong>افزایش تعامل محتوا</strong>
+    <span>تماشا، لایک، ذخیره، کامنت و بازنشر</span>
+   </div>
 
-  <div class="choice-grid">
+   <div class="choice-arrow">←</div>
 
-   <a href="activation.html" class="choice followers">
-    <span class="choice-number">01</span>
-    <div class="choice-icon">
-     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-      <circle cx="9" cy="7" r="4"/>
-      <path d="M19 8v6m3-3h-6"/>
-     </svg>
-    </div>
-    <h3>افزایش فالوور</h3>
-    <p>مخاطبان بیشتر، دامنه دیده‌شدن گسترده‌تر</p>
-   </a>
+  </a>
 
-   <a href="activation.html" class="choice engagement">
-    <span class="choice-number">02</span>
-    <div class="choice-icon">
-     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
-     </svg>
-    </div>
-    <h3>افزایش تعامل</h3>
-    <p>تماشا، لایک، ذخیره، کامنت و بازنشر</p>
-   </a>
+ </div>
 
-  </div>
-
- </section>
+</section>
 
 
- <section class="mini-statement">
-  <h3>
-   از دیده‌شدن شروع کن؛<br>
-   برای <span>بیشتر دیده‌شدن</span> بجنگ.
-  </h3>
-  <div class="mini-statement-icon">
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M3 17l6-6 4 4 8-10"/>
-    <path d="M14 5h7v7"/>
-   </svg>
-  </div>
- </section>
+<!-- FINAL CTA -->
 
- <footer class="footer">
-  جَذب · پلتفرم رشد پیج اینستاگرام
- </footer>
+<section class="cta">
+
+ <div class="cta-label">YOUR NEXT MOVE / 24</div>
+
+ <h2>
+  برای رشد پیجت<br>
+  یک قدم جلوتر برو!
+ </h2>
+
+ <p>
+  مسیر موردنظرت را انتخاب کن و مراحل فعال‌سازی را آغاز کن.
+ </p>
+
+ <a href="activation.html" class="cta-button">
+  شروع فعال‌سازی
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+   <path d="M19 12H5m7 7-7-7 7-7"/>
+  </svg>
+ </a>
+
+</section>
+
+
+<footer class="footer">
+ <strong>Growza24</strong> · پلتفرم رشد پیج اینستاگرام
+</footer>
 
 </main>
 

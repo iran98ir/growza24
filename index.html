@@ -4,9 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#F5F3FF">
-<meta name="description" content="Growza24؛ پلتفرم رشد پیج اینستاگرام">
-<title>Growza24 | پلتفرم رشد اینستاگرام</title>
+<meta name="theme-color" content="#F3F0E8">
+<meta name="description" content="Growza24؛ تجربه‌ای متفاوت برای رشد اینستاگرام">
+<title>Growza24 — Beyond The Feed</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,706 +14,823 @@
 
 <style>
 :root{
- --bg:#F5F3FF;
- --paper:#FFFFFF;
- --ink:#201A32;
- --muted:#777187;
- --purple:#7042F5;
- --purple2:#A58AFF;
- --purple3:#4822C7;
- --lime:#D8FF39;
- --coral:#FF6D68;
- --pink:#FF9BC4;
- --cyan:#75E9DD;
- --line:#E8E2F4;
+ --canvas:#F3F0E8;
+ --paper:#FFFDF7;
+ --ink:#17191C;
+ --muted:#77776F;
+ --acid:#D7FF36;
+ --blue:#4846F5;
+ --orange:#FF653C;
+ --pink:#FF8FB7;
+ --line:#DCD9CE;
+ --radius:28px;
 }
 
-*{
- box-sizing:border-box;
- -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 
 html{scroll-behavior:smooth}
 
 body{
  margin:0;
- background:
-  radial-gradient(ellipse at 95% 5%,#DCD1FF 0,transparent 28%),
-  radial-gradient(ellipse at 0% 48%,#FFE0E6 0,transparent 25%),
-  var(--bg);
+ background:var(--canvas);
  color:var(--ink);
  font-family:'Vazirmatn',sans-serif;
  overflow-x:hidden;
- padding-bottom:105px;
+ padding-bottom:112px;
 }
 
 a{color:inherit;text-decoration:none}
 button{font-family:inherit}
-.page{width:min(100% - 34px,520px);margin:auto}
+.page{width:min(100% - 32px,560px);margin:auto}
 
-/* HEADER */
+/* =========================
+   SIGNATURE HEADER
+========================= */
 
 .header{
- min-height:91px;
+ height:94px;
  display:flex;
- align-items:center;
  justify-content:space-between;
- gap:12px;
+ align-items:center;
+ position:relative;
+ z-index:5;
 }
 
 .brand{
  display:flex;
  align-items:center;
- gap:12px;
- min-width:0;
+ gap:11px;
 }
 
-.brand-photo{
- width:58px;
- height:58px;
- flex-shrink:0;
- overflow:hidden;
- border-radius:19px;
- background:linear-gradient(145deg,#D9FF54,#8B62FF);
- padding:3px;
- box-shadow:
- 0 9px 22px #6541C633,
- 0 0 0 4px #FFFFFFB5;
+.brand-symbol{
+ width:53px;
+ height:53px;
+ position:relative;
+ display:grid;
+ place-items:center;
+ background:var(--ink);
+ border-radius:17px 17px 17px 5px;
+ transform:rotate(-5deg);
+ box-shadow:5px 5px 0 var(--acid);
 }
 
-.brand-photo img{
- display:block;
+.brand-symbol img{
  width:100%;
  height:100%;
  object-fit:cover;
- border-radius:16px;
+ border-radius:inherit;
 }
 
-.brand-info{
- min-width:0;
+.brand-symbol:not(:has(img[src="1.jpg"])):after{
+ content:"G";
+ color:var(--acid);
+ font-size:35px;
+ font-weight:900;
 }
+
+.brand-text{min-width:0}
 
 .brand-name{
  direction:ltr;
- text-align:left;
- font-size:25px;
- line-height:1.2;
- letter-spacing:-1.1px;
+ font-size:26px;
+ line-height:1;
  font-weight:900;
- white-space:nowrap;
+ letter-spacing:-1.6px;
 }
 
-.brand-name .twentyfour{
- color:#9BD600;
- text-shadow:0 2px 0 #D8FF39;
-}
+.brand-name span{color:var(--blue)}
 
-.brand-caption{
- direction:rtl;
- text-align:right;
- color:#777187;
- font-size:12px;
+.brand-sub{
+ font-size:13px;
  font-weight:800;
- margin-top:5px;
- white-space:nowrap;
+ margin-top:7px;
+ color:#77746B;
 }
 
-.header-pill{
- flex-shrink:0;
+.header-action{
  display:flex;
  align-items:center;
- gap:7px;
- padding:9px 12px;
- border:1px solid #E4DDF2;
- border-radius:30px;
- background:#FFFFFFB8;
- backdrop-filter:blur(12px);
- font-size:11px;
+ gap:8px;
+ background:var(--paper);
+ border:1px solid var(--line);
+ border-radius:50px;
+ padding:9px 13px;
+ font-size:12px;
  font-weight:900;
- color:#5D4A8A;
+ box-shadow:0 4px 0 #DEDACF;
 }
 
-.header-pill i{
- width:8px;
- height:8px;
+.header-action i{
+ width:9px;
+ height:9px;
+ background:#8CCB29;
  border-radius:50%;
- background:#A5D900;
- box-shadow:0 0 0 4px #D8FF3945;
+ box-shadow:0 0 0 4px #D7FF3655;
 }
 
-/* HERO */
+/* =========================
+   HERO / EDITORIAL
+========================= */
 
 .hero{
- padding-top:13px;
  position:relative;
+ padding-top:28px;
 }
 
-.hero-topline{
+.hero-meta{
  display:flex;
  align-items:center;
  justify-content:space-between;
- gap:8px;
- margin-bottom:15px;
+ margin-bottom:17px;
 }
 
-.hero-kicker{
+.hero-tag{
  display:flex;
  align-items:center;
- gap:8px;
- color:var(--purple);
- font-size:13px;
- font-weight:900;
- letter-spacing:.4px;
-}
-
-.kicker-mark{
- width:27px;
- height:4px;
- border-radius:8px;
- background:var(--coral);
-}
-
-.hero-index{
+ gap:9px;
  direction:ltr;
- color:#9A93AA;
- font-size:11px;
+ font-size:12px;
+ font-weight:900;
+ letter-spacing:1.8px;
+}
+
+.hero-tag:before{
+ content:"";
+ width:28px;
+ height:4px;
+ background:var(--blue);
+ border-radius:8px;
+}
+
+.hero-number{
+ direction:ltr;
+ font-size:12px;
  font-weight:900;
  letter-spacing:2px;
+ color:#8B897F;
 }
 
-.hero h1{
- font-size:clamp(39px,10vw,55px);
- line-height:1.48;
- letter-spacing:-2px;
+.hero-title{
+ font-size:clamp(49px,12vw,73px);
+ line-height:1.37;
+ letter-spacing:-3px;
  font-weight:900;
  margin:0;
-}
-
-.hero h1 .line-two{
- display:block;
- color:var(--purple);
-}
-
-.hero h1 .lime-word{
- display:inline-block;
  position:relative;
- color:var(--ink);
- z-index:0;
+ z-index:2;
 }
 
-.hero h1 .lime-word:before{
+.hero-title .line{
+ display:block;
+ white-space:nowrap;
+}
+
+.hero-title .blue-word{
+ color:var(--blue);
+ position:relative;
+ display:inline-block;
+}
+
+.hero-title .blue-word:after{
  content:"";
  position:absolute;
- z-index:-1;
- height:15px;
- left:-4px;
- right:-4px;
- bottom:9px;
- background:var(--lime);
+ height:12px;
+ bottom:7px;
+ left:0;
+ right:0;
+ background:var(--acid);
  transform:rotate(-2deg);
- border-radius:4px;
+ z-index:-1;
 }
 
-.hero-description{
- margin:12px 0 0;
- color:#6F687E;
- font-size:16px;
- line-height:2.05;
- font-weight:600;
- max-width:460px;
+.hero-title .outline-word{
+ color:transparent;
+ -webkit-text-stroke:1.8px var(--ink);
 }
 
-.hero-description strong{
+.hero-intro{
+ margin:17px 0 0;
+ font-size:17px;
+ line-height:2;
+ font-weight:650;
+ color:#65635C;
+ max-width:450px;
+}
+
+.hero-intro strong{
  color:var(--ink);
  font-weight:900;
 }
 
-/* VISUAL STAGE */
-
-.stage{
- margin-top:24px;
- min-height:300px;
- position:relative;
- border-radius:32px 32px 15px 32px;
- overflow:hidden;
- isolation:isolate;
- background:
-  radial-gradient(circle at 78% 20%,#A48AFF 0,transparent 32%),
-  radial-gradient(circle at 13% 88%,#FF8279 0,transparent 27%),
-  linear-gradient(135deg,#342052 0%,#5631B5 53%,#7042F5 100%);
- box-shadow:
-  0 23px 48px #4D2A9B35,
-  inset 0 1px 0 #FFFFFF55;
+.hero-side-note{
+ position:absolute;
+ left:-1px;
+ top:145px;
+ writing-mode:vertical-rl;
+ direction:ltr;
+ transform:rotate(180deg);
+ font-size:10px;
+ font-weight:900;
+ letter-spacing:2px;
+ color:#AAA69A;
 }
 
-.stage-grid{
+/* =========================
+   ART OBJECT / 3D STAGE
+========================= */
+
+.art-stage{
+ margin-top:30px;
+ height:340px;
+ position:relative;
+ overflow:hidden;
+ isolation:isolate;
+ background:#2425B9;
+ border-radius:12px 38px 12px 38px;
+ box-shadow:0 18px 0 #D9D4C6;
+}
+
+.art-stage:before{
+ content:"";
  position:absolute;
  inset:0;
  opacity:.17;
  background-image:
-  linear-gradient(#FFFFFF 1px,transparent 1px),
-  linear-gradient(90deg,#FFFFFF 1px,transparent 1px);
- background-size:27px 27px;
- mask-image:linear-gradient(125deg,black,transparent 85%);
+  radial-gradient(#FFFFFF 1px,transparent 1px);
+ background-size:17px 17px;
 }
 
-.stage-orbit{
+.art-stage:after{
+ content:"";
  position:absolute;
+ width:310px;
+ height:310px;
  border:1px solid #FFFFFF45;
  border-radius:50%;
- transform:rotate(-24deg);
-}
-
-.stage-orbit.o1{
- width:320px;
- height:180px;
- top:52px;
  left:50%;
- margin-left:-160px;
+ top:50%;
+ transform:translate(-50%,-50%);
+ box-shadow:
+  0 0 0 35px #FFFFFF0A,
+  0 0 0 70px #FFFFFF08;
 }
 
-.stage-orbit.o2{
- width:370px;
- height:220px;
- top:31px;
- left:50%;
- margin-left:-185px;
- border-style:dashed;
- border-color:#FFFFFF36;
-}
-
-.stage-orbit.o3{
- width:260px;
- height:260px;
- top:22px;
- left:50%;
- margin-left:-130px;
- border-color:#D8FF3960;
-}
-
-.stage-top{
+.art-label{
  position:absolute;
  top:17px;
- right:18px;
  left:18px;
+ right:18px;
  display:flex;
  justify-content:space-between;
- align-items:center;
- color:#FFFFFFC9;
+ direction:ltr;
+ color:#FFFFFFB8;
  font-size:11px;
  font-weight:900;
- letter-spacing:1.4px;
+ letter-spacing:1.6px;
+ z-index:5;
+}
+
+.art-label span:last-child{color:var(--acid)}
+
+.art-number{
+ position:absolute;
+ bottom:-37px;
+ right:4px;
+ color:#FFFFFF0D;
+ font-size:205px;
+ line-height:1;
+ font-weight:900;
+ letter-spacing:-14px;
  direction:ltr;
 }
 
-.stage-top span:last-child{
- color:var(--lime);
+.sculpture{
+ position:absolute;
+ width:205px;
+ height:205px;
+ top:55px;
+ left:50%;
+ transform:translateX(-50%);
+ z-index:2;
+ animation:float 6s ease-in-out infinite;
 }
 
-.core{
+.sculpture .outer{
  position:absolute;
- width:158px;
- height:158px;
- top:50%;
- left:50%;
- transform:translate(-50%,-48%) rotate(-9deg);
- border-radius:43px 23px 43px 23px;
- background:
-  linear-gradient(145deg,#A58AFF,#673BE6 60%,#4D28B7);
- border:1px solid #FFFFFF80;
+ inset:12px;
+ border:2px solid #FFFFFFB0;
+ border-radius:42% 58% 55% 45% / 48% 35% 65% 52%;
+ transform:rotate(30deg);
+ background:linear-gradient(140deg,#FFFFFF2D,#FFFFFF05 50%,#17147D65);
  box-shadow:
-  0 24px 45px #140B3965,
-  inset 0 2px 2px #FFFFFF9C,
-  inset 0 -8px 18px #3D20A45C;
- display:grid;
- place-items:center;
+  inset 0 0 30px #FFFFFF30,
+  0 22px 45px #08065C55;
+}
+
+.sculpture .inner{
+ position:absolute;
+ inset:42px;
+ border-radius:36% 64% 38% 62%;
+ background:
+  linear-gradient(140deg,#F5FF9D,#D7FF36 35%,#A7CB16 80%);
+ transform:rotate(-27deg);
+ box-shadow:
+  0 15px 30px #08065B55,
+  inset -10px -12px 20px #738B153D,
+  inset 8px 8px 15px #FFFFFFA6;
+}
+
+.sculpture .hole{
+ position:absolute;
+ width:53px;
+ height:53px;
+ border-radius:50%;
+ background:#2425B9;
+ top:76px;
+ left:76px;
+ box-shadow:
+  inset 0 5px 12px #08065B80,
+  0 0 0 9px #FFFFFF19;
+}
+
+.sculpture .shine{
+ position:absolute;
+ top:32px;
+ right:49px;
+ width:32px;
+ height:8px;
+ border-radius:50%;
+ background:#FFFFFFB5;
+ filter:blur(3px);
+ transform:rotate(-40deg);
+}
+
+.orbit{
+ position:absolute;
+ width:275px;
+ height:100px;
+ border:1px solid #FFFFFF70;
+ border-radius:50%;
+ left:50%;
+ top:122px;
+ transform:translateX(-50%) rotate(-35deg);
  z-index:3;
 }
 
-.core:before{
- content:"";
+.orbit.two{
+ width:290px;
+ height:115px;
+ transform:translateX(-50%) rotate(38deg);
+ border-style:dashed;
+ opacity:.6;
+}
+
+.orbit-dot{
  position:absolute;
- inset:9px;
- border:1px solid #FFFFFF42;
- border-radius:34px 17px 34px 17px;
+ width:15px;
+ height:15px;
+ background:var(--orange);
+ border:3px solid white;
+ border-radius:50%;
+ left:71%;
+ top:88px;
+ z-index:4;
+ box-shadow:0 0 18px #FF653C;
 }
 
-.core svg{
- width:78px;
- height:78px;
- filter:drop-shadow(0 5px 5px #28115B55);
-}
-
-.float-card{
+.art-chip{
  position:absolute;
  z-index:5;
- padding:10px 13px;
  display:flex;
  align-items:center;
  gap:9px;
- border-radius:15px;
- background:#FFFFFFF0;
- color:#302449;
- box-shadow:0 13px 25px #140A3B45;
- border:1px solid #FFFFFF;
- backdrop-filter:blur(10px);
- font-size:12px;
+ padding:10px 13px;
+ background:#FFFDF7;
+ color:var(--ink);
+ border-radius:13px;
+ font-size:13px;
  font-weight:900;
+ box-shadow:5px 6px 0 #17191C;
 }
 
-.float-card .mini-icon{
+.art-chip b{
  width:30px;
  height:30px;
- border-radius:10px;
  display:grid;
  place-items:center;
- font-size:17px;
+ background:var(--acid);
+ border-radius:9px;
+ font-size:19px;
 }
 
-.float-card.one{
- right:14px;
- top:76px;
+.art-chip.one{
+ top:103px;
+ right:12px;
  transform:rotate(5deg);
 }
 
-.float-card.one .mini-icon{
- background:#E9E1FF;
-}
-
-.float-card.two{
- left:13px;
+.art-chip.two{
  bottom:61px;
- transform:rotate(-6deg);
- background:var(--lime);
+ left:13px;
+ transform:rotate(-5deg);
 }
 
-.float-card.two .mini-icon{
- background:#FFFFFF;
-}
-
-.float-card.three{
- right:17px;
- bottom:20px;
- transform:rotate(3deg);
- background:#FFFFFFE8;
-}
-
-.float-card.three .mini-icon{
- background:#FFE2E0;
-}
-
-.stage-star{
- position:absolute;
- z-index:4;
- color:var(--lime);
- font-size:27px;
-}
-
-.stage-star.s1{left:37px;top:65px}
-.stage-star.s2{right:91px;bottom:82px;font-size:17px}
-.stage-star.s3{left:105px;top:188px;font-size:13px;color:white}
-
-.stage-caption{
- position:absolute;
- bottom:17px;
- left:17px;
- direction:ltr;
- color:#FFFFFFB8;
- font-size:10px;
- letter-spacing:2px;
- font-weight:800;
-}
-
-/* MINI STATEMENT */
-
-.statement{
- margin-top:16px;
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:11px;
-}
-
-.statement-card{
- min-height:100px;
- padding:15px;
- position:relative;
- overflow:hidden;
- border-radius:19px;
- background:#FFFFFF;
- border:1px solid #E9E3F4;
- box-shadow:0 9px 22px #30204E0A;
-}
-
-.statement-card:first-child{
- border-radius:7px 21px 21px 21px;
-}
-
-.statement-card:last-child{
- background:#E8FF9A;
- border-color:#D5F56F;
- border-radius:21px 7px 21px 21px;
-}
-
-.statement-card .symbol{
- font-size:21px;
- line-height:1;
- margin-bottom:7px;
- display:block;
-}
-
-.statement-card strong{
- display:block;
- font-size:16px;
- font-weight:900;
- line-height:1.7;
-}
-
-.statement-card span{
- display:block;
- color:#80798D;
- font-size:12px;
- font-weight:700;
- line-height:1.7;
-}
-
-.statement-card:last-child span{
- color:#4F5A25;
-}
-
-/* CHOOSE YOUR GROWTH */
-
-.choice-section{
- margin-top:34px;
-}
-
-.section-overline{
- display:flex;
- align-items:center;
- gap:8px;
- font-size:12px;
- font-weight:900;
- color:var(--purple);
- letter-spacing:.5px;
-}
-
-.section-overline:before{
- content:"";
- width:23px;
- height:4px;
- border-radius:5px;
- background:var(--coral);
-}
-
-.section-title{
- font-size:27px;
- font-weight:900;
- line-height:1.6;
- margin:7px 0 5px;
- letter-spacing:-.7px;
-}
-
-.section-subtitle{
- font-size:14px;
- font-weight:600;
- color:var(--muted);
- margin:0;
- line-height:2;
-}
-
-.choice-list{
- margin-top:18px;
- display:grid;
- gap:13px;
-}
-
-.choice{
- display:flex;
- align-items:center;
- gap:14px;
- padding:16px;
- min-height:105px;
- position:relative;
- overflow:hidden;
- background:white;
- border:1px solid #E8E1F2;
- border-radius:22px 22px 8px 22px;
- box-shadow:0 12px 25px #3D286D0B;
-}
-
-.choice:nth-child(2){
- border-radius:8px 22px 22px 22px;
- background:#29213C;
+.art-chip.two b{
+ background:var(--orange);
  color:white;
- border-color:#29213C;
 }
 
-.choice-icon{
- width:57px;
- height:57px;
- flex-shrink:0;
- border-radius:18px 9px 18px 9px;
- display:grid;
- place-items:center;
- background:#EEE8FF;
- color:var(--purple);
-}
-
-.choice:nth-child(2) .choice-icon{
- background:var(--lime);
- color:#2B2540;
-}
-
-.choice-icon svg{
- width:29px;
- height:29px;
-}
-
-.choice-info{
- flex:1;
- min-width:0;
-}
-
-.choice-info strong{
- display:block;
- font-size:18px;
- font-weight:900;
- line-height:1.6;
-}
-
-.choice-info span{
- display:block;
- margin-top:3px;
- font-size:13px;
- font-weight:600;
- color:#898295;
- line-height:1.8;
-}
-
-.choice:nth-child(2) .choice-info span{
- color:#D1C9E0;
-}
-
-.choice-arrow{
- width:34px;
- height:34px;
- flex-shrink:0;
- display:grid;
- place-items:center;
- border-radius:12px;
- background:#F2EEFF;
- color:var(--purple);
- font-size:20px;
-}
-
-.choice:nth-child(2) .choice-arrow{
- background:#FFFFFF1C;
- color:var(--lime);
-}
-
-/* CTA */
-
-.cta{
- margin-top:32px;
- padding:23px 20px 20px;
- border-radius:28px 9px 28px 28px;
- background:linear-gradient(135deg,#D9FF58,#B7EE38);
- position:relative;
- overflow:hidden;
- box-shadow:0 17px 35px #9BCF2930;
-}
-
-.cta:before{
- content:"24";
+.art-bottom{
  position:absolute;
- left:-7px;
- top:-35px;
- font-size:126px;
- font-weight:900;
- color:#FFFFFF50;
- direction:ltr;
- letter-spacing:-10px;
-}
-
-.cta:after{
- content:"✳";
- position:absolute;
- right:15px;
- top:12px;
- font-size:38px;
- color:#FFFFFFB8;
-}
-
-.cta-label{
- direction:ltr;
- text-align:right;
+ z-index:5;
+ bottom:15px;
+ left:17px;
+ right:17px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ color:#FFFFFFD6;
  font-size:11px;
  font-weight:900;
- letter-spacing:2px;
- color:#566A16;
- position:relative;
- z-index:1;
+ letter-spacing:1px;
 }
 
-.cta h2{
- font-size:27px;
+.art-bottom strong{
+ color:var(--acid);
+ font-size:13px;
+}
+
+/* =========================
+   BENTO / PROOF
+========================= */
+
+.bento{
+ display:grid;
+ grid-template-columns:1.08fr .92fr;
+ grid-template-rows:130px 112px;
+ gap:11px;
+ margin-top:25px;
+}
+
+.bento-card{
+ position:relative;
+ overflow:hidden;
+ padding:16px;
+ border-radius:22px 7px 22px 22px;
+}
+
+.bento-card.a{
+ background:var(--acid);
+ grid-row:span 2;
+}
+
+.bento-card.b{
+ background:var(--ink);
+ color:white;
+ border-radius:7px 22px 22px 22px;
+}
+
+.bento-card.c{
+ background:#FF805E;
+ color:var(--ink);
+ border-radius:22px 22px 7px 22px;
+}
+
+.bento-symbol{
+ font-size:30px;
  font-weight:900;
- line-height:1.65;
- margin:9px 0 4px;
- position:relative;
- z-index:1;
+ line-height:1;
 }
 
-.cta p{
+.bento-card.a .bento-symbol{
+ font-size:54px;
+ margin-top:17px;
+}
+
+.bento-card h3{
+ margin:9px 0 3px;
+ font-size:17px;
+ line-height:1.6;
+ font-weight:900;
+}
+
+.bento-card.a h3{font-size:22px}
+
+.bento-card p{
  margin:0;
- font-size:14px;
+ font-size:13px;
+ line-height:1.8;
  font-weight:700;
- line-height:2;
- color:#56612B;
- position:relative;
- z-index:1;
+ opacity:.72;
 }
 
-.cta-button{
- min-height:57px;
- margin-top:18px;
+.bento-card.a:after{
+ content:"01";
+ position:absolute;
+ bottom:-22px;
+ left:4px;
+ font-size:115px;
+ font-weight:900;
+ line-height:1;
+ opacity:.1;
+ direction:ltr;
+}
+
+/* =========================
+   SECTION HEADING
+========================= */
+
+.section{
+ margin-top:53px;
+}
+
+.section-eyebrow{
  display:flex;
  align-items:center;
  justify-content:space-between;
  gap:10px;
- padding:10px 16px;
- border-radius:16px;
- color:white;
- background:#2C2340;
- font-size:16px;
+}
+
+.section-eyebrow span:first-child{
+ font-size:12px;
  font-weight:900;
- box-shadow:0 8px 15px #3323442C;
+ letter-spacing:1.5px;
+ direction:ltr;
+ color:var(--blue);
+}
+
+.section-eyebrow span:last-child{
+ font-size:12px;
+ font-weight:800;
+ color:#8C897F;
+}
+
+.section-title{
+ font-size:34px;
+ line-height:1.55;
+ font-weight:900;
+ letter-spacing:-1.1px;
+ margin:10px 0 4px;
+}
+
+.section-desc{
+ margin:0;
+ font-size:16px;
+ line-height:2;
+ font-weight:650;
+ color:#77746B;
+}
+
+/* =========================
+   CHOOSE YOUR ROUTE
+========================= */
+
+.routes{
+ margin-top:24px;
+ display:grid;
+ gap:15px;
+}
+
+.route{
+ min-height:180px;
+ display:flex;
+ flex-direction:column;
+ justify-content:space-between;
+ padding:18px;
+ position:relative;
+ overflow:hidden;
+ border-radius:26px 7px 26px 26px;
+ transition:transform .25s,box-shadow .25s;
+}
+
+.route:active{transform:scale(.975)}
+
+.route.followers{
+ background:var(--ink);
+ color:white;
+}
+
+.route.engagement{
+ background:var(--orange);
+ color:var(--ink);
+ border-radius:7px 26px 26px 26px;
+}
+
+.route-top{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
  position:relative;
  z-index:2;
- transition:transform .2s;
 }
 
-.cta-button:active{transform:scale(.975)}
-
-.cta-button svg{
- width:23px;
- height:23px;
+.route-number{
+ direction:ltr;
+ font-size:13px;
+ font-weight:900;
+ letter-spacing:2px;
+ opacity:.65;
 }
 
-/* FOOTER */
+.route-icon{
+ width:54px;
+ height:54px;
+ display:grid;
+ place-items:center;
+ border-radius:18px 8px 18px 18px;
+ background:var(--acid);
+ color:var(--ink);
+ font-size:29px;
+ font-weight:900;
+}
+
+.engagement .route-icon{
+ background:var(--ink);
+ color:var(--acid);
+}
+
+.route-content{
+ position:relative;
+ z-index:2;
+}
+
+.route-content h3{
+ font-size:26px;
+ font-weight:900;
+ line-height:1.5;
+ margin:8px 0 2px;
+}
+
+.route-content p{
+ font-size:14px;
+ line-height:1.9;
+ font-weight:700;
+ margin:0;
+ opacity:.72;
+}
+
+.route-arrow{
+ position:absolute;
+ left:17px;
+ bottom:18px;
+ width:41px;
+ height:41px;
+ display:grid;
+ place-items:center;
+ border-radius:50%;
+ background:var(--acid);
+ color:var(--ink);
+ font-size:23px;
+ z-index:3;
+ transition:transform .25s;
+}
+
+.route:hover .route-arrow{transform:translateX(-5px)}
+
+.engagement .route-arrow{
+ background:var(--ink);
+ color:white;
+}
+
+.route-decoration{
+ position:absolute;
+ left:-28px;
+ top:15px;
+ width:175px;
+ height:175px;
+ border:1px solid #FFFFFF24;
+ border-radius:50%;
+ box-shadow:
+  0 0 0 23px #FFFFFF08,
+  0 0 0 47px #FFFFFF06;
+}
+
+.engagement .route-decoration{
+ border-color:#17191C20;
+ box-shadow:
+  0 0 0 23px #17191C08,
+  0 0 0 47px #17191C06;
+}
+
+/* =========================
+   BRAND MANIFESTO
+========================= */
+
+.manifesto{
+ margin-top:47px;
+ padding:23px 20px 21px;
+ position:relative;
+ overflow:hidden;
+ background:var(--blue);
+ color:white;
+ border-radius:8px 30px 30px 30px;
+}
+
+.manifesto:before{
+ content:"G";
+ position:absolute;
+ left:-13px;
+ bottom:-90px;
+ font-size:260px;
+ line-height:1;
+ font-weight:900;
+ color:#FFFFFF0D;
+ direction:ltr;
+}
+
+.manifesto-top{
+ direction:ltr;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ font-size:11px;
+ letter-spacing:2px;
+ font-weight:900;
+ color:#FFFFFFB9;
+}
+
+.manifesto-top span:last-child{color:var(--acid)}
+
+.manifesto h2{
+ position:relative;
+ z-index:1;
+ margin:20px 0 8px;
+ font-size:34px;
+ font-weight:900;
+ line-height:1.65;
+}
+
+.manifesto h2 span{color:var(--acid)}
+
+.manifesto p{
+ position:relative;
+ z-index:1;
+ margin:0;
+ font-size:15px;
+ font-weight:650;
+ line-height:2;
+ color:#FFFFFFCC;
+}
+
+.manifesto-button{
+ position:relative;
+ z-index:2;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ min-height:62px;
+ margin-top:22px;
+ padding:12px 17px;
+ border-radius:15px;
+ background:var(--acid);
+ color:var(--ink);
+ font-size:17px;
+ font-weight:900;
+ box-shadow:0 6px 0 #26238B;
+ transition:transform .2s,box-shadow .2s;
+}
+
+.manifesto-button:active{
+ transform:translateY(4px);
+ box-shadow:0 2px 0 #26238B;
+}
+
+.manifesto-button .arrow{
+ font-size:27px;
+ line-height:1;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 .footer{
- padding:26px 0 12px;
+ padding:29px 0 15px;
  text-align:center;
- color:#9891A8;
- font-size:12px;
- font-weight:700;
 }
 
-.footer strong{
- color:#6F50C5;
+.footer-brand{
+ direction:ltr;
+ font-size:23px;
+ font-weight:900;
+ letter-spacing:-1px;
 }
 
-/* BOTTOM NAV - SAME SYSTEM AS GUIDE */
+.footer-brand span{color:var(--blue)}
+
+.footer p{
+ font-size:13px;
+ font-weight:750;
+ color:#858176;
+ line-height:1.8;
+ margin:7px 0 0;
+}
+
+/* =========================
+   NEW FOUR-ITEM NAV
+   SHARED ON ALL PAGES
+========================= */
 
 .nav-shell{
  position:fixed;
@@ -721,79 +838,95 @@ button{font-family:inherit}
  bottom:0;
  left:0;
  right:0;
- padding:10px 13px calc(10px + env(safe-area-inset-bottom));
- background:#F5F3FFEF;
- backdrop-filter:blur(22px);
- -webkit-backdrop-filter:blur(22px);
- border-top:1px solid #E8E1F2;
+ padding:9px 13px calc(9px + env(safe-area-inset-bottom));
+ background:#F3F0E8ED;
+ backdrop-filter:blur(20px);
+ -webkit-backdrop-filter:blur(20px);
+ border-top:1px solid #DCD9CE;
 }
 
 .nav{
- width:min(100%,520px);
+ width:min(100%,560px);
  margin:auto;
  display:grid;
  grid-template-columns:repeat(4,1fr);
- gap:6px;
+ gap:7px;
 }
 
 .nav-item{
  min-width:0;
- min-height:65px;
- border-radius:19px;
+ min-height:67px;
  display:flex;
  align-items:center;
  justify-content:center;
  flex-direction:column;
- gap:4px;
- color:#898298;
+ gap:5px;
+ color:#89867D;
+ border-radius:17px;
  font-size:12px;
- font-weight:800;
- transition:.2s;
+ font-weight:900;
+ transition:background .2s,color .2s,transform .2s;
 }
 
-.nav-item svg{
+.nav-icon{
+ width:28px;
+ height:28px;
+ display:grid;
+ place-items:center;
+}
+
+.nav-icon svg{
  width:25px;
  height:25px;
- stroke-width:2;
+ stroke:currentColor;
+ stroke-width:1.9;
+ fill:none;
+ stroke-linecap:round;
+ stroke-linejoin:round;
 }
 
 .nav-item.active{
- background:#7046F5;
- color:white;
- box-shadow:0 7px 17px #7046F540;
+ color:var(--ink);
+ background:var(--acid);
+ box-shadow:0 4px 0 #B7D92C;
 }
 
-.nav-item.active svg{stroke-width:2.5}
+.nav-item.active svg{stroke-width:2.4}
+
 .nav-item:active{transform:scale(.94)}
 
 @media(min-width:600px){
- .page{width:min(100% - 50px,520px)}
+ .page{width:min(100% - 50px,560px)}
  .nav-shell{
-  width:min(calc(100% - 40px),520px);
+  width:min(calc(100% - 40px),560px);
   left:50%;
   right:auto;
   transform:translateX(-50%);
   bottom:13px;
-  border:1px solid #E8E1F2;
+  border:1px solid var(--line);
   border-radius:24px;
-  box-shadow:0 10px 35px #39265B20;
+  box-shadow:0 12px 35px #17191C16;
   padding:8px;
  }
+ body{padding-bottom:115px}
 }
 
-@media(max-width:360px){
+@media(max-width:380px){
  .page{width:calc(100% - 26px)}
- .brand-name{font-size:22px}
- .brand-photo{width:53px;height:53px}
- .brand-caption{font-size:11px}
- .header-pill{font-size:10px;padding:8px}
- .hero h1{font-size:37px}
- .stage{min-height:275px}
- .core{width:140px;height:140px}
- .float-card{font-size:11px;padding:8px 10px}
- .choice-info strong{font-size:16px}
- .choice-info span{font-size:12px}
+ .hero-title{font-size:clamp(43px,11.5vw,53px);letter-spacing:-2px}
+ .hero-intro{font-size:16px}
+ .art-stage{height:310px}
+ .sculpture{transform:translateX(-50%) scale(.88)}
+ .art-chip{font-size:12px;padding:8px 10px}
+ .section-title{font-size:30px}
+ .route-content h3{font-size:23px}
+ .manifesto h2{font-size:30px}
  .nav-item{font-size:11px}
+}
+
+@keyframes float{
+ 0%,100%{transform:translate(-50%,0) rotate(-4deg)}
+ 50%{transform:translate(-50%,-12px) rotate(5deg)}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -813,21 +946,19 @@ button{font-family:inherit}
 <header class="page header">
 
  <a href="index.html" class="brand">
-  <div class="brand-photo">
-   <img src="1.jpg" alt="نشان برند Growza24">
+  <div class="brand-symbol">
+   <img src="1.jpg" alt="Growza24">
   </div>
 
-  <div class="brand-info">
-   <div class="brand-name">
-    Growza<span class="twentyfour">24</span>
-   </div>
-   <div class="brand-caption">پلتفرم رشد پیج اینستاگرام</div>
+  <div class="brand-text">
+   <div class="brand-name">Growza<span>24</span></div>
+   <div class="brand-sub">پلتفرم رشد اینستاگرام</div>
   </div>
  </a>
 
- <div class="header-pill">
+ <div class="header-action">
   <i></i>
-  مسیر رشد تو
+  <span>شروع یک مسیر تازه</span>
  </div>
 
 </header>
@@ -839,146 +970,148 @@ button{font-family:inherit}
 
 <section class="hero">
 
- <div class="hero-topline">
-  <div class="hero-kicker">
-   <span class="kicker-mark"></span>
-   GROW DIFFERENT
-  </div>
-  <div class="hero-index">01 — GROWZA24</div>
+ <div class="hero-meta">
+  <div class="hero-tag">BEYOND THE FEED</div>
+  <div class="hero-number">001 / 024</div>
  </div>
 
- <h1>
-  پیجت فقط<br>
-  <span class="line-two">نباید دیده <span class="lime-word">بشه!</span></span>
+ <h1 class="hero-title">
+  <span class="line">معمولی</span>
+  <span class="line blue-word">دیده نشو.</span>
+  <span class="line outline-word">متفاوت باش!</span>
  </h1>
 
- <p class="hero-description">
-  باید <strong>توجه جلب کنه، مخاطب جذب کنه و در ذهن‌ها بمونه.</strong>
-  اینجا برای رشد پیجت، مسیرهای متفاوتی پیش روی توست.
+ <p class="hero-intro">
+  دنیای اینستاگرام پر از پیج‌های معمولی است.
+  <strong>وقت آن رسیده حضور متفاوتی بسازی.</strong>
+  مسیر رشد خودت را انتخاب کن.
  </p>
 
-</section>
-
-
-<!-- VISUAL STAGE -->
-
-<section class="stage">
-
- <div class="stage-grid"></div>
- <div class="stage-orbit o1"></div>
- <div class="stage-orbit o2"></div>
- <div class="stage-orbit o3"></div>
-
- <div class="stage-top">
-  <span>GROWZA24 / SOCIAL GROWTH</span>
-  <span>✦ LEVEL UP</span>
- </div>
-
- <div class="core">
-  <svg viewBox="0 0 80 80" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-   <path d="M14 57 30 41l12 10 24-28"/>
-   <path d="M49 23h17v17"/>
-   <path d="M15 67h51"/>
-   <path d="M15 13v54"/>
-   <circle cx="30" cy="41" r="4" fill="#D8FF39" stroke="none"/>
-   <circle cx="42" cy="51" r="4" fill="#FF9BC4" stroke="none"/>
-   <circle cx="66" cy="23" r="4" fill="#D8FF39" stroke="none"/>
-  </svg>
- </div>
-
- <div class="float-card one">
-  <span class="mini-icon">↗</span>
-  رشد و دیده‌شدن
- </div>
-
- <div class="float-card two">
-  <span class="mini-icon">✦</span>
-  تعامل بیشتر
- </div>
-
- <div class="float-card three">
-  <span class="mini-icon">◎</span>
-  مخاطب بیشتر
- </div>
-
- <span class="stage-star s1">✳</span>
- <span class="stage-star s2">✦</span>
- <span class="stage-star s3">✧</span>
-
- <div class="stage-caption">MAKE YOUR PRESENCE COUNT</div>
+ <div class="hero-side-note">YOUR NEXT LEVEL / 2026</div>
 
 </section>
 
 
-<!-- TWO VALUE CARDS -->
+<!-- ART STAGE -->
 
-<section class="statement">
+<section class="art-stage">
 
- <div class="statement-card">
-  <span class="symbol">◈</span>
-  <strong>دیده‌شدن بیشتر</strong>
-  <span>فرصتی برای معرفی بهتر پیج</span>
+ <div class="art-label">
+  <span>GROWZA24 / CREATIVE LAB</span>
+  <span>✳ MAKE IT HAPPEN</span>
  </div>
 
- <div class="statement-card">
-  <span class="symbol">✳</span>
-  <strong>تعامل مؤثرتر</strong>
-  <span>فراتر از یک عدد ساده</span>
+ <div class="art-number">24</div>
+
+ <div class="orbit"></div>
+ <div class="orbit two"></div>
+ <div class="orbit-dot"></div>
+
+ <div class="sculpture">
+  <div class="outer"></div>
+  <div class="inner"></div>
+  <div class="hole"></div>
+  <div class="shine"></div>
+ </div>
+
+ <div class="art-chip one">
+  <b>↗</b>
+  دیده‌شدن بیشتر
+ </div>
+
+ <div class="art-chip two">
+  <b>✳</b>
+  تعامل واقعی‌تر
+ </div>
+
+ <div class="art-bottom">
+  <span>THINK BIGGER. GROW FASTER.</span>
+  <strong>LEVEL UP ✦</strong>
  </div>
 
 </section>
 
 
-<!-- CHOICE -->
+<!-- BENTO VALUE -->
 
-<section class="choice-section">
+<section class="bento">
 
- <div class="section-overline">TWO WAYS TO GROW</div>
+ <article class="bento-card a">
+  <div class="bento-symbol">↗</div>
+  <h3>بیشتر دیده شو.</h3>
+  <p>فرصتی تازه برای معرفی و گسترش حضور پیجت</p>
+ </article>
+
+ <article class="bento-card b">
+  <div class="bento-symbol">◎</div>
+  <h3>مخاطب بیشتر</h3>
+  <p>جامعه بزرگ‌تری از دنبال‌کنندگان</p>
+ </article>
+
+ <article class="bento-card c">
+  <div class="bento-symbol">✳</div>
+  <h3>تعامل محتوا</h3>
+  <p>فراتر از یک عدد ساده</p>
+ </article>
+
+</section>
+
+
+<!-- ROUTE SECTION -->
+
+<section class="section">
+
+ <div class="section-eyebrow">
+  <span>CHOOSE YOUR DIMENSION</span>
+  <span>دو مسیر پیش روی توست</span>
+ </div>
 
  <h2 class="section-title">
-  رشد پیجت را<br>از کدام مسیر می‌خواهی؟
+  برای چه نوع رشدی<br>
+  آماده‌ای؟
  </h2>
 
- <p class="section-subtitle">
-  هدف خودت را مشخص کن؛ مسیر مناسب را انتخاب کن.
+ <p class="section-desc">
+  هدفت را انتخاب کن؛ مسیر مناسب خودت را شروع کن.
  </p>
 
- <div class="choice-list">
 
-  <a href="activation.html" class="choice">
+ <div class="routes">
 
-   <div class="choice-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-     <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-     <circle cx="10" cy="7" r="4"/>
-     <path d="M20 8v6m-3-3h6"/>
-    </svg>
+  <a href="activation.html" class="route followers">
+
+   <div class="route-decoration"></div>
+
+   <div class="route-top">
+    <span class="route-number">01 / FOLLOWERS</span>
+    <div class="route-icon">♙</div>
    </div>
 
-   <div class="choice-info">
-    <strong>افزایش فالوور</strong>
-    <span>برای گسترش جامعه دنبال‌کنندگان پیج</span>
+   <div class="route-content">
+    <h3>افزایش فالوور</h3>
+    <p>برای گسترش جامعه دنبال‌کنندگان پیج</p>
    </div>
 
-   <div class="choice-arrow">←</div>
+   <span class="route-arrow">←</span>
 
   </a>
 
 
-  <a href="activation.html" class="choice">
+  <a href="activation.html" class="route engagement">
 
-   <div class="choice-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-     <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
-    </svg>
+   <div class="route-decoration"></div>
+
+   <div class="route-top">
+    <span class="route-number">02 / ENGAGEMENT</span>
+    <div class="route-icon">✳</div>
    </div>
 
-   <div class="choice-info">
-    <strong>افزایش تعامل محتوا</strong>
-    <span>تماشا، لایک، ذخیره، کامنت و بازنشر</span>
+   <div class="route-content">
+    <h3>افزایش تعامل محتوا</h3>
+    <p>تماشا، لایک، ذخیره، کامنت و بازنشر</p>
    </div>
 
-   <div class="choice-arrow">←</div>
+   <span class="route-arrow">←</span>
 
   </a>
 
@@ -987,74 +1120,85 @@ button{font-family:inherit}
 </section>
 
 
-<!-- FINAL CTA -->
+<!-- MANIFESTO / CTA -->
 
-<section class="cta">
+<section class="manifesto">
 
- <div class="cta-label">YOUR NEXT MOVE / 24</div>
+ <div class="manifesto-top">
+  <span>THIS IS YOUR MOMENT</span>
+  <span>✦ 24</span>
+ </div>
 
  <h2>
-  برای رشد پیجت<br>
-  یک قدم جلوتر برو!
+  وقتشه از<br>
+  <span>سطح بعدی</span><br>
+  شروع کنی.
  </h2>
 
  <p>
   مسیر موردنظرت را انتخاب کن و مراحل فعال‌سازی را آغاز کن.
  </p>
 
- <a href="activation.html" class="cta-button">
+ <a href="activation.html" class="manifesto-button">
   شروع فعال‌سازی
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-   <path d="M19 12H5m7 7-7-7 7-7"/>
-  </svg>
+  <span class="arrow">←</span>
  </a>
 
 </section>
 
 
 <footer class="footer">
- <strong>Growza24</strong> · پلتفرم رشد پیج اینستاگرام
+ <div class="footer-brand">Growza<span>24</span></div>
+ <p>متفاوت دیده شو؛ متفاوت رشد کن.</p>
 </footer>
 
 </main>
 
 
-<!-- BOTTOM NAV -->
+<!-- SHARED BOTTOM NAV -->
 
-<nav class="nav-shell">
+<nav class="nav-shell" aria-label="منوی اصلی">
 
  <div class="nav">
 
   <a href="index.html" class="nav-item active" aria-current="page">
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="m3 10 9-7 9 7"/>
-    <path d="M5 9v11h14V9"/>
-    <path d="M9 20v-6h6v6"/>
-   </svg>
+   <span class="nav-icon">
+    <svg viewBox="0 0 24 24">
+     <path d="m3 10 9-7 9 7"/>
+     <path d="M5 9v11h14V9"/>
+     <path d="M9 20v-6h6v6"/>
+    </svg>
+   </span>
    <span>خانه</span>
   </a>
 
   <a href="guide.html" class="nav-item">
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-    <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/>
-    <path d="M4 5.5v12"/>
-    <path d="M8 8h8m-8 4h7"/>
-   </svg>
+   <span class="nav-icon">
+    <svg viewBox="0 0 24 24">
+     <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/>
+     <path d="M4 5.5v12"/>
+     <path d="M8 8h8m-8 4h7"/>
+    </svg>
+   </span>
    <span>راهنما</span>
   </a>
 
   <a href="activation.html" class="nav-item">
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
-    <path d="M13 2 4 14h7l-1 8 10-13h-7z"/>
-   </svg>
+   <span class="nav-icon">
+    <svg viewBox="0 0 24 24">
+     <path d="M13 2 4 14h7l-1 8 10-13h-7z"/>
+    </svg>
+   </span>
    <span>فعال‌سازی</span>
   </a>
 
   <a href="performance.html" class="nav-item">
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M3 3v18h18"/>
-    <path d="m7 14 4-4 4 3 6-8"/>
-   </svg>
+   <span class="nav-icon">
+    <svg viewBox="0 0 24 24">
+     <path d="M3 3v18h18"/>
+     <path d="m7 14 4-4 4 3 6-8"/>
+    </svg>
+   </span>
    <span>عملکرد</span>
   </a>
 

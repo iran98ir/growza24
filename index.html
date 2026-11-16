@@ -6,226 +6,545 @@
 <meta name="theme-color" content="#f4f2eb">
 <title>Growza24 | متفاوت دیده شو</title>
 
-<!-- Tailwind (برای کلاس‌های سورس کامپوننت‌ها) -->
-<script src="https://cdn.tailwindcss.com"></script>
-
-<!-- React UMD + Babel (برای اجرای JSX در مرورگر) -->
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-<!-- Motion (نسخه Vanilla، جایگزین Framer Motion برای UMD) -->
-<script src="https://cdn.jsdelivr.net/npm/motion@11.11.17/dist/motion.js"></script>
-
-<!-- GSAP + ScrollTrigger (افکت Codrops SVG Filter) -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
-<!-- Vanta.js HALO (پس‌زمینه WebGL) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.halo.min.js"></script>
-
-<!-- فونت وزیرمتن -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-  /* ====== کد مدیریتی: متغیرهای برند و چیدمان پایه ====== */
-  :root{
-    --paper:#f4f2eb; --surface:#fffefa; --ink:#171a24; --muted:#656a75;
-    --line:rgba(23,26,36,.14); --lime:#c8f169; --blue:#344cf0; --orange:#ff7048;
-    --ease:cubic-bezier(.2,.8,.2,1);
+/* ============================================================
+   DESIGN TOKENS — Growza 24 Brand System
+   ============================================================ */
+:root{
+  --paper:#f4f2eb;
+  --surface:#fffefa;
+  --ink:#171a24;
+  --muted:#656a75;
+  --line:rgba(23,26,36,.14);
+  --lime:#c8f169;
+  --blue:#344cf0;
+  --orange:#ff7048;
+  --pink:#f3a9c5;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --nav-height:78px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:25px}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Vazirmatn",Tahoma,sans-serif;
+  overflow-x:clip;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--blue); outline-offset:4px}
+::selection{background:var(--lime);color:var(--ink)}
+.page{width:min(1160px,calc(100% - 52px)); margin:auto; position:relative}
+
+/* SVG filter (Codrops) */
+.svg-filters{position:absolute; width:0; height:0; overflow:hidden}
+
+/* ============================================================
+   SPOTLIGHT NEW (Aceternity UI) — دو مخروط نوری متقارن
+   Source: components/ui/spotlight-new.tsx
+   ============================================================ */
+.spotlight-container{
+  position:absolute; inset:0; pointer-events:none; overflow:hidden;
+}
+.spotlight-cone{
+  position:absolute; top:0; width:100vw; height:100vh;
+  pointer-events:none; z-index:40;
+}
+.spotlight-cone.left{
+  left:0;
+  animation:spotlightSwayLeft 7s ease-in-out infinite alternate;
+}
+.spotlight-cone.right{
+  right:0;
+  animation:spotlightSwayRight 7s ease-in-out infinite alternate;
+}
+.spotlight-beam{
+  position:absolute; top:0;
+  width:560px; height:1380px;
+  background:radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(210,100%,85%,.08) 0, hsla(210,100%,55%,.02) 50%, hsla(210,100%,45%,0) 80%);
+}
+.spotlight-beam.small{
+  width:240px;
+  background:radial-gradient(50% 50% at 50% 50%, hsla(210,100%,85%,.06) 0, hsla(210,100%,55%,.02) 80%, transparent 100%);
+}
+.spotlight-beam.tiny{
+  width:240px;
+  background:radial-gradient(50% 50% at 50% 50%, hsla(210,100%,85%,.04) 0, hsla(210,100%,45%,.02) 80%, transparent 100%);
+}
+.spotlight-cone.left .spotlight-beam{left:0}
+.spotlight-cone.right .spotlight-beam{right:0}
+.spotlight-cone.left .spotlight-beam{
+  transform:translateY(-350px) rotate(-45deg);
+}
+.spotlight-cone.left .spotlight-beam.small{
+  transform:rotate(-45deg) translate(5%,-50%); transform-origin:top left;
+}
+.spotlight-cone.left .spotlight-beam.tiny{
+  transform:rotate(-45deg) translate(-180%,-70%); transform-origin:top left;
+}
+.spotlight-cone.right .spotlight-beam{
+  transform:translateY(-350px) rotate(45deg);
+}
+.spotlight-cone.right .spotlight-beam.small{
+  transform:rotate(45deg) translate(-5%,-50%); transform-origin:top right;
+}
+.spotlight-cone.right .spotlight-beam.tiny{
+  transform:rotate(45deg) translate(180%,-70%); transform-origin:top right;
+}
+@keyframes spotlightSwayLeft{
+  from{transform:translateX(0)}
+  to{transform:translateX(100px)}
+}
+@keyframes spotlightSwayRight{
+  from{transform:translateX(0)}
+  to{transform:translateX(-100px)}
+}
+
+/* ============================================================
+   ORBITING CIRCLES (Magic UI)
+   Source: registry/magicui/orbiting-circles.tsx
+   ============================================================ */
+.orbit-container{
+  position:relative; display:grid; place-items:center;
+  width:100%; height:100%; overflow:hidden;
+}
+.orbit-svg{
+  position:absolute; inset:0; width:100%; height:100%;
+  pointer-events:none;
+}
+.orbit-svg circle{
+  stroke:rgba(0,0,0,.10); stroke-width:1; fill:none;
+}
+.orbit-item{
+  position:absolute; inset:0; margin:auto;
+  display:flex; align-items:center; justify-content:center;
+  width:var(--icon-size); height:var(--icon-size);
+  border-radius:50%;
+  animation:orbitAnim calc(var(--duration)*1s) linear infinite;
+  will-change:transform;
+}
+.orbit-item.reverse{animation-direction:reverse}
+@keyframes orbitAnim{
+  0%{transform:rotate(calc(var(--angle)*1deg)) translateY(calc(var(--radius)*1px)) rotate(calc(var(--angle)*-1deg))}
+  100%{transform:rotate(calc(var(--angle)*1deg + 360deg)) translateY(calc(var(--radius)*1px)) rotate(calc(var(--angle)*-1deg - 360deg))}
+}
+
+/* ============================================================
+   MARQUEE (Magic UI)
+   Source: registry/magicui/marquee.tsx
+   ============================================================ */
+.marquee-section{
+  margin:35px 0; padding:20px 0;
+  background:var(--ink); color:white;
+  overflow:hidden; transform:rotate(-1deg) scale(1.02);
+}
+.marquee-track{
+  display:flex; width:max-content;
+  animation:marqueeMove var(--duration,40s) linear infinite;
+  gap:var(--gap,1rem);
+}
+.marquee-section:hover .marquee-track{animation-play-state:paused}
+.marquee-item{
+  display:flex; align-items:center; gap:30px;
+  padding:0 25px; font-size:21px; font-weight:900;
+  white-space:nowrap;
+}
+.marquee-item b{color:var(--lime); font-size:25px}
+@keyframes marqueeMove{
+  from{transform:translateX(0)}
+  to{transform:translateX(calc(-100% - var(--gap,1rem)))}
+}
+
+/* ============================================================
+   PARTICLES (Magic UI) — Canvas 2D
+   Source: registry/magicui/particles.tsx
+   ============================================================ */
+.particles-canvas{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  width:100%; height:100%;
+}
+
+/* ============================================================
+   MOVING BORDER (Aceternity UI)
+   Source: components/ui/moving-border.tsx
+   ============================================================ */
+.moving-border-btn{
+  position:relative; display:inline-flex; align-items:center; justify-content:center;
+  overflow:hidden; background:transparent; padding:1px;
+  border-radius:13px 13px 13px 3px;
+  font-size:17px; font-weight:900; text-decoration:none;
+  transition:transform .35s var(--ease);
+}
+.moving-border-btn:hover{transform:translateY(-4px)}
+.moving-border-btn .mb-inner{
+  position:relative; display:flex; align-items:center; justify-content:center;
+  width:100%; height:100%; padding:0 24px; min-height:59px;
+  border-radius:calc(13px - 1px) calc(13px - 1px) calc(13px - 1px) calc(3px - 1px);
+  background:var(--ink); color:white;
+  z-index:1;
+}
+.moving-border-btn.light .mb-inner{
+  background:var(--lime); color:var(--ink);
+}
+.moving-border-btn .mb-svg{
+  position:absolute; inset:0; width:100%; height:100%;
+  pointer-events:none; z-index:0;
+}
+.moving-border-btn .mb-glow{
+  position:absolute; top:0; left:0;
+  width:80px; height:80px;
+  background:radial-gradient(circle, #0ea5e9 40%, transparent 60%);
+  opacity:.8;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ============================================================
+   DOCK (Motion Primitives)
+   Source: components/core/dock.tsx
+   ============================================================ */
+.dock-wrapper{
+  position:fixed; z-index:100; bottom:0; left:0; right:0;
+  padding:9px 14px calc(9px + env(safe-area-inset-bottom));
+  background:rgba(248,247,241,.94);
+  border-top:1px solid var(--line);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+}
+.dock{
+  width:min(100%,620px); margin:auto;
+  display:flex; align-items:flex-end; justify-content:center;
+  gap:7px;
+  height:64px;
+  transition:height .25s var(--ease);
+}
+.dock-item{
+  width:56px; height:56px; flex-shrink:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:2px; border-radius:13px;
+  color:#777c85; font-size:13px; font-weight:800;
+  text-decoration:none;
+  transition:width .18s var(--ease), height .18s var(--ease), background .25s, color .25s;
+  will-change:width, height;
+}
+.dock-item svg{width:24px; height:24px; stroke:currentColor; stroke-width:1.8; fill:none; flex-shrink:0}
+.dock-item.active{background:var(--ink); color:var(--lime); box-shadow:0 7px 18px #171a2424}
+.dock-item:hover{color:var(--ink)}
+.dock-item.active:hover{color:var(--lime)}
+
+/* ============================================================
+   REVEAL
+   ============================================================ */
+.reveal{opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
+.reveal.visible{opacity:1; transform:translateY(0)}
+
+/* ============================================================
+   HEADER / HERO / SECTIONS (Layout Only)
+   ============================================================ */
+.header{
+  height:86px; display:flex; justify-content:space-between; align-items:center;
+  border-bottom:1px solid var(--line); position:relative; z-index:10;
+}
+.brand{display:flex; align-items:center; gap:12px}
+.brand-mark{
+  width:46px; height:46px; display:grid; place-items:center;
+  background:var(--ink); color:var(--lime);
+  font-size:27px; font-weight:900;
+  border-radius:15px 5px 15px 5px;
+  transform:rotate(-5deg);
+  box-shadow:5px 6px 0 #c8f16970;
+}
+.brand-title{font-size:21px; font-weight:900; line-height:1.35}
+.brand-subtitle{display:block; font-size:14px; color:var(--muted); font-weight:700}
+.live-state{
+  display:flex; align-items:center; gap:10px;
+  padding:11px 16px; background:#ffffffa8;
+  border:1px solid var(--line); border-radius:50px;
+  font-size:14px; font-weight:800;
+}
+.live-dot{
+  width:9px; height:9px; border-radius:50%;
+  background:#69b942; box-shadow:0 0 0 5px #69b94220;
+  animation:livePulse 2s infinite;
+}
+@keyframes livePulse{50%{box-shadow:0 0 0 9px #69b94208}}
+
+/* HERO */
+.hero{
+  min-height:680px; padding:80px 0 70px;
+  position:relative; display:flex; flex-direction:column; justify-content:center;
+  overflow:hidden;
+}
+#vanta-bg{position:absolute; inset:0; z-index:0; pointer-events:none}
+.hero .page{position:relative; z-index:2}
+.hero-topline{
+  display:flex; align-items:center; gap:12px;
+  font-size:16px; font-weight:800; color:var(--blue);
+}
+.hero-topline:before{content:""; width:35px; height:3px; background:var(--orange)}
+.hero-title{
+  position:relative; margin:35px 0 0; max-width:1000px;
+  font-size:clamp(64px,10.3vw,132px); font-weight:900;
+  letter-spacing:-5px; line-height:1.25;
+}
+.hero-title .line{display:block}
+.hero-title .special{
+  display:inline-block; position:relative; color:var(--blue);
+  filter:url(#goo-2);
+}
+.hero-title .special:after{
+  content:""; position:absolute; right:0; bottom:9px;
+  width:100%; height:15px; background:var(--lime);
+  z-index:-1; transform:rotate(-1.5deg);
+}
+.hero-bottom{
+  display:grid; grid-template-columns:1fr auto; align-items:end;
+  gap:30px; margin-top:28px;
+}
+.hero-copy{
+  max-width:580px; font-size:19px; font-weight:600; line-height:2;
+  color:#515661; margin:0;
+}
+.hero-actions{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:25px}
+
+/* Hero Art */
+.hero-art{width:280px; height:280px; position:relative; flex-shrink:0}
+.hero-art-center{
+  width:95px; height:95px;
+  border-radius:27px 27px 27px 5px;
+  background:var(--lime); color:var(--ink);
+  display:grid; place-items:center;
+  font-size:43px; font-weight:900;
+  transform:rotate(-12deg);
+  box-shadow:14px 18px 35px #171a2420;
+  animation:centerFloat 5s ease-in-out infinite;
+  z-index:2;
+}
+@keyframes centerFloat{50%{transform:translateY(-10px) rotate(-12deg)}}
+
+/* Divider */
+.section-divider{
+  height:1px; background:var(--line); position:relative; margin:12px 0;
+}
+.section-divider:after{
+  content:"G / 24"; position:absolute; right:0; top:-14px;
+  padding-left:16px; background:var(--paper);
+  color:var(--blue); font-size:13px; font-weight:900;
+  direction:ltr;
+}
+
+/* Paths */
+.path-section{padding:75px 0 85px}
+.section-intro{
+  display:flex; justify-content:space-between; align-items:end;
+  gap:25px; margin-bottom:40px;
+}
+.kicker{color:var(--orange); font-size:15px; font-weight:900; margin-bottom:10px}
+.section-title{
+  margin:0; font-size:clamp(35px,5vw,59px); line-height:1.45;
+  font-weight:900; letter-spacing:-2px;
+}
+.section-desc{
+  max-width:400px; margin:0; color:var(--muted);
+  font-size:17px; line-height:2; font-weight:600;
+}
+.path-list{border-top:1px solid var(--line)}
+.path-row{
+  position:relative; display:grid;
+  grid-template-columns:100px 1fr auto;
+  align-items:center; gap:25px;
+  padding:30px 18px; border-bottom:1px solid var(--line);
+  transition:background .35s, padding .35s, color .35s;
+  overflow:hidden;
+}
+.path-row:before{
+  content:""; position:absolute; inset:0;
+  background:var(--lime); transform:translateX(102%);
+  transition:transform .55s var(--ease); z-index:-1;
+}
+.path-row:hover:before{transform:translateX(0)}
+.path-index{font-size:42px; font-weight:900; color:#a4a8af; letter-spacing:-2px}
+.path-row h3{font-size:30px; font-weight:900; margin:0 0 6px}
+.path-row p{margin:0; font-size:17px; font-weight:600; color:var(--muted); line-height:1.9}
+.path-row:hover p{color:#343944}
+.path-go{
+  width:58px; height:58px; display:grid; place-items:center;
+  background:var(--ink); color:var(--lime);
+  font-size:29px; border-radius:50%;
+  transition:transform .4s, background .3s;
+}
+.path-row:hover .path-go{transform:rotate(-40deg); background:var(--blue)}
+
+/* Insight */
+.insight{padding:90px 0}
+.insight-heading{max-width:800px; margin-bottom:45px}
+.insight-heading .section-title{line-height:1.5}
+.insight-stage{
+  position:relative; min-height:430px;
+  display:grid; grid-template-columns:1fr 1fr;
+  align-items:center;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.insight-main{padding:45px 0 45px 35px}
+.insight-main .big-number{
+  font-size:clamp(100px,16vw,190px); font-weight:900;
+  letter-spacing:-12px; color:var(--blue); line-height:1;
+}
+.insight-main h3{font-size:31px; margin:15px 0; font-weight:900}
+.insight-main p{
+  font-size:18px; line-height:2; font-weight:600;
+  color:var(--muted); max-width:430px; margin:0;
+}
+.insight-orbit{min-height:380px; position:relative; overflow:hidden}
+.orbit-core{
+  width:115px; height:115px;
+  background:var(--lime); color:var(--ink);
+  display:grid; place-items:center;
+  font-size:55px; font-weight:900;
+  border-radius:35% 65% 50% 50%;
+  transform:rotate(-15deg);
+  z-index:2;
+  box-shadow:0 20px 50px #171a2420;
+}
+.insight-orbit .orbit-container{height:100%}
+.info-strips{display:grid; grid-template-columns:repeat(3,1fr); margin-top:30px}
+.info-strip{padding:22px 24px; border-left:1px solid var(--line)}
+.info-strip:last-child{border-left:0}
+.info-strip .symbol{font-size:30px; color:var(--orange); font-weight:900}
+.info-strip h3{font-size:21px; margin:10px 0 5px; font-weight:900}
+.info-strip p{font-size:16px; line-height:1.9; color:var(--muted); font-weight:600; margin:0}
+
+/* Process */
+.process-section{padding:85px 0; background:#eae9df; position:relative; overflow:hidden}
+.process-head{margin-bottom:55px}
+.process-list{display:grid; grid-template-columns:repeat(3,1fr); gap:30px; position:relative}
+.process-list:before{
+  content:""; position:absolute; top:34px; right:10%; left:10%;
+  height:1px; border-top:2px dashed #a8abb0;
+}
+.process-item{position:relative; z-index:1}
+.process-number{
+  width:69px; height:69px; display:grid; place-items:center;
+  background:var(--lime); border:7px solid #eae9df;
+  border-radius:50%; font-size:25px; font-weight:900;
+  margin-bottom:24px; box-shadow:0 0 0 1px #b7c88f;
+}
+.process-item:nth-child(2) .process-number{background:var(--blue); color:white}
+.process-item:nth-child(3) .process-number{background:var(--ink); color:var(--lime)}
+.process-item h3{font-size:23px; font-weight:900; margin:0 0 10px}
+.process-item p{font-size:17px; line-height:2; font-weight:600; color:#626773; margin:0; max-width:320px}
+
+/* CTA */
+.cta-section{padding:85px 0 70px}
+.cta{
+  background:var(--ink); color:white;
+  min-height:290px; position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:30px; padding:48px;
+  border-radius:4px 35px 4px 35px;
+}
+.cta-content{position:relative; z-index:1}
+.cta h2{font-size:clamp(35px,5vw,55px); font-weight:900; line-height:1.4; margin:0 0 12px}
+.cta p{font-size:18px; line-height:2; color:#d2d4dc; font-weight:600; margin:0}
+
+/* Footer */
+.footer{
+  padding:30px 0 120px; display:flex; justify-content:space-between;
+  align-items:center; gap:20px; border-top:1px solid var(--line);
+  font-size:16px; color:var(--muted); font-weight:700;
+}
+.footer strong{color:var(--ink); font-weight:900}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:850px){
+  .page{width:calc(100% - 40px)}
+  .hero{min-height:auto; padding:75px 0 60px}
+  .hero-title{font-size:clamp(62px,11vw,95px)}
+  .hero-bottom{grid-template-columns:1fr auto}
+  .hero-art{width:220px; height:220px}
+  .section-intro{display:block}
+  .section-desc{margin-top:13px}
+  .insight-main .big-number{font-size:130px}
+  .cta{padding:35px}
+}
+@media(max-width:600px){
+  .page{width:calc(100% - 34px)}
+  .header{height:75px}
+  .hero{padding:58px 0 45px; min-height:auto}
+  .hero-topline{font-size:15px}
+  .hero-title{font-size:clamp(56px,13.5vw,78px); line-height:1.4; letter-spacing:-3px; margin-top:27px}
+  .hero-title .special:after{height:10px; bottom:7px}
+  .hero-bottom{grid-template-columns:1fr; gap:12px; margin-top:20px}
+  .hero-copy{font-size:18px; line-height:2}
+  .hero-actions{display:grid; grid-template-columns:1fr; gap:11px}
+  .hero-art{width:100%; height:230px; margin-top:5px}
+  .path-section{padding:60px 0}
+  .section-title{font-size:36px; line-height:1.5}
+  .marquee-section{margin:20px 0; padding:15px 0}
+  .marquee-item{font-size:18px; gap:17px; padding:0 16px}
+  .insight{padding:65px 0}
+  .insight-heading{margin-bottom:20px}
+  .insight-stage{grid-template-columns:1fr; min-height:0}
+  .insight-main{padding:35px 0 10px}
+  .insight-main .big-number{font-size:115px; letter-spacing:-7px}
+  .insight-main h3{font-size:27px}
+  .insight-main p{font-size:17px}
+  .insight-orbit{min-height:300px}
+  .info-strips{grid-template-columns:1fr; margin-top:18px}
+  .info-strip{padding:19px 4px; border-left:0; border-bottom:1px solid var(--line)}
+  .info-strip:last-child{border-bottom:0}
+  .process-section{padding:65px 0}
+  .process-head{margin-bottom:35px}
+  .process-list{grid-template-columns:1fr; gap:28px}
+  .process-list:before{top:25px; bottom:25px; right:33px; left:auto; width:1px; height:auto; border-top:0; border-right:2px dashed #a8abb0}
+  .process-item{display:grid; grid-template-columns:69px 1fr; gap:0 15px; align-items:start}
+  .process-number{grid-row:span 2; margin:0}
+  .process-item h3{font-size:21px; margin-top:3px}
+  .process-item p{font-size:16px}
+  .cta-section{padding:60px 0 45px}
+  .cta{min-height:0; padding:30px 22px; display:block; border-radius:4px 25px 4px 25px}
+  .cta h2{font-size:36px}
+  .cta p{font-size:17px}
+  .footer{display:block; text-align:center; line-height:2.2; font-size:15px}
+  .dock{height:58px; gap:6px}
+  .dock-item{width:52px; height:52px; font-size:12px}
+  .dock-item svg{width:22px; height:22px}
+}
+@media(max-width:370px){
+  .page{width:calc(100% - 28px)}
+  .hero-title{font-size:53px}
+  .hero-copy{font-size:17px}
+  .path-row h3{font-size:20px}
+  .path-row p{font-size:15px}
+  .dock-item{font-size:11px}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*:before,*:after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
   }
-  *{box-sizing:border-box}
-  body{
-    margin:0; background:var(--paper); color:var(--ink);
-    font-family:"Vazirmatn",Tahoma,sans-serif; overflow-x:clip;
-    -webkit-font-smoothing:antialiased;
-  }
-  .page{width:min(1160px,calc(100% - 52px)); margin:auto; position:relative}
-  a{color:inherit;text-decoration:none}
-  button{cursor:pointer}
-  button:focus-visible,a:focus-visible{outline:3px solid var(--blue); outline-offset:4px}
-  ::selection{background:var(--lime);color:var(--ink)}
-
-  /* SVG filter (Codrops) */
-  .svg-filters{position:absolute;width:0;height:0;overflow:hidden}
-
-  /* ====== HERO ====== */
-  .hero{min-height:680px; padding:80px 0 70px; position:relative;
-    display:flex; flex-direction:column; justify-content:center; overflow:hidden;}
-  #vanta-bg{position:absolute; inset:0; z-index:0; pointer-events:none}
-  .hero .page{position:relative; z-index:2}
-
-  .hero-topline{display:flex; align-items:center; gap:12px; font-size:16px; font-weight:800; color:var(--blue)}
-  .hero-topline:before{content:""; width:35px; height:3px; background:var(--orange)}
-
-  .hero-title{
-    position:relative; margin:35px 0 0; max-width:1000px;
-    font-size:clamp(64px,10.3vw,132px); font-weight:900;
-    letter-spacing:-5px; line-height:1.25;
-  }
-  .hero-title .line{display:block}
-  .hero-title .special{display:inline-block; position:relative; color:var(--blue); filter:url(#goo-2);}
-  .hero-title .special:after{content:""; position:absolute; right:0; bottom:9px;
-    width:100%; height:15px; background:var(--lime); z-index:-1; transform:rotate(-1.5deg);}
-
-  .hero-bottom{display:grid; grid-template-columns:1fr auto; align-items:end; gap:30px; margin-top:28px;}
-  .hero-copy{max-width:580px; font-size:19px; font-weight:600; line-height:2; color:#515661; margin:0;}
-  .hero-actions{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:25px;}
-
-  /* ====== MARQUEE (منبع: Magic UI) ====== */
-  .marquee-section{margin:35px 0; padding:20px 0; background:var(--ink); color:white;
-    overflow:hidden; transform:rotate(-1deg) scale(1.02);}
-  .marquee-item{display:flex; align-items:center; gap:30px; padding:0 25px;
-    font-size:21px; font-weight:900; white-space:nowrap;}
-
-  /* ====== INSIGHT ====== */
-  .insight{padding:90px 0}
-  .insight-heading{max-width:800px; margin-bottom:45px}
-  .section-title{margin:0; font-size:clamp(35px,5vw,59px); line-height:1.45; font-weight:900; letter-spacing:-2px;}
-  .kicker{color:var(--orange); font-size:15px; font-weight:900; margin-bottom:10px}
-
-  .insight-stage{position:relative; min-height:430px; display:grid; grid-template-columns:1fr 1fr;
-    align-items:center; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .insight-main{padding:45px 0 45px 35px; position:relative}
-  .insight-main .big-number{font-size:clamp(100px,16vw,190px); font-weight:900;
-    letter-spacing:-12px; color:var(--blue); line-height:1;}
-  .insight-main h3{font-size:31px; margin:15px 0; font-weight:900}
-  .insight-main p{font-size:18px; line-height:2; font-weight:600; color:var(--muted); max-width:430px; margin:0;}
-
-  .insight-orbit{min-height:380px; display:grid; place-items:center; position:relative; overflow:hidden;}
-
-  .info-strips{display:grid; grid-template-columns:repeat(3,1fr); margin-top:30px}
-  .info-strip{padding:22px 24px; border-left:1px solid var(--line)}
-  .info-strip:last-child{border-left:0}
-  .info-strip .symbol{font-size:30px; color:var(--orange); font-weight:900}
-  .info-strip h3{font-size:21px; margin:10px 0 5px; font-weight:900}
-  .info-strip p{font-size:16px; line-height:1.9; color:var(--muted); font-weight:600; margin:0}
-
-  /* ====== PROCESS ====== */
-  .process-section{padding:85px 0; background:#eae9df; position:relative; overflow:hidden}
-  .process-head{display:flex; justify-content:space-between; align-items:end; gap:25px; margin-bottom:55px}
-  .process-list{display:grid; grid-template-columns:repeat(3,1fr); gap:30px; position:relative}
-  .process-list:before{content:""; position:absolute; top:34px; right:10%; left:10%;
-    height:1px; border-top:2px dashed #a8abb0;}
-  .process-item{position:relative; z-index:1}
-  .process-number{width:69px; height:69px; display:grid; place-items:center;
-    background:var(--lime); border:7px solid #eae9df; border-radius:50%;
-    font-size:25px; font-weight:900; margin-bottom:24px; box-shadow:0 0 0 1px #b7c88f;}
-  .process-item:nth-child(2) .process-number{background:var(--blue); color:white}
-  .process-item:nth-child(3) .process-number{background:var(--ink); color:var(--lime)}
-  .process-item h3{font-size:23px; font-weight:900; margin:0 0 10px}
-  .process-item p{font-size:17px; line-height:2; font-weight:600; color:#626773; margin:0; max-width:320px}
-
-  /* ====== CTA ====== */
-  .cta-section{padding:85px 0 70px}
-  .cta{background:var(--ink); color:white; min-height:290px; position:relative; overflow:hidden;
-    display:flex; align-items:center; justify-content:space-between; gap:30px; padding:48px;
-    border-radius:4px 35px 4px 35px;}
-  .cta-content{position:relative; z-index:1}
-  .cta h2{font-size:clamp(35px,5vw,55px); font-weight:900; line-height:1.4; margin:0 0 12px}
-  .cta p{font-size:18px; line-height:2; color:#d2d4dc; font-weight:600; margin:0}
-
-  /* ====== FOOTER ====== */
-  .footer{padding:30px 0 120px; display:flex; justify-content:space-between; align-items:center;
-    gap:20px; border-top:1px solid var(--line); font-size:16px; color:var(--muted); font-weight:700;}
-  .footer strong{color:var(--ink); font-weight:900}
-
-  /* ====== DOCK (Motion Primitives) ====== */
-  .dock-wrapper{position:fixed; z-index:100; bottom:0; left:0; right:0;
-    padding:9px 14px calc(9px + env(safe-area-inset-bottom));
-    background:rgba(248,247,241,.94); border-top:1px solid var(--line);
-    backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);}
-
-  /* ====== REVEAL ====== */
-  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
-  .reveal.visible{opacity:1; transform:translateY(0)}
-
-  /* ====== انیمیشن‌های سورس (Magic UI) ====== */
-  @keyframes orbit{
-    from{transform: rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg);}
-    to{transform: rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg);}
-  }
-  .animate-orbit{animation: orbit calc(var(--duration) * 1s) linear infinite;}
-
-  @keyframes marquee{
-    from{transform: translateX(0);}
-    to{transform: translateX(calc(-100% - var(--gap)));}
-  }
-  .animate-marquee{animation: marquee var(--duration) linear infinite;}
-
-  @keyframes centerFloat{50%{transform:translateY(-10px) rotate(-12deg)}}
-  @keyframes livePulse{50%{box-shadow:0 0 0 9px #69b94208}}
-
-  /* ====== Responsive ====== */
-  @media(max-width:850px){
-    .page{width:calc(100% - 40px)}
-    .hero{min-height:auto; padding:75px 0 60px}
-    .hero-title{font-size:clamp(62px,11vw,95px)}
-    .hero-bottom{grid-template-columns:1fr auto}
-    .insight-main .big-number{font-size:130px}
-    .cta{padding:35px}
-  }
-  @media(max-width:600px){
-    .page{width:calc(100% - 34px)}
-    .header{height:75px}
-    .hero{padding:58px 0 45px; min-height:auto}
-    .hero-topline{font-size:15px}
-    .hero-title{font-size:clamp(56px,13.5vw,78px); line-height:1.4; letter-spacing:-3px; margin-top:27px}
-    .hero-title .special:after{height:10px; bottom:7px}
-    .hero-bottom{grid-template-columns:1fr; gap:12px; margin-top:20px}
-    .hero-copy{font-size:18px; line-height:2}
-    .hero-actions{display:grid; grid-template-columns:1fr; gap:11px}
-    .hero-art{width:100%; height:230px; margin-top:5px}
-    .path-section{padding:60px 0}
-    .section-title{font-size:36px; line-height:1.5}
-    .marquee-section{margin:20px 0; padding:15px 0}
-    .marquee-item{font-size:18px; gap:17px; padding:0 16px}
-    .insight{padding:65px 0}
-    .insight-heading{margin-bottom:20px}
-    .insight-stage{grid-template-columns:1fr; min-height:0}
-    .insight-main{padding:35px 0 10px}
-    .insight-main .big-number{font-size:115px; letter-spacing:-7px}
-    .insight-main h3{font-size:27px}
-    .insight-main p{font-size:17px}
-    .insight-orbit{min-height:300px}
-    .info-strips{grid-template-columns:1fr; margin-top:18px}
-    .info-strip{padding:19px 4px; border-left:0; border-bottom:1px solid var(--line)}
-    .info-strip:last-child{border-bottom:0}
-    .process-section{padding:65px 0}
-    .process-head{margin-bottom:35px}
-    .process-list{grid-template-columns:1fr; gap:28px}
-    .process-list:before{top:25px; bottom:25px; right:33px; left:auto; width:1px; height:auto;
-      border-top:0; border-right:2px dashed #a8abb0;}
-    .process-item{display:grid; grid-template-columns:69px 1fr; gap:0 15px; align-items:start}
-    .process-number{grid-row:span 2; margin:0}
-    .process-item h3{font-size:21px; margin-top:3px}
-    .process-item p{font-size:16px}
-    .cta-section{padding:60px 0 45px}
-    .cta{min-height:0; padding:30px 22px; display:block; border-radius:4px 25px 4px 25px}
-    .cta h2{font-size:36px}
-    .cta p{font-size:17px}
-    .footer{display:block; text-align:center; line-height:2.2; font-size:15px}
-  }
-  @media(max-width:370px){
-    .page{width:calc(100% - 28px)}
-    .hero-title{font-size:53px}
-    .hero-copy{font-size:17px}
-  }
-  @media (prefers-reduced-motion: reduce){
-    *,*:before,*:after{animation-duration:.01ms!important; animation-iteration-count:1!important;
-      transition-duration:.01ms!important;}
-    .reveal{opacity:1; transform:none}
-    .animate-orbit, .animate-marquee{animation:none!important}
-  }
+  .reveal{opacity:1; transform:none}
+  .orbit-item, .marquee-track, .spotlight-cone{animation:none!important}
+}
 </style>
 </head>
 
 <body>
 
-<!-- Codrops SVG filter -->
+<!-- ============================================================
+     SVG FILTERS (Codrops — MIT)
+     ============================================================ -->
 <svg class="svg-filters" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <filter id="goo-2">
@@ -239,647 +558,500 @@
   </defs>
 </svg>
 
-<div id="root"></div>
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="header page">
+  <a class="brand" href="index.html" aria-label="گروزای ۲۴">
+    <span class="brand-mark">G.</span>
+    <span>
+      <span class="brand-title">گروزای ۲۴</span>
+      <span class="brand-subtitle">پلتفرم رشد اینستاگرام</span>
+    </span>
+  </a>
+  <div class="live-state">
+    <span class="live-dot"></span>
+    مسیر رشد تو آماده است
+  </div>
+</header>
+
+<main>
 
 <!-- ============================================================
-     سورس واقعی کامپوننت‌ها + چیدمان
-============================================================ -->
-<script type="text/babel" data-presets="react">
-const { useState, useEffect, useRef, useMemo } = React;
-const { motion, useAnimationFrame, useMotionTemplate, useMotionValue, useTransform,
-        useSpring, AnimatePresence } = window.Motion || window.MotionOne || {};
+     HERO — Vanta HALO + Spotlight + OrbitingCircles
+     ============================================================ -->
+<section class="hero" id="hero">
+  <div id="vanta-bg" aria-hidden="true"></div>
+  <canvas class="particles-canvas" id="particles-canvas" aria-hidden="true"></canvas>
 
-// تابع cn (اتصال، نه کامپوننت)
-function cn(...inputs) { return inputs.filter(Boolean).join(' '); }
+  <!-- Spotlight New (Aceternity) -->
+  <div class="spotlight-container" aria-hidden="true">
+    <div class="spotlight-cone left">
+      <div class="spotlight-beam"></div>
+      <div class="spotlight-beam small"></div>
+      <div class="spotlight-beam tiny"></div>
+    </div>
+    <div class="spotlight-cone right">
+      <div class="spotlight-beam"></div>
+      <div class="spotlight-beam small"></div>
+      <div class="spotlight-beam tiny"></div>
+    </div>
+  </div>
 
-// ============================================================
-// ۱. سورس واقعی: Spotlight (Aceternity UI)
-// مسیر: components/ui/spotlight-new.tsx
-// ============================================================
-const Spotlight = ({
-  gradientFirst = "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(210, 100%, 85%, .08) 0, hsla(210, 100%, 55%, .02) 50%, hsla(210, 100%, 45%, 0) 80%)",
-  gradientSecond = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 85%, .06) 0, hsla(210, 100%, 55%, .02) 80%, transparent 100%)",
-  gradientThird = "radial-gradient(50% 50% at 50% 50%, hsla(210, 100%, 85%, .04) 0, hsla(210, 100%, 45%, .02) 80%, transparent 100%)",
-  translateY = -350, width = 560, height = 1380, smallWidth = 240, duration = 7, xOffset = 100,
-}) => {
-  return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5 }}
-      className="pointer-events-none absolute inset-0 h-full w-full">
-      <motion.div animate={{ x: [0, xOffset, 0] }}
-        transition={{ duration, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-        className="absolute top-0 left-0 w-screen h-screen z-40 pointer-events-none">
-        <div style={{ transform: `translateY(${translateY}px) rotate(-45deg)`, background: gradientFirst, width: `${width}px`, height: `${height}px` }} className="absolute top-0 left-0" />
-        <div style={{ transform: "rotate(-45deg) translate(5%, -50%)", background: gradientSecond, width: `${smallWidth}px`, height: `${height}px` }} className="absolute top-0 left-0 origin-top-left" />
-        <div style={{ transform: "rotate(-45deg) translate(-180%, -70%)", background: gradientThird, width: `${smallWidth}px`, height: `${height}px` }} className="absolute top-0 left-0 origin-top-left" />
-      </motion.div>
-      <motion.div animate={{ x: [0, -xOffset, 0] }}
-        transition={{ duration, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-        className="absolute top-0 right-0 w-screen h-screen z-40 pointer-events-none">
-        <div style={{ transform: `translateY(${translateY}px) rotate(45deg)`, background: gradientFirst, width: `${width}px`, height: `${height}px` }} className="absolute top-0 right-0" />
-        <div style={{ transform: "rotate(45deg) translate(-5%, -50%)", background: gradientSecond, width: `${smallWidth}px`, height: `${height}px` }} className="absolute top-0 right-0 origin-top-right" />
-        <div style={{ transform: "rotate(45deg) translate(180%, -70%)", background: gradientThird, width: `${smallWidth}px`, height: `${height}px` }} className="absolute top-0 right-0 origin-top-right" />
-      </motion.div>
-    </motion.div>
-  );
-};
+  <div class="page">
+    <div class="hero-topline">برای پیج‌هایی که متفاوت فکر می‌کنند</div>
 
-// ============================================================
-// ۲. سورس واقعی: OrbitingCircles (Magic UI)
-// مسیر: registry/magicui/orbiting-circles.tsx
-// ============================================================
-function OrbitingCircles({ className, children, reverse, duration = 20, radius = 160,
-  path = true, iconSize = 30, speed = 1, ...props }) {
-  const calculatedDuration = duration / speed;
-  return (
-    <>
-      {path && (
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-          className="pointer-events-none absolute inset-0 size-full">
-          <circle className="stroke-black/10 stroke-1" cx="50%" cy="50%" r={radius} fill="none" />
-        </svg>
-      )}
-      {React.Children.map(children, (child, index) => {
-        const angle = (360 / React.Children.count(children)) * index;
-        return (
-          <div
-            style={{ "--duration": calculatedDuration, "--radius": radius, "--angle": angle,
-              "--icon-size": `${iconSize}px` }}
-            className={cn(`animate-orbit absolute flex size-[var(--icon-size)] transform-gpu items-center justify-center rounded-full`,
-              { "[animation-direction:reverse]": reverse }, className)}
-            {...props}
-          >
-            {child}
-          </div>
-        );
-      })}
-    </>
-  );
-}
+    <h1 class="hero-title" id="hero-title">
+      <span class="line">معمولی دیده</span>
+      <span class="line">نشو؛ <span class="special">متفاوت باش!</span></span>
+    </h1>
 
-// ============================================================
-// ۳. سورس واقعی: Marquee (Magic UI)
-// مسیر: registry/magicui/marquee.tsx
-// ============================================================
-function Marquee({ className, reverse = false, pauseOnHover = false,
-  children, vertical = false, repeat = 4, ...props }) {
-  return (
-    <div {...props} className={cn("group flex gap-[var(--gap)] overflow-hidden p-2 [--duration:40s] [--gap:1rem]",
-      { "flex-row": !vertical, "flex-col": vertical }, className)}>
-      {Array(repeat).fill(0).map((_, i) => (
-        <div key={i} className={cn("flex shrink-0 justify-around gap-[var(--gap)]", {
-          "animate-marquee flex-row": !vertical,
-          "animate-marquee-vertical flex-col": vertical,
-          "group-hover:[animation-play-state:paused]": pauseOnHover,
-          "[animation-direction:reverse]": reverse,
-        })}>
-          {children}
+    <div class="hero-bottom">
+      <div>
+        <p class="hero-copy">
+          حضورت را جدی‌تر کن، بیشتر دیده شو و جامعه‌ای بساز که محتوایت را دنبال می‌کند.
+          مسیر رشد پیجت را از همین‌جا شروع کن.
+        </p>
+        <div class="hero-actions">
+          <!-- Moving Border (Aceternity) -->
+          <a href="activation.html" class="moving-border-btn" data-mb-duration="3000">
+            <svg class="mb-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect class="mb-path" fill="none" width="100%" height="100%" rx="13" ry="13"/>
+            </svg>
+            <div class="mb-glow"></div>
+            <div class="mb-inner">شروع فعال‌سازی ←</div>
+          </a>
+          <a href="guide.html" class="moving-border-btn light" data-mb-duration="3000">
+            <svg class="mb-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              <rect class="mb-path" fill="none" width="100%" height="100%" rx="13" ry="13"/>
+            </svg>
+            <div class="mb-glow" style="background:radial-gradient(circle, #344cf0 40%, transparent 60%)"></div>
+            <div class="mb-inner">آشنایی با روش کار ↗</div>
+          </a>
         </div>
-      ))}
+      </div>
+
+      <!-- OrbitingCircles (Magic UI) -->
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit-container">
+          <svg class="orbit-svg" viewBox="0 0 280 280">
+            <circle cx="140" cy="140" r="90"/>
+          </svg>
+          <div class="orbit-item" style="--duration:20; --radius:90; --angle:0; --icon-size:40px; font-size:24px;">📸</div>
+          <div class="orbit-item" style="--duration:20; --radius:90; --angle:120; --icon-size:40px; font-size:24px;">📈</div>
+          <div class="orbit-item" style="--duration:20; --radius:90; --angle:240; --icon-size:40px; font-size:24px;">💬</div>
+          <div class="hero-art-center">G</div>
+        </div>
+      </div>
     </div>
-  );
-}
+  </div>
+</section>
 
-// ============================================================
-// ۴. سورس واقعی: Particles (Magic UI)
-// مسیر: registry/magicui/particles.tsx
-// ============================================================
-function MousePosition() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  useEffect(() => {
-    const handleMouseMove = (event) => { setMousePosition({ x: event.clientX, y: event.clientY }); };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => { window.removeEventListener("mousemove", handleMouseMove); };
-  }, []);
-  return mousePosition;
-}
+<div class="section-divider page"></div>
 
-function hexToRgb(hex) {
-  hex = hex.replace("#", "");
-  if (hex.length === 3) { hex = hex.split("").map((char) => char + char).join(""); }
-  const hexInt = parseInt(hex, 16);
-  return [(hexInt >> 16) & 255, (hexInt >> 8) & 255, hexInt & 255];
-}
-
-const Particles = ({ className = "", quantity = 100, staticity = 50, ease = 50, size = 0.4,
-  refresh = false, color = "#ffffff", vx = 0, vy = 0, ...props }) => {
-  const canvasRef = useRef(null);
-  const canvasContainerRef = useRef(null);
-  const context = useRef(null);
-  const circles = useRef([]);
-  const mousePosition = MousePosition();
-  const mouse = useRef({ x: 0, y: 0 });
-  const canvasSize = useRef({ w: 0, h: 0 });
-  const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
-  const rafID = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const container = canvasContainerRef.current;
-    if (!canvas || !container) return;
-    context.current = canvas.getContext("2d");
-    const ctx = context.current;
-    if (!ctx) return;
-    const rgb = hexToRgb(color);
-
-    const circleParams = () => ({
-      x: Math.floor(Math.random() * canvasSize.current.w),
-      y: Math.floor(Math.random() * canvasSize.current.h),
-      translateX: 0, translateY: 0,
-      size: Math.floor(Math.random() * 2) + size,
-      alpha: 0,
-      targetAlpha: parseFloat((Math.random() * 0.6 + 0.1).toFixed(1)),
-      dx: (Math.random() - 0.5) * 0.1,
-      dy: (Math.random() - 0.5) * 0.1,
-      magnetism: 0.1 + Math.random() * 4,
-    });
-
-    const drawCircle = (circle, update = false) => {
-      const { x, y, translateX, translateY, size: s, alpha } = circle;
-      ctx.translate(translateX, translateY);
-      ctx.beginPath();
-      ctx.arc(x, y, s, 0, 2 * Math.PI);
-      ctx.fillStyle = `rgba(${rgb.join(", ")}, ${alpha})`;
-      ctx.fill();
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      if (!update) circles.current.push(circle);
-    };
-
-    const clearContext = () => ctx.clearRect(0, 0, canvasSize.current.w, canvasSize.current.h);
-
-    const remapValue = (value, start1, end1, start2, end2) => {
-      const remapped = ((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
-      return remapped > 0 ? remapped : 0;
-    };
-
-    const animate = () => {
-      clearContext();
-      circles.current.forEach((circle, i) => {
-        const edge = [
-          circle.x + circle.translateX - circle.size,
-          canvasSize.current.w - circle.x - circle.translateX - circle.size,
-          circle.y + circle.translateY - circle.size,
-          canvasSize.current.h - circle.y - circle.translateY - circle.size,
-        ];
-        const closestEdge = edge.reduce((a, b) => Math.min(a, b));
-        const remapClosestEdge = parseFloat(remapValue(closestEdge, 0, 20, 0, 1).toFixed(2));
-        if (remapClosestEdge > 1) {
-          circle.alpha += 0.02;
-          if (circle.alpha > circle.targetAlpha) circle.alpha = circle.targetAlpha;
-        } else {
-          circle.alpha = circle.targetAlpha * remapClosestEdge;
-        }
-        circle.x += circle.dx + vx;
-        circle.y += circle.dy + vy;
-        circle.translateX += (mouse.current.x / (staticity / circle.magnetism) - circle.translateX) / ease;
-        circle.translateY += (mouse.current.y / (staticity / circle.magnetism) - circle.translateY) / ease;
-        drawCircle(circle, true);
-        if (circle.x < -circle.size || circle.x > canvasSize.current.w + circle.size ||
-            circle.y < -circle.size || circle.y > canvasSize.current.h + circle.size) {
-          circles.current.splice(i, 1);
-          drawCircle(circleParams());
-        }
-      });
-      rafID.current = window.requestAnimationFrame(animate);
-    };
-
-    const initCanvas = () => {
-      canvasSize.current.w = container.offsetWidth;
-      canvasSize.current.h = container.offsetHeight;
-      canvas.width = canvasSize.current.w * dpr;
-      canvas.height = canvasSize.current.h * dpr;
-      canvas.style.width = `${canvasSize.current.w}px`;
-      canvas.style.height = `${canvasSize.current.h}px`;
-      ctx.scale(dpr, dpr);
-      clearContext();
-      circles.current = [];
-      for (let i = 0; i < quantity; i++) drawCircle(circleParams());
-    };
-
-    const onMouseMove = () => {
-      const rect = canvas.getBoundingClientRect();
-      const { w, h } = canvasSize.current;
-      const x = mousePosition.x - rect.left - w / 2;
-      const y = mousePosition.y - rect.top - h / 2;
-      if (x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2) {
-        mouse.current.x = x; mouse.current.y = y;
-      }
-    };
-
-    initCanvas();
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) animate();
-    onMouseMove();
-
-    const handleResize = () => { setTimeout(initCanvas, 200); };
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("mousemove", onMouseMove);
-
-    return () => {
-      if (rafID.current != null) window.cancelAnimationFrame(rafID.current);
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", onMouseMove);
-    };
-  }, [color, quantity, staticity, ease, size, vx, vy, dpr, mousePosition]);
-
-  return (
-    <div className={cn("pointer-events-none", className)} ref={canvasContainerRef} aria-hidden="true">
-      <canvas ref={canvasRef} className="size-full" />
+<!-- ============================================================
+     PATHS
+     ============================================================ -->
+<section class="path-section page reveal">
+  <div class="section-intro">
+    <div>
+      <div class="kicker">دو مسیر برای رشد</div>
+      <h2 class="section-title">هدفت را انتخاب کن.</h2>
     </div>
-  );
-};
+    <p class="section-desc">رشد فقط یک عدد نیست. مسیر مناسب خودت را انتخاب کن و قدم بعدی را بردار.</p>
+  </div>
+  <div class="path-list">
+    <a href="activation.html" class="path-row">
+      <div class="path-index">01</div>
+      <div><h3>افزایش فالوور</h3><p>برای بیشتر دیده‌شدن، توسعه جامعه مخاطبان و ساختن حضوری پررنگ‌تر در اینستاگرام.</p></div>
+      <span class="path-go">←</span>
+    </a>
+    <a href="activation.html" class="path-row">
+      <div class="path-index">02</div>
+      <div><h3>افزایش تعامل محتوا</h3><p>محتوایت را به جریان تعامل ببر؛ تماشا، لایک، ذخیره، کامنت مرتبط و بازنشر.</p></div>
+      <span class="path-go">←</span>
+    </a>
+  </div>
+</section>
 
-// ============================================================
-// ۵. سورس واقعی: MovingBorder (Aceternity UI)
-// مسیر: components/ui/moving-border.tsx
-// ============================================================
-function MovingBorderButton({ children, as: Component = "button", containerClassName,
-  borderClassName, duration = 3000, className, borderRadius = "1.75rem", ...otherProps }) {
-  const pathRef = useRef(null);
-  const progress = useMotionValue(0);
-  useAnimationFrame((time) => {
-    const length = pathRef.current?.getTotalLength();
-    if (length) {
-      const pxPerMillisecond = length / duration;
-      progress.set((time * pxPerMillisecond) % length);
-    }
-  });
-  const x = useTransform(progress, (val) => pathRef.current?.getPointAtLength(val).x);
-  const y = useTransform(progress, (val) => pathRef.current?.getPointAtLength(val).y);
-  const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
+<!-- ============================================================
+     MARQUEE (Magic UI)
+     ============================================================ -->
+<div class="marquee-section" aria-label="پیام‌های گروزای ۲۴">
+  <div class="marquee-track" style="--duration:28s">
+    <div class="marquee-item">بیشتر دیده شو <b>✳</b></div>
+    <div class="marquee-item">مخاطب بیشتر <b>✳</b></div>
+    <div class="marquee-item">تعامل مؤثرتر <b>✳</b></div>
+    <div class="marquee-item">حضور متفاوت <b>✳</b></div>
+    <div class="marquee-item">بیشتر دیده شو <b>✳</b></div>
+    <div class="marquee-item">مخاطب بیشتر <b>✳</b></div>
+  </div>
+</div>
 
-  return (
-    <Component className={cn("relative h-16 w-40 overflow-hidden bg-transparent p-[1px] text-xl",
-      containerClassName)} style={{ borderRadius }} {...otherProps}>
-      <div className="absolute inset-0" style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}>
-        <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
-          className="absolute h-full w-full" width="100%" height="100%">
-          <rect fill="none" width="100%" height="100%" rx="30%" ry="30%" ref={pathRef} />
+<!-- ============================================================
+     INSIGHT — OrbitingCircles
+     ============================================================ -->
+<section class="insight page reveal">
+  <div class="insight-heading">
+    <div class="kicker">فراتر از یک عدد</div>
+    <h2 class="section-title" id="insight-title">رشد را از چند زاویه ببین.</h2>
+  </div>
+
+  <div class="insight-stage">
+    <div class="insight-main">
+      <div class="big-number">01</div>
+      <h3>دیده‌شدن، شروع ماجراست.</h3>
+      <p>وقتی محتوایت بیشتر در معرض دید قرار بگیرد، فرصت بیشتری برای معرفی صفحه و شکل‌گیری ارتباط با مخاطبان خواهی داشت.</p>
+    </div>
+    <div class="insight-orbit" aria-hidden="true">
+      <div class="orbit-container">
+        <svg class="orbit-svg" viewBox="0 0 380 380">
+          <circle cx="190" cy="190" r="130"/>
         </svg>
-        <motion.div style={{ position: "absolute", top: 0, left: 0, display: "inline-block", transform }}>
-          <div className={cn("h-20 w-20 bg-[radial-gradient(#0ea5e9_40%,transparent_60%)] opacity-[0.8]",
-            borderClassName)} />
-        </motion.div>
+        <div class="orbit-item" style="--duration:25; --radius:130; --angle:0; --icon-size:50px; font-size:28px;">👁</div>
+        <div class="orbit-item" style="--duration:25; --radius:130; --angle:90; --icon-size:50px; font-size:28px;">❤️</div>
+        <div class="orbit-item" style="--duration:25; --radius:130; --angle:180; --icon-size:50px; font-size:28px;">💾</div>
+        <div class="orbit-item" style="--duration:25; --radius:130; --angle:270; --icon-size:50px; font-size:28px;">💬</div>
+        <div class="orbit-core">G</div>
       </div>
-      <div className={cn("relative flex h-full w-full items-center justify-center border border-slate-800 bg-slate-900/[0.8] text-sm text-white antialiased backdrop-blur-xl",
-        className)} style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}>
-        {children}
-      </div>
-    </Component>
-  );
-}
+    </div>
+  </div>
 
-// ============================================================
-// ۶. سورس واقعی: Dock (Motion Primitives)
-// مسیر: components/core/dock.tsx
-// ============================================================
-function useWindowResize(callback) {
-  useEffect(() => {
-    window.addEventListener("resize", callback);
-    return () => window.removeEventListener("resize", callback);
-  }, [callback]);
-}
+  <div class="info-strips">
+    <article class="info-strip"><div class="symbol">↗</div><h3>جامعه مخاطبان</h3><p>برای توسعه حضور و افزایش دنبال‌کنندگان صفحه.</p></article>
+    <article class="info-strip"><div class="symbol">✳</div><h3>تعامل محتوا</h3><p>تماشا، پسندیدن، ذخیره، نظر و بازنشر.</p></article>
+    <article class="info-strip"><div class="symbol">◎</div><h3>مسیر مشخص</h3><p>انتخاب هدف و آغاز فرایند از بخش فعال‌سازی.</p></article>
+  </div>
+</section>
 
-function Dock({ className, children }) {
-  const [hovered, setHovered] = useState(false);
-  const [width, setWidth] = useState(0);
-  const dockRef = useRef(null);
-  const isZooming = useRef(false);
-  const [animatingIndexes, setAnimatingIndexes] = useState([]);
-  const setIsZooming = (value) => { isZooming.current = value; setHovered(!value); };
-  const zoomLevel = useMotionValue(1);
-  useWindowResize(() => { setWidth(dockRef.current?.clientWidth || 0); });
-  const mouseX = useMotionValue(Infinity);
+<!-- ============================================================
+     PROCESS
+     ============================================================ -->
+<section class="process-section reveal">
+  <div class="page">
+    <div class="process-head">
+      <div class="kicker">شروع ساده، مسیر روشن</div>
+      <h2 class="section-title">از اینجا تا شروع رشد.</h2>
+    </div>
+    <div class="process-list">
+      <article class="process-item"><div class="process-number">۱</div><h3>هدفت را انتخاب کن</h3><p>افزایش فالوور یا تقویت تعامل محتوایت؛ مسیر موردنظرت را مشخص کن.</p></article>
+      <article class="process-item"><div class="process-number">۲</div><h3>فعال‌سازی را انجام بده</h3><p>اطلاعات لازم را در بخش فعال‌سازی وارد و مراحل را تکمیل کن.</p></article>
+      <article class="process-item"><div class="process-number">۳</div><h3>عملکردت را دنبال کن</h3><p>برای آشنایی با وضعیت فرایند و جزئیات، به بخش عملکرد سر بزن.</p></article>
+    </div>
+  </div>
+</section>
 
-  return (
-    <DockContext.Provider value={{ hovered, setIsZooming, width, zoomLevel, mouseX,
-      animatingIndexes, setAnimatingIndexes: (indexes) => { setAnimatingIndexes(indexes); } }}>
-      <motion.div ref={dockRef}
-        className={cn("flex items-end h-14 p-2 gap-3 bg-opacity-90 rounded-xl",
-          "bg-neutral-50 p-2 no-underline shadow-sm transition-colors hover:bg-neutral-100", className)}
-        onMouseMove={(e) => { mouseX.set(e.pageX); if (!isZooming.current) setHovered(true); }}
-        onMouseLeave={() => { mouseX.set(Infinity); setHovered(false); }}
-        style={{ scale: zoomLevel }}>
-        {children}
-      </motion.div>
-    </DockContext.Provider>
-  );
-}
+<!-- ============================================================
+     CTA — Moving Border
+     ============================================================ -->
+<section class="cta-section page reveal">
+  <div class="cta">
+    <div class="cta-content">
+      <h2>وقتشه متفاوت دیده بشی.</h2>
+      <p>مسیر مناسب پیجت را انتخاب کن و اولین قدم را بردار.</p>
+    </div>
+    <a href="activation.html" class="moving-border-btn light" data-mb-duration="3000">
+      <svg class="mb-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <rect class="mb-path" fill="none" width="100%" height="100%" rx="13" ry="13"/>
+      </svg>
+      <div class="mb-glow" style="background:radial-gradient(circle, #344cf0 40%, transparent 60%)"></div>
+      <div class="mb-inner">شروع فعال‌سازی ←</div>
+    </a>
+  </div>
+</section>
 
-const DockContext = React.createContext({
-  width: 0, hovered: false, setIsZooming: () => {},
-  zoomLevel: null, mouseX: null, animatingIndexes: [], setAnimatingIndexes: () => {},
-});
+</main>
 
-function DockCard({ children, id, onClick }) {
-  const cardRef = useRef(null);
-  const [elCenterX, setElCenterX] = useState(0);
-  const dock = React.useContext(DockContext);
-  const handleClick = () => {
-    if (dock.animatingIndexes.includes(parseInt(id))) { dock.setAnimatingIndexes([]); }
-    else { dock.setAnimatingIndexes([parseInt(id)]); }
-    if (onClick) onClick();
-  };
-  return (
-    <motion.button ref={cardRef} onClick={handleClick}
-      className="relative flex items-center justify-center w-12 h-12 rounded-lg bg-white shadow-sm"
-    >
-      {children}
-    </motion.button>
-  );
-}
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer page">
+  <div><strong>گروزای ۲۴</strong> — پلتفرم رشد اینستاگرام</div>
+  <div>معمولی دیده نشو؛ متفاوت باش.</div>
+</footer>
 
-// ============================================================
-// ۷. چیدمان اصلی (Layout) – فقط اتصال، بدون ساخت کامپوننت
-// ============================================================
-function App() {
-  const vantaRef = useRef(null);
+<!-- ============================================================
+     DOCK (Motion Primitives)
+     ============================================================ -->
+<nav class="dock-wrapper" aria-label="منوی اصلی">
+  <div class="dock" id="dock">
+    <a class="dock-item active" href="index.html" aria-current="page">
+      <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>
+      <span>خانه</span>
+    </a>
+    <a class="dock-item" href="guide.html">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.6 2.6 0 1 1 4.7 1.5c-1.1 1.2-2.2 1.4-2.2 3"/><path d="M12 17.5h.01"/></svg>
+      <span>راهنما</span>
+    </a>
+    <a class="dock-item" href="activation.html">
+      <svg viewBox="0 0 24 24"><path d="M12 3v4m0 10v4M3 12h4m10 0h4"/><circle cx="12" cy="12" r="5"/><path d="m10 12 1.4 1.4L14.5 10"/></svg>
+      <span>فعال‌سازی</span>
+    </a>
+    <a class="dock-item" href="performance.html">
+      <svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 6-7"/></svg>
+      <span>عملکرد</span>
+    </a>
+  </div>
+</nav>
 
-  // Vanta HALO (سورس واقعی)
-  useEffect(() => {
-    if (vantaRef.current && window.VANTA && window.THREE) {
-      const effect = window.VANTA.HALO({
-        el: vantaRef.current,
+<script>
+(function(){
+  "use strict";
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ============================================================
+     REVEAL OBSERVER
+     ============================================================ */
+  const revealItems = document.querySelectorAll(".reveal");
+  if (!("IntersectionObserver" in window) || reducedMotion) {
+    revealItems.forEach(el => el.classList.add("visible"));
+  } else {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealItems.forEach(el => obs.observe(el));
+  }
+
+  /* ============================================================
+     VANTA HALO — Source: Vanta.js (CDN)
+     ============================================================ */
+  if (window.VANTA && window.THREE && !reducedMotion) {
+    try {
+      window.VANTA.HALO({
+        el: "#vanta-bg",
         mouseControls: true, touchControls: true, gyroControls: false,
         baseColor: 0x171a24, backgroundColor: 0xf4f2eb,
         amplitudeFactor: 1.5, size: 1.2,
       });
-      return () => effect.destroy();
+    } catch(e) { console.warn("Vanta HALO:", e); }
+  }
+
+  /* ============================================================
+     PARTICLES — Source: Magic UI (Vanilla Port)
+     registry/magicui/particles.tsx
+     ============================================================ */
+  (function initParticles(){
+    if (reducedMotion) return;
+    const canvas = document.getElementById("particles-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const dpr = window.devicePixelRatio || 1;
+
+    const CONFIG = { quantity: 60, color: "#344cf0", size: 0.6, staticity: 50, ease: 50, vx: 0, vy: 0 };
+    const rgb = hexToRgb(CONFIG.color);
+    let circles = [];
+    let rafId = null;
+    const mouse = { x: 0, y: 0 };
+    const canvasSize = { w: 0, h: 0 };
+
+    function hexToRgb(hex) {
+      hex = hex.replace("#", "");
+      if (hex.length === 3) hex = hex.split("").map(c => c + c).join("");
+      const n = parseInt(hex, 16);
+      return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
     }
-  }, []);
 
-  // Codrops SVG Filter (سورس واقعی با GSAP)
-  useEffect(() => {
-    if (window.gsap && window.ScrollTrigger && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.registerPlugin(ScrollTrigger);
-      const filterId = "goo-2";
-      const feBlur = document.querySelector(`#${filterId} feGaussianBlur`);
-      const feTurbulence = document.querySelector(`#${filterId} feTurbulence`);
-      const feDisp = document.querySelector(`#${filterId} feDisplacementMap`);
-      const heroTitle = document.getElementById("hero-title");
-      const insightTitle = document.getElementById("insight-title");
-      if (!feBlur || !feTurbulence || !feDisp || !heroTitle) return;
+    function circleParams() {
+      return {
+        x: Math.floor(Math.random() * canvasSize.w),
+        y: Math.floor(Math.random() * canvasSize.h),
+        translateX: 0, translateY: 0,
+        size: Math.floor(Math.random() * 2) + CONFIG.size,
+        alpha: 0,
+        targetAlpha: parseFloat((Math.random() * 0.6 + 0.1).toFixed(1)),
+        dx: (Math.random() - 0.5) * 0.1,
+        dy: (Math.random() - 0.5) * 0.1,
+        magnetism: 0.1 + Math.random() * 4,
+      };
+    }
 
-      heroTitle.style.filter = `url(#${filterId})`;
+    function drawCircle(c, update) {
+      const { x, y, translateX, translateY, size, alpha } = c;
+      ctx.translate(translateX, translateY);
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, 2 * Math.PI);
+      ctx.fillStyle = `rgba(${rgb.join(", ")}, ${alpha})`;
+      ctx.fill();
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (!update) circles.push(c);
+    }
+
+    function remap(value, s1, e1, s2, e2) {
+      const r = ((value - s1) * (e2 - s2)) / (e1 - s1) + s2;
+      return r > 0 ? r : 0;
+    }
+
+    function init() {
+      const rect = canvas.getBoundingClientRect();
+      canvasSize.w = rect.width; canvasSize.h = rect.height;
+      canvas.width = canvasSize.w * dpr; canvas.height = canvasSize.h * dpr;
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, canvasSize.w, canvasSize.h);
+      circles = [];
+      for (let i = 0; i < CONFIG.quantity; i++) drawCircle(circleParams());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvasSize.w, canvasSize.h);
+      circles.forEach((c, i) => {
+        const edges = [
+          c.x + c.translateX - c.size,
+          canvasSize.w - c.x - c.translateX - c.size,
+          c.y + c.translateY - c.size,
+          canvasSize.h - c.y - c.translateY - c.size,
+        ];
+        const closest = edges.reduce((a, b) => Math.min(a, b));
+        const remapped = parseFloat(remap(closest, 0, 20, 0, 1).toFixed(2));
+        if (remapped > 1) { c.alpha += 0.02; if (c.alpha > c.targetAlpha) c.alpha = c.targetAlpha; }
+        else { c.alpha = c.targetAlpha * remapped; }
+        c.x += c.dx + CONFIG.vx; c.y += c.dy + CONFIG.vy;
+        c.translateX += (mouse.x / (CONFIG.staticity / c.magnetism) - c.translateX) / CONFIG.ease;
+        c.translateY += (mouse.y / (CONFIG.staticity / c.magnetism) - c.translateY) / CONFIG.ease;
+        drawCircle(c, true);
+        if (c.x < -c.size || c.x > canvasSize.w + c.size || c.y < -c.size || c.y > canvasSize.h + c.size) {
+          circles.splice(i, 1); drawCircle(circleParams());
+        }
+      });
+      rafId = requestAnimationFrame(animate);
+    }
+
+    init(); animate();
+    window.addEventListener("resize", () => { clearTimeout(window._pResize); window._pResize = setTimeout(init, 200); });
+    window.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      if (Math.abs(x) < rect.width / 2 && Math.abs(y) < rect.height / 2) { mouse.x = x; mouse.y = y; }
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) { if (rafId) cancelAnimationFrame(rafId); rafId = null; }
+      else if (!reducedMotion && !rafId) animate();
+    });
+  })();
+
+  /* ============================================================
+     MOVING BORDER — Source: Aceternity UI (Vanilla Port)
+     components/ui/moving-border.tsx
+     ============================================================ */
+  (function initMovingBorder(){
+    if (reducedMotion) return;
+    document.querySelectorAll(".moving-border-btn").forEach(btn => {
+      const path = btn.querySelector(".mb-path");
+      const glow = btn.querySelector(".mb-glow");
+      if (!path || !glow) return;
+      const duration = parseInt(btn.dataset.mbDuration || "3000", 10);
+      const start = performance.now();
+      function frame(now) {
+        if (!path.getTotalLength) return;
+        const length = path.getTotalLength();
+        const t = (now - start) % duration;
+        const point = path.getPointAtLength((t / duration) * length);
+        if (point) {
+          glow.style.left = point.x + "px";
+          glow.style.top = point.y + "px";
+          glow.style.transform = "translate(-50%, -50%)";
+        }
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    });
+  })();
+
+  /* ============================================================
+     DOCK MAGNIFICATION — Source: Motion Primitives (Vanilla Port)
+     components/core/dock.tsx
+     ============================================================ */
+  (function initDock(){
+    if (reducedMotion) return;
+    const dock = document.getElementById("dock");
+    if (!dock) return;
+    const items = Array.from(dock.querySelectorAll(".dock-item"));
+    if (!items.length) return;
+
+    const BASE = window.innerWidth <= 600 ? 52 : 56;
+    const MAX = window.innerWidth <= 600 ? 66 : 80;
+    const RANGE = 140;
+    let centers = [];
+
+    function measure() {
+      const dockRect = dock.getBoundingClientRect();
+      centers = items.map(item => {
+        const r = item.getBoundingClientRect();
+        return r.left - dockRect.left + r.width / 2;
+      });
+    }
+    function reset() { items.forEach(item => { item.style.width = BASE + "px"; item.style.height = BASE + "px"; }); }
+    function handleMove(e) {
+      const dockRect = dock.getBoundingClientRect();
+      const x = e.clientX - dockRect.left;
+      items.forEach((item, i) => {
+        const dist = Math.abs(x - centers[i]);
+        const factor = Math.max(0, 1 - dist / RANGE);
+        const sz = BASE + (MAX - BASE) * factor;
+        item.style.width = sz + "px"; item.style.height = sz + "px";
+      });
+    }
+
+    requestAnimationFrame(measure);
+    dock.addEventListener("mousemove", handleMove);
+    dock.addEventListener("mouseleave", reset);
+    dock.addEventListener("touchmove", e => { if (e.touches[0]) handleMove(e.touches[0]); }, { passive: true });
+    dock.addEventListener("touchend", reset);
+    window.addEventListener("resize", () => { clearTimeout(window._dockResize); window._dockResize = setTimeout(() => { reset(); requestAnimationFrame(measure); }, 200); });
+  })();
+
+  /* ============================================================
+     CODROPPS SVG FILTER — Source: Codrops (MIT) + GSAP
+     ============================================================ */
+  if (window.gsap && window.ScrollTrigger && !reducedMotion) {
+    gsap.registerPlugin(ScrollTrigger);
+    const filterId = "goo-2";
+    const feBlur = document.querySelector(`#${filterId} feGaussianBlur`);
+    const feTurbulence = document.querySelector(`#${filterId} feTurbulence`);
+    const feDisp = document.querySelector(`#${filterId} feDisplacementMap`);
+    const heroTitle = document.getElementById("hero-title");
+    const insightTitle = document.getElementById("insight-title");
+    if (!feBlur || !feTurbulence || !feDisp || !heroTitle) return;
+
+    function applyFilter(el, trigger) {
+      if (!el) return;
+      el.style.filter = `url(#${filterId})`;
       const pv = { stdDeviation: 0, scale: 0, baseFrequency: 0 };
-      gsap.timeline({
+      const tl = gsap.timeline({
         defaults: { duration: 2.2, ease: "expo.out" },
         onUpdate: () => {
           feBlur.setAttribute("stdDeviation", pv.stdDeviation);
           feDisp.setAttribute("scale", pv.scale);
           feTurbulence.setAttribute("baseFrequency", pv.baseFrequency);
         },
-      }).to(pv, {
+      });
+      if (trigger === "scroll") tl.scrollTrigger = { trigger: el, start: "top 85%", once: true };
+      tl.to(pv, {
         startAt: { stdDeviation: 22, scale: 120, baseFrequency: 0.12 },
         stdDeviation: 0, scale: 0, baseFrequency: 0.05,
-      }, 0).fromTo(heroTitle, { opacity: 0.3 }, { opacity: 1, duration: 1.4 }, 0);
-
-      if (insightTitle) {
-        insightTitle.style.filter = `url(#${filterId})`;
-        gsap.timeline({
-          defaults: { duration: 2.2, ease: "expo.out" },
-          scrollTrigger: { trigger: insightTitle, start: "top 85%", once: true },
-          onUpdate: () => {
-            feBlur.setAttribute("stdDeviation", pv.stdDeviation);
-            feDisp.setAttribute("scale", pv.scale);
-            feTurbulence.setAttribute("baseFrequency", pv.baseFrequency);
-          },
-        }).to(pv, {
-          startAt: { stdDeviation: 22, scale: 120, baseFrequency: 0.12 },
-          stdDeviation: 0, scale: 0, baseFrequency: 0.05,
-        }, 0).fromTo(insightTitle, { opacity: 0.3 }, { opacity: 1, duration: 1.4 }, 0);
-      }
+      }, 0).fromTo(el, { opacity: 0.3 }, { opacity: 1, duration: 1.4 }, 0);
     }
-  }, []);
+    applyFilter(heroTitle, "load");
+    applyFilter(insightTitle, "scroll");
+  }
 
-  // Reveal Observer
-  useEffect(() => {
-    const items = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      items.forEach(el => el.classList.add('visible')); return;
-    }
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    items.forEach(el => obs.observe(el));
-  }, []);
+  /* ============================================================
+     GSAP PAUSE ON HIDDEN
+     ============================================================ */
+  document.addEventListener("visibilitychange", () => {
+    if (!window.gsap) return;
+    if (document.hidden) gsap.globalTimeline.pause();
+    else gsap.globalTimeline.resume();
+  });
 
-  return (
-    <div ref={vantaRef} style={{ minHeight: '100vh', position: 'relative' }}>
-
-      {/* ===== Header (چیدمان) ===== */}
-      <header className="page" style={{ height: 86, display: 'flex', justifyContent: 'space-between',
-        alignItems: 'center', borderBottom: '1px solid var(--line)', position: 'relative', zIndex: 10 }}>
-        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ width: 46, height: 46, display: 'grid', placeItems: 'center', background: 'var(--ink)',
-            color: 'var(--lime)', fontSize: 27, fontWeight: 900, borderRadius: '15px 5px 15px 5px',
-            transform: 'rotate(-5deg)', boxShadow: '5px 6px 0 #c8f16970' }}>G.</span>
-          <span>
-            <span style={{ fontSize: 21, fontWeight: 900, lineHeight: 1.35, display: 'block' }}>گروزای ۲۴</span>
-            <span style={{ display: 'block', fontSize: 14, color: 'var(--muted)', fontWeight: 700 }}>پلتفرم رشد اینستاگرام</span>
-          </span>
-        </a>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '11px 16px',
-          background: '#ffffffa8', border: '1px solid var(--line)', borderRadius: 50,
-          fontSize: 14, fontWeight: 800 }}>
-          <span style={{ width: 9, height: 9, borderRadius: '50%', background: '#69b942',
-            boxShadow: '0 0 0 5px #69b94220', animation: 'livePulse 2s infinite' }}></span>
-          مسیر رشد تو آماده است
-        </div>
-      </header>
-
-      {/* ===== HERO ===== */}
-      <section className="hero" id="hero">
-        <div id="vanta-bg" aria-hidden="true"></div>
-        <div className="page">
-          <div className="hero-topline">برای پیج‌هایی که متفاوت فکر می‌کنند</div>
-
-          <h1 className="hero-title" id="hero-title">
-            <span className="line">معمولی دیده</span>
-            <span className="line">نشو؛ <span className="special">متفاوت باش!</span></span>
-          </h1>
-
-          {/* Spotlight (Aceternity) */}
-          <Spotlight />
-
-          <div className="hero-bottom">
-            <div>
-              <p className="hero-copy">
-                حضورت را جدی‌تر کن، بیشتر دیده شو و جامعه‌ای بساز که محتوایت را دنبال می‌کند.
-                مسیر رشد پیجت را از همین‌جا شروع کن.
-              </p>
-              <div className="hero-actions">
-                {/* MovingBorder (Aceternity) */}
-                <MovingBorderButton as="a" href="activation.html"
-                  className="bg-slate-900 text-white font-bold"
-                  borderRadius="13px 13px 13px 3px" duration={3000}>
-                  شروع فعال‌سازی ←
-                </MovingBorderButton>
-                <a href="guide.html" className="btn btn-secondary"
-                  style={{ minHeight: 59, padding: '0 24px', border: '1px solid var(--line)',
-                    borderRadius: '13px 13px 13px 3px', display: 'inline-flex',
-                    alignItems: 'center', justifyContent: 'center', gap: 13,
-                    fontSize: 17, fontWeight: 900, color: 'var(--ink)', background: 'var(--surface)' }}>
-                  آشنایی با روش کار ↗
-                </a>
-              </div>
-            </div>
-
-            {/* OrbitingCircles (Magic UI) */}
-            <div className="hero-art" aria-hidden="true" style={{ width: 280, height: 280, position: 'relative' }}>
-              <div style={{ position: 'relative', width: '100%', height: '100%', display: 'grid', placeItems: 'center' }}>
-                <OrbitingCircles iconSize={40} radius={90} speed={1.5}>
-                  <span style={{ fontSize: 24 }}>📸</span>
-                  <span style={{ fontSize: 24 }}>📈</span>
-                  <span style={{ fontSize: 24 }}>💬</span>
-                </OrbitingCircles>
-                <div style={{ width: 95, height: 95, borderRadius: '27px 27px 27px 5px',
-                  background: 'var(--lime)', color: 'var(--ink)', display: 'grid', placeItems: 'center',
-                  fontSize: 43, fontWeight: 900, transform: 'rotate(-12deg)',
-                  boxShadow: '14px 18px 35px #171a2420', animation: 'centerFloat 5s ease-in-out infinite',
-                  zIndex: 2 }}>G</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== MARQUEE (Magic UI) ===== */}
-      <div className="marquee-section">
-        <Marquee pauseOnHover className="[--duration:28s]">
-          {['بیشتر دیده شو ✳', 'مخاطب بیشتر ✳', 'تعامل مؤثرتر ✳', 'حضور متفاوت ✳'].map((text, i) => (
-            <div key={i} className="marquee-item">{text}</div>
-          ))}
-        </Marquee>
-      </div>
-
-      {/* ===== INSIGHT ===== */}
-      <section className="insight page reveal">
-        <div className="insight-heading">
-          <div className="kicker">فراتر از یک عدد</div>
-          <h2 className="section-title" id="insight-title">رشد را از چند زاویه ببین.</h2>
-        </div>
-
-        <div className="insight-stage">
-          <div className="insight-main">
-            <div className="big-number">01</div>
-            <h3>دیده‌شدن، شروع ماجراست.</h3>
-            <p>وقتی محتوایت بیشتر در معرض دید قرار بگیرد، فرصت بیشتری برای معرفی صفحه و شکل‌گیری ارتباط با مخاطبان خواهی داشت.</p>
-          </div>
-
-          {/* OrbitingCircles (Magic UI) */}
-          <div className="insight-orbit" aria-hidden="true">
-            <OrbitingCircles iconSize={50} radius={130} speed={0.8} duration={25}>
-              <span style={{ fontSize: 28 }}>👁</span>
-              <span style={{ fontSize: 28 }}>❤️</span>
-              <span style={{ fontSize: 28 }}>💾</span>
-              <span style={{ fontSize: 28 }}>💬</span>
-            </OrbitingCircles>
-            <div style={{ width: 115, height: 115, background: 'var(--lime)', color: 'var(--ink)',
-              display: 'grid', placeItems: 'center', fontSize: 55, fontWeight: 900,
-              borderRadius: '35% 65% 50% 50%', transform: 'rotate(-15deg)', zIndex: 2,
-              boxShadow: '0 20px 50px #171a2420' }}>G</div>
-          </div>
-        </div>
-
-        <div className="info-strips">
-          <article className="info-strip">
-            <div className="symbol">↗</div>
-            <h3>جامعه مخاطبان</h3>
-            <p>برای توسعه حضور و افزایش دنبال‌کنندگان صفحه.</p>
-          </article>
-          <article className="info-strip">
-            <div className="symbol">✳</div>
-            <h3>تعامل محتوا</h3>
-            <p>تماشا، پسندیدن، ذخیره، نظر و بازنشر.</p>
-          </article>
-          <article className="info-strip">
-            <div className="symbol">◎</div>
-            <h3>مسیر مشخص</h3>
-            <p>انتخاب هدف و آغاز فرایند از بخش فعال‌سازی.</p>
-          </article>
-        </div>
-      </section>
-
-      {/* ===== PROCESS ===== */}
-      <section className="process-section reveal">
-        <div className="page">
-          <div className="process-head">
-            <div>
-              <div className="kicker">شروع ساده، مسیر روشن</div>
-              <h2 className="section-title">از اینجا تا شروع رشد.</h2>
-            </div>
-          </div>
-          <div className="process-list">
-            <article className="process-item">
-              <div className="process-number">۱</div>
-              <h3>هدفت را انتخاب کن</h3>
-              <p>افزایش فالوور یا تقویت تعامل محتوایت؛ مسیر موردنظرت را مشخص کن.</p>
-            </article>
-            <article className="process-item">
-              <div className="process-number">۲</div>
-              <h3>فعال‌سازی را انجام بده</h3>
-              <p>اطلاعات لازم را در بخش فعال‌سازی وارد و مراحل را تکمیل کن.</p>
-            </article>
-            <article className="process-item">
-              <div className="process-number">۳</div>
-              <h3>عملکردت را دنبال کن</h3>
-              <p>برای آشنایی با وضعیت فرایند و جزئیات، به بخش عملکرد سر بزن.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== CTA ===== */}
-      <section className="cta-section page reveal">
-        <div className="cta">
-          <div className="cta-content">
-            <h2>وقتشه متفاوت دیده بشی.</h2>
-            <p>مسیر مناسب پیجت را انتخاب کن و اولین قدم را بردار.</p>
-          </div>
-          <MovingBorderButton as="a" href="activation.html"
-            className="bg-lime-200 text-ink font-bold" borderRadius="13px 13px 13px 3px" duration={3000}>
-            شروع فعال‌سازی ←
-          </MovingBorderButton>
-        </div>
-      </section>
-
-      {/* ===== FOOTER ===== */}
-      <footer className="footer page">
-        <div><strong>گروزای ۲۴</strong> — پلتفرم رشد اینستاگرام</div>
-        <div>معمولی دیده نشو؛ متفاوت باش.</div>
-      </footer>
-
-      {/* ===== PARTICLES (Magic UI) ===== */}
-      <Particles className="absolute inset-0 z-0" quantity={60} color="#344cf0" size={0.5} />
-
-      {/* ===== DOCK (Motion Primitives) ===== */}
-      <div className="dock-wrapper">
-        <Dock className="w-fit mx-auto">
-          {[
-            { label: 'خانه', icon: '🏠', href: 'index.html', active: true },
-            { label: 'راهنما', icon: '❓', href: 'guide.html' },
-            { label: 'فعال‌سازی', icon: '⚡', href: 'activation.html' },
-            { label: 'عملکرد', icon: '📊', href: 'performance.html' },
-          ].map((item, i) => (
-            <DockCard key={i} id={String(i)} onClick={() => window.location.href = item.href}>
-              <a href={item.href} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',
-                justifyContent: 'center', width: '100%', height: '100%',
-                color: item.active ? 'var(--lime)' : '#777c85', background: item.active ? 'var(--ink)' : 'transparent',
-                borderRadius: 13, fontSize: 13, fontWeight: 800, gap: 2 }}>
-                <span style={{ fontSize: 22 }}>{item.icon}</span>
-                <span>{item.label}</span>
-              </a>
-            </DockCard>
-          ))}
-        </Dock>
-      </div>
-
-    </div>
-  );
-}
-
-// رندر
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+})();
 </script>
 
+<!-- Libraries via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.halo.min.js"></script>
+
 </body>
-</html>
+                                 </html>

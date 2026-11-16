@@ -4,715 +4,848 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#090b09">
-<title>فعال‌سازی پلن | Growza24</title>
+<meta name="theme-color" content="#F5F3FF">
+<meta name="description" content="فعال‌سازی خدمات رشد پیج اینستاگرام در Growza24">
+<title>فعال‌سازی | Growza24</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
- --bg:#090b09;
- --panel:#111510;
- --panel2:#171d16;
- --lime:#c9ff36;
- --lime2:#a9e91e;
- --white:#f5f8ef;
- --muted:#9da698;
- --line:rgba(255,255,255,.09);
- --gold:#f4cb72;
- --blue:#8bdcff;
- --purple:#c6a0ff;
+  --bg:#F5F3FF;
+  --paper:#FFFFFF;
+  --ink:#201A32;
+  --muted:#777187;
+  --purple:#7042F5;
+  --purple2:#A58AFF;
+  --purple3:#4822C7;
+  --lime:#D8FF39;
+  --coral:#FF6D68;
+  --pink:#FF9BC4;
+  --cyan:#75E9DD;
+  --line:#E8E2F4;
+  --shadow:0 18px 55px rgba(65,43,120,.09);
+  --soft-shadow:0 9px 26px rgba(65,43,120,.07);
+  --radius:28px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{
- margin:0;background:var(--bg);color:var(--white);
- font-family:Vazirmatn,sans-serif;
- padding-bottom:112px;overflow-x:hidden;
+  margin:0;
+  background:
+    radial-gradient(ellipse at 4% 8%,rgba(165,138,255,.19),transparent 34%),
+    radial-gradient(ellipse at 100% 45%,rgba(255,155,196,.14),transparent 32%),
+    var(--bg);
+  color:var(--ink);
+  font-family:"Vazirmatn",Tahoma,sans-serif;
+  font-size:16px;
+  line-height:1.9;
+  padding-bottom:112px;
+  overflow-x:hidden;
 }
-button,input,textarea{font:inherit}
+button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
-.page{width:min(100%,680px);margin:auto;padding:0 17px}
-.glow{
- position:fixed;pointer-events:none;z-index:-1;border-radius:50%;
- filter:blur(85px);opacity:.12
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{
+  outline:3px solid rgba(112,66,245,.35);
+  outline-offset:3px;
 }
-.glow.one{width:250px;height:250px;background:#b9ff28;top:100px;right:-150px}
-.glow.two{width:220px;height:220px;background:#8dbb25;bottom:150px;left:-140px}
-header{
- display:flex;align-items:center;justify-content:space-between;
- padding:17px 0 15px;border-bottom:1px solid var(--line)
+.container{width:min(100% - 34px,520px);margin-inline:auto}
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 0 15px;gap:12px;
 }
-.brand{display:flex;align-items:center;gap:11px;direction:ltr}
-.brand img{
- width:54px;height:54px;border-radius:17px;object-fit:cover;
- border:1px solid rgba(201,255,54,.35);
- box-shadow:0 0 22px rgba(201,255,54,.12)
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-photo{
+  width:58px;height:58px;border-radius:20px;padding:3px;flex:none;
+  background:linear-gradient(145deg,var(--lime),var(--purple),var(--pink));
+  box-shadow:0 8px 22px rgba(112,66,245,.17);
 }
-.brand-name{font-size:23px;font-weight:900;letter-spacing:-1.2px;line-height:1.15}
-.brand-name span{color:var(--lime)}
-.brand-sub{
- direction:rtl;text-align:right;font-size:11px;color:#aab2a4;
- margin-top:5px;font-weight:600
+.brand-photo img{width:100%;height:100%;object-fit:cover;border-radius:17px;display:block}
+.brand-name{font-size:22px;font-weight:900;line-height:1.35;letter-spacing:-.7px}
+.brand-caption{font-size:13px;color:var(--muted);font-weight:700}
+.header-pill{
+  border:1px solid rgba(112,66,245,.13);background:#fff;
+  border-radius:30px;padding:8px 13px;font-size:12px;font-weight:800;
+  color:var(--purple);white-space:nowrap;box-shadow:var(--soft-shadow);
 }
-.header-tag{
- border:1px solid rgba(201,255,54,.25);
- background:rgba(201,255,54,.07);
- color:var(--lime);border-radius:30px;
- padding:8px 11px;font-size:11px;font-weight:800;
- display:flex;align-items:center;gap:6px
+.hero{
+  position:relative;overflow:hidden;border-radius:34px;
+  padding:27px 23px 25px;margin:8px 0 25px;
+  color:white;background:linear-gradient(140deg,#4822C7 0%,#7042F5 58%,#9B7AFF 100%);
+  box-shadow:0 22px 50px rgba(91,54,205,.2);
 }
-.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
-.hero{padding:27px 0 17px;position:relative}
+.hero:before{
+  content:"";position:absolute;width:240px;height:240px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.18);left:-95px;top:-120px;
+  box-shadow:0 0 0 22px rgba(255,255,255,.035),0 0 0 48px rgba(255,255,255,.025);
+}
+.hero:after{
+  content:"";position:absolute;width:150px;height:150px;border-radius:50%;
+  background:rgba(216,255,57,.16);filter:blur(2px);right:-75px;bottom:-90px;
+}
+.hero-top{display:flex;align-items:center;gap:8px;position:relative;z-index:1}
 .hero-kicker{
- display:inline-flex;align-items:center;gap:8px;
- color:var(--lime);font-size:12px;font-weight:800;
- border:1px solid rgba(201,255,54,.19);
- background:rgba(201,255,54,.055);
- padding:7px 12px;border-radius:30px
+  font-size:12px;font-weight:900;letter-spacing:1.4px;color:var(--lime);
 }
+.hero-mark{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 5px #ffffff1e}
 .hero h1{
- font-size:clamp(29px,7vw,43px);line-height:1.48;
- margin:15px 0 8px;font-weight:900;letter-spacing:-1.3px
+  position:relative;z-index:1;font-size:clamp(34px,8.7vw,47px);
+  line-height:1.55;font-weight:900;letter-spacing:-1.3px;margin:13px 0 8px;
 }
-.hero h1 em{font-style:normal;color:var(--lime);position:relative}
-.hero p{color:#b4bdb0;font-size:14px;line-height:2.05;margin:0;max-width:520px}
-.hero-art{
- margin-top:19px;position:relative;overflow:hidden;
- border:1px solid rgba(201,255,54,.2);
- border-radius:23px 23px 7px 23px;
- padding:17px 16px;background:
- radial-gradient(ellipse at 90% 0%,rgba(201,255,54,.16),transparent 50%),
- linear-gradient(120deg,#192017,#10140f 65%,#161c13);
+.hero h1 span{color:var(--lime);position:relative;white-space:nowrap}
+.hero h1 span:after{
+  content:"";position:absolute;right:0;left:0;bottom:2px;height:7px;
+  border-radius:10px;background:var(--lime);opacity:.27;
 }
-.hero-art:after{
- content:"24";position:absolute;left:12px;bottom:-33px;
- font-size:120px;font-weight:900;color:rgba(201,255,54,.045);
- direction:ltr;line-height:1
+.hero p{
+  position:relative;z-index:1;font-size:16px;line-height:2.05;
+  font-weight:600;color:#F1ECFF;margin:0;max-width:390px;
 }
-.hero-art-top{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
-.hero-art-label{font-size:12px;color:#c7d0c0;font-weight:700}
-.hero-art-icon{
- width:43px;height:43px;border-radius:14px;background:var(--lime);
- color:#11170c;display:grid;place-items:center;font-size:23px;
- box-shadow:0 7px 25px rgba(201,255,54,.2)
+.hero-foot{
+  position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;
+  gap:10px;margin-top:22px;padding-top:15px;border-top:1px solid #ffffff32;
 }
-.hero-art strong{display:block;font-size:22px;margin-top:11px;position:relative;z-index:1}
-.hero-art strong span{color:var(--lime)}
-.hero-art small{color:#9da998;font-size:11px;position:relative;z-index:1}
-.section-head{
- display:flex;align-items:end;justify-content:space-between;
- margin:27px 0 13px;gap:10px
+.hero-foot span{font-size:12px;font-weight:800;color:#E9E1FF}
+.hero-number{
+  display:flex;align-items:center;gap:6px;font-size:12px;font-weight:900;
+  color:var(--lime);direction:ltr;letter-spacing:1px;
 }
-.section-head h2{font-size:20px;font-weight:900;margin:0}
-.section-head p{font-size:11px;color:var(--muted);margin:4px 0 0}
-.swipe-hint{font-size:10px;color:var(--lime);white-space:nowrap}
-.category{margin-top:21px}
-.cat-title{
- display:flex;align-items:center;gap:10px;margin-bottom:12px
+.section{margin:30px 0}
+.section-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:17px}
+.section-index{
+  flex:none;width:39px;height:39px;border-radius:14px;display:grid;place-items:center;
+  color:var(--purple);background:#EAE3FF;font-size:14px;font-weight:900;
 }
-.cat-icon{
- width:38px;height:38px;border-radius:13px;display:grid;place-items:center;
- background:rgba(201,255,54,.1);border:1px solid rgba(201,255,54,.2);
- color:var(--lime);font-size:19px
+.section-title{font-size:23px;line-height:1.55;font-weight:900;margin:0;letter-spacing:-.5px}
+.section-sub{font-size:15px;color:var(--muted);font-weight:600;margin:3px 0 0;line-height:1.9}
+.path-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.path-card{
+  position:relative;text-align:right;border:1.5px solid var(--line);
+  border-radius:24px;background:#fff;padding:17px 15px 16px;
+  min-height:158px;transition:.25s;box-shadow:var(--soft-shadow);
 }
-.cat-title h3{font-size:16px;margin:0;font-weight:900}
-.cat-title p{font-size:10px;color:var(--muted);margin:2px 0 0}
-.horizontal{
- display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
- padding:3px 1px 14px;scrollbar-width:none;
+.path-card:active{transform:scale(.98)}
+.path-card.selected{
+  border-color:var(--purple);background:linear-gradient(145deg,#fff,#F4F0FF);
+  box-shadow:0 12px 30px rgba(112,66,245,.15);
 }
-.horizontal::-webkit-scrollbar{display:none}
-.plan{
- flex:0 0 77%;max-width:310px;min-width:250px;
- scroll-snap-align:start;position:relative;overflow:hidden;
- border:1px solid rgba(255,255,255,.1);
- border-radius:22px 22px 7px 22px;
- padding:17px 16px 15px;
- background:linear-gradient(145deg,#1a2018,#10140f 70%);
- transition:.25s;isolation:isolate
+.path-card.selected:after{
+  content:"✓";position:absolute;left:12px;top:12px;width:24px;height:24px;
+  display:grid;place-items:center;border-radius:50%;background:var(--purple);
+  color:white;font-size:13px;font-weight:900;
 }
-.plan:before{
- content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
- background:radial-gradient(circle at 100% 0%,rgba(201,255,54,.1),transparent 53%)
+.path-icon{
+  width:43px;height:43px;display:grid;place-items:center;border-radius:15px;
+  background:#F0EBFF;color:var(--purple);margin-bottom:10px;
 }
-.plan.selected{
- border-color:var(--lime);
- box-shadow:0 0 0 1px rgba(201,255,54,.17),0 12px 35px rgba(0,0,0,.25)
+.path-card:nth-child(2) .path-icon{background:#F0FCE0;color:#597A00}
+.path-icon svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.path-card strong{display:block;font-size:17px;font-weight:900}
+.path-card small{display:block;color:var(--muted);font-size:13px;font-weight:600;line-height:1.7;margin-top:4px}
+.selection-note{
+  display:flex;gap:9px;align-items:center;background:#F0EBFF;
+  border-radius:16px;padding:11px 13px;margin-top:12px;
+  color:#5534BD;font-size:14px;font-weight:800;
 }
-.plan.luxury{
- background:linear-gradient(145deg,#302817,#19170f 55%,#11140f);
- border-color:rgba(244,203,114,.42)
+.selection-note svg{width:19px;height:19px;flex:none}
+.plan-list{display:grid;gap:13px}
+.plan-card{
+  position:relative;overflow:hidden;background:#fff;border:1.5px solid var(--line);
+  border-radius:25px;padding:18px 17px;box-shadow:var(--soft-shadow);
+  transition:.25s;
 }
-.plan.luxury:before{
- background:radial-gradient(circle at 100% 0%,rgba(244,203,114,.18),transparent 58%)
+.plan-card.selected{border-color:var(--purple);box-shadow:0 12px 32px #7042f526}
+.plan-card.diamond{
+  background:linear-gradient(120deg,#2D214D,#493078 65%,#7042F5);
+  color:#fff;border-color:transparent;
 }
-.plan.premium{
- flex-basis:84%;max-width:340px;
- background:linear-gradient(140deg,#262019,#171510 55%,#11140f);
- border:1px solid rgba(244,203,114,.55);
- box-shadow:0 10px 35px rgba(0,0,0,.24)
+.plan-card.diamond:before{
+  content:"";position:absolute;width:180px;height:180px;border:1px solid #ffffff22;
+  border-radius:50%;left:-80px;top:-100px;box-shadow:0 0 0 17px #ffffff08,0 0 0 35px #ffffff06;
 }
-.plan-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.plan-name{font-size:17px;font-weight:900}
-.plan-label{
- font-size:9px;font-weight:900;border-radius:30px;padding:6px 9px;
- color:#151a0e;background:var(--lime)
+.plan-top{display:flex;justify-content:space-between;align-items:center;gap:10px;position:relative}
+.plan-name{display:flex;align-items:center;gap:11px}
+.plan-symbol{
+  width:44px;height:44px;display:grid;place-items:center;border-radius:15px;
+  background:#F0EBFF;color:var(--purple);font-size:21px;
 }
-.luxury .plan-label,.premium .plan-label{background:var(--gold);color:#20180a}
-.plan-number{
- font-size:35px;font-weight:900;color:var(--lime);
- margin:13px 0 0;line-height:1.35;letter-spacing:-1px
+.diamond .plan-symbol{background:#ffffff20;color:var(--lime)}
+.plan-name strong{display:block;font-size:19px;font-weight:900}
+.plan-name small{display:block;font-size:13px;font-weight:600;color:var(--muted)}
+.diamond .plan-name small{color:#DED5F8}
+.plan-tag{
+  background:var(--lime);color:#29233B;border-radius:20px;
+  padding:5px 10px;font-size:11px;font-weight:900;white-space:nowrap;
 }
-.luxury .plan-number,.premium .plan-number{color:var(--gold)}
-.plan-number small{font-size:12px;color:#b8c0b2;font-weight:600;letter-spacing:0}
-.plan-desc{font-size:12px;color:#c5cebf;margin:3px 0 13px}
-.plan-line{height:1px;background:rgba(255,255,255,.09);margin:12px 0}
-.feature{
- display:flex;align-items:center;gap:8px;font-size:12px;
- color:#e2e8dc;margin:9px 0
+.plan-description{font-size:14px;font-weight:600;color:var(--muted);margin:12px 0 13px}
+.diamond .plan-description{color:#E4DCF9}
+.plan-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.plan-price{font-size:14px;font-weight:800;color:var(--muted)}
+.diamond .plan-price{color:#E5DDF8}
+.plan-price b{display:block;font-size:17px;color:var(--ink);font-weight:900}
+.diamond .plan-price b{color:var(--lime)}
+.plan-choose{
+  border:0;border-radius:14px;padding:9px 14px;background:#F0EBFF;
+  color:var(--purple);font-size:14px;font-weight:900;
 }
-.check{
- width:18px;height:18px;flex:0 0 18px;border-radius:6px;
- background:rgba(201,255,54,.12);color:var(--lime);
- display:grid;place-items:center;font-size:11px
+.diamond .plan-choose{background:var(--lime);color:#30264A}
+.plan-card.selected .plan-choose{background:var(--purple);color:white}
+.plan-card.diamond.selected .plan-choose{background:var(--lime);color:#30264A}
+.plan-card input{position:absolute;opacity:0;pointer-events:none}
+.price-hint{
+  margin-top:12px;padding:12px 14px;border-radius:16px;background:#F0EBFF;
+  font-size:13px;font-weight:700;color:#5C45A0;line-height:1.8;
 }
-.luxury .check,.premium .check{background:rgba(244,203,114,.13);color:var(--gold)}
-.plan button{
- width:100%;border:0;border-radius:13px;padding:13px 10px;
- margin-top:13px;background:var(--lime);color:#11170c;
- font-weight:900;font-size:13px;box-shadow:0 6px 20px rgba(201,255,54,.12)
+.panel{
+  background:rgba(255,255,255,.88);border:1px solid #fff;
+  border-radius:27px;padding:19px 17px;box-shadow:var(--shadow);
 }
-.luxury button,.premium button{background:linear-gradient(100deg,#f5d58b,#d5a84e);color:#251b0a}
-.plan button:active{transform:scale(.98)}
-.plan .corner{
- position:absolute;left:-23px;top:16px;transform:rotate(-35deg);
- background:var(--gold);color:#211807;font-size:9px;font-weight:900;
- padding:5px 26px
+.form-label{display:block;font-size:15px;font-weight:900;margin:0 0 8px}
+.field{margin:0 0 17px}
+.field:last-child{margin-bottom:0}
+.input,.textarea,.select{
+  width:100%;border:1.5px solid #E7E1F1;border-radius:16px;
+  padding:13px 14px;background:#FBFAFF;color:var(--ink);
+  font-size:15px;font-weight:600;outline:none;transition:.2s;
 }
-.category-note{
- display:flex;gap:8px;align-items:flex-start;
- background:#121811;border:1px solid var(--line);
- padding:11px 12px;border-radius:12px;
- color:#aeb8a8;font-size:11px;line-height:1.9
+.input:focus,.textarea:focus,.select:focus{
+  border-color:var(--purple);background:#fff;box-shadow:0 0 0 4px #7042f514;
 }
-.category-note b{color:var(--lime)}
-.guarantee{
- margin:24px 0 18px;padding:17px;position:relative;overflow:hidden;
- border:1px solid rgba(201,255,54,.28);
- border-radius:20px 6px 20px 20px;
- background:linear-gradient(110deg,rgba(201,255,54,.11),rgba(201,255,54,.025));
- display:flex;align-items:center;gap:13px
+.input::placeholder,.textarea::placeholder{color:#A49CB4;font-weight:500}
+.textarea{min-height:112px;resize:vertical;line-height:1.9}
+.field-hint{font-size:12px;color:var(--muted);font-weight:600;margin:6px 2px 0;line-height:1.8}
+.upload-zone{
+  display:block;border:2px dashed #CFC2F5;border-radius:21px;
+  padding:20px 14px;text-align:center;background:#F8F5FF;
+  cursor:pointer;transition:.2s;
 }
-.guarantee-icon{
- width:49px;height:49px;flex:0 0 49px;border-radius:16px;
- display:grid;place-items:center;background:var(--lime);color:#111;font-size:24px
+.upload-zone:hover{border-color:var(--purple);background:#F2EDFF}
+.upload-zone input{display:none}
+.upload-icon{
+  width:48px;height:48px;display:grid;place-items:center;border-radius:17px;
+  background:#E9E1FF;color:var(--purple);margin:0 auto 8px;
 }
-.guarantee h3{margin:0 0 4px;font-size:15px;font-weight:900}
-.guarantee p{margin:0;color:#b9c2b3;font-size:11px;line-height:1.9}
-.notice{
- padding:14px 15px;border:1px solid var(--line);
- border-radius:15px;background:#111510;margin:15px 0
-}
-.notice strong{display:block;color:var(--lime);font-size:13px;margin-bottom:5px}
-.notice p{font-size:12px;line-height:2;color:#bac3b5;margin:0}
-.reviews-head{display:flex;justify-content:space-between;align-items:center;margin:27px 0 12px}
-.reviews-head h2{font-size:19px;margin:0;font-weight:900}
-.demo-label{font-size:9px;color:#a9b19f;border:1px solid var(--line);padding:5px 8px;border-radius:30px}
-.review-window{
- border:1px solid rgba(255,255,255,.1);
- border-radius:20px 20px 6px 20px;
- background:linear-gradient(130deg,#1a2018,#111510);
- padding:17px;min-height:145px;position:relative;overflow:hidden
-}
-.review-window:after{
- content:"“";position:absolute;left:15px;top:-22px;
- font-family:Georgia;font-size:110px;color:rgba(201,255,54,.1)
-}
-.review-stars{color:var(--gold);font-size:17px;letter-spacing:3px}
-.review-text{font-size:13px;line-height:2;color:#e1e8db;margin:8px 0 12px;position:relative;z-index:1}
-.review-author{font-size:11px;color:#aeb9a7;font-weight:700}
-.review-dots{display:flex;gap:5px;margin-top:11px}
-.review-dots i{width:6px;height:6px;background:#4b5545;border-radius:9px;transition:.2s}
-.review-dots i.active{width:20px;background:var(--lime)}
-/* payment */
-.payment-section{margin-top:29px}
-.payment-section h2,.form-section h2{font-size:20px;font-weight:900;margin:0 0 6px}
-.subcopy{font-size:12px;color:var(--muted);line-height:1.9;margin:0 0 14px}
-.bank-card{
- position:relative;overflow:hidden;padding:19px;
- border-radius:21px 21px 7px 21px;
- background:linear-gradient(135deg,#292d2a,#101311 68%,#202522);
- border:1px solid rgba(255,255,255,.18);
- box-shadow:0 14px 35px rgba(0,0,0,.3);
- direction:rtl
-}
-.bank-card:before{
- content:"";position:absolute;width:190px;height:190px;border-radius:50%;
- border:1px solid rgba(255,255,255,.08);left:-50px;top:-110px;
- box-shadow:0 0 0 18px rgba(255,255,255,.018),0 0 0 38px rgba(255,255,255,.012)
-}
-.bank-top{display:flex;justify-content:space-between;align-items:center;position:relative}
-.bank-name{font-size:13px;color:#e6e9e5;font-weight:800}
-.bank-chip{width:36px;height:27px;border:1px solid #a8b1a9;border-radius:7px;opacity:.75}
-.card-number{
- direction:ltr;text-align:center;font-size:clamp(19px,5.5vw,25px);
- letter-spacing:1.3px;font-weight:800;margin:24px 0 18px;
- color:#fff;position:relative
-}
-.card-bottom{display:flex;justify-content:space-between;align-items:end;position:relative}
-.card-owner small{font-size:9px;color:#9fa9a0;display:block;margin-bottom:4px}
-.card-owner strong{font-size:13px;color:#fff}
-.card-bank{font-size:11px;color:#c9ff36;font-weight:800}
-.copy-card{
- width:100%;margin-top:12px;padding:13px;border-radius:13px;
- border:1px solid rgba(201,255,54,.3);
- background:rgba(201,255,54,.08);color:var(--lime);
- font-size:13px;font-weight:900
-}
-.copy-card:active{background:rgba(201,255,54,.18)}
-.form-section{margin-top:29px}
-.form-card{
- padding:17px;border:1px solid var(--line);
- background:#111510;border-radius:20px 20px 7px 20px;
- margin-top:13px
-}
-.field{margin-bottom:14px}
-.field label{display:block;font-size:12px;font-weight:800;color:#dce5d6;margin-bottom:7px}
-.field input,.field textarea{
- width:100%;border:1px solid #30392d;border-radius:12px;
- background:#0b0f0a;color:#f5f8ef;padding:13px 12px;
- font-size:13px;outline:none;transition:.2s
-}
-.field input:focus,.field textarea:focus{border-color:var(--lime);box-shadow:0 0 0 3px rgba(201,255,54,.07)}
-.field input::placeholder,.field textarea::placeholder{color:#75806f}
-.field textarea{min-height:82px;resize:vertical;line-height:1.9}
-.upload{
- border:1px dashed rgba(201,255,54,.42);
- border-radius:15px;padding:18px 13px;text-align:center;
- background:rgba(201,255,54,.035);position:relative
-}
-.upload input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
-.upload-icon{font-size:27px;color:var(--lime)}
-.upload strong{display:block;font-size:13px;margin:6px 0}
-.upload small{color:#9eaa96;font-size:10px}
-#preview{
- display:flex;gap:9px;flex-wrap:wrap;margin-top:10px
-}
-#preview img{width:72px;height:72px;object-fit:cover;border-radius:10px;border:1px solid #424d3b}
+.upload-icon svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.upload-zone strong{display:block;font-size:16px;font-weight:900}
+.upload-zone span{display:block;font-size:13px;color:var(--muted);font-weight:600;margin-top:3px}
+.file-name{display:none;margin-top:10px;font-size:13px;font-weight:800;color:#5534BD;overflow-wrap:anywhere}
 .submit-btn{
- width:100%;padding:15px;border:0;border-radius:14px;
- background:var(--lime);color:#10160a;font-size:14px;font-weight:900;
- box-shadow:0 7px 24px rgba(201,255,54,.12)
+  width:100%;border:0;border-radius:17px;padding:14px 18px;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  background:var(--purple);color:#fff;font-size:16px;font-weight:900;
+  box-shadow:0 10px 22px #7042f536;transition:.2s;
 }
-.form-hint{font-size:10px;color:#9ca794;line-height:1.9;margin:10px 0 0}
-.ticket-section{margin-top:30px}
-.ticket-section h2{font-size:20px;margin:0 0 5px;font-weight:900}
-.ticket-options{display:grid;grid-template-columns:1fr;gap:9px;margin-top:14px}
-.ticket-option{
- text-align:right;display:flex;align-items:center;gap:12px;
- padding:13px;border:1px solid var(--line);border-radius:14px;
- background:#121711;color:#eaf0e4;transition:.2s
+.submit-btn:active{transform:scale(.985)}
+.submit-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.submit-btn.lime{background:var(--lime);color:#30264A;box-shadow:0 10px 22px #b3d42c35}
+.divider-label{
+  display:flex;align-items:center;gap:10px;color:#9A92AA;
+  font-size:12px;font-weight:800;margin:17px 0;
 }
-.ticket-option.active{border-color:var(--lime);background:rgba(201,255,54,.065)}
-.ticket-radio{
- width:19px;height:19px;border-radius:50%;border:1px solid #68745f;
- display:grid;place-items:center;flex:0 0 19px
+.divider-label:before,.divider-label:after{content:"";height:1px;background:var(--line);flex:1}
+.info-strip{
+  display:flex;align-items:flex-start;gap:10px;padding:13px 14px;
+  background:#F2FCE4;border-radius:17px;color:#536C18;
+  font-size:13px;font-weight:700;line-height:1.9;margin-bottom:17px;
 }
-.ticket-option.active .ticket-radio{border-color:var(--lime)}
-.ticket-option.active .ticket-radio:after{content:"";width:9px;height:9px;border-radius:50%;background:var(--lime)}
-.ticket-option strong{font-size:12px;display:block}
-.ticket-option small{font-size:10px;color:#9eaa96;display:block;margin-top:3px}
-.auto-reply{
- margin-top:12px;padding:15px;border-radius:15px;
- border:1px solid rgba(201,255,54,.23);
- background:linear-gradient(135deg,rgba(201,255,54,.09),rgba(201,255,54,.025));
- display:none
+.info-strip svg{width:20px;height:20px;flex:none;margin-top:2px;stroke:currentColor;fill:none;stroke-width:1.8}
+.segmented{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:17px}
+.segment{
+  position:relative;border:1.5px solid var(--line);border-radius:16px;
+  background:#fff;padding:12px 9px;text-align:center;color:var(--muted);
+  font-size:14px;font-weight:800;transition:.2s;
 }
-.auto-reply.show{display:block;animation:pop .35s ease}
-.auto-reply .robot{font-size:20px}
-.auto-reply strong{font-size:13px;color:var(--lime);display:block;margin:5px 0}
-.auto-reply p{font-size:12px;color:#c7d1c0;line-height:2;margin:0}
-@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.footer-note{
- text-align:center;color:#778272;font-size:10px;line-height:2;
- padding:25px 0 5px
+.segment.active{border-color:var(--purple);background:#F1ECFF;color:var(--purple)}
+.segment input{position:absolute;opacity:0}
+.conditional{display:none}
+.conditional.show{display:block;animation:reveal .3s ease}
+@keyframes reveal{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.complaint-options{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:17px}
+.complaint-option{
+  border:1.5px solid var(--line);background:#fff;border-radius:15px;
+  min-height:76px;padding:10px 5px;text-align:center;
+  color:var(--muted);font-size:13px;font-weight:800;line-height:1.6;
 }
-/* fixed nav */
-.bottom-nav{
- position:fixed;z-index:50;bottom:0;left:0;right:0;
- padding:9px 14px calc(9px + env(safe-area-inset-bottom));
- background:rgba(9,11,9,.92);backdrop-filter:blur(20px);
- border-top:1px solid rgba(255,255,255,.1)
+.complaint-option .emoji{display:block;font-size:21px;margin-bottom:3px}
+.complaint-option.active{border-color:var(--purple);background:#F1ECFF;color:var(--purple)}
+.notice{
+  display:none;border-radius:16px;padding:12px 14px;margin-top:13px;
+  font-size:14px;font-weight:800;line-height:1.8;
 }
-.nav-inner{
- max-width:650px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:5px
+.notice.show{display:block;animation:reveal .25s ease}
+.notice.success{background:#F0FBE3;color:#506B14}
+.notice.error{background:#FFF0EF;color:#B74440}
+.notice.info{background:#F0EBFF;color:#5534BD}
+.steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;
 }
+.step{
+  background:#fff;border:1px solid var(--line);border-radius:17px;
+  padding:12px 8px;text-align:center;
+}
+.step b{
+  display:grid;place-items:center;width:27px;height:27px;border-radius:10px;
+  margin:0 auto 6px;background:#F0EBFF;color:var(--purple);font-size:13px;
+}
+.step span{font-size:12px;font-weight:800;line-height:1.7}
+.bottom-note{
+  margin:25px 0 10px;text-align:center;color:var(--muted);
+  font-size:13px;font-weight:700;
+}
+.bottom-note strong{color:var(--purple);font-weight:900}
+.footer-mark{text-align:center;color:#A29AAF;font-size:11px;font-weight:800;letter-spacing:1.2px;margin-top:8px}
+.nav-shell{
+  position:fixed;z-index:50;bottom:0;left:0;right:0;
+  padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+  background:#F5F3FFEF;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border-top:1px solid #E8E1F2;
+}
+.nav{width:min(100%,520px);margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
 .nav-item{
- color:#879183;text-align:center;font-size:10px;font-weight:700;
- padding:5px 2px;border-radius:13px;display:flex;flex-direction:column;
- align-items:center;gap:4px;transition:.2s
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  min-height:65px;border-radius:19px;color:#817990;font-size:12px;font-weight:800;
+  transition:.2s;
 }
-.nav-item .nav-icon{font-size:20px;line-height:1.2}
-.nav-item.active{color:var(--lime);background:rgba(201,255,54,.08)}
-.nav-item.active:before{content:"";width:18px;height:2px;background:var(--lime);border-radius:5px;position:absolute;top:0}
-.nav-item{position:relative}
-.toast{
- position:fixed;z-index:100;bottom:100px;left:50%;
- transform:translate(-50%,15px);opacity:0;pointer-events:none;
- background:#d2ff63;color:#111;padding:11px 17px;border-radius:30px;
- font-size:12px;font-weight:900;transition:.25s;white-space:nowrap;
- box-shadow:0 8px 25px #0008
+.nav-item svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-item.active{background:var(--purple);color:#fff;box-shadow:0 7px 18px #7042f53b}
+.nav-item:active{transform:scale(.96)}
+@media(min-width:650px){
+  body{padding-bottom:120px}
+  .container{width:min(100% - 48px,560px)}
+  .hero{padding:32px 29px}
+  .panel{padding:23px}
+  .section-title{font-size:25px}
+  .nav-shell{bottom:14px;left:50%;right:auto;transform:translateX(-50%);width:min(560px,calc(100% - 30px));border:1px solid #E8E1F2;border-radius:25px;box-shadow:0 12px 35px #34215a18}
 }
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(min-width:600px){
- .plan{flex-basis:48%}
- .plan.premium{flex-basis:55%}
- .ticket-options{grid-template-columns:1fr 1fr}
+@media(max-width:370px){
+  .container{width:calc(100% - 24px)}
+  .brand-name{font-size:19px}
+  .header-pill{font-size:11px;padding:7px 9px}
+  .path-card{padding:13px 11px}
+  .path-card strong{font-size:15px}
+  .complaint-option{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
 }
 </style>
 </head>
 
 <body>
-<div class="glow one"></div><div class="glow two"></div>
+<main class="container">
 
-<main class="page">
-<header>
- <div class="brand">
-  <img src="1.jpg" alt="Growza24">
-  <div>
-   <div class="brand-name"><span style="color:#f5f8ef">Growza</span><span>24</span></div>
-   <div class="brand-sub">پلتفرم رشد پیج اینستاگرام</div>
+  <!-- Header: هماهنگ با صفحه اصلی -->
+  <header class="header">
+    <a class="brand" href="index.html" aria-label="صفحه اصلی Growza24">
+      <div class="brand-photo"><img src="1.jpg" alt="Growza24"></div>
+      <div>
+        <div class="brand-name">GROWZA24</div>
+        <div class="brand-caption">پلتفرم رشد پیج اینستاگرام</div>
+      </div>
+    </a>
+    <div class="header-pill">مسیر رشد تو ✦</div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-top">
+      <span class="hero-mark"></span>
+      <span class="hero-kicker">ACTIVATION CENTER / 24</span>
+    </div>
+    <h1>وقتشه رشدت رو<br><span>فعال کنی!</span></h1>
+    <p>مسیرت رو انتخاب کن، پلن مناسب رو بردار و مراحل فعال‌سازی رو با چند قدم ساده پیش ببر.</p>
+    <div class="hero-foot">
+      <span>یک شروع هوشمندانه برای حضور مؤثرتر</span>
+      <span class="hero-number">YOUR NEXT MOVE ✳</span>
+    </div>
+  </section>
+
+  <!-- Step 1: Growth path -->
+  <section class="section" id="growth">
+    <div class="section-head">
+      <div class="section-index">۰۱</div>
+      <div>
+        <h2 class="section-title">اول، مسیر رشدت رو انتخاب کن</h2>
+        <p class="section-sub">هدفت رو مشخص کن تا انتخاب پلن برات ساده‌تر بشه.</p>
+      </div>
+    </div>
+
+    <div class="path-grid">
+      <button type="button" class="path-card selected" data-path="followers" aria-pressed="true">
+        <span class="path-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6m-3-3h6"/></svg>
+        </span>
+        <strong>افزایش فالوور</strong>
+        <small>برای گسترش جامعه دنبال‌کنندگان پیج</small>
+      </button>
+
+      <button type="button" class="path-card" data-path="engagement" aria-pressed="false">
+        <span class="path-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/><path d="m8 12 2.5 2.5L16 9"/></svg>
+        </span>
+        <strong>افزایش تعامل</strong>
+        <small>برای دیده‌شدن و تعامل بیشتر محتوا</small>
+      </button>
+    </div>
+    <div class="selection-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>
+      <span id="pathSummary">مسیر انتخابی: افزایش فالوور</span>
+    </div>
+  </section>
+
+  <!-- Step 2: Plans -->
+  <section class="section" id="plans">
+    <div class="section-head">
+      <div class="section-index">۰۲</div>
+      <div>
+        <h2 class="section-title">پلن مناسب خودت رو بردار</h2>
+        <p class="section-sub">دو سطح اشتراک؛ برای انتخابی متناسب با هدف و نیازت.</p>
+      </div>
+    </div>
+
+    <div class="plan-list">
+      <label class="plan-card selected" data-plan="platinum">
+        <input type="radio" name="plan" value="platinum" checked>
+        <div class="plan-top">
+          <div class="plan-name">
+            <div class="plan-symbol">✦</div>
+            <div>
+              <strong>اشتراک پلاتینیوم</strong>
+              <small>انتخابی حرفه‌ای برای شروع</small>
+            </div>
+          </div>
+          <span class="plan-tag">PLATINUM</span>
+        </div>
+        <p class="plan-description">برای کسانی که می‌خواهند مسیر رشد پیج‌شان را جدی‌تر دنبال کنند.</p>
+        <div class="plan-bottom">
+          <div class="plan-price">سطح اشتراک <b>پلاتینیوم</b></div>
+          <button type="button" class="plan-choose">انتخاب این پلن</button>
+        </div>
+      </label>
+
+      <label class="plan-card diamond" data-plan="diamond">
+        <input type="radio" name="plan" value="diamond">
+        <div class="plan-top">
+          <div class="plan-name">
+            <div class="plan-symbol">◆</div>
+            <div>
+              <strong>اشتراک الماس</strong>
+              <small>سطح ویژه و ممتاز</small>
+            </div>
+          </div>
+          <span class="plan-tag">DIAMOND</span>
+        </div>
+        <p class="plan-description">برای انتخاب سطح بالاتر خدمات و تجربه‌ای ویژه‌تر در مسیر رشد.</p>
+        <div class="plan-bottom">
+          <div class="plan-price">سطح اشتراک <b>الماس</b></div>
+          <button type="button" class="plan-choose">انتخاب این پلن</button>
+        </div>
+      </label>
+    </div>
+
+    <div class="price-hint">
+      مبلغ پرداختی باید مطابق تعرفه رسمی پلن انتخاب‌شده باشد. مبلغ نهایی را پیش از اتصال درگاه یا ثبت پرداخت، از تنظیمات تعرفه سامانه دریافت کنید.
+    </div>
+  </section>
+
+  <!-- Step 3: Payment receipt -->
+  <section class="section" id="payment">
+    <div class="section-head">
+      <div class="section-index">۰۳</div>
+      <div>
+        <h2 class="section-title">رسید پرداختت رو ثبت کن</h2>
+        <p class="section-sub">اطلاعات پرداخت رو از روی تصویر رسید یا پیامک بانکی بررسی می‌کنیم.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="info-strip">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>برای ثبت پرداخت، تصویر واضح رسید یا پیامک بانکی را بارگذاری کن. نیازی به واردکردن دستی کد رهگیری، تاریخ یا ساعت واریز نیست.</span>
+      </div>
+
+      <form id="paymentForm" novalidate>
+        <div class="field">
+          <label class="form-label">پلن انتخابی</label>
+          <input class="input" id="paymentPlan" value="اشتراک پلاتینیوم" readonly>
+        </div>
+
+        <div class="field">
+          <label class="form-label" for="paymentAmount">مبلغ پرداختی (تومان)</label>
+          <input class="input" id="paymentAmount" type="number" min="1" inputmode="numeric" placeholder="مبلغ واریزشده را وارد کن" required>
+          <div class="field-hint">مبلغ را مطابق رسید بانکی وارد کن.</div>
+        </div>
+
+        <div class="field">
+          <label class="form-label">تصویر رسید یا پیامک بانکی</label>
+          <label class="upload-zone" for="receiptFile">
+            <input type="file" id="receiptFile" accept="image/*" required>
+            <span class="upload-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 16V4m-4 4 4-4 4 4"/><path d="M20 16.5v2A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-2"/></svg>
+            </span>
+            <strong>برای انتخاب تصویر لمس کن</strong>
+            <span>تصویر واضح و خوانا از رسید یا پیامک بانکی</span>
+            <span class="file-name" id="fileName"></span>
+          </label>
+        </div>
+
+        <button class="submit-btn" type="submit">
+          ثبت اطلاعات پرداخت
+          <svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
+        <div class="notice" id="paymentNotice" role="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Step 4: Service request -->
+  <section class="section" id="service">
+    <div class="section-head">
+      <div class="section-index">۰۴</div>
+      <div>
+        <h2 class="section-title">محدوده خدماتت رو مشخص کن</h2>
+        <p class="section-sub">فقط یکی از دو حالت زیر رو انتخاب کن و آدرس مربوطه رو وارد کن.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="segmented" role="group" aria-label="نوع درخواست خدمات">
+        <label class="segment active" id="profileSegment">
+          <input type="radio" name="serviceType" value="profile" checked>
+          آدرس پیج
+        </label>
+        <label class="segment" id="reelsSegment">
+          <input type="radio" name="serviceType" value="reels">
+          ریلزهای آینده
+        </label>
+      </div>
+
+      <form id="serviceForm" novalidate>
+        <div class="conditional show" id="profileFields">
+          <div class="field">
+            <label class="form-label" for="profileUrl">آدرس پیج اینستاگرام</label>
+            <input class="input" id="profileUrl" type="url" placeholder="https://instagram.com/yourpage" inputmode="url">
+            <div class="field-hint">لینک مستقیم پیج موردنظرت رو وارد کن.</div>
+          </div>
+        </div>
+
+        <div class="conditional" id="reelsFields">
+          <div class="field">
+            <label class="form-label" for="reelsUrl">آدرس پیج یا ریلزها</label>
+            <textarea class="textarea" id="reelsUrl" placeholder="آدرس پیج یا لینک ریلزهای موردنظر را وارد کن"></textarea>
+            <div class="field-hint">می‌تونی لینک چند ریلز رو در خطوط جداگانه بنویسی.</div>
+          </div>
+          <div class="field">
+            <label class="form-label">شروع محدوده زمانی</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+              <input class="input" id="reelsDate" type="date" aria-label="تاریخ شروع">
+              <input class="input" id="reelsTime" type="time" aria-label="ساعت شروع">
+            </div>
+            <div class="field-hint">تاریخ و ساعتی که از آن به بعد ریلزهای جدیدت در محدوده درخواست قرار می‌گیرند.</div>
+          </div>
+        </div>
+
+        <button class="submit-btn lime" type="submit">
+          ثبت درخواست خدمات
+          <svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
+        <div class="notice" id="serviceNotice" role="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Step 5: Follow-up / complaint -->
+  <section class="section" id="support">
+    <div class="section-head">
+      <div class="section-index">۰۵</div>
+      <div>
+        <h2 class="section-title">نیاز به پیگیری داری؟</h2>
+        <p class="section-sub">موضوع درخواستت رو مشخص کن و توضیحت رو برای بررسی ارسال کن.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="complaint-options" role="group" aria-label="موضوع درخواست">
+        <button type="button" class="complaint-option active" data-issue="payment" aria-pressed="true">
+          <span class="emoji">◈</span>
+          پرداخت و رسید
+        </button>
+        <button type="button" class="complaint-option" data-issue="activation" aria-pressed="false">
+          <span class="emoji">✳</span>
+          فعال‌سازی پلن
+        </button>
+        <button type="button" class="complaint-option" data-issue="service" aria-pressed="false">
+          <span class="emoji">◎</span>
+          خدمات و عملکرد
+        </button>
+      </div>
+
+      <form id="supportForm" novalidate>
+        <div class="field">
+          <label class="form-label" for="supportDescription">شرح درخواست یا اعتراض</label>
+          <textarea class="textarea" id="supportDescription" placeholder="موضوع رو با جزئیات لازم توضیح بده..." required></textarea>
+          <div class="field-hint">توضیحاتت مستقیماً همراه با موضوع انتخابی برای بررسی ارسال می‌شود.</div>
+        </div>
+
+        <button class="submit-btn" type="submit">
+          ثبت درخواست پیگیری
+          <svg viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4Z"/></svg>
+        </button>
+        <div class="notice" id="supportNotice" role="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Compact process -->
+  <section class="section">
+    <div class="section-head">
+      <div class="section-index">✦</div>
+      <div>
+        <h2 class="section-title">مسیر فعال‌سازی، روشن و ساده</h2>
+        <p class="section-sub">مراحل اصلی را به همین ترتیب پیش ببر.</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step"><b>۱</b><span>انتخاب مسیر و پلن</span></div>
+      <div class="step"><b>۲</b><span>ثبت تصویر رسید</span></div>
+      <div class="step"><b>۳</b><span>ثبت محدوده خدمات</span></div>
+    </div>
+  </section>
+
+  <div class="bottom-note">
+    هر قدم، شروعی برای <strong>حضور مؤثرتر</strong> در اینستاگرام است.
   </div>
- </div>
- <div class="header-tag"><i class="pulse-dot"></i> مرکز فعال‌سازی</div>
-</header>
+  <div class="footer-mark">GROWZA24 · GROW DIFFERENT</div>
 
-<section class="hero">
- <div class="hero-kicker"><span>✦</span> مسیر رشد از همین‌جا شروع می‌شود</div>
- <h1>پیجت رو از حالت<br><em>معمولی خارج کن!</em></h1>
- <p>هدفت رو انتخاب کن، پلن مناسب رو بردار و قدم بعدی رشد پیجت رو با Growza24 شروع کن.</p>
- <div class="hero-art">
-  <div class="hero-art-top">
-   <div class="hero-art-label">YOUR NEXT LEVEL STARTS HERE</div>
-   <div class="hero-art-icon">↗</div>
-  </div>
-  <strong>بیشتر دیده شو؛ <span>هوشمندانه‌تر رشد کن.</span></strong>
-  <small>یک انتخاب درست، شروع یک مسیر تازه است.</small>
- </div>
-</section>
-
-<div class="section-head">
- <div><h2>پلن مناسب خودت رو انتخاب کن</h2><p>سه مسیر متفاوت برای رشد پیج تو</p></div>
- <div class="swipe-hint">برای دیدن پلن‌ها ← بکش</div>
-</div>
-
-<!-- FOLLOWERS -->
-<section class="category" id="followers">
- <div class="cat-title">
-  <div class="cat-icon">♟</div>
-  <div><h3>۱. افزایش فالوور</h3><p>برای بزرگ‌تر کردن جامعه مخاطبان پیج</p></div>
- </div>
- <div class="horizontal">
-  <article class="plan" data-plan="پلن تست" data-price="۳۹,۰۰۰">
-   <div class="plan-top"><span class="plan-name">پلن تست</span><span class="plan-label">شروع اقتصادی</span></div>
-   <div class="plan-number">۳۹,۰۰۰ <small>تومان</small></div>
-   <div class="plan-desc">یک شروع کم‌هزینه برای تجربه خدمات</div>
-   <div class="plan-line"></div>
-   <div class="feature"><span class="check">✓</span> ۵۰۰ فالوور</div>
-   <div class="feature"><span class="check">✓</span> مناسب برای شروع</div>
-   <div class="feature"><span class="check">✓</span> بررسی و پیگیری سفارش</div>
-   <button onclick="choosePlan(this)">انتخاب پلن تست ←</button>
-  </article>
-
-  <article class="plan selected" data-plan="پلن طلایی" data-price="۹۹,۰۰۰">
-   <div class="plan-top"><span class="plan-name">پلن طلایی</span><span class="plan-label">انتخاب محبوب</span></div>
-   <div class="plan-number">۹۹,۰۰۰ <small>تومان</small></div>
-   <div class="plan-desc">یک انتخاب متعادل برای رشد جدی‌تر</div>
-   <div class="plan-line"></div>
-   <div class="feature"><span class="check">✓</span> ۱,۵۰۰ فالوور</div>
-   <div class="feature"><span class="check">✓</span> انتخاب مناسب برای پیج‌های فعال</div>
-   <div class="feature"><span class="check">✓</span> بررسی سفارش توسط تیم</div>
-   <button onclick="choosePlan(this)">انتخاب پلن طلایی ←</button>
-  </article>
-
-  <article class="plan luxury" data-plan="پلن الماس" data-price="۱۹۹,۰۰۰">
-   <div class="corner">ویژه</div>
-   <div class="plan-top"><span class="plan-name">پلن الماس</span><span class="plan-label">سطح پیشرفته</span></div>
-   <div class="plan-number">۱۹۹,۰۰۰ <small>تومان</small></div>
-   <div class="plan-desc">برای کسانی که به رشد بزرگ‌تر فکر می‌کنند</div>
-   <div class="plan-line"></div>
-   <div class="feature"><span class="check">✓</span> ۴,۰۰۰ فالوور</div>
-   <div class="feature"><span class="check">✓</span> ظرفیت بالاتر نسبت به پلن‌های پایه</div>
-   <div class="feature"><span class="check">✓</span> بررسی سفارش توسط تیم</div>
-   <button onclick="choosePlan(this)">انتخاب پلن الماس ←</button>
-  </article>
- </div>
-</section>
-
-<!-- REELS -->
-<section class="category" id="reels">
- <div class="cat-title">
-  <div class="cat-icon">▶</div>
-  <div><h3>۲. افزایش تعامل با ریلز</h3><p>برای بیشتر دیده‌شدن محتوای ویدیویی</p></div>
- </div>
- <div class="horizontal">
-  <article class="plan" data-plan="پلن اکسپلور" data-price="۴۹,۰۰۰">
-   <div class="plan-top"><span class="plan-name">ورود به اکسپلور</span><span class="plan-label">شروع دیده‌شدن</span></div>
-   <div class="plan-number">۴۹,۰۰۰ <small>تومان</small></div>
-   <div class="plan-desc">تمرکز روی افزایش تعامل با ریلز</div>
-   <div class="plan-line"></div>
-   <div class="feature"><span class="check">✓</span> ۱,۵۰۰ تعامل با ریلز</div>
-   <div class="feature"><span class="check">✓</span> با هدف افزایش شانس دیده‌شدن</div>
-   <div class="feature"><span class="check">✓</span> بررسی محتوای ثبت‌شده</div>
-   <button onclick="choosePlan(this)">انتخاب پلن ←</button>
-  </article>
-
-  <article class="plan luxury" data-plan="اکسپلور ۷ روزه" data-price="۱۲۰,۰۰۰">
-   <div class="corner">پیشنهاد ویژه</div>
-   <div class="plan-top"><span class="plan-name">اکسپلور ۷ روزه</span><span class="plan-label">پیشرفته</span></div>
-   <div class="plan-number">۱۲۰,۰۰۰ <small>تومان</small></div>
-   <div class="plan-desc">بسته گسترده‌تر برای همراهی با محتوای تو</div>
-   <div class="plan-line"></div>
-   <div class="feature"><span class="check">✓</span> ۴,۰۰۰ تعامل با ریلز</div>
-   <div class="feature"><span class="check">✓</span> برنامه با هدف ماندگاری ۷ روزه در اکسپلور</div>
-   <div class="feature"><span class="check">✓</span> بررسی و پیگیری سفارش</div>
-   <button onclick="choosePlan(this)">انتخاب پلن پیشرفته ←</button>
-  </article>
- </div>
-</section>
-
-<!-- PREMIUM -->
-<section class="category" id="premium">
- <div class="cat-title">
-  <div class="cat-icon" style="color:var(--gold);background:rgba(244,203,114,.1);border-color:rgba(244,203,114,.2)">✦</div>
-  <div><h3>۳. پلن حرفه‌ای</h3><p>ترکیب رشد فالوور و تعامل در یک اشتراک</p></div>
- </div>
- <div class="horizontal">
-  <article class="plan premium" data-plan="اشتراک پریمیوم" data-price="۱۴۹,۰۰۰">
-   <div class="plan-top"><span class="plan-name">اشتراک پریمیوم</span><span class="plan-label">PREMIUM ✦</span></div>
-   <div class="plan-number">۱۴۹,۰۰۰ <small>تومان</small></div>
-   <div class="plan-desc">برای کسانی که هر دو مسیر رشد را می‌خواهند</div>
-   <div class="plan-line"></div>
-   <div class="feature"><span class="check">✓</span> ۱,۵۰۰ فالوور</div>
-   <div class="feature"><span class="check">✓</span> ۲,۵۰۰ تعامل با ریلز</div>
-   <div class="feature"><span class="check">✓</span> همراه با برنامه ورود به اکسپلور</div>
-   <div class="feature"><span class="check">✓</span> ترکیب دو مسیر رشد در یک پلن</div>
-   <button onclick="choosePlan(this)">انتخاب اشتراک پریمیوم ←</button>
-  </article>
- </div>
-</section>
-
-<div class="category-note">
- <span style="color:var(--lime);font-size:17px">✳</span>
- <div><b>نکته مهم:</b> هدف ما جذب فالوور فیک نیست. همکاران ما با بررسی عملکرد الگوریتم اینستاگرام و شرایط محتوای پیج، برای رشد بهتر آن تلاش می‌کنند.</div>
-</div>
-
-<section class="guarantee">
- <div class="guarantee-icon">♧</div>
- <div><h3>ضمانت بازگشت وجه</h3><p>اگر شرایط ضمانت اعلام‌شده برای سفارش شما محقق نشود، درخواست بازگشت وجه مطابق ضوابط مجموعه بررسی خواهد شد.</p></div>
-</section>
-
-<div class="reviews-head">
- <h2>صدای کاربران</h2>
- <span class="demo-label">نمونه نمایشی رابط کاربری</span>
-</div>
-<div class="review-window">
- <div class="review-stars" id="stars">★★★★☆</div>
- <div class="review-text" id="reviewText">«روند ثبت سفارش خیلی راحت بود. از اینکه مراحل مشخص بود و می‌توانستم وضعیت سفارش را پیگیری کنم، راضی بودم.»</div>
- <div class="review-author" id="reviewAuthor">کاربر نمونه · پلن تست</div>
- <div class="review-dots"><i class="active"></i><i></i><i></i></div>
-</div>
-
-<!-- BANK CARD -->
-<section class="payment-section" id="payment">
- <h2>پرداخت و فعال‌سازی</h2>
- <p class="subcopy">پس از انتخاب پلن، مبلغ را به کارت زیر واریز کن و تصویر رسید یا پیامک واریز را ارسال کن.</p>
-
- <div class="bank-card">
-  <div class="bank-top">
-   <div class="bank-name">بانک پاسارگاد</div>
-   <div class="bank-chip"></div>
-  </div>
-  <div class="card-number">5022&nbsp;2910&nbsp;9895&nbsp;3209</div>
-  <div class="card-bottom">
-   <div class="card-owner"><small>به نام</small><strong>حمید رضا سلیمی</strong></div>
-   <div class="card-bank">PASARGAD</div>
-  </div>
- </div>
- <button class="copy-card" onclick="copyCard()">▣ &nbsp; کپی شماره کارت</button>
-</section>
-
-<!-- RECEIPT FORM -->
-<section class="form-section">
- <h2>ارسال رسید واریز</h2>
- <p class="subcopy">اطلاعات پرداخت را وارد کن تا پس از بررسی، سفارش قابل پیگیری باشد.</p>
-
- <div class="form-card">
-  <div class="field">
-   <label>پلن انتخاب‌شده</label>
-   <input id="selectedPlan" placeholder="ابتدا یکی از پلن‌ها را انتخاب کن" readonly>
-  </div>
-  <div class="field">
-   <label>مبلغ واریزی (تومان)</label>
-   <input id="amount" placeholder="مثلاً ۹۹۰۰۰" inputmode="numeric">
-  </div>
-  <div class="field">
-   <label>کد رهگیری تراکنش</label>
-   <input placeholder="کد رهگیری درج‌شده روی رسید">
-  </div>
-  <div class="field">
-   <label>تاریخ واریز</label>
-   <input type="date">
-  </div>
-  <div class="field">
-   <label>ساعت واریز</label>
-   <input type="time">
-  </div>
-  <div class="field">
-   <label>نام کاربری اینستاگرام</label>
-   <input placeholder="@username" dir="ltr">
-  </div>
-  <div class="field">
-   <label>تصویر رسید یا پیامک واریز</label>
-   <div class="upload">
-    <input type="file" id="receipt" accept="image/*" multiple>
-    <div class="upload-icon">⇧</div>
-    <strong>برای انتخاب تصویر لمس کن</strong>
-    <small>تصویر رسید بانکی یا پیامک واریز را بارگذاری کن</small>
-   </div>
-   <div id="preview"></div>
-  </div>
-  <div class="field">
-   <label>توضیحات (اختیاری)</label>
-   <textarea placeholder="اگر نکته‌ای درباره پرداخت یا سفارش داری بنویس..."></textarea>
-  </div>
-  <button class="submit-btn" onclick="demoSubmit()">ارسال اطلاعات پرداخت و رسید ←</button>
-  <p class="form-hint">این فرم در نسخه فعلی نمایشی است. اتصال به سرور، ذخیره فایل و بررسی واقعی تراکنش در مرحله بعد انجام می‌شود.</p>
- </div>
-</section>
-
-<!-- OBJECTION -->
-<section class="ticket-section">
- <h2>پیگیری و اعلام اعتراض</h2>
- <p class="subcopy">اگر درباره نتیجه یا روند سفارش مسئله‌ای داری، موضوع را انتخاب کن.</p>
- <div class="ticket-options">
-  <button class="ticket-option" onclick="selectObjection(this)">
-   <span class="ticket-radio"></span>
-   <span><strong>اعتراض به عملکرد پلن</strong><small>نتیجه سفارش مطابق انتظارم نبوده</small></span>
-  </button>
-  <button class="ticket-option" onclick="selectObjection(this)">
-   <span class="ticket-radio"></span>
-   <span><strong>عدم فعال‌سازی سفارش</strong><small>پرداخت انجام شده اما پلن فعال نشده</small></span>
-  </button>
-  <button class="ticket-option" onclick="selectObjection(this)">
-   <span class="ticket-radio"></span>
-   <span><strong>درخواست بررسی و بازگشت وجه</strong><small>می‌خواهم سفارش و شرایط ضمانت بررسی شود</small></span>
-  </button>
- </div>
- <div class="auto-reply" id="autoReply">
-  <div class="robot">✦</div>
-  <strong>پاسخ خودکار Growza24</strong>
-  <p>شما پلن فعالی ندارید که به آن اعتراض کنید. اگر رسید واریز ارسال کرده‌اید، اطلاعات پرداخت شما باید بررسی شود و پس از تأیید، پلن فعال خواهد شد. فعلاً یک قهوه بنوشید، به اینستاگرام بروید و از رشد پیج خود لذت ببرید! ☕</p>
- </div>
-</section>
-
-<div class="footer-note">
- Growza24 · پلتفرم رشد پیج اینستاگرام<br>
- رشد هوشمندانه، تعامل هدفمند، تجربه بهتر
-</div>
 </main>
 
-<!-- SAME FOUR-ITEM NAV -->
-<nav class="bottom-nav">
- <div class="nav-inner">
-  <a class="nav-item" href="index.html"><span class="nav-icon">⌂</span>خانه</a>
-  <a class="nav-item" href="guide.html"><span class="nav-icon">▤</span>راهنما</a>
-  <a class="nav-item active" href="activation.html"><span class="nav-icon">✦</span>فعال‌سازی</a>
-  <a class="nav-item" href="performance.html"><span class="nav-icon">◷</span>عملکرد</a>
- </div>
+<!-- Bottom navigation: همان چهار گزینه صفحه اصلی -->
+<nav class="nav-shell" aria-label="منوی اصلی">
+  <div class="nav">
+    <a class="nav-item" href="index.html">
+      <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>
+      <span>خانه</span>
+    </a>
+    <a class="nav-item" href="guide.html">
+      <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/><path d="M4 5.5v12"/><path d="M8 8h8m-8 4h7"/></svg>
+      <span>راهنما</span>
+    </a>
+    <a class="nav-item active" href="activation.html" aria-current="page">
+      <svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-13h-7z"/></svg>
+      <span>فعال‌سازی</span>
+    </a>
+    <a class="nav-item" href="performance.html">
+      <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-8"/></svg>
+      <span>عملکرد</span>
+    </a>
+  </div>
 </nav>
 
-<div class="toast" id="toast"></div>
-
 <script>
-const toast=document.getElementById('toast');
-let toastTimer;
-function showToast(message){
- toast.textContent=message;
- toast.classList.add('show');
- clearTimeout(toastTimer);
- toastTimer=setTimeout(()=>toast.classList.remove('show'),2300);
-}
-function choosePlan(button){
- const card=button.closest('.plan');
- document.querySelectorAll('.plan').forEach(p=>p.classList.remove('selected'));
- card.classList.add('selected');
- document.getElementById('selectedPlan').value=card.dataset.plan;
- document.getElementById('amount').value=card.dataset.price.replaceAll(',','');
- showToast('پلن «'+card.dataset.plan+'» انتخاب شد');
-}
-function copyCard(){
- const number='5022291098953209';
- if(navigator.clipboard && window.isSecureContext){
-  navigator.clipboard.writeText(number).then(()=>showToast('شماره کارت کپی شد'));
- }else{
-  const input=document.createElement('textarea');
-  input.value=number;document.body.appendChild(input);
-  input.select();document.execCommand('copy');input.remove();
-  showToast('شماره کارت کپی شد');
- }
-}
-document.getElementById('receipt').addEventListener('change',function(){
- const preview=document.getElementById('preview');
- preview.innerHTML='';
- [...this.files].forEach(file=>{
-  if(!file.type.startsWith('image/'))return;
-  const img=document.createElement('img');
-  img.src=URL.createObjectURL(file);
-  preview.appendChild(img);
- });
-});
-function demoSubmit(){
- if(!document.getElementById('selectedPlan').value){
-  showToast('ابتدا یک پلن را انتخاب کن');
-  return;
- }
- if(!document.getElementById('receipt').files.length){
-  showToast('لطفاً تصویر رسید را انتخاب کن');
-  return;
- }
- showToast('ظاهر فرم آماده است؛ اتصال ارسال در مرحله بعد انجام می‌شود');
-}
-function selectObjection(button){
- document.querySelectorAll('.ticket-option').forEach(b=>b.classList.remove('active'));
- button.classList.add('active');
- const reply=document.getElementById('autoReply');
- reply.classList.remove('show');
- void reply.offsetWidth;
- reply.classList.add('show');
-}
-const reviews=[
- {stars:'★★★★☆',text:'«روند ثبت سفارش خیلی راحت بود. از اینکه مراحل مشخص بود و می‌توانستم وضعیت سفارش را پیگیری کنم، راضی بودم.»',author:'کاربر نمونه · پلن تست'},
- {stars:'★★★☆☆',text:'«ظاهر برنامه مرتب و کار با آن ساده بود. بخش انتخاب پلن‌ها کمک کرد راحت‌تر تصمیم بگیرم.»',author:'کاربر نمونه · پلن طلایی'},
- {stars:'★★★★☆',text:'«اینکه امکان ارسال رسید و ثبت اطلاعات پرداخت وجود دارد، تجربه کار را منظم‌تر می‌کند.»',author:'کاربر نمونه · اشتراک پریمیوم'}
-];
-let reviewIndex=0;
-setInterval(()=>{
- reviewIndex=(reviewIndex+1)%reviews.length;
- const r=reviews[reviewIndex];
- const box=document.querySelector('.review-window');
- box.style.opacity='.3';
- setTimeout(()=>{
-  document.getElementById('stars').textContent=r.stars;
-  document.getElementById('reviewText').textContent=r.text;
-  document.getElementById('reviewAuthor').textContent=r.author;
-  document.querySelectorAll('.review-dots i').forEach((dot,i)=>dot.classList.toggle('active',i===reviewIndex));
-  box.style.opacity='1';
- },220);
-},4500);
+(() => {
+  "use strict";
+
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+  let selectedPath = "followers";
+  let selectedPlan = "platinum";
+  let selectedIssue = "payment";
+
+  const pathNames = {
+    followers: "افزایش فالوور",
+    engagement: "افزایش تعامل"
+  };
+
+  // انتخاب مسیر رشد
+  $$(".path-card").forEach(card => {
+    card.addEventListener("click", () => {
+      selectedPath = card.dataset.path;
+      $$(".path-card").forEach(item => {
+        const active = item === card;
+        item.classList.toggle("selected", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+      $("#pathSummary").textContent = "مسیر انتخابی: " + pathNames[selectedPath];
+    });
+  });
+
+  // انتخاب پلن
+  $$(".plan-card").forEach(card => {
+    card.addEventListener("click", () => {
+      selectedPlan = card.dataset.plan;
+      $$(".plan-card").forEach(item => {
+        item.classList.toggle("selected", item === card);
+        $("input[type=radio]", item).checked = item === card;
+      });
+      $("#paymentPlan").value = selectedPlan === "platinum"
+        ? "اشتراک پلاتینیوم"
+        : "اشتراک الماس";
+    });
+  });
+
+  // نمایش نام فایل رسید
+  $("#receiptFile").addEventListener("change", event => {
+    const file = event.target.files[0];
+    const name = $("#fileName");
+    if (!file) {
+      name.style.display = "none";
+      return;
+    }
+    if (!file.type.startsWith("image/")) {
+      event.target.value = "";
+      name.textContent = "لطفاً یک فایل تصویری انتخاب کن.";
+      name.style.display = "block";
+      return;
+    }
+    name.textContent = "تصویر انتخاب‌شده: " + file.name;
+    name.style.display = "block";
+  });
+
+  function showNotice(element, message, type) {
+    element.textContent = message;
+    element.className = "notice show " + type;
+    element.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }
+
+  // فرم پرداخت: آماده اتصال به API
+  $("#paymentForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const amount = Number($("#paymentAmount").value);
+    const receipt = $("#receiptFile").files[0];
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+      showNotice($("#paymentNotice"), "مبلغ پرداختی را به‌درستی وارد کن.", "error");
+      $("#paymentAmount").focus();
+      return;
+    }
+    if (!receipt || !receipt.type.startsWith("image/")) {
+      showNotice($("#paymentNotice"), "لطفاً تصویر رسید یا پیامک بانکی را انتخاب کن.", "error");
+      return;
+    }
+
+    /*
+      اتصال بک‌اند:
+      ارسال selectedPlan، selectedPath، amount و فایل receipt
+      به API ثبت پرداخت.
+      این نسخه به‌تنهایی پرداخت را ثبت یا تأیید نمی‌کند.
+    */
+    showNotice(
+      $("#paymentNotice"),
+      "اطلاعات فرم آماده ارسال است؛ برای ثبت نهایی، این بخش باید به سرویس ثبت پرداخت متصل شود.",
+      "info"
+    );
+  });
+
+  // انتخاب نوع درخواست خدمات
+  const profileSegment = $("#profileSegment");
+  const reelsSegment = $("#reelsSegment");
+
+  function setServiceType(type) {
+    const isProfile = type === "profile";
+    profileSegment.classList.toggle("active", isProfile);
+    reelsSegment.classList.toggle("active", !isProfile);
+    $("input", profileSegment).checked = isProfile;
+    $("input", reelsSegment).checked = !isProfile;
+    $("#profileFields").classList.toggle("show", isProfile);
+    $("#reelsFields").classList.toggle("show", !isProfile);
+    $("#serviceNotice").className = "notice";
+  }
+
+  profileSegment.addEventListener("click", () => setServiceType("profile"));
+  reelsSegment.addEventListener("click", () => setServiceType("reels"));
+
+  // فرم خدمات: فقط فیلدهای مربوط به نوع انتخابی
+  $("#serviceForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const type = $('input[name="serviceType"]:checked').value;
+    let payload;
+
+    if (type === "profile") {
+      const url = $("#profileUrl").value.trim();
+      if (!url) {
+        showNotice($("#serviceNotice"), "آدرس پیج اینستاگرامت را وارد کن.", "error");
+        $("#profileUrl").focus();
+        return;
+      }
+      payload = {type:"profile", profile_url:url};
+    } else {
+      const urls = $("#reelsUrl").value.trim();
+      const date = $("#reelsDate").value;
+      const time = $("#reelsTime").value;
+
+      if (!urls || !date || !time) {
+        showNotice($("#serviceNotice"), "آدرس پیج یا ریلزها، تاریخ و ساعت شروع را کامل کن.", "error");
+        return;
+      }
+      payload = {
+        type:"reels",
+        urls:urls.split(/\n+/).map(value => value.trim()).filter(Boolean),
+        start_date:date,
+        start_time:time
+      };
+    }
+
+    /*
+      اتصال بک‌اند:
+      ارسال payload به API درخواست خدمات.
+      در حالت ریلز، تاریخ و ساعت شروع نیز همراه آدرس‌ها ارسال می‌شود.
+    */
+    console.log("Service request ready:", payload);
+    showNotice(
+      $("#serviceNotice"),
+      "اطلاعات درخواست آماده ارسال است؛ برای ثبت نهایی باید این فرم به سامانه متصل شود.",
+      "info"
+    );
+  });
+
+  // انتخاب موضوع پیگیری
+  $$(".complaint-option").forEach(button => {
+    button.addEventListener("click", () => {
+      selectedIssue = button.dataset.issue;
+      $$(".complaint-option").forEach(item => {
+        const active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+    });
+  });
+
+  // فرم پیگیری: بدون پاسخ خودکار یا بررسی فرضی وضعیت اشتراک
+  $("#supportForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const description = $("#supportDescription").value.trim();
+    if (description.length < 5) {
+      showNotice($("#supportNotice"), "لطفاً توضیحات بیشتری درباره درخواستت بنویس.", "error");
+      $("#supportDescription").focus();
+      return;
+    }
+
+    const payload = {
+      topic:selectedIssue,
+      description
+    };
+
+    /*
+      اتصال بک‌اند:
+      ارسال payload به سامانه پشتیبانی و ثبت درخواست برای مدیر.
+      هیچ وضعیت اشتراک یا نتیجه بررسی در این صفحه حدس زده نمی‌شود.
+    */
+    console.log("Support request ready:", payload);
+    showNotice(
+      $("#supportNotice"),
+      "درخواستت آماده ارسال برای بررسی است؛ ثبت نهایی پس از اتصال به سامانه پشتیبانی انجام می‌شود.",
+      "info"
+    );
+  });
+
+})();
 </script>
 </body>
 </html>

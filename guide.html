@@ -1,0 +1,1292 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F7F5FF">
+<meta name="description" content="راهنمای استفاده از Growza24، پلتفرم رشد پیج اینستاگرام">
+<title>راهنما | Growza24</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --bg:#F7F5FF;
+ --ink:#211B35;
+ --muted:#777187;
+ --violet:#7046F5;
+ --violet2:#9A7AFF;
+ --orange:#FF725E;
+ --pink:#FF8BB4;
+ --lime:#D9FA78;
+ --white:#FFFFFF;
+ --line:#EAE5F5;
+}
+
+*{
+ box-sizing:border-box;
+ -webkit-tap-highlight-color:transparent;
+}
+
+html{
+ scroll-behavior:smooth;
+}
+
+body{
+ margin:0;
+ background:
+ radial-gradient(circle at 95% 13%,#E9DFFF75,transparent 25%),
+ radial-gradient(circle at 0% 48%,#FFE6ED65,transparent 22%),
+ var(--bg);
+ color:var(--ink);
+ font-family:'Vazirmatn',sans-serif;
+ font-size:16px;
+ line-height:1.9;
+ padding-bottom:100px;
+ overflow-x:hidden;
+}
+
+a{
+ text-decoration:none;
+ color:inherit;
+}
+
+button{
+ font-family:inherit;
+}
+
+.page{
+ width:min(100% - 34px,520px);
+ margin:auto;
+}
+
+/* SAME BRAND HEADER AS HOME */
+
+.header{
+ height:78px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:11px;
+}
+
+.brand-icon{
+ width:46px;
+ height:46px;
+ flex-shrink:0;
+ border-radius:16px;
+ display:grid;
+ place-items:center;
+ color:white;
+ background:linear-gradient(145deg,#A48AFF,#6439EC);
+ box-shadow:0 8px 24px #7549ef40;
+}
+
+.brand-icon svg{
+ width:26px;
+ height:26px;
+}
+
+.brand-name{
+ font-size:24px;
+ font-weight:900;
+ letter-spacing:-1px;
+ line-height:1.2;
+}
+
+.brand-caption{
+ font-size:12px;
+ color:#817A95;
+ font-weight:700;
+}
+
+.header-status{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ background:white;
+ padding:9px 13px;
+ border:1px solid var(--line);
+ border-radius:30px;
+ font-size:12px;
+ font-weight:800;
+}
+
+.status-dot{
+ width:8px;
+ height:8px;
+ background:#8ACB55;
+ border-radius:50%;
+ box-shadow:0 0 0 4px #8ACB5520;
+}
+
+/* INTRO */
+
+.intro{
+ padding-top:22px;
+ position:relative;
+}
+
+.eyebrow{
+ display:flex;
+ align-items:center;
+ gap:9px;
+ color:var(--violet);
+ font-size:13px;
+ font-weight:900;
+}
+
+.eyebrow-line{
+ width:27px;
+ height:3px;
+ background:var(--orange);
+ border-radius:5px;
+}
+
+.intro h1{
+ font-size:clamp(36px,9vw,52px);
+ font-weight:900;
+ line-height:1.55;
+ letter-spacing:-1.8px;
+ margin:14px 0 8px;
+}
+
+.intro h1 span{
+ color:var(--violet);
+ position:relative;
+}
+
+.intro h1 span:after{
+ content:"";
+ position:absolute;
+ height:10px;
+ right:0;
+ left:0;
+ bottom:3px;
+ background:var(--lime);
+ border-radius:8px;
+ z-index:-1;
+ transform:rotate(-2deg);
+}
+
+.intro-description{
+ font-size:16px;
+ font-weight:600;
+ color:#746E83;
+ line-height:2.1;
+ margin:0;
+}
+
+.intro-description strong{
+ color:var(--ink);
+ font-weight:900;
+}
+
+/* SPECIAL GUIDE ILLUSTRATION */
+
+.guide-art{
+ margin-top:25px;
+ height:245px;
+ position:relative;
+ border-radius:29px;
+ overflow:hidden;
+ background:
+ radial-gradient(circle at 15% 85%,#FF927E55,transparent 28%),
+ radial-gradient(circle at 90% 10%,#AD94FF80,transparent 32%),
+ linear-gradient(130deg,#29213E,#44336D 57%,#6848B7);
+ box-shadow:0 19px 44px #3E286B25;
+ isolation:isolate;
+}
+
+.guide-art:before{
+ content:"";
+ position:absolute;
+ width:270px;
+ height:270px;
+ border:1px solid #FFFFFF24;
+ border-radius:50%;
+ top:-140px;
+ right:-70px;
+}
+
+.guide-art:after{
+ content:"";
+ position:absolute;
+ width:220px;
+ height:220px;
+ border:1px dashed #FFFFFF25;
+ border-radius:50%;
+ bottom:-130px;
+ left:-70px;
+}
+
+.art-grid{
+ position:absolute;
+ inset:0;
+ opacity:.13;
+ background-image:
+ linear-gradient(#FFFFFF 1px,transparent 1px),
+ linear-gradient(90deg,#FFFFFF 1px,transparent 1px);
+ background-size:30px 30px;
+ mask-image:linear-gradient(130deg,black,transparent 80%);
+}
+
+.art-main{
+ position:absolute;
+ width:135px;
+ height:135px;
+ top:50%;
+ left:50%;
+ transform:translate(-50%,-50%) rotate(-8deg);
+ border-radius:35px;
+ background:linear-gradient(145deg,#A68AFF,#6740EC);
+ box-shadow:
+ 0 20px 45px #100B2C65,
+ inset 0 1px 1px #FFFFFF80;
+ display:grid;
+ place-items:center;
+ border:1px solid #FFFFFF55;
+}
+
+.art-main svg{
+ width:65px;
+ height:65px;
+ stroke:white;
+ fill:none;
+ stroke-width:1.7;
+ stroke-linecap:round;
+ stroke-linejoin:round;
+}
+
+.art-ring{
+ position:absolute;
+ width:190px;
+ height:190px;
+ border:1px solid #FFFFFF40;
+ border-radius:50%;
+ top:50%;
+ left:50%;
+ transform:translate(-50%,-50%);
+}
+
+.art-ring.two{
+ width:220px;
+ height:220px;
+ border-style:dashed;
+ border-color:#FFFFFF2B;
+}
+
+.art-label{
+ position:absolute;
+ bottom:17px;
+ right:19px;
+ color:#FFFFFFB8;
+ font-size:12px;
+ font-weight:800;
+ letter-spacing:2px;
+ direction:ltr;
+}
+
+.art-number{
+ position:absolute;
+ top:17px;
+ left:18px;
+ font-size:13px;
+ font-weight:900;
+ color:#D9FA78;
+ direction:ltr;
+}
+
+.art-chip{
+ position:absolute;
+ background:#FFFFFFF2;
+ border-radius:13px;
+ padding:8px 12px;
+ font-size:12px;
+ font-weight:900;
+ color:#46356D;
+ box-shadow:0 9px 23px #120A3035;
+ z-index:3;
+}
+
+.art-chip.one{
+ right:17px;
+ top:34px;
+ transform:rotate(5deg);
+}
+
+.art-chip.two{
+ left:15px;
+ bottom:49px;
+ transform:rotate(-5deg);
+ background:#D9FA78;
+}
+
+.art-star{
+ position:absolute;
+ color:#D9FA78;
+ font-size:25px;
+}
+
+.art-star.one{top:91px;left:48px}
+.art-star.two{bottom:29px;right:103px;font-size:16px}
+
+/* READING BANNER */
+
+.reading-banner{
+ margin-top:18px;
+ display:flex;
+ align-items:center;
+ gap:13px;
+ padding:15px;
+ border-radius:20px;
+ background:#EAE4FF;
+ border:1px solid #DED3FF;
+}
+
+.reading-icon{
+ width:45px;
+ height:45px;
+ flex-shrink:0;
+ border-radius:15px;
+ background:white;
+ color:var(--violet);
+ display:grid;
+ place-items:center;
+}
+
+.reading-icon svg{
+ width:25px;
+ height:25px;
+}
+
+.reading-text{
+ flex:1;
+ min-width:0;
+}
+
+.reading-text strong{
+ display:block;
+ font-size:15px;
+ font-weight:900;
+}
+
+.reading-text span{
+ display:block;
+ font-size:13px;
+ font-weight:600;
+ color:#777087;
+ margin-top:2px;
+}
+
+/* SECTION HEADING */
+
+.faq-section{
+ padding-top:40px;
+}
+
+.section-eyebrow{
+ display:flex;
+ align-items:center;
+ gap:9px;
+ font-size:13px;
+ color:var(--violet);
+ font-weight:900;
+}
+
+.section-eyebrow:before{
+ content:"";
+ width:24px;
+ height:3px;
+ border-radius:5px;
+ background:var(--orange);
+}
+
+.section-title{
+ font-size:27px;
+ font-weight:900;
+ line-height:1.6;
+ margin:8px 0 5px;
+ letter-spacing:-.7px;
+}
+
+.section-description{
+ font-size:15px;
+ color:var(--muted);
+ font-weight:600;
+ line-height:2;
+ margin:0;
+}
+
+/* FAQ DECORATIVE BAR */
+
+.faq-intro{
+ margin-top:20px;
+ margin-bottom:16px;
+ padding:15px 16px;
+ background:#262039;
+ color:white;
+ border-radius:19px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+}
+
+.faq-intro-text{
+ font-size:15px;
+ font-weight:900;
+}
+
+.faq-intro-text small{
+ display:block;
+ font-size:12px;
+ font-weight:600;
+ color:#CFC5E6;
+ margin-top:3px;
+}
+
+.faq-count{
+ width:45px;
+ height:45px;
+ flex-shrink:0;
+ border-radius:15px;
+ display:grid;
+ place-items:center;
+ background:#D9FA78;
+ color:#30263D;
+ font-size:17px;
+ font-weight:900;
+}
+
+/* ACCORDION */
+
+.faq-list{
+ display:grid;
+ gap:11px;
+}
+
+.faq-item{
+ background:#FFFFFF;
+ border:1px solid #EAE5F5;
+ border-radius:19px;
+ overflow:hidden;
+ box-shadow:0 7px 20px #39265B08;
+ transition:border-color .2s,box-shadow .2s;
+}
+
+.faq-item[open]{
+ border-color:#CBB9FF;
+ box-shadow:0 9px 25px #7046F510;
+}
+
+.faq-item summary{
+ list-style:none;
+ cursor:pointer;
+ min-height:72px;
+ padding:13px 14px;
+ display:flex;
+ align-items:center;
+ gap:12px;
+ user-select:none;
+}
+
+.faq-item summary::-webkit-details-marker{
+ display:none;
+}
+
+.question-number{
+ width:36px;
+ height:36px;
+ flex-shrink:0;
+ border-radius:12px;
+ display:grid;
+ place-items:center;
+ background:#F0ECFF;
+ color:#7046F5;
+ font-size:13px;
+ font-weight:900;
+ direction:ltr;
+}
+
+.question-text{
+ flex:1;
+ font-size:15px;
+ font-weight:900;
+ line-height:1.8;
+}
+
+.faq-toggle{
+ width:34px;
+ height:34px;
+ flex-shrink:0;
+ display:grid;
+ place-items:center;
+ border-radius:12px;
+ background:#F4F0FF;
+ color:#7046F5;
+ transition:transform .25s,background .25s;
+}
+
+.faq-toggle svg{
+ width:19px;
+ height:19px;
+}
+
+.faq-item[open] .faq-toggle{
+ background:#7046F5;
+ color:white;
+ transform:rotate(45deg);
+}
+
+.answer{
+ padding:0 17px 17px 17px;
+ margin-right:48px;
+ color:#716B81;
+ font-size:14px;
+ font-weight:600;
+ line-height:2.15;
+ border-top:1px solid #F0ECF7;
+ padding-top:12px;
+ animation:answerIn .2s ease-out;
+}
+
+.answer strong{
+ color:#392C66;
+ font-weight:900;
+}
+
+@keyframes answerIn{
+ from{opacity:.5}
+ to{opacity:1}
+}
+
+/* FEATURED NOTE */
+
+.guide-note{
+ margin-top:29px;
+ padding:20px;
+ border-radius:24px;
+ background:linear-gradient(135deg,#FDE8EF,#FFF7FA);
+ border:1px solid #FFD8E3;
+ position:relative;
+ overflow:hidden;
+}
+
+.guide-note:after{
+ content:"✦";
+ position:absolute;
+ left:15px;
+ top:3px;
+ font-size:64px;
+ color:#FFB7CA70;
+}
+
+.note-label{
+ color:#E45C83;
+ font-size:13px;
+ font-weight:900;
+}
+
+.guide-note h3{
+ margin:7px 0;
+ font-size:20px;
+ line-height:1.7;
+ font-weight:900;
+ position:relative;
+ z-index:1;
+}
+
+.guide-note p{
+ margin:0;
+ color:#796C7C;
+ font-size:14px;
+ font-weight:600;
+ line-height:2;
+ position:relative;
+ z-index:1;
+}
+
+/* FINAL ACTIVATION CARD */
+
+.activation-card{
+ margin-top:34px;
+ padding:24px 20px;
+ border-radius:28px;
+ color:white;
+ position:relative;
+ overflow:hidden;
+ background:linear-gradient(140deg,#7752F4,#4E2DC8);
+ box-shadow:0 20px 45px #7046F53A;
+}
+
+.activation-card:before{
+ content:"";
+ position:absolute;
+ width:220px;
+ height:220px;
+ border:1px solid #FFFFFF30;
+ border-radius:50%;
+ top:-135px;
+ left:-75px;
+}
+
+.activation-card:after{
+ content:"";
+ position:absolute;
+ width:170px;
+ height:170px;
+ border:1px dashed #FFFFFF35;
+ border-radius:50%;
+ bottom:-115px;
+ right:-60px;
+}
+
+.activation-label{
+ font-size:12px;
+ font-weight:900;
+ color:#D9FA78;
+ letter-spacing:1px;
+ direction:ltr;
+ text-align:right;
+ position:relative;
+ z-index:1;
+}
+
+.activation-card h2{
+ font-size:28px;
+ font-weight:900;
+ line-height:1.65;
+ margin:12px 0 6px;
+ position:relative;
+ z-index:1;
+}
+
+.activation-card h2 span{
+ color:#D9FA78;
+}
+
+.activation-card p{
+ margin:0;
+ font-size:15px;
+ font-weight:600;
+ color:#E5DFFF;
+ line-height:2;
+ position:relative;
+ z-index:1;
+}
+
+.activation-button{
+ margin-top:20px;
+ min-height:57px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ background:#D9FA78;
+ color:#30263D;
+ border-radius:17px;
+ padding:10px 16px;
+ font-size:16px;
+ font-weight:900;
+ position:relative;
+ z-index:2;
+ transition:transform .2s;
+}
+
+.activation-button:active{
+ transform:scale(.975);
+}
+
+.activation-button svg{
+ width:22px;
+ height:22px;
+}
+
+/* FOOTER */
+
+.footer{
+ text-align:center;
+ color:#9A94A9;
+ font-size:12px;
+ font-weight:600;
+ padding:25px 0 10px;
+}
+
+/* BOTTOM NAV - SAME AS HOME */
+
+.nav-shell{
+ position:fixed;
+ z-index:50;
+ bottom:0;
+ left:0;
+ right:0;
+ padding:10px 13px calc(10px + env(safe-area-inset-bottom));
+ background:#F7F5FFEF;
+ backdrop-filter:blur(22px);
+ -webkit-backdrop-filter:blur(22px);
+ border-top:1px solid #E8E1F2;
+}
+
+.nav{
+ width:min(100%,520px);
+ margin:auto;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:6px;
+}
+
+.nav-item{
+ min-width:0;
+ min-height:65px;
+ border-radius:19px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ gap:4px;
+ color:#898298;
+ font-size:12px;
+ font-weight:800;
+ transition:.2s;
+}
+
+.nav-item svg{
+ width:25px;
+ height:25px;
+ stroke-width:2;
+}
+
+.nav-item.active{
+ background:#7046F5;
+ color:white;
+ box-shadow:0 7px 17px #7046F540;
+}
+
+.nav-item.active svg{
+ stroke-width:2.5;
+}
+
+.nav-item:active{
+ transform:scale(.94);
+}
+
+/* RESPONSIVE */
+
+@media(min-width:600px){
+ .page{
+  width:min(100% - 50px,520px);
+ }
+
+ .nav-shell{
+  width:min(calc(100% - 40px),520px);
+  left:50%;
+  right:auto;
+  transform:translateX(-50%);
+  bottom:13px;
+  border:1px solid #E8E1F2;
+  border-radius:24px;
+  box-shadow:0 10px 35px #39265B20;
+  padding:8px;
+ }
+}
+
+@media(max-width:360px){
+ .page{width:calc(100% - 26px)}
+ .intro h1{font-size:35px}
+ .guide-art{height:220px}
+ .question-text{font-size:14px}
+ .faq-item summary{gap:9px;padding:11px}
+ .answer{margin-right:42px}
+ .activation-card h2{font-size:25px}
+ .nav-item{font-size:11px}
+}
+
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{
+  animation:none!important;
+  transition:none!important;
+  scroll-behavior:auto!important;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="page header">
+
+ <a href="index.html" class="brand">
+  <div class="brand-icon">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 17l6-6 4 4 8-10"/>
+    <path d="M14 5h7v7"/>
+   </svg>
+  </div>
+  <div>
+   <div class="brand-name">Growza24</div>
+   <div class="brand-caption">پلتفرم رشد پیج اینستاگرام</div>
+  </div>
+ </a>
+
+ <div class="header-status">
+  <span class="status-dot"></span>
+  مرکز راهنما
+ </div>
+
+</header>
+
+
+<main class="page">
+
+<!-- INTRO -->
+
+<section class="intro">
+
+ <div class="eyebrow">
+  <span class="eyebrow-line"></span>
+  YOUR GROWTH GUIDE
+ </div>
+
+ <h1>
+  قبل از شروع،<br>
+  <span>هوشمندانه</span> بخوان!
+ </h1>
+
+ <p class="intro-description">
+  امکانات Growza24 را بشناس، مسیر مناسب پیجت را انتخاب کن و با آگاهی کامل وارد دنیای <strong>رشد هدفمند اینستاگرام</strong> شو.
+ </p>
+
+</section>
+
+
+<!-- SPECIAL ARTWORK -->
+
+<section class="guide-art">
+
+ <div class="art-grid"></div>
+ <div class="art-ring"></div>
+ <div class="art-ring two"></div>
+
+ <span class="art-number">GROWZA / 24</span>
+
+ <div class="art-main">
+  <svg viewBox="0 0 64 64">
+   <path d="M10 12h44v40H10z"/>
+   <path d="M18 21h28M18 29h19"/>
+   <path d="m18 44 9-9 7 6 12-14"/>
+   <path d="M39 27h7v7"/>
+  </svg>
+ </div>
+
+ <span class="art-chip one">۱۵ پرسش کاربردی ✦</span>
+ <span class="art-chip two">از آگاهی تا رشد</span>
+
+ <span class="art-star one">✳</span>
+ <span class="art-star two">✦</span>
+
+ <div class="art-label">KNOW YOUR NEXT MOVE</div>
+
+</section>
+
+
+<!-- READING BANNER -->
+
+<div class="reading-banner">
+
+ <div class="reading-icon">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+   <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/>
+   <path d="M4 5.5v12"/>
+   <path d="M8 8h8m-8 4h7"/>
+  </svg>
+ </div>
+
+ <div class="reading-text">
+  <strong>این راهنما را کامل بخوان و از امکانات ما بهره‌مند شو.</strong>
+  <span>پاسخ پرسش‌های مهمت را همین پایین پیدا می‌کنی.</span>
+ </div>
+
+</div>
+
+
+<!-- FAQ -->
+
+<section class="faq-section">
+
+ <div class="section-eyebrow">KNOW THE PLATFORM</div>
+
+ <h2 class="section-title">
+  هر چیزی که باید<br>
+  قبل از شروع بدانی
+ </h2>
+
+ <p class="section-description">
+  ۱۵ سؤال و پاسخ مهم درباره خدمات، شیوه استفاده و مسیر رشد پیج شما.
+ </p>
+
+
+ <div class="faq-intro">
+
+  <div class="faq-intro-text">
+   راهنمای جامع Growza24
+   <small>سؤال‌ها را باز کن و پاسخ‌ها را بخوان</small>
+  </div>
+
+  <div class="faq-count">۱۵</div>
+
+ </div>
+
+
+ <div class="faq-list">
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">01</span>
+    <span class="question-text">Growza24 دقیقاً چه کاری انجام می‌دهد؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    Growza24 یک <strong>پلتفرم رشد پیج اینستاگرام</strong> است که با هدف کمک به افزایش مخاطبان و تقویت تعامل با محتوای پیج طراحی شده است. شما می‌توانید متناسب با هدف خود، مسیر رشد موردنظرتان را انتخاب کنید.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">02</span>
+    <span class="question-text">چه مدل خدمات رشدی در پلتفرم وجود دارد؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    دو مسیر اصلی در نظر گرفته شده است:
+    <br><strong>۱. افزایش فالوور:</strong> با هدف گسترش جامعه دنبال‌کنندگان پیج.
+    <br><strong>۲. افزایش تعامل:</strong> با تمرکز بر بازدید، لایک، ذخیره، کامنت و بازنشر محتوای شما.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">03</span>
+    <span class="question-text">آیا می‌توانم فقط یکی از مسیرهای رشد را انتخاب کنم؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    بله. هدف شما تعیین‌کننده مسیر انتخابی است. می‌توانید با توجه به نیاز فعلی پیج، مسیر افزایش دنبال‌کننده یا افزایش تعامل را انتخاب کنید. شرایط و گزینه‌های قابل انتخاب در صفحه فعال‌سازی نمایش داده می‌شوند.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">04</span>
+    <span class="question-text">برای شروع استفاده از پلتفرم چه کاری باید انجام بدهم؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    کافی است وارد بخش <strong>فعال‌سازی</strong> شوید، مسیر موردنظر خود را انتخاب کنید و اطلاعات درخواستی را با دقت تکمیل کنید. مراحل بعدی در همان صفحه به شما نمایش داده می‌شود.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">05</span>
+    <span class="question-text">آیا برای استفاده باید رمز عبور اینستاگرام را بدهم؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    برای حفظ امنیت حساب خود، رمز عبور اینستاگرامتان را در اختیار هیچ شخص یا پلتفرم غیرضروری قرار ندهید. فقط اطلاعاتی را وارد کنید که در فرم رسمی فعال‌سازی درخواست شده‌اند.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">06</span>
+    <span class="question-text">آیا پیج‌های فروشگاهی و کاری هم می‌توانند استفاده کنند؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    بله. کسب‌وکارها، فروشگاه‌ها، تولیدکنندگان محتوا، صفحات شخصی و برندها می‌توانند با توجه به هدف و شرایط پیج خود، گزینه مناسب را بررسی و انتخاب کنند.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">07</span>
+    <span class="question-text">افزایش تعامل دقیقاً شامل چه مواردی می‌شود؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    تعامل می‌تواند شامل فعالیت‌هایی مانند <strong>تماشای محتوا، لایک، ذخیره، کامنت و بازنشر</strong> باشد. نوع فعالیت‌های قابل ارائه و جزئیات هر گزینه در زمان فعال‌سازی مشخص می‌شود.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">08</span>
+    <span class="question-text">آیا می‌توانم برای یک پست یا ریلز مشخص درخواست ثبت کنم؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    در مسیر خدمات مرتبط با تعامل محتوا، نوع محتوا و لینک موردنیاز بر اساس فرم فعال‌سازی تعیین می‌شود. اگر امکان انتخاب محتوای مشخص در گزینه انتخابی شما وجود داشته باشد، در همان مرحله راهنمایی خواهید شد.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">09</span>
+    <span class="question-text">آیا نتیجه رشد برای همه پیج‌ها یکسان است؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    خیر. نتیجه به عواملی مانند موضوع پیج، کیفیت محتوا، وضعیت فعلی حساب، مخاطبان هدف و نوع خدمات انتخابی بستگی دارد. هیچ عدد یا میزان رشدی را نمی‌توان برای همه پیج‌ها یکسان تضمین کرد.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">10</span>
+    <span class="question-text">از کجا می‌توانم وضعیت درخواست خود را پیگیری کنم؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    بخش <strong>عملکرد</strong> برای پیگیری وضعیت فعالیت‌ها در نظر گرفته شده است. پس از ثبت درخواست، اطلاعات و وضعیت قابل نمایش بر اساس امکانات فعال پلتفرم در این بخش ارائه می‌شود.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">11</span>
+    <span class="question-text">آیا برای ثبت درخواست باید پیجم عمومی باشد؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    دسترسی به محتوای پیج برای اجرای برخی خدمات ضروری است. شرایط مربوط به عمومی یا خصوصی بودن حساب را پیش از فعال‌سازی بررسی کنید و مطابق توضیحات همان خدمت اقدام کنید.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">12</span>
+    <span class="question-text">آیا می‌توانم چند درخواست مختلف ثبت کنم؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    امکان ثبت درخواست‌های مختلف به قوانین هر خدمت و شرایط حساب شما بستگی دارد. پیش از ثبت درخواست جدید، وضعیت درخواست‌های قبلی و محدودیت‌های احتمالی را در پلتفرم بررسی کنید.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">13</span>
+    <span class="question-text">هزینه خدمات و شرایط انتخاب چگونه مشخص می‌شود؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    جزئیات خدمات، گزینه‌های انتخابی و هزینه‌های مربوط به هر مورد باید پیش از نهایی‌کردن درخواست در صفحه فعال‌سازی بررسی شوند. قبل از پرداخت، مشخصات سفارش خود را با دقت مطالعه کنید.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">14</span>
+    <span class="question-text">اگر هنگام استفاده با مشکل مواجه شوم چه کار کنم؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    ابتدا اطلاعات واردشده و وضعیت اتصال خود را بررسی کنید. اگر مشکل همچنان ادامه داشت، از مسیر ارتباطی پشتیبانی که در پلتفرم معرفی شده است، موضوع را همراه با توضیح و اطلاعات درخواست خود پیگیری کنید.
+   </div>
+  </details>
+
+
+  <details class="faq-item">
+   <summary>
+    <span class="question-number">15</span>
+    <span class="question-text">بهترین زمان برای شروع رشد پیج چه زمانی است؟</span>
+    <span class="faq-toggle">
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+     </svg>
+    </span>
+   </summary>
+   <div class="answer">
+    اگر برای پیج خود هدف مشخصی دارید، بهتر است از همین حالا برای آن برنامه‌ریزی کنید. البته رشد مؤثر فقط به افزایش اعداد محدود نیست؛ <strong>کیفیت محتوا، شناخت مخاطب و استمرار</strong> نیز نقش مهمی دارند.
+   </div>
+  </details>
+
+ </div>
+
+</section>
+
+
+<!-- SPECIAL NOTE -->
+
+<section class="guide-note">
+
+ <div class="note-label">✦ یک نکته مهم برای شما</div>
+
+ <h3>
+  رشد خوب، از انتخاب درست شروع می‌شود.
+ </h3>
+
+ <p>
+  قبل از ثبت درخواست، هدف پیجتان را مشخص کنید. قرار نیست همه پیج‌ها یک مسیر را طی کنند؛ مسیر مناسب شما باید با نیاز واقعی پیجتان هماهنگ باشد.
+ </p>
+
+</section>
+
+
+<!-- ACTIVATION CTA -->
+
+<section class="activation-card">
+
+ <div class="activation-label">YOUR NEXT STEP / 24</div>
+
+ <h2>
+  حالا که مسیر را شناختی،<br>
+  وقت <span>شروع رشد</span> است!
+ </h2>
+
+ <p>
+  هدف خودت را انتخاب کن، اطلاعات پیجت را ثبت کن و وارد مرحله فعال‌سازی شو.
+ </p>
+
+ <a href="activation.html" class="activation-button">
+  رفتن به صفحه فعال‌سازی
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+   <path d="M19 12H5m7 7-7-7 7-7"/>
+  </svg>
+ </a>
+
+</section>
+
+
+<footer class="footer">
+ Growza24 · پلتفرم رشد پیج اینستاگرام
+</footer>
+
+</main>
+
+
+<!-- FIXED BOTTOM NAVIGATION -->
+
+<nav class="nav-shell">
+
+ <div class="nav">
+
+  <a href="index.html" class="nav-item">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m3 10 9-7 9 7"/>
+    <path d="M5 9v11h14V9"/>
+    <path d="M9 20v-6h6v6"/>
+   </svg>
+   <span>خانه</span>
+  </a>
+
+  <a href="guide.html" class="nav-item active" aria-current="page">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/>
+    <path d="M4 5.5v12"/>
+    <path d="M8 8h8m-8 4h7"/>
+   </svg>
+   <span>راهنما</span>
+  </a>
+
+  <a href="activation.html" class="nav-item">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <path d="M13 2 4 14h7l-1 8 10-13h-7z"/>
+   </svg>
+   <span>فعال‌سازی</span>
+  </a>
+
+  <a href="performance.html" class="nav-item">
+   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 3v18h18"/>
+    <path d="m7 14 4-4 4 3 6-8"/>
+   </svg>
+   <span>عملکرد</span>
+  </a>
+
+ </div>
+
+</nav>
+
+</body>
+</html>

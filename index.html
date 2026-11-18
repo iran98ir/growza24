@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --paper:#f4f5ef;--paper-2:#e9eee5;--ink:#222D29;--muted:#69736b;
@@ -17,6 +18,7 @@
   --white:#fffefa;--shadow:0 22px 60px rgba(22,43,32,.10);
   --r:26px;--nav-h:78px;
 }
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:20px}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"Vazirmatn",Tahoma,sans-serif;overflow-x:hidden}
@@ -24,14 +26,83 @@ a{color:inherit;text-decoration:none}
 button{font:inherit}
 button,a{-webkit-tap-highlight-color:transparent}
 ::selection{background:var(--lime);color:var(--ink)}
-.app{max-width:560px;margin:auto;min-height:100svh;padding:0 18px calc(var(--nav-h) + 34px);position:relative;isolation:isolate}
-.app:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:
- radial-gradient(ellipse at 4% 13%,rgba(168,215,184,.35),transparent 28%),
- radial-gradient(ellipse at 94% 38%,rgba(72,88,215,.08),transparent 25%),
- radial-gradient(ellipse at 18% 84%,rgba(239,118,87,.08),transparent 22%)}
-.grain{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E")}
+
+.app{
+  max-width:560px;margin:auto;min-height:100svh;
+  padding:0 18px calc(var(--nav-h) + 34px);
+  position:relative;isolation:isolate
+}
+
+.app:before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+   radial-gradient(ellipse at 4% 13%,rgba(168,215,184,.35),transparent 28%),
+   radial-gradient(ellipse at 94% 38%,rgba(72,88,215,.08),transparent 25%),
+   radial-gradient(ellipse at 18% 84%,rgba(239,118,87,.08),transparent 22%)
+}
+
+.grain{
+  position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.13;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E")
+}
+
+/* ===== SOFT MULTICOLOR HALO ===== */
+
+.halo{
+  position:fixed;
+  left:50%;
+  top:48%;
+  width:min(620px,140vw);
+  height:min(620px,140vw);
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:-1;
+  background:conic-gradient(
+    from 0deg,
+    rgba(199,255,0,0) 0deg,
+    rgba(199,255,0,.16) 55deg,
+    rgba(23,107,75,.14) 115deg,
+    rgba(72,88,215,.13) 185deg,
+    rgba(239,118,87,.12) 255deg,
+    rgba(168,215,184,.17) 315deg,
+    rgba(199,255,0,0) 360deg
+  );
+  filter:blur(58px);
+  opacity:.48;
+  animation:haloDrift 52s linear infinite;
+  will-change:transform;
+}
+
+.halo:after{
+  content:"";
+  position:absolute;
+  inset:85px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(199,255,0,.09) 0%,
+    rgba(168,215,184,.08) 32%,
+    rgba(72,88,215,.04) 58%,
+    transparent 75%
+  );
+  filter:blur(28px);
+}
+
+@keyframes haloDrift{
+  0%{
+    transform:translate(-50%,-50%) rotate(0deg) scale(.96);
+  }
+  50%{
+    transform:translate(-50%,-50%) rotate(180deg) scale(1.04);
+  }
+  100%{
+    transform:translate(-50%,-50%) rotate(360deg) scale(.96);
+  }
+}
 
 /* ===== HEADER (fixed) ===== */
+
 .topbar{
   position:fixed;top:0;left:0;right:0;z-index:40;
   height:76px;display:flex;align-items:center;justify-content:space-between;
@@ -41,25 +112,40 @@ button,a{-webkit-tap-highlight-color:transparent}
   box-shadow:0 10px 34px rgba(8,16,12,.45);
   max-width:560px;margin:auto;
 }
+
 .topbar .brand{display:flex;align-items:center;gap:11px;min-width:0}
+
 .brand-logo{
   width:52px;height:52px;border-radius:16px;object-fit:cover;
   background:var(--green);
   box-shadow:0 8px 22px rgba(0,0,0,.5), 0 0 0 2px rgba(199,255,0,.35);
 }
-.brand-right{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:0;min-width:0;align-self:center;padding-top:22px}
+
+.brand-right{
+  display:flex;flex-direction:column;justify-content:flex-end;
+  align-items:flex-start;gap:0;min-width:0;align-self:center;padding-top:22px
+}
+
 .brand-right .subtitle{
   color:#fff;font-size:13.8px;font-weight:600;line-height:1.2;white-space:nowrap;
 }
-.hl{position:relative;display:inline-block;padding-bottom:2px;}
-.hl:after{content:"";position:absolute;right:0;left:0;bottom:-1px;height:2px;background:var(--lime);border-radius:2px;}
+
+.hl{position:relative;display:inline-block;padding-bottom:2px}
+
+.hl:after{
+  content:"";position:absolute;right:0;left:0;bottom:-1px;
+  height:2px;background:var(--lime);border-radius:2px;
+}
+
 .brand-latin{
   font-family:"Vazirmatn",sans-serif;
   font-size:22px;font-weight:900;letter-spacing:-.5px;
   line-height:1;white-space:nowrap;
   direction:ltr;
   display:inline-block;
+  perspective:900px;
 }
+
 .brand-latin .g{
   color:#0a0d0b;
   text-shadow:
@@ -68,116 +154,509 @@ button,a{-webkit-tap-highlight-color:transparent}
     0 0 22px rgba(255,255,255,.55),
     0 0 30px rgba(199,255,0,.35);
 }
+
+/* ===== PREMIUM MIRROR FLIP: 24 ===== */
+
 .brand-latin .num{
   display:inline-block;
   color:var(--lime);
-  text-shadow:0 0 10px rgba(199,255,0,.55);
-  animation: numLux 3.6s cubic-bezier(.65,.05,.36,1) infinite;
+  text-shadow:
+    0 0 8px rgba(199,255,0,.48),
+    0 0 18px rgba(199,255,0,.18);
   transform-origin:50% 50%;
+  transform-style:preserve-3d;
+  backface-visibility:visible;
+  animation:numMirrorLux 10s cubic-bezier(.76,0,.24,1) infinite;
+  will-change:transform,filter;
 }
-@keyframes numLux{
-  0%   {opacity:1; transform:rotate(0deg) scale(1); filter:blur(0)}
-  42%  {opacity:1; transform:rotate(0deg) scale(1); filter:blur(0)}
-  50%  {opacity:0; transform:rotate(-90deg) scale(.7); filter:blur(3px)}
-  58%  {opacity:0; transform:rotate(-180deg) scale(.7); filter:blur(3px)}
-  66%  {opacity:1; transform:rotate(-360deg) scale(1); filter:blur(0)}
-  100% {opacity:1; transform:rotate(-360deg) scale(1); filter:blur(0)}
+
+@keyframes numMirrorLux{
+  0%{
+    transform:rotateY(0deg);
+    filter:brightness(1);
+  }
+  42%{
+    transform:rotateY(0deg);
+    filter:brightness(1);
+  }
+  50%{
+    transform:rotateY(90deg);
+    filter:brightness(1.5);
+  }
+  58%{
+    transform:rotateY(180deg);
+    filter:brightness(1.15);
+  }
+  66%{
+    transform:rotateY(270deg);
+    filter:brightness(1.4);
+  }
+  74%{
+    transform:rotateY(360deg);
+    filter:brightness(1);
+  }
+  100%{
+    transform:rotateY(360deg);
+    filter:brightness(1);
+  }
 }
-@media(prefers-reduced-motion:reduce){.brand-latin .num{animation:none}}
 
 main.app{padding-top:96px}
 
+/* ===== HERO ===== */
+
 .hero{position:relative;padding:23px 0 16px;min-height:560px}
-.hero-kicker{display:flex;align-items:center;gap:9px;color:var(--green);font-size:12px;font-weight:900;letter-spacing:.2px}
+
+.hero-kicker{
+  display:flex;align-items:center;gap:9px;
+  color:var(--green);font-size:12px;font-weight:900;letter-spacing:.2px
+}
+
 .kicker-line{width:27px;height:2px;background:var(--coral);border-radius:2px}
-.hero h1{font-size:clamp(43px,12vw,67px);line-height:1.22;letter-spacing:-2.8px;margin:20px 0 13px;font-weight:900;max-width:510px}
-.hero h1 .outline{color:transparent;-webkit-text-stroke:1.5px var(--green);position:relative}
-.hero h1 .mark{position:relative;display:inline-block}
-.hero h1 .mark:after{content:"";position:absolute;right:0;left:-4px;bottom:3px;height:12px;background:var(--lime);z-index:-1;transform:skewX(-12deg)}
-.hero-copy{font-size:15px;line-height:2;color:#59645d;max-width:390px;font-weight:500;margin:0}
-.hero-actions{display:flex;gap:10px;margin-top:23px;position:relative;z-index:3}
-.primary-btn{min-height:53px;padding:0 19px;background:var(--green);color:white;border-radius:17px;display:inline-flex;align-items:center;justify-content:center;gap:12px;font-weight:900;font-size:14px;box-shadow:0 12px 25px #176b4b2a;transition:transform .25s,box-shadow .25s}
+
+/* ===== HERO TITLE: ONE-TIME REVEAL ===== */
+
+.hero h1{
+  font-size:clamp(43px,12vw,67px);
+  line-height:1.32;
+  letter-spacing:-2.8px;
+  margin:20px 0 13px;
+  font-weight:900;
+  max-width:510px;
+}
+
+.hero h1 .line{
+  display:block;
+  overflow:hidden;
+  padding-bottom:3px;
+}
+
+.hero h1 .word{
+  display:inline-block;
+  opacity:0;
+  transform:translate3d(0,110%,0);
+  animation:wordReveal 1.25s cubic-bezier(.16,1,.3,1) forwards;
+  will-change:transform,opacity;
+}
+
+/* رشد پیج از ابتدا کاملاً قابل مشاهده است */
+
+.hero h1 .fixed-phrase{
+  display:inline-block;
+  opacity:1;
+  transform:none;
+  animation:none;
+  white-space:nowrap;
+}
+
+/* underline accent */
+
+.hero h1 .accent{
+  position:relative;
+  display:inline-block;
+  z-index:0;
+}
+
+.hero h1 .accent:after{
+  content:"";
+  position:absolute;
+  right:0;
+  left:-4px;
+  bottom:5px;
+  height:12px;
+  background:var(--lime);
+  z-index:-1;
+  transform:skewX(-12deg) scaleX(0);
+  transform-origin:right;
+  animation:accentReveal 1.15s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay:1.65s;
+}
+
+@keyframes wordReveal{
+  0%{
+    opacity:0;
+    transform:translate3d(0,110%,0);
+  }
+  100%{
+    opacity:1;
+    transform:translate3d(0,0,0);
+  }
+}
+
+@keyframes accentReveal{
+  to{
+    transform:skewX(-12deg) scaleX(1);
+  }
+}
+
+/* staggered entrance */
+
+.hero h1 .w1{animation-delay:.15s}
+.hero h1 .w2{animation-delay:.34s}
+.hero h1 .w3{animation-delay:.53s}
+.hero h1 .w4{animation-delay:.78s}
+.hero h1 .w5{animation-delay:1.12s}
+
+/* ===== HERO REMAINING ELEMENTS ===== */
+
+.hero-copy{
+  font-size:15px;line-height:2;color:#59645d;
+  max-width:390px;font-weight:500;margin:0
+}
+
+.hero-actions{
+  display:flex;gap:10px;margin-top:23px;position:relative;z-index:3
+}
+
+.primary-btn{
+  min-height:53px;padding:0 19px;background:var(--green);color:white;
+  border-radius:17px;display:inline-flex;align-items:center;justify-content:center;
+  gap:12px;font-weight:900;font-size:14px;
+  box-shadow:0 12px 25px #176b4b2a;
+  transition:transform .25s,box-shadow .25s
+}
+
 .primary-btn:active{transform:scale(.97)}
 .primary-btn svg{width:18px}
-.secondary-btn{min-height:53px;padding:0 17px;border:1px solid var(--line);border-radius:17px;background:#fff9;color:var(--ink);display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:13px}
+
+.secondary-btn{
+  min-height:53px;padding:0 17px;border:1px solid var(--line);
+  border-radius:17px;background:#fff9;color:var(--ink);
+  display:inline-flex;align-items:center;gap:8px;
+  font-weight:800;font-size:13px
+}
+
 .secondary-btn svg{width:17px}
-.hero-stage{height:232px;position:relative;margin:27px -4px 0;overflow:hidden;border-radius:30px;background:linear-gradient(135deg,#dcebdc 0%,#f1f3e8 52%,#dce5f0 100%);border:1px solid #ffffff;box-shadow:var(--shadow)}
-.stage-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(23,107,75,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(23,107,75,.09) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(120deg,#000,transparent 85%)}
-.stage-label{position:absolute;top:17px;right:18px;font-size:10px;font-weight:900;letter-spacing:1px;color:#426d57}
-.stage-index{position:absolute;top:15px;left:18px;font-size:10px;color:#64776b;font-weight:800}
-.orbit{position:absolute;width:192px;height:192px;border:1px solid #176b4b38;border-radius:50%;left:50%;top:54%;transform:translate(-50%,-50%);animation:orbit 24s linear infinite}
-.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #176b4b30;border-radius:50%;inset:17px}
+
+.hero-stage{
+  height:232px;position:relative;margin:27px -4px 0;
+  overflow:hidden;border-radius:30px;
+  background:linear-gradient(135deg,#dcebdc 0%,#f1f3e8 52%,#dce5f0 100%);
+  border:1px solid #ffffff;box-shadow:var(--shadow)
+}
+
+.stage-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(23,107,75,.09) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(23,107,75,.09) 1px,transparent 1px);
+  background-size:28px 28px;
+  mask-image:linear-gradient(120deg,#000,transparent 85%)
+}
+
+.stage-label{
+  position:absolute;top:17px;right:18px;
+  font-size:10px;font-weight:900;letter-spacing:1px;color:#426d57
+}
+
+.stage-index{
+  position:absolute;top:15px;left:18px;
+  font-size:10px;color:#64776b;font-weight:800
+}
+
+.orbit{
+  position:absolute;width:192px;height:192px;
+  border:1px solid #176b4b38;border-radius:50%;
+  left:50%;top:54%;transform:translate(-50%,-50%);
+  animation:orbit 24s linear infinite
+}
+
+.orbit:before,.orbit:after{
+  content:"";position:absolute;border:1px solid #176b4b30;
+  border-radius:50%;inset:17px
+}
+
 .orbit:after{inset:39px;border-style:dashed}
-.orbit-node{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--coral);top:20px;left:28px;box-shadow:0 0 0 7px #ef765724}
-.core-mark{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:29px;background:var(--green);display:grid;place-items:center;color:var(--lime);box-shadow:0 16px 30px #176b4b40;rotate:-8deg}
+
+.orbit-node{
+  position:absolute;width:12px;height:12px;border-radius:50%;
+  background:var(--coral);top:20px;left:28px;
+  box-shadow:0 0 0 7px #ef765724
+}
+
+.core-mark{
+  position:absolute;left:50%;top:54%;
+  transform:translate(-50%,-50%);
+  width:92px;height:92px;border-radius:29px;
+  background:var(--green);display:grid;place-items:center;
+  color:var(--lime);box-shadow:0 16px 30px #176b4b40;rotate:-8deg
+}
+
 .core-mark svg{width:52px;height:52px}
-.float-tag{position:absolute;z-index:2;padding:9px 12px;border-radius:12px;background:#fffefaed;border:1px solid #fff;box-shadow:0 9px 24px #1b3a2a16;font-size:10px;font-weight:900;backdrop-filter:blur(12px)}
-.tag-a{right:20px;bottom:30px;rotate:-5deg}.tag-b{left:17px;top:82px;rotate:5deg}.tag-c{left:42px;bottom:25px;background:var(--lime)}
-.stage-path{position:absolute;right:50%;top:50%;width:220px;height:90px;border-top:2px dashed #176b4b5c;border-radius:50%;transform:translate(50%,-15%) rotate(-16deg)}
-.scroll-note{position:absolute;left:0;top:285px;writing-mode:vertical-rl;display:flex;align-items:center;gap:8px;color:#7a867d;font-size:9px;font-weight:800;letter-spacing:1px}
-.scroll-note:after{content:"";height:40px;width:1px;background:linear-gradient(var(--coral),transparent)}
+
+.float-tag{
+  position:absolute;z-index:2;padding:9px 12px;
+  border-radius:12px;background:#fffefaed;border:1px solid #fff;
+  box-shadow:0 9px 24px #1b3a2a16;font-size:10px;
+  font-weight:900;backdrop-filter:blur(12px)
+}
+
+.tag-a{right:20px;bottom:30px;rotate:-5deg}
+.tag-b{left:17px;top:82px;rotate:5deg}
+.tag-c{left:42px;bottom:25px;background:var(--lime)}
+
+.stage-path{
+  position:absolute;right:50%;top:50%;width:220px;height:90px;
+  border-top:2px dashed #176b4b5c;border-radius:50%;
+  transform:translate(50%,-15%) rotate(-16deg)
+}
+
+.scroll-note{
+  position:absolute;left:0;top:285px;writing-mode:vertical-rl;
+  display:flex;align-items:center;gap:8px;color:#7a867d;
+  font-size:9px;font-weight:800;letter-spacing:1px
+}
+
+.scroll-note:after{
+  content:"";height:40px;width:1px;
+  background:linear-gradient(var(--coral),transparent)
+}
+
+/* ===== SECTIONS ===== */
+
 .section{margin-top:45px;position:relative}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin-bottom:18px}
-.eyebrow{font-size:10px;letter-spacing:1.2px;color:var(--green);font-weight:900;text-transform:uppercase}
-.section h2{font-size:27px;line-height:1.4;margin:5px 0 0;font-weight:900;letter-spacing:-.9px}
-.section-note{font-size:11px;color:var(--muted);font-weight:700;max-width:115px;text-align:left;line-height:1.8}
-.signal-panel{position:relative;padding:19px;border-radius:27px;background:var(--ink);color:white;overflow:hidden;box-shadow:0 18px 40px #151b1820}
-.signal-panel:before{content:"";position:absolute;width:230px;height:230px;border:1px solid #ffffff18;border-radius:50%;left:-82px;top:-110px;box-shadow:0 0 0 22px #ffffff08,0 0 0 48px #ffffff06}
-.signal-top{display:flex;align-items:center;justify-content:space-between;position:relative}
+
+.section-head{
+  display:flex;justify-content:space-between;align-items:end;
+  gap:14px;margin-bottom:18px
+}
+
+.eyebrow{
+  font-size:10px;letter-spacing:1.2px;color:var(--green);
+  font-weight:900;text-transform:uppercase
+}
+
+.section h2{
+  font-size:27px;line-height:1.4;margin:5px 0 0;
+  font-weight:900;letter-spacing:-.9px
+}
+
+.section-note{
+  font-size:11px;color:var(--muted);font-weight:700;
+  max-width:115px;text-align:left;line-height:1.8
+}
+
+.signal-panel{
+  position:relative;padding:19px;border-radius:27px;
+  background:var(--ink);color:white;overflow:hidden;
+  box-shadow:0 18px 40px #151b1820
+}
+
+.signal-panel:before{
+  content:"";position:absolute;width:230px;height:230px;
+  border:1px solid #ffffff18;border-radius:50%;
+  left:-82px;top:-110px;
+  box-shadow:0 0 0 22px #ffffff08,0 0 0 48px #ffffff06
+}
+
+.signal-top{
+  display:flex;align-items:center;justify-content:space-between;position:relative
+}
+
 .signal-top span{font-size:11px;color:#c2d1c7;font-weight:700}
-.signal-chip{background:#C7FF00;color:#1c3528;border-radius:999px;padding:6px 10px;font-size:10px;font-weight:900}
-.signal-title{font-size:20px;font-weight:900;line-height:1.6;margin:18px 0 5px;position:relative}
-.signal-sub{font-size:12px;line-height:1.9;color:#c2cec5;position:relative;margin:0}
+
+.signal-chip{
+  background:#C7FF00;color:#1c3528;border-radius:999px;
+  padding:6px 10px;font-size:10px;font-weight:900
+}
+
+.signal-title{
+  font-size:20px;font-weight:900;line-height:1.6;
+  margin:18px 0 5px;position:relative
+}
+
+.signal-sub{
+  font-size:12px;line-height:1.9;color:#c2cec5;
+  position:relative;margin:0
+}
+
 .signal-visual{height:90px;margin-top:14px;position:relative}
 .signal-visual svg{width:100%;height:100%;overflow:visible}
-.signal-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #ffffff20;padding-top:13px;margin-top:8px;color:#d3ded5;font-size:10px;font-weight:700}
+
+.signal-foot{
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid #ffffff20;padding-top:13px;
+  margin-top:8px;color:#d3ded5;font-size:10px;font-weight:700
+}
+
 .signal-foot b{color:var(--lime);font-size:12px}
-.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:11px}
-.metric{padding:15px;border:1px solid var(--line);border-radius:20px;background:#fff9;min-height:103px;position:relative;overflow:hidden}
-.metric:after{content:"";position:absolute;width:52px;height:52px;border:1px solid #176b4b25;border-radius:17px;left:-15px;bottom:-18px;rotate:24deg}
-.metric-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:10px;font-weight:800}
-.metric-icon{width:27px;height:27px;border-radius:9px;background:var(--green-3);display:grid;place-items:center;color:var(--green)}
+
+.metrics{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:10px;margin-top:11px
+}
+
+.metric{
+  padding:15px;border:1px solid var(--line);
+  border-radius:20px;background:#fff9;
+  min-height:103px;position:relative;overflow:hidden
+}
+
+.metric:after{
+  content:"";position:absolute;width:52px;height:52px;
+  border:1px solid #176b4b25;border-radius:17px;
+  left:-15px;bottom:-18px;rotate:24deg
+}
+
+.metric-top{
+  display:flex;align-items:center;justify-content:space-between;
+  color:var(--muted);font-size:10px;font-weight:800
+}
+
+.metric-icon{
+  width:27px;height:27px;border-radius:9px;
+  background:var(--green-3);display:grid;place-items:center;color:var(--green)
+}
+
 .metric-icon svg{width:15px}
 .metric strong{display:block;font-size:18px;margin-top:10px;font-weight:900}
 .metric small{font-size:10px;color:var(--muted);font-weight:700}
+
+/* ===== ROUTES ===== */
+
 .routes{display:grid;gap:12px}
-.route-card{position:relative;min-height:178px;padding:18px;border-radius:25px;overflow:hidden;border:1px solid #ffffff;background:var(--white);box-shadow:0 12px 30px #182b2010;transition:transform .25s}
+
+.route-card{
+  position:relative;min-height:178px;padding:18px;
+  border-radius:25px;overflow:hidden;
+  border:1px solid #ffffff;background:var(--white);
+  box-shadow:0 12px 30px #182b2010;transition:transform .25s
+}
+
 .route-card:active{transform:scale(.985)}
 .route-card.primary-route{background:var(--green);color:white}
-.route-card:before{content:"";position:absolute;width:180px;height:180px;border:1px solid currentColor;opacity:.12;border-radius:50%;left:-55px;bottom:-95px;box-shadow:0 0 0 20px #ffffff08,0 0 0 43px #ffffff06}
+
+.route-card:before{
+  content:"";position:absolute;width:180px;height:180px;
+  border:1px solid currentColor;opacity:.12;border-radius:50%;
+  left:-55px;bottom:-95px;
+  box-shadow:0 0 0 20px #ffffff08,0 0 0 43px #ffffff06
+}
+
 .route-no{font-size:10px;letter-spacing:1px;font-weight:900;opacity:.65}
+
 .route-card h3{font-size:21px;margin:12px 0 5px;font-weight:900}
-.route-card p{font-size:12px;line-height:1.9;margin:0;max-width:260px;opacity:.75;font-weight:600}
-.route-arrow{position:absolute;left:17px;bottom:17px;width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:var(--lime);color:var(--ink)}
+
+.route-card p{
+  font-size:12px;line-height:1.9;margin:0;
+  max-width:260px;opacity:.75;font-weight:600
+}
+
+.route-arrow{
+  position:absolute;left:17px;bottom:17px;width:38px;height:38px;
+  border-radius:13px;display:grid;place-items:center;
+  background:var(--lime);color:var(--ink)
+}
+
 .route-arrow svg{width:19px}
-.route-symbol{position:absolute;left:27px;top:26px;width:75px;height:75px;opacity:.95}
+
+.route-symbol{
+  position:absolute;left:27px;top:26px;
+  width:75px;height:75px;opacity:.95
+}
+
 .route-symbol svg{width:100%;height:100%}
+
+/* ===== FEATURES ===== */
+
 .features{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.feature{padding:15px 14px;border-radius:20px;background:var(--paper-2);min-height:142px;position:relative;overflow:hidden;border:1px solid #fff}
-.feature:nth-child(2){background:#e7e9fa}.feature:nth-child(3){background:#f9e8df}.feature:nth-child(4){background:#e1eee6}
-.feature-icon{width:38px;height:38px;border-radius:13px;background:#fff9;display:grid;place-items:center;color:var(--green);margin-bottom:13px}
+
+.feature{
+  padding:15px 14px;border-radius:20px;background:var(--paper-2);
+  min-height:142px;position:relative;overflow:hidden;border:1px solid #fff
+}
+
+.feature:nth-child(2){background:#e7e9fa}
+.feature:nth-child(3){background:#f9e8df}
+.feature:nth-child(4){background:#e1eee6}
+
+.feature-icon{
+  width:38px;height:38px;border-radius:13px;background:#fff9;
+  display:grid;place-items:center;color:var(--green);margin-bottom:13px
+}
+
 .feature-icon svg{width:20px;height:20px}
 .feature h3{font-size:14px;margin:0 0 5px;font-weight:900}
-.feature p{font-size:11px;line-height:1.8;color:#626e65;margin:0;font-weight:600}
-.feature-index{position:absolute;left:12px;top:12px;font-size:9px;font-weight:900;color:#738078;opacity:.7}
-.manifesto{padding:23px 20px;border-radius:28px;background:var(--lime);position:relative;overflow:hidden}
-.manifesto:after{content:"G24";position:absolute;left:-12px;bottom:-37px;font-size:115px;font-weight:900;letter-spacing:-12px;color:#17261a0b}
+
+.feature p{
+  font-size:11px;line-height:1.8;color:#626e65;
+  margin:0;font-weight:600
+}
+
+.feature-index{
+  position:absolute;left:12px;top:12px;
+  font-size:9px;font-weight:900;color:#738078;opacity:.7
+}
+
+/* ===== MANIFESTO ===== */
+
+.manifesto{
+  padding:23px 20px;border-radius:28px;
+  background:var(--lime);position:relative;overflow:hidden
+}
+
+.manifesto:after{
+  content:"G24";position:absolute;left:-12px;bottom:-37px;
+  font-size:115px;font-weight:900;letter-spacing:-12px;color:#17261a0b
+}
+
 .manifesto small{font-size:10px;font-weight:900;color:#3c5a3f}
-.manifesto h2{font-size:26px;line-height:1.5;margin:9px 0 7px;max-width:390px}
-.manifesto p{font-size:12px;line-height:2;color:#425342;margin:0;max-width:380px;font-weight:600}
-.manifesto .manifesto-link{display:inline-flex;align-items:center;gap:8px;margin-top:17px;font-size:12px;font-weight:900;border-bottom:1px solid #1d382a;padding-bottom:5px;position:relative;z-index:1}
+
+.manifesto h2{
+  font-size:26px;line-height:1.5;
+  margin:9px 0 7px;max-width:390px
+}
+
+.manifesto p{
+  font-size:12px;line-height:2;color:#425342;
+  margin:0;max-width:380px;font-weight:600
+}
+
+.manifesto .manifesto-link{
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:17px;font-size:12px;font-weight:900;
+  border-bottom:1px solid #1d382a;padding-bottom:5px;
+  position:relative;z-index:1
+}
+
 .manifesto-link svg{width:16px}
-.guide-strip{display:flex;align-items:center;gap:13px;padding:15px;border-radius:22px;background:#fff;border:1px solid var(--line)}
-.guide-symbol{width:47px;height:47px;flex:0 0 47px;border-radius:16px;background:#e8eafb;color:var(--blue);display:grid;place-items:center}
+
+/* ===== GUIDE ===== */
+
+.guide-strip{
+  display:flex;align-items:center;gap:13px;padding:15px;
+  border-radius:22px;background:#fff;border:1px solid var(--line)
+}
+
+.guide-symbol{
+  width:47px;height:47px;flex:0 0 47px;
+  border-radius:16px;background:#e8eafb;color:var(--blue);
+  display:grid;place-items:center
+}
+
 .guide-symbol svg{width:23px}
 .guide-text{flex:1;min-width:0}
 .guide-text b{font-size:13px;display:block}
-.guide-text span{font-size:10px;color:var(--muted);font-weight:600;line-height:1.8}
-.guide-strip>a{width:35px;height:35px;border-radius:12px;background:var(--ink);color:white;display:grid;place-items:center}
-.guide-strip>a svg{width:17px}
-.footer-note{text-align:center;color:#879189;font-size:10px;font-weight:700;margin:30px 0 12px}
 
-/* ===== NAV (fixed, sharp, same height/width as header) ===== */
+.guide-text span{
+  font-size:10px;color:var(--muted);
+  font-weight:600;line-height:1.8
+}
+
+.guide-strip>a{
+  width:35px;height:35px;border-radius:12px;
+  background:var(--ink);color:white;display:grid;place-items:center
+}
+
+.guide-strip>a svg{width:17px}
+
+.footer-note{
+  text-align:center;color:#879189;font-size:10px;
+  font-weight:700;margin:30px 0 12px
+}
+
+/* ===== NAV ===== */
+
 .bottom-nav{
   position:fixed;z-index:30;bottom:0;left:0;right:0;
   height:76px;
@@ -187,24 +666,76 @@ main.app{padding-top:96px}
   border-top:1px solid rgba(255,255,255,.08);
   border-radius:0;
   box-shadow:0 -10px 34px rgba(8,16,12,.45);
-  max-width:560px;margin:auto;
+  max-width:560px;margin:auto
 }
-.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#aebbb2;font-size:9px;font-weight:800;border-radius:0;transition:background .2s,color .2s}
+
+.nav-item{
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:4px;color:#aebbb2;
+  font-size:9px;font-weight:800;border-radius:0;
+  transition:background .2s,color .2s
+}
+
 .nav-item svg{width:20px;height:20px;stroke-width:1.8}
 .nav-item.active{background:var(--lime);color:#1c2a20}
 
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+/* ===== SCROLL REVEAL ===== */
+
+.reveal{
+  opacity:0;transform:translateY(22px);
+  transition:opacity .7s cubic-bezier(.2,.8,.2,1),
+             transform .7s cubic-bezier(.2,.8,.2,1)
+}
+
 .reveal.in{opacity:1;transform:none}
 [data-tilt]{transform-style:preserve-3d}
+
 @keyframes pulse{50%{box-shadow:0 0 0 7px #39a76b08}}
 @keyframes orbit{to{transform:translate(-50%,-50%) rotate(360deg)}}
-@media(min-width:700px){body{padding:22px 0}.app{border:1px solid #fff;border-radius:38px;box-shadow:0 30px 90px #142b1c14;overflow:hidden}.hero{min-height:590px}.hero-stage{height:250px}}
-@media(max-width:380px){.app{padding-left:14px;padding-right:14px}.hero h1{font-size:43px}.hero-stage{height:210px}.section h2{font-size:24px}.primary-btn,.secondary-btn{padding-inline:13px;font-size:12px}.brand-latin{font-size:19px}.brand-right .subtitle{font-size:12.5px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
+/* ===== RESPONSIVE ===== */
+
+@media(min-width:700px){
+  body{padding:22px 0}
+  .app{
+    border:1px solid #fff;border-radius:38px;
+    box-shadow:0 30px 90px #142b1c14;overflow:hidden
+  }
+  .hero{min-height:590px}
+  .hero-stage{height:250px}
+}
+
+@media(max-width:380px){
+  .app{padding-left:14px;padding-right:14px}
+  .hero h1{font-size:43px}
+  .hero-stage{height:210px}
+  .section h2{font-size:24px}
+  .primary-btn,.secondary-btn{padding-inline:13px;font-size:12px}
+  .brand-latin{font-size:19px}
+  .brand-right .subtitle{font-size:12.5px}
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important
+  }
+
+  .reveal{opacity:1;transform:none}
+  .hero h1 .word{opacity:1;transform:none}
+  .hero h1 .accent:after{transform:skewX(-12deg) scaleX(1)}
+}
 </style>
 </head>
+
 <body>
+
 <div class="grain" aria-hidden="true"></div>
+<div class="halo" aria-hidden="true"></div>
 
 <header class="topbar">
   <a class="brand" href="index.html" aria-label="Growza24">
@@ -213,83 +744,284 @@ main.app{padding-top:96px}
       <span class="subtitle">پلتفرم رشد <span class="hl">پیج اینستاگرام</span></span>
     </span>
   </a>
-  <span class="brand-latin" aria-label="Growza24"><span class="g">Growza</span><span class="num">24</span></span>
+
+  <span class="brand-latin" aria-label="Growza24">
+    <span class="g">Growza</span><span class="num">24</span>
+  </span>
 </header>
 
 <main class="app">
+
   <section class="hero">
-    <div class="hero-kicker"><i class="kicker-line"></i> GROWZA / DIGITAL GROWTH SYSTEM</div>
-    <h1>قرار نیست<br><span class="mark">معمولی</span> دیده شوی<span class="outline">.</span></h1>
-    <p class="hero-copy">برای رشد اینستاگرام، فقط بیشتر دیده شدن کافی نیست. مسیر درست را انتخاب کن، عملکردت را بشناس و با تصمیم‌های دقیق‌تر جلو برو.</p>
+
+    <div class="hero-kicker">
+      <i class="kicker-line"></i>
+      GROWZA / DIGITAL GROWTH SYSTEM
+    </div>
+
+    <h1>
+      <span class="line">
+        <span class="word w1">آیا</span>
+        <span class="word w2">نیاز</span>
+        <span class="word w3">فوری</span>
+      </span>
+
+      <span class="line">
+        <span class="word w4">به</span>
+        <span class="fixed-phrase">رشد پیج</span>
+        <span class="word w5 accent">داری؟</span>
+      </span>
+    </h1>
+
+    <p class="hero-copy">
+      برای رشد اینستاگرام، فقط بیشتر دیده شدن کافی نیست. مسیر درست را انتخاب کن، عملکردت را بشناس و با تصمیم‌های دقیق‌تر جلو برو.
+    </p>
+
     <div class="hero-actions">
-      <a class="primary-btn" href="activation.html">شروع مسیر رشد
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
+      <a class="primary-btn" href="activation.html">
+        شروع مسیر رشد
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5m7 7-7-7 7-7"/>
+        </svg>
       </a>
+
       <a class="secondary-btn" href="guide.html">چطور کار می‌کند؟</a>
     </div>
+
     <div class="hero-stage" aria-label="نمای گرافیکی مسیر رشد">
       <div class="stage-grid"></div>
-      <span class="stage-label">GROWTH / SIGNAL MAP</span><span class="stage-index">FIG. 024 — 01</span>
+
+      <span class="stage-label">GROWTH / SIGNAL MAP</span>
+      <span class="stage-index">FIG. 024 — 01</span>
+
       <div class="stage-path"></div>
       <div class="orbit"><i class="orbit-node"></i></div>
+
       <div class="core-mark">
-        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 48V16M10 48h45"/><path d="m16 39 11-12 9 6 16-19"/><path d="M42 14h10v10"/></svg>
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 48V16M10 48h45"/>
+          <path d="m16 39 11-12 9 6 16-19"/>
+          <path d="M42 14h10v10"/>
+        </svg>
       </div>
+
       <span class="float-tag tag-a">هدفمند، نه تصادفی</span>
       <span class="float-tag tag-b">شناخت سیگنال‌ها</span>
       <span class="float-tag tag-c">GROW / 24</span>
     </div>
+
     <div class="scroll-note">SCROLL TO EXPLORE</div>
+
   </section>
 
   <section class="section reveal">
-    <div class="section-head"><div><div class="eyebrow">THE GROWTH ENGINE</div><h2>رشد را قابل‌فهم کن.</h2></div><div class="section-note">از اقدام تا بررسی نتیجه؛ یک مسیر روشن.</div></div>
+
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">THE GROWTH ENGINE</div>
+        <h2>رشد را قابل‌فهم کن.</h2>
+      </div>
+      <div class="section-note">از اقدام تا بررسی نتیجه؛ یک مسیر روشن.</div>
+    </div>
+
     <div class="signal-panel">
-      <div class="signal-top"><span>نقشه تصمیم‌گیری رشد</span><b class="signal-chip">G24 / SYSTEM</b></div>
+
+      <div class="signal-top">
+        <span>نقشه تصمیم‌گیری رشد</span>
+        <b class="signal-chip">G24 / SYSTEM</b>
+      </div>
+
       <h3 class="signal-title">هر حرکت، یک نشانه دارد.</h3>
-      <p class="signal-sub">به‌جای حرکت‌های پراکنده، مسیرت را بر اساس هدف و بازخورد دنبال کن.</p>
+
+      <p class="signal-sub">
+        به‌جای حرکت‌های پراکنده، مسیرت را بر اساس هدف و بازخورد دنبال کن.
+      </p>
+
       <div class="signal-visual">
         <svg viewBox="0 0 440 100" preserveAspectRatio="none" aria-hidden="true">
-          <defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#C7FF00" stop-opacity=".34"/><stop offset="1" stop-color="#C7FF00" stop-opacity="0"/></linearGradient></defs>
+          <defs>
+            <linearGradient id="area" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#C7FF00" stop-opacity=".34"/>
+              <stop offset="1" stop-color="#C7FF00" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+
           <path d="M0 78 C35 72 42 55 75 62 S118 78 150 49 S203 58 232 37 S277 48 310 27 S365 40 440 8 L440 100 L0 100Z" fill="url(#area)"/>
-          <path d="M0 78 C35 72 42 55 75 62 S118 78 150 49 S203 58 232 37 S277 48 310 27 S365 40 440 8" fill="none" stroke="#C7FF00" stroke-width="3" stroke-linecap="round"/>
-          <g fill="#222D29" stroke="#C7FF00" stroke-width="2"><circle cx="75" cy="62" r="4"/><circle cx="150" cy="49" r="4"/><circle cx="232" cy="37" r="4"/><circle cx="310" cy="27" r="4"/><circle cx="440" cy="8" r="4"/></g>
+
+          <path d="M0 78 C35 72 42 55 75 62 S118 78 150 49 S203 58 232 37 S277 48 310 27 S365 40 440 8"
+            fill="none" stroke="#C7FF00" stroke-width="3" stroke-linecap="round"/>
+
+          <g fill="#222D29" stroke="#C7FF00" stroke-width="2">
+            <circle cx="75" cy="62" r="4"/>
+            <circle cx="150" cy="49" r="4"/>
+            <circle cx="232" cy="37" r="4"/>
+            <circle cx="310" cy="27" r="4"/>
+            <circle cx="440" cy="8" r="4"/>
+          </g>
+
           <path d="M0 94H440" stroke="#ffffff25" stroke-dasharray="3 6"/>
         </svg>
       </div>
-      <div class="signal-foot"><span>هدف‌گذاری ← اقدام ← بازبینی</span><b>مسیر اختصاصی تو</b></div>
+
+      <div class="signal-foot">
+        <span>هدف‌گذاری ← اقدام ← بازبینی</span>
+        <b>مسیر اختصاصی تو</b>
+      </div>
+
     </div>
+
     <div class="metrics">
-      <article class="metric"><div class="metric-top"><span>تمرکز اول</span><i class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M22 12h-3"/></svg></i></div><strong>هدف‌گذاری</strong><small>بدان دنبال چه نتیجه‌ای هستی</small></article>
-      <article class="metric"><div class="metric-top"><span>تمرکز دوم</span><i class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 18V6m0 12h16"/><path d="m7 15 4-4 3 2 5-7"/></svg></i></div><strong>تحلیل عملکرد</strong><small>نشانه‌ها را درست بخوان</small></article>
+
+      <article class="metric">
+        <div class="metric-top">
+          <span>تمرکز اول</span>
+          <i class="metric-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="8"/>
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2v3M22 12h-3"/>
+            </svg>
+          </i>
+        </div>
+        <strong>هدف‌گذاری</strong>
+        <small>بدان دنبال چه نتیجه‌ای هستی</small>
+      </article>
+
+      <article class="metric">
+        <div class="metric-top">
+          <span>تمرکز دوم</span>
+          <i class="metric-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 18V6m0 12h16"/>
+              <path d="m7 15 4-4 3 2 5-7"/>
+            </svg>
+          </i>
+        </div>
+        <strong>تحلیل عملکرد</strong>
+        <small>نشانه‌ها را درست بخوان</small>
+      </article>
+
     </div>
   </section>
 
   <section class="section reveal">
-    <div class="section-head"><div><div class="eyebrow">CHOOSE YOUR DIRECTION</div><h2>از کجا شروع می‌کنی؟</h2></div><div class="section-note">دو مسیر، یک هدف: رشد آگاهانه‌تر.</div></div>
+
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">CHOOSE YOUR DIRECTION</div>
+        <h2>از کجا شروع می‌کنی؟</h2>
+      </div>
+      <div class="section-note">دو مسیر، یک هدف: رشد آگاهانه‌تر.</div>
+    </div>
+
     <div class="routes">
+
       <a class="route-card primary-route" href="activation.html">
         <span class="route-no">01 / ACTIVATE</span>
-        <div class="route-symbol"><svg viewBox="0 0 90 90" fill="none" stroke="#C7FF00" stroke-width="1.5"><circle cx="45" cy="45" r="31"/><circle cx="45" cy="45" r="21" stroke-dasharray="3 5"/><path d="M45 5v17M45 68v17M5 45h17M68 45h17M45 45l20-20"/><circle cx="45" cy="45" r="5" fill="#C7FF00"/></svg></div>
-        <h3>فعال‌سازی مسیر رشد</h3><p>مسیر مناسب را انتخاب کن و قدم اول را با آگاهی بردار.</p>
-        <span class="route-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m7 7-7-7 7-7"/></svg></span>
+
+        <div class="route-symbol">
+          <svg viewBox="0 0 90 90" fill="none" stroke="#C7FF00" stroke-width="1.5">
+            <circle cx="45" cy="45" r="31"/>
+            <circle cx="45" cy="45" r="21" stroke-dasharray="3 5"/>
+            <path d="M45 5v17M45 68v17M5 45h17M68 45h17M45 45l20-20"/>
+            <circle cx="45" cy="45" r="5" fill="#C7FF00"/>
+          </svg>
+        </div>
+
+        <h3>فعال‌سازی مسیر رشد</h3>
+        <p>مسیر مناسب را انتخاب کن و قدم اول را با آگاهی بردار.</p>
+
+        <span class="route-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5m7 7-7-7 7-7"/>
+          </svg>
+        </span>
       </a>
+
       <a class="route-card" href="performance.html">
         <span class="route-no">02 / INSIGHT</span>
-        <div class="route-symbol"><svg viewBox="0 0 90 90" fill="none" stroke="#4858d7" stroke-width="1.7"><path d="M12 70V18M12 70h68"/><path d="m20 59 16-18 13 8 23-30"/><path d="M57 19h15v15"/></svg></div>
-        <h3>بررسی عملکرد</h3><p>وضعیت و روند عملکردت را دنبال کن و تصمیم دقیق‌تری بگیر.</p>
-        <span class="route-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m7 7-7-7 7-7"/></svg></span>
+
+        <div class="route-symbol">
+          <svg viewBox="0 0 90 90" fill="none" stroke="#4858d7" stroke-width="1.7">
+            <path d="M12 70V18M12 70h68"/>
+            <path d="m20 59 16-18 13 8 23-30"/>
+            <path d="M57 19h15v15"/>
+          </svg>
+        </div>
+
+        <h3>بررسی عملکرد</h3>
+        <p>وضعیت و روند عملکردت را دنبال کن و تصمیم دقیق‌تری بگیر.</p>
+
+        <span class="route-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5m7 7-7-7 7-7"/>
+          </svg>
+        </span>
       </a>
+
     </div>
   </section>
 
   <section class="section reveal">
-    <div class="section-head"><div><div class="eyebrow">BUILT AROUND YOUR GOAL</div><h2>فقط ابزار نیست؛ تجربه است.</h2></div><div class="section-note">جزئیات کوچک، تصمیم‌های بهتر.</div></div>
+
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">BUILT AROUND YOUR GOAL</div>
+        <h2>فقط ابزار نیست؛ تجربه است.</h2>
+      </div>
+      <div class="section-note">جزئیات کوچک، تصمیم‌های بهتر.</div>
+    </div>
+
     <div class="features">
-      <article class="feature"><span class="feature-index">A / 01</span><i class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><h3>مسیر روشن</h3><p>قدم بعدی را بشناس؛ بدون سردرگمی میان گزینه‌ها.</p></article>
-      <article class="feature"><span class="feature-index">B / 02</span><i class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5m0 14h16"/><path d="m7 15 4-4 3 2 5-7"/></svg></i><h3>نگاه تحلیلی</h3><p>به‌جای حدس، نشانه‌ها و عملکرد را بررسی کن.</p></article>
-      <article class="feature"><span class="feature-index">C / 03</span><i class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-4Z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg></i><h3>تجربه متمرکز</h3><p>اجزای ضروری، منظم و در دسترس تو قرار می‌گیرند.</p></article>
-      <article class="feature"><span class="feature-index">D / 04</span><i class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M12 4v16"/><circle cx="12" cy="12" r="9"/></svg></i><h3>انتخاب آگاهانه</h3><p>هدف خودت را مبنا قرار بده و متناسب با آن پیش برو.</p></article>
+
+      <article class="feature">
+        <span class="feature-index">A / 01</span>
+        <i class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+        </i>
+        <h3>مسیر روشن</h3>
+        <p>قدم بعدی را بشناس؛ بدون سردرگمی میان گزینه‌ها.</p>
+      </article>
+
+      <article class="feature">
+        <span class="feature-index">B / 02</span>
+        <i class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 19V5m0 14h16"/>
+            <path d="m7 15 4-4 3 2 5-7"/>
+          </svg>
+        </i>
+        <h3>نگاه تحلیلی</h3>
+        <p>به‌جای حدس، نشانه‌ها و عملکرد را بررسی کن.</p>
+      </article>
+
+      <article class="feature">
+        <span class="feature-index">C / 03</span>
+        <i class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-4Z"/>
+            <path d="m8.5 12 2.3 2.3 4.8-5"/>
+          </svg>
+        </i>
+        <h3>تجربه متمرکز</h3>
+        <p>اجزای ضروری، منظم و در دسترس تو قرار می‌گیرند.</p>
+      </article>
+
+      <article class="feature">
+        <span class="feature-index">D / 04</span>
+        <i class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 12h16M12 4v16"/>
+            <circle cx="12" cy="12" r="9"/>
+          </svg>
+        </i>
+        <h3>انتخاب آگاهانه</h3>
+        <p>هدف خودت را مبنا قرار بده و متناسب با آن پیش برو.</p>
+      </article>
+
     </div>
   </section>
 
@@ -298,54 +1030,129 @@ main.app{padding-top:96px}
       <small>THE GROWZA PRINCIPLE / 024</small>
       <h2>رشد خوب، از تصمیم درست شروع می‌شود.</h2>
       <p>گروزای ۲۴ برای این ساخته شده که مسیر رشد را روشن‌تر، قابل‌پیگیری‌تر و هدفمندتر تجربه کنی.</p>
-      <a class="manifesto-link" href="activation.html">مسیرم را انتخاب می‌کنم <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m7 7-7-7 7-7"/></svg></a>
+
+      <a class="manifesto-link" href="activation.html">
+        مسیرم را انتخاب می‌کنم
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5m7 7-7-7 7-7"/>
+        </svg>
+      </a>
     </div>
   </section>
 
   <section class="section reveal">
     <a class="guide-strip" href="guide.html">
-      <i class="guide-symbol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/><path d="M4 6h13M8 10h8M8 14h6"/></svg></i>
-      <span class="guide-text"><b>پیش از شروع، با نحوه کار آشنا شو</b><span>راهنمای گام‌به‌گام گروزای ۲۴ را ببین.</span></span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m7 7-7-7 7-7"/></svg></span>
+
+      <i class="guide-symbol">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/>
+          <path d="M4 6h13M8 10h8M8 14h6"/>
+        </svg>
+      </i>
+
+      <span class="guide-text">
+        <b>پیش از شروع، با نحوه کار آشنا شو</b>
+        <span>راهنمای گام‌به‌گام گروزای ۲۴ را ببین.</span>
+      </span>
+
+      <span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5m7 7-7-7 7-7"/>
+        </svg>
+      </span>
+
     </a>
   </section>
 
   <p class="footer-note">GROWZA24 · مسیر رشد، با نگاه دقیق‌تر</p>
+
 </main>
 
 <nav class="bottom-nav" aria-label="ناوبری اصلی">
-  <a class="nav-item active" href="index.html" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>خانه</span></a>
-  <a class="nav-item" href="activation.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>فعال‌سازی</span></a>
-  <a class="nav-item" href="performance.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5m0 14h16"/><path d="m7 15 4-4 3 2 5-7"/></svg><span>عملکرد</span></a>
-  <a class="nav-item" href="guide.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/><path d="M4 6h13M8 10h8M8 14h6"/></svg><span>راهنما</span></a>
+
+  <a class="nav-item active" href="index.html" aria-current="page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/>
+    </svg>
+    <span>خانه</span>
+  </a>
+
+  <a class="nav-item" href="activation.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5l3 2"/>
+    </svg>
+    <span>فعال‌سازی</span>
+  </a>
+
+  <a class="nav-item" href="performance.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19V5m0 14h16"/>
+      <path d="m7 15 4-4 3 2 5-7"/>
+    </svg>
+    <span>عملکرد</span>
+  </a>
+
+  <a class="nav-item" href="guide.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/>
+      <path d="M4 6h13M8 10h8M8 14h6"/>
+    </svg>
+    <span>راهنما</span>
+  </a>
+
 </nav>
 
 <script>
 (() => {
+
   const items = document.querySelectorAll('.reveal');
+
   if ('IntersectionObserver' in window) {
+
     const io = new IntersectionObserver(entries => {
+
       entries.forEach(entry => {
+
         if (entry.isIntersecting) {
           entry.target.classList.add('in');
           io.unobserve(entry.target);
         }
+
       });
+
     }, {threshold:.12, rootMargin:'0px 0px -35px 0px'});
+
     items.forEach(item => io.observe(item));
+
   } else {
+
     items.forEach(item => item.classList.add('in'));
+
   }
 
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
     document.querySelectorAll('.route-card,.metric,.feature').forEach(el => {
-      el.addEventListener('pointerdown', () => el.style.transform = 'scale(.985)');
-      ['pointerup','pointercancel','pointerleave'].forEach(evt =>
-        el.addEventListener(evt, () => el.style.transform = '')
-      );
+
+      el.addEventListener('pointerdown', () => {
+        el.style.transform = 'scale(.985)';
+      });
+
+      ['pointerup','pointercancel','pointerleave'].forEach(evt => {
+
+        el.addEventListener(evt, () => {
+          el.style.transform = '';
+        });
+
+      });
+
     });
+
   }
+
 })();
 </script>
+
 </body>
-                                                                                                  </html>
+  </html>

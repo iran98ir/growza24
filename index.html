@@ -741,7 +741,6 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
   font-weight:600;
 }
 
-/* لینک غیرکلیک‌پذیر «مسیر رشدت را انتخاب کن» */
 .manifesto .manifesto-link{
   display:inline-flex;
   align-items:center;
@@ -759,7 +758,7 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
 
 .manifesto-link svg{width:16px}
 
-/* ===== GUIDE STRIP 3D — جلب توجه بیشتر، حفظ سبکی ===== */
+/* ===== GUIDE STRIP 3D ===== */
 
 .guide-strip{
   display:flex;
@@ -921,7 +920,7 @@ body.header-ready .bottom-nav{
 [data-tilt]{transform-style:preserve-3d}
 
 /* ============================================
-   VANTA BIRDS INTRO — ظاهر شدن سریع پرندگان (نیم‌ثانیه)
+   VANTA BIRDS INTRO — بدون محو شدگی
    ============================================ */
 
 #birds-intro{
@@ -955,23 +954,15 @@ body.header-ready .bottom-nav{
   z-index:2;
 }
 
-/* کانواس پرندگان: از محو در ۰.۵ ثانیه ظاهر می‌شود */
+/* کانواس پرندگان — بدون محو شدگی، بلافاصله نمایان */
 #birds-intro .vanta-canvas{
   position:absolute!important;
   inset:0!important;
   width:100%!important;
   height:100%!important;
   display:block;
-  opacity:0;
-  filter:brightness(.55) saturate(.8);
-  transition:
-    opacity 500ms cubic-bezier(.22,1,.36,1),
-    filter 500ms cubic-bezier(.22,1,.36,1);
-}
-
-body.hero-ready #birds-intro .vanta-canvas{
   opacity:1;
-  filter:brightness(1) saturate(1);
+  filter:none;
 }
 
 #birds-intro.is-bg{
@@ -1059,7 +1050,6 @@ body.hero-ready .hero h1 .accent:after{
     opacity:1;
     transform:none;
   }
-  #birds-intro .vanta-canvas{opacity:1;filter:none;transition:none}
 }
 </style>
 </head>
@@ -1361,7 +1351,6 @@ body.hero-ready .hero h1 .accent:after{
   let fallbackTimer = null;
   let finishTimer = null;
 
-  /* ---- شمارنده‌ها + ۴ انفجار کانفتی ---- */
   const followersEl = document.getElementById("followersNum");
   const engagementsEl = document.getElementById("engagementsNum");
   const liveCard = document.getElementById("liveCard");

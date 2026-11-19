@@ -741,6 +741,7 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
   font-weight:600;
 }
 
+/* لینک غیرکلیک‌پذیر «مسیر رشدت را انتخاب کن» */
 .manifesto .manifesto-link{
   display:inline-flex;
   align-items:center;
@@ -752,55 +753,97 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
   padding-bottom:5px;
   position:relative;
   z-index:1;
+  pointer-events:none;
+  cursor:default;
 }
 
 .manifesto-link svg{width:16px}
 
-/* GUIDE */
+/* ===== GUIDE STRIP 3D — جلب توجه بیشتر، حفظ سبکی ===== */
 
 .guide-strip{
   display:flex;
   align-items:center;
-  gap:13px;
-  padding:15px;
+  gap:16px;
+  padding:22px 20px;
   border-radius:22px;
-  background:#fff;
-  border:1px solid var(--line);
+  background:linear-gradient(160deg,#ffffff 0%,#f7f8f1 100%);
+  border:1px solid rgba(255,255,255,.9);
+  position:relative;
+  transform:perspective(900px) rotateX(2deg) translateY(0);
+  box-shadow:
+    0 2px 0 #e7ead9,
+    0 4px 0 #dfe3cf,
+    0 6px 0 #d6dbc3,
+    0 8px 0 #cdd2b8,
+    0 24px 40px -12px rgba(22,43,32,.22),
+    0 34px 60px -20px rgba(22,43,32,.15),
+    inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s cubic-bezier(.2,.8,.2,1);
+}
+
+.guide-strip:hover{
+  transform:perspective(900px) rotateX(0deg) translateY(-3px);
+  box-shadow:
+    0 2px 0 #e7ead9,
+    0 4px 0 #dfe3cf,
+    0 6px 0 #d6dbc3,
+    0 8px 0 #cdd2b8,
+    0 10px 0 #c3c9ad,
+    0 30px 50px -12px rgba(22,43,32,.28),
+    0 42px 70px -20px rgba(22,43,32,.18),
+    inset 0 1px 0 rgba(255,255,255,.9);
 }
 
 .guide-symbol{
-  width:47px;
-  height:47px;
-  flex:0 0 47px;
-  border-radius:16px;
-  background:#e8eafb;
+  width:56px;
+  height:56px;
+  flex:0 0 56px;
+  border-radius:18px;
+  background:linear-gradient(160deg,#eef0ff,#dde1fb);
   color:var(--blue);
   display:grid;
   place-items:center;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 4px 10px rgba(72,88,215,.15);
 }
 
-.guide-symbol svg{width:23px}
+.guide-symbol svg{width:26px;height:26px}
+
 .guide-text{flex:1;min-width:0}
-.guide-text b{font-size:13px;display:block}
+
+.guide-text b{
+  font-size:15px;
+  display:block;
+  line-height:1.5;
+  letter-spacing:-.2px;
+  color:var(--ink);
+}
 
 .guide-text span{
-  font-size:10px;
+  font-size:12px;
   color:var(--muted);
   font-weight:600;
   line-height:1.8;
+  display:block;
+  margin-top:3px;
 }
 
-.guide-strip>a{
-  width:35px;
-  height:35px;
-  border-radius:12px;
+.guide-strip>span:last-child{
+  width:40px;
+  height:40px;
+  border-radius:13px;
   background:var(--ink);
   color:white;
   display:grid;
   place-items:center;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.15),
+    0 6px 14px rgba(8,16,12,.35);
 }
 
-.guide-strip>a svg{width:17px}
+.guide-strip>span:last-child svg{width:18px;height:18px}
 
 .footer-note{
   text-align:center;
@@ -982,6 +1025,8 @@ body.hero-ready .hero h1 .accent:after{
   .brand-latin{font-size:19px}
   .brand-right .subtitle{font-size:12.5px}
   .live-num .val{font-size:36px}
+  .guide-text b{font-size:14px}
+  .guide-text span{font-size:11px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -1173,7 +1218,7 @@ body.hero-ready .hero h1 .accent:after{
           </svg>
         </i>
         <h3>مسیر روشن</h3>
-        <p>قدم بعدی را بشناس؛ بدون سردرگمی میان گزینه‌ها.</p>
+        <p>دو مسیر مشخص و شفاف، بدون سردرگمی در میان گزینه‌ها</p>
       </article>
 
       <article class="feature">
@@ -1185,7 +1230,7 @@ body.hero-ready .hero h1 .accent:after{
           </svg>
         </i>
         <h3>نگاه تحلیلی</h3>
-        <p>به‌جای حدس، نشانه‌ها و عملکرد را بررسی کن.</p>
+        <p>منطبق با الگوریتم اینستاگرام، نه با حدس و گمان</p>
       </article>
 
       <article class="feature">
@@ -1196,8 +1241,8 @@ body.hero-ready .hero h1 .accent:after{
             <path d="m8.5 12 2.3 2.3 4.8-5"/>
           </svg>
         </i>
-        <h3>تجربه متمرکز</h3>
-        <p>اجزای ضروری، منظم و در دسترس تو قرار می‌گیرند.</p>
+        <h3>ضمانت اجرا</h3>
+        <p>اجرای قطعی بدون کم و کاستی طبق شرایط اعلام شده</p>
       </article>
 
       <article class="feature">
@@ -1209,7 +1254,7 @@ body.hero-ready .hero h1 .accent:after{
           </svg>
         </i>
         <h3>انتخاب آگاهانه</h3>
-        <p>هدف خودت را مبنا قرار بده و متناسب با آن پیش برو.</p>
+        <p>هدف خودت را مبنا قرار بده و متناسب با اهدافت پیش برو</p>
       </article>
     </div>
   </section>
@@ -1220,12 +1265,12 @@ body.hero-ready .hero h1 .accent:after{
       <h2>رشد خوب، از تصمیم درست شروع می‌شود.</h2>
       <p>گروزای ۲۴ برای این ساخته شده که مسیر رشد را روشن‌تر، قابل‌پیگیری‌تر و هدفمندتر تجربه کنی.</p>
 
-      <a class="manifesto-link" href="activation.html">
-        مسیرم را انتخاب می‌کنم
+      <span class="manifesto-link">
+        مسیر رشدت را انتخاب کن
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M19 12H5m7 7-7-7 7-7"/>
         </svg>
-      </a>
+      </span>
     </div>
   </section>
 
@@ -1550,4 +1595,4 @@ body.hero-ready .hero h1 .accent:after{
 </script>
 
 </body>
-  </html>
+</html>

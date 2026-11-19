@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
@@ -30,7 +31,7 @@ button,a{-webkit-tap-highlight-color:transparent}
 .app{
   max-width:560px;margin:auto;min-height:100svh;
   padding:0 18px calc(var(--nav-h) + 34px);
-  position:relative;isolation:isolate
+  position:relative;isolation:isolate;z-index:1
 }
 
 .app:before{
@@ -57,19 +58,19 @@ button,a{-webkit-tap-highlight-color:transparent}
   transform:translate(-50%,-50%);
   border-radius:50%;
   pointer-events:none;
-  z-index:-1;
+  z-index:0;
   background:conic-gradient(
     from 0deg,
     rgba(199,255,0,0) 0deg,
-    rgba(199,255,0,.16) 55deg,
-    rgba(23,107,75,.14) 115deg,
-    rgba(72,88,215,.13) 185deg,
-    rgba(239,118,87,.12) 255deg,
-    rgba(168,215,184,.17) 315deg,
+    rgba(199,255,0,.27) 55deg,
+    rgba(23,107,75,.25) 115deg,
+    rgba(72,88,215,.23) 185deg,
+    rgba(239,118,87,.21) 255deg,
+    rgba(168,215,184,.28) 315deg,
     rgba(199,255,0,0) 360deg
   );
-  filter:blur(58px);
-  opacity:.48;
+  filter:blur(43px);
+  opacity:.72;
   animation:haloDrift 52s linear infinite;
   will-change:transform;
 }
@@ -81,9 +82,9 @@ button,a{-webkit-tap-highlight-color:transparent}
   border-radius:50%;
   background:radial-gradient(
     circle,
-    rgba(199,255,0,.09) 0%,
-    rgba(168,215,184,.08) 32%,
-    rgba(72,88,215,.04) 58%,
+    rgba(199,255,0,.15) 0%,
+    rgba(168,215,184,.14) 32%,
+    rgba(72,88,215,.08) 58%,
     transparent 75%
   );
   filter:blur(28px);
@@ -155,49 +156,57 @@ button,a{-webkit-tap-highlight-color:transparent}
     0 0 30px rgba(199,255,0,.35);
 }
 
-/* ===== PREMIUM MIRROR FLIP: 24 ===== */
+/* ===== LUXURY LIGHT REFLECTION: 24 ===== */
 
 .brand-latin .num{
   display:inline-block;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
   color:var(--lime);
   text-shadow:
     0 0 8px rgba(199,255,0,.48),
     0 0 18px rgba(199,255,0,.18);
-  transform-origin:50% 50%;
-  transform-style:preserve-3d;
-  backface-visibility:visible;
-  animation:numMirrorLux 10s cubic-bezier(.76,0,.24,1) infinite;
-  will-change:transform,filter;
+  transform:none;
+  animation:none;
 }
 
-@keyframes numMirrorLux{
-  0%{
-    transform:rotateY(0deg);
-    filter:brightness(1);
+.brand-latin .num:after{
+  content:"";
+  position:absolute;
+  top:-15%;
+  bottom:-15%;
+  left:-70%;
+  width:48%;
+  pointer-events:none;
+  background:linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 20%,
+    rgba(255,255,255,.95) 48%,
+    rgba(255,255,255,.35) 65%,
+    transparent 100%
+  );
+  filter:blur(1px);
+  transform:skewX(-20deg);
+  animation:numLuxuryShine 10s ease-in-out infinite;
+}
+
+@keyframes numLuxuryShine{
+  0%,80%{
+    left:-70%;
+    opacity:0;
   }
-  42%{
-    transform:rotateY(0deg);
-    filter:brightness(1);
+  83%{
+    opacity:1;
   }
-  50%{
-    transform:rotateY(90deg);
-    filter:brightness(1.5);
+  90%{
+    left:130%;
+    opacity:1;
   }
-  58%{
-    transform:rotateY(180deg);
-    filter:brightness(1.15);
-  }
-  66%{
-    transform:rotateY(270deg);
-    filter:brightness(1.4);
-  }
-  74%{
-    transform:rotateY(360deg);
-    filter:brightness(1);
-  }
-  100%{
-    transform:rotateY(360deg);
-    filter:brightness(1);
+  93%,100%{
+    left:130%;
+    opacity:0;
   }
 }
 
@@ -300,8 +309,12 @@ main.app{padding-top:96px}
 /* ===== HERO REMAINING ELEMENTS ===== */
 
 .hero-copy{
-  font-size:15px;line-height:2;color:#59645d;
-  max-width:390px;font-weight:500;margin:0
+  font-size:16px;
+  line-height:2.05;
+  color:#59645d;
+  max-width:420px;
+  font-weight:500;
+  margin:0
 }
 
 .hero-actions{
@@ -774,7 +787,11 @@ main.app{padding-top:96px}
     </h1>
 
     <p class="hero-copy">
-      برای رشد اینستاگرام، فقط بیشتر دیده شدن کافی نیست. مسیر درست را انتخاب کن، عملکردت را بشناس و با تصمیم‌های دقیق‌تر جلو برو.
+      رشد اصولی و ماندگار پیج اینستاگرام، پیش از هر چیز به شناخت درست الگوریتم‌ها و رعایت دستورالعمل‌های اینستاگرام وابسته است. اما گاهی برای رسیدن به نتیجه‌ای سریع‌تر، به راهکاری فراتر از روش‌های معمول نیاز دارید.
+
+      <br><br>
+
+      ما این امکان را فراهم کرده‌ایم تا با دو روش متفاوت و مطابق با قوانین اینستاگرام، مسیر رشد پیج خود را متناسب با نیازتان انتخاب کنید.
     </p>
 
     <div class="hero-actions">
@@ -1155,4 +1172,4 @@ main.app{padding-top:96px}
 </script>
 
 </body>
-  </html>
+</html>

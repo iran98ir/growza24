@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#F5F3FF">
+<meta name="theme-color" content="#f4f5ef">
 <title>فعال‌سازی | Growza24</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,332 +11,506 @@
 
 <style>
 :root{
- --bg:#F5F3FF;
- --paper:#fff;
- --ink:#211B30;
- --ink2:#382F4B;
- --purple:#7042F5;
- --purple2:#A78CFF;
- --purple3:#4B2ABF;
- --lime:#D8FF39;
- --lime2:#B8EB28;
- --coral:#FF706B;
- --pink:#FF9BC4;
- --cyan:#83E8DC;
- --muted:#777187;
- --line:#E8E2F3;
- --shadow:0 18px 48px rgba(66,43,116,.10);
- --shadow2:0 10px 28px rgba(66,43,116,.09);
+  --paper:#f4f5ef;
+  --paper-2:#e9eee5;
+  --ink:#222D29;
+  --muted:#69736b;
+  --green:#176b4b;
+  --green-2:#a8d7b8;
+  --green-3:#d7eadb;
+  --lime:#C7FF00;
+  --blue:#4858d7;
+  --coral:#ef7657;
+  --line:rgba(21,27,24,.13);
+  --white:#fffefa;
+  --shadow:0 22px 60px rgba(22,43,32,.10);
+  --nav-h:78px;
 }
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:24px}
 body{
- margin:0;
- color:var(--ink);
- background:
-  radial-gradient(ellipse at 7% 9%,rgba(167,140,255,.20),transparent 31%),
-  radial-gradient(ellipse at 95% 28%,rgba(255,155,196,.16),transparent 27%),
-  radial-gradient(ellipse at 5% 75%,rgba(131,232,220,.15),transparent 27%),
-  var(--bg);
- font-family:Vazirmatn,sans-serif;
- padding-bottom:112px;
- overflow-x:hidden;
+  margin:0;
+  color:var(--ink);
+  font-family:"Vazirmatn",Tahoma,sans-serif;
+  background:var(--paper);
+  padding-bottom:calc(var(--nav-h) + 30px);
+  overflow-x:hidden;
 }
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 4% 13%,rgba(168,215,184,.35),transparent 28%),
+    radial-gradient(ellipse at 94% 38%,rgba(72,88,215,.08),transparent 25%),
+    radial-gradient(ellipse at 18% 84%,rgba(239,118,87,.08),transparent 22%);
+}
+
+.grain{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:20;
+  opacity:.13;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+}
+
 button,input,textarea{font:inherit}
 button{cursor:pointer}
 a{color:inherit;text-decoration:none}
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
- outline:3px solid rgba(112,66,245,.35);
- outline-offset:3px
+  outline:3px solid rgba(23,107,75,.35);
+  outline-offset:3px
 }
-.page{width:min(100% - 30px,540px);margin:auto;position:relative}
+
+.page{width:min(100% - 36px, 560px);margin:auto;position:relative}
+
 .bg-orb{
- position:fixed;z-index:-1;pointer-events:none;border-radius:50%;
- filter:blur(70px);opacity:.45
+  position:fixed;z-index:-1;pointer-events:none;border-radius:50%;
+  filter:blur(70px);opacity:.35
 }
-.bg-orb.a{width:210px;height:210px;right:-140px;top:230px;background:#B9A4FF}
-.bg-orb.b{width:180px;height:180px;left:-120px;top:68%;background:#FFB4D0}
-.bg-orb.c{width:150px;height:150px;right:25%;bottom:4%;background:#B5F5E9}
+.bg-orb.a{width:210px;height:210px;right:-140px;top:230px;background:#a8d7b8}
+.bg-orb.b{width:180px;height:180px;left:-120px;top:68%;background:#ffc4b0}
+.bg-orb.c{width:150px;height:150px;right:25%;bottom:4%;background:#c9d1ff}
 
-/* HEADER — same Growza24 identity */
-.site-header{
- display:flex;align-items:center;justify-content:space-between;
- gap:12px;padding:15px 0 14px;
- border-bottom:1px solid rgba(112,66,245,.13)
-}
-.brand{display:flex;align-items:center;gap:10px;direction:ltr;min-width:0}
-.brand-photo{
- width:58px;height:58px;flex:0 0 58px;
- padding:3px;border-radius:19px;
- background:linear-gradient(145deg,var(--lime),var(--purple),var(--pink));
- box-shadow:0 8px 22px rgba(112,66,245,.18)
-}
-.brand-photo img{
- display:block;width:100%;height:100%;object-fit:cover;
- border-radius:16px;background:#fff
-}
-.brand-copy{min-width:0}
-.brand-name{
- font-size:23px;font-weight:900;letter-spacing:-1.2px;
- line-height:1.1;color:var(--ink);white-space:nowrap
-}
-.brand-name span{color:var(--purple)}
-.brand-sub{
- direction:rtl;text-align:right;font-size:12px;
- font-weight:700;color:var(--muted);margin-top:5px
-}
-.header-pill{
- display:flex;align-items:center;gap:7px;flex:0 0 auto;
- background:rgba(255,255,255,.78);
- border:1px solid rgba(112,66,245,.17);
- border-radius:30px;padding:9px 12px;
- color:var(--purple3);font-size:12px;font-weight:900;
- box-shadow:0 5px 15px rgba(112,66,245,.07)
-}
-.header-pill i{
- width:8px;height:8px;border-radius:50%;background:#5CCBA9;
- box-shadow:0 0 0 4px rgba(92,203,169,.15)
+/* ============ HEADER — EXACT SAME AS HOME ============ */
+
+.topbar{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1002;
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  background:var(--ink);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 34px rgba(8,16,12,.45);
+  max-width:560px;
+  margin:auto;
 }
 
-/* HERO */
-.hero{padding:27px 0 8px;position:relative}
+.topbar .brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  min-width:0;
+}
+
+.brand-logo{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  object-fit:cover;
+  background:var(--green);
+  box-shadow:0 8px 22px rgba(0,0,0,.5),0 0 0 2px rgba(199,255,0,.35);
+}
+
+.brand-right{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-start;
+  gap:0;
+  min-width:0;
+  align-self:center;
+  padding-top:22px;
+}
+
+.brand-right .subtitle{
+  color:#fff;
+  font-size:13.8px;
+  font-weight:600;
+  line-height:1.2;
+  white-space:nowrap;
+}
+
+.hl{
+  position:relative;
+  display:inline-block;
+  padding-bottom:2px;
+}
+
+.hl:after{
+  content:"";
+  position:absolute;
+  right:0;
+  left:0;
+  bottom:-1px;
+  height:2px;
+  background:var(--lime);
+  border-radius:2px;
+}
+
+.brand-latin{
+  font-family:"Vazirmatn",sans-serif;
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:-.5px;
+  line-height:1;
+  white-space:nowrap;
+  direction:ltr;
+  display:inline-block;
+  perspective:900px;
+}
+
+.brand-latin .g{
+  color:#0a0d0b;
+  text-shadow:
+    0 0 6px rgba(255,255,255,.9),
+    0 0 12px rgba(255,255,255,.75),
+    0 0 22px rgba(255,255,255,.55),
+    0 0 30px rgba(199,255,0,.35);
+}
+
+.brand-latin .num{
+  display:inline-block;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  color:var(--lime);
+  text-shadow:
+    0 0 8px rgba(199,255,0,.48),
+    0 0 18px rgba(199,255,0,.18);
+}
+
+.brand-latin .num:after{
+  content:"";
+  position:absolute;
+  top:-15%;
+  bottom:-15%;
+  left:-70%;
+  width:48%;
+  pointer-events:none;
+  background:linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 20%,
+    rgba(255,255,255,.95) 48%,
+    rgba(255,255,255,.35) 65%,
+    transparent 100%
+  );
+  filter:blur(1px);
+  transform:skewX(-20deg);
+  animation:numLuxuryShine 10s ease-in-out infinite;
+}
+
+@keyframes numLuxuryShine{
+  0%,80%{left:-70%;opacity:0}
+  83%{opacity:1}
+  90%{left:130%;opacity:1}
+  93%,100%{left:130%;opacity:0}
+}
+
+main.app{padding-top:96px}
+
+/* ============ HERO ============ */
+
+.hero{padding:23px 0 8px;position:relative}
+
 .eyebrow{
- display:inline-flex;align-items:center;gap:8px;
- color:var(--purple3);font-size:13px;font-weight:900;
- background:rgba(255,255,255,.75);
- border:1px solid rgba(112,66,245,.17);
- border-radius:30px;padding:8px 13px;
- box-shadow:0 6px 18px rgba(112,66,245,.07)
+  display:inline-flex;align-items:center;gap:9px;
+  color:var(--green);font-size:12px;font-weight:900;letter-spacing:.2px;
 }
+
 .eyebrow-mark{
- width:22px;height:22px;display:grid;place-items:center;
- color:#fff;background:var(--purple);border-radius:8px;
- font-size:13px
+  width:22px;height:22px;display:grid;place-items:center;
+  color:var(--ink);background:var(--lime);border-radius:7px;
+  font-size:13px;font-weight:900;
 }
+
 .hero h1{
- font-size:clamp(35px,8.7vw,53px);
- line-height:1.38;font-weight:900;letter-spacing:-1.9px;
- margin:16px 0 9px
+  font-size:clamp(35px,9vw,53px);
+  line-height:1.35;font-weight:900;letter-spacing:-2.2px;
+  margin:20px 0 13px;max-width:520px;
 }
+
+.hero h1 .line{
+  display:block;
+  overflow:hidden;
+  padding-bottom:3px;
+}
+
+.hero h1 .word{
+  display:inline-block;
+  opacity:0;
+  transform:translate3d(0,110%,0);
+  animation:wordReveal 1.25s cubic-bezier(.16,1,.3,1) forwards;
+  will-change:transform,opacity;
+}
+
+.hero h1 .fixed-phrase{
+  display:inline-block;
+  white-space:nowrap;
+}
+
 .hero h1 .highlight{
- color:var(--purple);position:relative;white-space:nowrap
+  position:relative;
+  display:inline-block;
+  z-index:0;
 }
+
 .hero h1 .highlight:after{
- content:"";position:absolute;right:0;left:0;bottom:1px;
- height:9px;border-radius:10px;background:var(--lime);
- z-index:-1;transform:rotate(-1.5deg)
+  content:"";
+  position:absolute;
+  right:0;
+  left:-4px;
+  bottom:5px;
+  height:12px;
+  background:var(--lime);
+  z-index:-1;
+  transform:skewX(-12deg) scaleX(0);
+  transform-origin:right;
+  animation:accentReveal 1.15s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay:2.35s;
 }
+
+@keyframes wordReveal{
+  0%{opacity:0;transform:translate3d(0,110%,0)}
+  100%{opacity:1;transform:translate3d(0,0,0)}
+}
+
+@keyframes accentReveal{
+  to{transform:skewX(-12deg) scaleX(1)}
+}
+
+.hero h1 .w0{animation-delay:.05s}
+.hero h1 .w1{animation-delay:1.05s}
+.hero h1 .w2{animation-delay:1.20s}
+.hero h1 .w3{animation-delay:1.35s}
+.hero h1 .w4{animation-delay:1.55s}
+.hero h1 .w5{animation-delay:1.85s}
+.hero h1 .w6{animation-delay:2.05s}
+
 .hero-copy{
- color:#665E76;font-size:16px;line-height:2;
- font-weight:600;margin:0;max-width:480px
+  color:#59645d;font-size:16px;line-height:2.05;
+  font-weight:500;margin:0;max-width:480px
 }
 .hero-copy strong{color:var(--ink);font-weight:900}
+
 .hero-proof{
- display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:15px
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:15px
 }
 .proof-chip{
- display:inline-flex;align-items:center;gap:6px;
- padding:7px 10px;border-radius:11px;
- background:rgba(255,255,255,.72);
- border:1px solid rgba(112,66,245,.11);
- font-size:12px;font-weight:800;color:#5D5570
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 11px;border-radius:11px;
+  background:#fff9;border:1px solid var(--line);
+  font-size:11px;font-weight:900;color:#59645d;
+  backdrop-filter:blur(10px);
 }
-.proof-chip b{color:var(--purple);font-size:15px}
+.proof-chip b{color:var(--green);font-size:14px}
 
-/* HERO FEATURE STAGE */
+/* ============ HERO STAGE ============ */
+
 .hero-stage{
- position:relative;margin:23px 0 20px;min-height:220px;
- overflow:hidden;border-radius:29px 29px 9px 29px;
- padding:20px;color:#fff;
- background:
-  radial-gradient(circle at 83% 14%,rgba(216,255,57,.30),transparent 23%),
-  radial-gradient(circle at 8% 100%,rgba(255,112,107,.32),transparent 32%),
-  linear-gradient(125deg,#5934C9 0%,#382079 48%,#241747 100%);
- box-shadow:0 22px 44px rgba(76,43,154,.25),inset 0 1px 0 #ffffff55;
- isolation:isolate
+  position:relative;margin:23px 0 20px;min-height:230px;
+  overflow:hidden;border-radius:29px 29px 9px 29px;
+  padding:20px;color:#fff;
+  background:
+    radial-gradient(circle at 83% 14%,rgba(199,255,0,.24),transparent 23%),
+    radial-gradient(circle at 8% 100%,rgba(239,118,87,.26),transparent 32%),
+    linear-gradient(125deg,#1f2b25 0%,#222D29 55%,#163d2a 100%);
+  box-shadow:0 22px 44px rgba(21,27,24,.28),inset 0 1px 0 rgba(255,255,255,.15);
+  isolation:isolate
 }
 .hero-stage:before{
- content:"";position:absolute;inset:0;z-index:-1;opacity:.17;
- background-image:linear-gradient(90deg,#fff 1px,transparent 1px),linear-gradient(#fff 1px,transparent 1px);
- background-size:28px 28px;
- mask-image:linear-gradient(110deg,transparent 0%,#000 80%)
+  content:"";position:absolute;inset:0;z-index:-1;opacity:.14;
+  background-image:
+    linear-gradient(#C7FF00 1px,transparent 1px),
+    linear-gradient(90deg,#C7FF00 1px,transparent 1px);
+  background-size:28px 28px;
+  mask-image:linear-gradient(110deg,transparent 0%,#000 80%)
 }
 .hero-stage:after{
- content:"24";position:absolute;left:10px;bottom:-51px;
- font-size:170px;line-height:1;font-weight:900;
- color:rgba(255,255,255,.055);direction:ltr;letter-spacing:-12px
+  content:"24";position:absolute;left:10px;bottom:-51px;
+  font-size:170px;line-height:1;font-weight:900;
+  color:rgba(199,255,0,.06);direction:ltr;letter-spacing:-12px
 }
 .stage-top{
- display:flex;align-items:center;justify-content:space-between;
- position:relative;z-index:2
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;z-index:2
 }
 .stage-label{
- font-size:11px;letter-spacing:1.5px;font-weight:900;
- color:#E5DBFF;direction:ltr
+  font-size:11px;letter-spacing:1.5px;font-weight:900;
+  color:#a8d7b8;direction:ltr
 }
 .stage-live{
- display:flex;align-items:center;gap:6px;
- background:#ffffff20;border:1px solid #ffffff40;
- border-radius:30px;padding:6px 9px;font-size:11px;font-weight:800
+  display:flex;align-items:center;gap:6px;
+  background:rgba(199,255,0,.12);border:1px solid rgba(199,255,0,.35);
+  border-radius:30px;padding:6px 9px;font-size:11px;font-weight:800;
+  color:var(--lime)
 }
 .stage-live i{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
 .stage-content{
- position:relative;z-index:2;display:flex;align-items:center;
- justify-content:space-between;gap:12px;margin-top:19px
+  position:relative;z-index:2;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;margin-top:19px
 }
 .stage-message{max-width:67%}
-.stage-message small{display:block;color:#D7CCF9;font-size:12px;font-weight:800}
+.stage-message small{display:block;color:#a8d7b8;font-size:12px;font-weight:800}
 .stage-message strong{
- display:block;font-size:clamp(22px,5.6vw,29px);
- line-height:1.6;font-weight:900;margin-top:4px
+  display:block;font-size:clamp(22px,5.6vw,29px);
+  line-height:1.6;font-weight:900;margin-top:4px
 }
 .stage-message strong em{font-style:normal;color:var(--lime)}
-.stage-message p{font-size:12px;color:#E5DEFA;line-height:1.9;margin:6px 0 0}
+.stage-message p{font-size:12px;color:#c2d1c7;line-height:1.9;margin:6px 0 0}
 .stage-visual{
- width:112px;height:112px;flex:0 0 112px;position:relative;
- display:grid;place-items:center
+  width:112px;height:112px;flex:0 0 112px;position:relative;
+  display:grid;place-items:center
 }
 .stage-ring{
- position:absolute;inset:4px;border:1px solid #ffffff70;
- border-radius:34px;transform:rotate(45deg);
- box-shadow:0 0 0 9px #ffffff0b,0 0 0 19px #ffffff08
+  position:absolute;inset:4px;border:1px solid rgba(199,255,0,.4);
+  border-radius:34px;transform:rotate(45deg);
+  box-shadow:0 0 0 9px rgba(199,255,0,.06),0 0 0 19px rgba(199,255,0,.04)
 }
 .stage-core{
- width:72px;height:72px;border-radius:24px;
- display:grid;place-items:center;color:#382079;
- font-size:36px;font-weight:900;
- background:linear-gradient(145deg,#F0FF9B,var(--lime) 58%,#A6D923);
- box-shadow:0 12px 28px #0e0b2566,inset 0 2px 3px #fff
+  width:72px;height:72px;border-radius:24px;
+  display:grid;place-items:center;color:var(--ink);
+  font-size:36px;font-weight:900;
+  background:linear-gradient(145deg,#d9ff4f,var(--lime) 58%,#a6d923);
+  box-shadow:0 12px 28px rgba(0,0,0,.5),inset 0 2px 3px rgba(255,255,255,.6)
 }
 .stage-float{
- position:absolute;right:-2px;top:3px;
- background:#fff;color:var(--purple3);
- border-radius:10px;padding:5px 8px;font-size:10px;font-weight:900;
- box-shadow:0 6px 14px #1c104b55;transform:rotate(-7deg)
+  position:absolute;right:-2px;top:3px;
+  background:#fff;color:var(--green);
+  border-radius:10px;padding:5px 8px;font-size:10px;font-weight:900;
+  box-shadow:0 6px 14px rgba(0,0,0,.35);transform:rotate(-7deg)
 }
 .stage-bottom{
- position:relative;z-index:2;display:flex;align-items:center;
- justify-content:space-between;margin-top:18px;padding-top:12px;
- border-top:1px solid #ffffff30
+  position:relative;z-index:2;display:flex;align-items:center;
+  justify-content:space-between;margin-top:18px;padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.18)
 }
-.stage-bottom span{font-size:11px;color:#E5DEFA;font-weight:700}
+.stage-bottom span{font-size:11px;color:#a8d7b8;font-weight:700}
 .stage-bottom b{font-size:12px;color:var(--lime);font-weight:900}
 
-/* SECTION INTRO */
+@keyframes floatSoft{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.stage-core{animation:floatSoft 4s ease-in-out infinite}
+
+/* ============ SECTION INTROS ============ */
+
 .section-intro{margin:31px 0 14px}
 .section-overline{
- display:flex;align-items:center;gap:8px;
- color:var(--purple);font-size:12px;font-weight:900;
- letter-spacing:.6px
+  display:flex;align-items:center;gap:8px;
+  color:var(--green);font-size:11px;font-weight:900;letter-spacing:1px
 }
 .section-overline:before{
- content:"";width:23px;height:3px;border-radius:5px;background:var(--lime)
+  content:"";width:23px;height:2px;border-radius:5px;background:var(--coral)
 }
 .section-title{
- font-size:clamp(23px,6vw,30px);line-height:1.5;
- font-weight:900;letter-spacing:-.7px;margin:5px 0 4px
+  font-size:clamp(23px,6vw,29px);line-height:1.5;
+  font-weight:900;letter-spacing:-.7px;margin:6px 0 4px
 }
 .section-title .underline{
- text-decoration:underline;text-decoration-color:var(--lime);
- text-decoration-thickness:5px;text-underline-offset:4px
+  text-decoration:underline;
+  text-decoration-color:var(--lime);
+  text-decoration-thickness:5px;
+  text-underline-offset:4px
 }
 .section-desc{font-size:14px;color:var(--muted);line-height:1.9;font-weight:600;margin:0}
-.section-count{
- display:inline-flex;align-items:center;gap:6px;
- border-radius:12px;background:#fff;padding:7px 10px;
- color:var(--purple3);border:1px solid var(--line);
- font-size:12px;font-weight:900
-}
 
-/* CHOICE STRIP */
+/* ============ ROUTE CHOICE ============ */
+
 .route-strip{
- display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:17px 0 20px
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:17px 0 20px
 }
 .route-choice{
- min-width:0;position:relative;overflow:hidden;text-align:right;
- border:1px solid rgba(112,66,245,.14);border-radius:17px 17px 6px 17px;
- padding:13px 13px 12px;background:rgba(255,255,255,.84);
- color:var(--ink);box-shadow:0 8px 20px rgba(66,43,116,.06);
- transition:.25s
+  min-width:0;position:relative;overflow:hidden;text-align:right;
+  border:1px solid var(--line);border-radius:17px 17px 6px 17px;
+  padding:13px 13px 12px;background:#fff9;
+  color:var(--ink);box-shadow:0 8px 20px rgba(22,43,32,.06);
+  transition:.25s;backdrop-filter:blur(10px)
 }
 .route-choice:before{
- content:"";position:absolute;width:70px;height:70px;
- border-radius:50%;left:-22px;bottom:-35px;background:var(--route-tint);
- opacity:.42
+  content:"";position:absolute;width:70px;height:70px;
+  border-radius:50%;left:-22px;bottom:-35px;
+  background:var(--route-tint);opacity:.5
 }
 .route-choice.active{
- border-color:var(--purple);box-shadow:0 0 0 2px #7042f51a,0 12px 24px #7042f51b;
- transform:translateY(-2px)
+  border-color:var(--green);
+  box-shadow:0 0 0 2px rgba(23,107,75,.15),0 12px 24px rgba(23,107,75,.10);
+  transform:translateY(-2px)
 }
 .route-choice .route-icon{
- width:34px;height:34px;border-radius:11px;display:grid;place-items:center;
- background:var(--route-tint);color:var(--route-color);
- font-size:18px;margin-bottom:8px
+  width:34px;height:34px;border-radius:11px;display:grid;place-items:center;
+  background:var(--route-tint);color:var(--route-color);
+  font-size:18px;margin-bottom:8px
 }
-.route-choice strong{display:block;font-size:15px;font-weight:900}
+.route-choice strong{display:block;font-size:14px;font-weight:900}
 .route-choice small{display:block;color:var(--muted);font-size:11px;font-weight:700;margin-top:4px;line-height:1.7}
 .route-choice .route-check{
- position:absolute;left:10px;top:10px;width:19px;height:19px;
- border:1.5px solid #D7CFE7;border-radius:50%;
- display:grid;place-items:center;color:#fff;font-size:11px
+  position:absolute;left:10px;top:10px;width:19px;height:19px;
+  border:1.5px solid #cbd5cd;border-radius:50%;
+  display:grid;place-items:center;color:#fff;font-size:11px;font-weight:900
 }
-.route-choice.active .route-check{background:var(--purple);border-color:var(--purple)}
+.route-choice.active .route-check{background:var(--green);border-color:var(--green)}
 
-/* PLAN CATEGORIES */
+/* ============ PLAN CATEGORIES ============ */
+
 .category{margin-top:27px;scroll-margin-top:18px}
 .category-head{
- display:flex;align-items:center;justify-content:space-between;gap:10px;
- margin-bottom:12px
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:12px
 }
 .category-title{display:flex;align-items:center;gap:11px;min-width:0}
 .category-icon{
- width:45px;height:45px;flex:0 0 45px;
- border-radius:15px 15px 5px 15px;
- display:grid;place-items:center;font-size:21px;
- color:var(--cat-color);background:var(--cat-soft);
- border:1px solid var(--cat-border);
- box-shadow:0 6px 15px var(--cat-shadow)
+  width:45px;height:45px;flex:0 0 45px;
+  border-radius:15px 15px 5px 15px;
+  display:grid;place-items:center;font-size:21px;
+  color:var(--cat-color);background:var(--cat-soft);
+  border:1px solid var(--cat-border);
+  box-shadow:0 6px 15px var(--cat-shadow)
 }
-.category-title h3{font-size:18px;font-weight:900;margin:0;line-height:1.5}
+.category-title h3{font-size:17px;font-weight:900;margin:0;line-height:1.5}
 .category-title p{font-size:12px;color:var(--muted);font-weight:600;margin:2px 0 0;line-height:1.7}
 .swipe-hint{
- color:var(--purple);font-size:11px;font-weight:900;white-space:nowrap;
- background:#fff;border:1px solid var(--line);border-radius:20px;padding:6px 9px
+  color:var(--green);font-size:11px;font-weight:900;white-space:nowrap;
+  background:#fff9;border:1px solid var(--line);border-radius:20px;padding:6px 10px
 }
+
+/* ============ PLAN TRACK (plan cards KEEP original colors) ============ */
 .plan-track{
- display:flex;gap:13px;overflow-x:auto;overflow-y:visible;
- scroll-snap-type:x mandatory;scrollbar-width:none;
- padding:5px 2px 18px;
- overscroll-behavior-inline:contain;
+  display:flex;gap:13px;overflow-x:auto;overflow-y:visible;
+  scroll-snap-type:x mandatory;scrollbar-width:none;
+  padding:5px 2px 18px;
+  overscroll-behavior-inline:contain;
 }
 .plan-track::-webkit-scrollbar{display:none}
+
+/* Plan cards — تم رنگی مستقل و اصیل حفظ می‌شود */
 .plan{
- --accent:#7042F5;--accent-soft:#EEE8FF;--accent-dark:#40258F;
- flex:0 0 86%;max-width:390px;min-width:280px;
- scroll-snap-align:center;position:relative;isolation:isolate;
- overflow:hidden;border-radius:25px 25px 8px 25px;
- padding:18px 17px 16px;
- background:linear-gradient(145deg,#fff 0%,#F8F5FF 58%,#F0EAFE 100%);
- border:1px solid #E1D8F5;
- box-shadow:0 13px 28px rgba(66,43,116,.10),inset 0 1px 0 #fff;
- transition:transform .3s,border-color .3s,box-shadow .3s
+  --accent:#7042F5;--accent-soft:#EEE8FF;--accent-dark:#40258F;
+  flex:0 0 86%;max-width:390px;min-width:280px;
+  scroll-snap-align:center;position:relative;isolation:isolate;
+  overflow:hidden;border-radius:25px 25px 8px 25px;
+  padding:18px 17px 16px;
+  background:linear-gradient(145deg,#fff 0%,#F8F5FF 58%,#F0EAFE 100%);
+  border:1px solid #E1D8F5;
+  box-shadow:0 13px 28px rgba(66,43,116,.10),inset 0 1px 0 #fff;
+  transition:transform .3s,border-color .3s,box-shadow .3s
 }
 .plan:before{
- content:"";position:absolute;z-index:-1;pointer-events:none;
- width:190px;height:190px;border-radius:50%;right:-82px;top:-104px;
- background:radial-gradient(circle,var(--accent-soft),transparent 70%)
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  width:190px;height:190px;border-radius:50%;right:-82px;top:-104px;
+  background:radial-gradient(circle,var(--accent-soft),transparent 70%)
 }
 .plan:after{
- content:"";position:absolute;z-index:-1;pointer-events:none;
- width:90px;height:90px;left:-45px;bottom:-55px;
- border:1px solid var(--accent);border-radius:50%;opacity:.13;
- box-shadow:0 0 0 12px var(--accent-soft),0 0 0 25px #ffffff80
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  width:90px;height:90px;left:-45px;bottom:-55px;
+  border:1px solid var(--accent);border-radius:50%;opacity:.13;
+  box-shadow:0 0 0 12px var(--accent-soft),0 0 0 25px #ffffff80
 }
 .plan.selected{
- border-color:var(--accent);
- box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 16%,transparent),
- 0 17px 34px rgba(66,43,116,.15),inset 0 1px 0 #fff;
- transform:translateY(-3px)
+  border-color:var(--accent);
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 16%,transparent),
+    0 17px 34px rgba(66,43,116,.15),inset 0 1px 0 #fff;
+  transform:translateY(-3px)
 }
 .plan[data-tier="test"]{--accent:#279C91;--accent-soft:#DDF8F1;--accent-dark:#126C64}
 .plan[data-tier="gold"]{--accent:#B67A24;--accent-soft:#FFF0CB;--accent-dark:#754B11}
@@ -345,947 +518,1022 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 .plan[data-tier="reels"]{--accent:#F16E65;--accent-soft:#FFE5E1;--accent-dark:#A33B3B}
 .plan[data-tier="reels7"]{--accent:#315CCB;--accent-soft:#E0E9FF;--accent-dark:#193B94}
 .plan[data-tier="premium"]{
- --accent:#A56BDE;--accent-soft:#F1DFFF;--accent-dark:#52218B;
- flex-basis:91%;max-width:410px;
- color:#fff;
- background:
-  radial-gradient(circle at 90% 4%,#A66AE65c,transparent 34%),
-  radial-gradient(circle at 0% 100%,#F1C86C24,transparent 32%),
-  linear-gradient(140deg,#3D236A,#241642 62%,#17102E);
- border:1px solid #C49BFF;
- box-shadow:0 20px 42px rgba(57,28,101,.28),inset 0 1px 0 #ffffff44
+  --accent:#A56BDE;--accent-soft:#F1DFFF;--accent-dark:#52218B;
+  flex-basis:91%;max-width:410px;color:#fff;
+  background:
+    radial-gradient(circle at 90% 4%,#A66AE65c,transparent 34%),
+    radial-gradient(circle at 0% 100%,#F1C86C24,transparent 32%),
+    linear-gradient(140deg,#3D236A,#241642 62%,#17102E);
+  border:1px solid #C49BFF;
+  box-shadow:0 20px 42px rgba(57,28,101,.28),inset 0 1px 0 rgba(255,255,255,.25)
 }
 .plan[data-tier="premium"]:before{background:radial-gradient(circle,#D4A8FF35,transparent 70%)}
-.plan[data-tier="premium"]:after{border-color:#E5C8FF;box-shadow:0 0 0 12px #ffffff0a,0 0 0 25px #ffffff07}
+.plan[data-tier="premium"]:after{border-color:#E5C8FF;box-shadow:0 0 0 12px rgba(255,255,255,.04),0 0 0 25px rgba(255,255,255,.03)}
 .plan-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .plan-name{font-size:19px;font-weight:900;color:var(--ink)}
 .plan[data-tier="premium"] .plan-name{color:#fff}
 .plan-badge{
- display:inline-flex;align-items:center;gap:5px;
- background:var(--accent-soft);color:var(--accent-dark);
- border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);
- border-radius:30px;padding:6px 10px;font-size:11px;font-weight:900;
- white-space:nowrap
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--accent-soft);color:var(--accent-dark);
+  border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);
+  border-radius:30px;padding:6px 10px;font-size:11px;font-weight:900;
+  white-space:nowrap
 }
 .plan-price-row{
- display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;margin-top:15px
+  display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;margin-top:15px
 }
 .plan-price{
- font-size:clamp(31px,7vw,39px);line-height:1.3;
- font-weight:900;letter-spacing:-1.3px;color:var(--accent-dark)
+  font-size:clamp(31px,7vw,39px);line-height:1.3;
+  font-weight:900;letter-spacing:-1.3px;color:var(--accent-dark)
 }
-.plan[data-tier="premium"] .plan-price{color:#F5D68B;text-shadow:0 3px 16px #F5D68B44}
+.plan[data-tier="premium"] .plan-price{color:#F5D68B;text-shadow:0 3px 16px rgba(245,214,139,.28)}
 .plan-price-unit{font-size:13px;font-weight:800;color:#746C83}
 .plan[data-tier="premium"] .plan-price-unit{color:#D9C8F2}
 .plan-desc{font-size:13px;font-weight:700;color:#6F687D;line-height:1.8;margin:3px 0 12px}
 .plan[data-tier="premium"] .plan-desc{color:#D9CDEB}
 .plan-divider{
- height:1px;margin:12px 0;
- background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 35%,#fff),transparent)
+  height:1px;margin:12px 0;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 35%,#fff),transparent)
 }
 .plan-features{display:grid;gap:9px}
 .feature{
- display:flex;align-items:flex-start;gap:9px;
- color:#443C55;font-size:14px;font-weight:700;line-height:1.75
+  display:flex;align-items:flex-start;gap:9px;
+  color:#443C55;font-size:14px;font-weight:700;line-height:1.75
 }
 .plan[data-tier="premium"] .feature{color:#F0E9FB}
 .feature-mark{
- width:21px;height:21px;flex:0 0 21px;
- display:grid;place-items:center;border-radius:7px;
- background:var(--accent-soft);color:var(--accent-dark);
- font-size:12px;font-weight:900;margin-top:1px
+  width:21px;height:21px;flex:0 0 21px;
+  display:grid;place-items:center;border-radius:7px;
+  background:var(--accent-soft);color:var(--accent-dark);
+  font-size:12px;font-weight:900;margin-top:1px
 }
-.plan[data-tier="premium"] .feature-mark{background:#F5D68B22;color:#F5D68B}
+.plan[data-tier="premium"] .feature-mark{background:rgba(245,214,139,.14);color:#F5D68B}
 .plan-bottom{
- display:flex;align-items:center;justify-content:space-between;gap:8px;
- margin-top:15px;padding-top:12px;border-top:1px solid color-mix(in srgb,var(--accent) 20%,transparent)
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  margin-top:15px;padding-top:12px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 20%,transparent)
 }
 .plan-bottom small{font-size:11px;color:#777087;font-weight:800}
 .plan[data-tier="premium"] .plan-bottom small{color:#D9C8F2}
 .plan-button{
- border:0;border-radius:13px 13px 5px 13px;
- padding:12px 14px;background:var(--accent);color:#fff;
- font-size:13px;font-weight:900;
- box-shadow:0 7px 17px color-mix(in srgb,var(--accent) 25%,transparent);
- transition:.2s;white-space:nowrap
+  border:0;border-radius:13px 13px 5px 13px;
+  padding:12px 14px;background:var(--accent);color:#fff;
+  font-size:13px;font-weight:900;
+  box-shadow:0 7px 17px color-mix(in srgb,var(--accent) 25%,transparent);
+  transition:.2s;white-space:nowrap
 }
 .plan-button:hover{filter:brightness(1.06);transform:translateY(-2px)}
 .plan.selected .plan-button{background:var(--accent-dark)}
 .plan[data-tier="premium"] .plan-button{
- color:#392054;background:linear-gradient(110deg,#FFE9A7,#E7B85F);
- box-shadow:0 9px 23px #E7B85F45
+  color:#392054;
+  background:linear-gradient(110deg,#FFE9A7,#E7B85F);
+  box-shadow:0 9px 23px rgba(231,184,95,.28)
 }
 .plan-ribbon{
- position:absolute;left:-29px;top:16px;transform:rotate(-37deg);
- background:var(--lime);color:#34235E;
- font-size:10px;font-weight:900;padding:6px 34px;
- box-shadow:0 5px 12px #24164230
+  position:absolute;left:-29px;top:16px;transform:rotate(-37deg);
+  background:#D8FF39;color:#34235E;
+  font-size:10px;font-weight:900;padding:6px 34px;
+  box-shadow:0 5px 12px rgba(36,22,66,.2)
 }
 .plan[data-tier="diamond"] .plan-ribbon{background:#D8FF39}
 .plan[data-tier="reels7"] .plan-ribbon{background:#BBD0FF;color:#173B8B}
 .plan[data-tier="premium"] .plan-ribbon{background:#F5D68B;color:#482B68}
-.plan.selected .selected-stamp{
- display:inline-flex
-}
+.plan.selected .selected-stamp{display:inline-flex}
 .selected-stamp{
- display:none;align-items:center;gap:5px;
- color:var(--accent-dark);font-size:11px;font-weight:900
+  display:none;align-items:center;gap:5px;
+  color:var(--accent-dark);font-size:11px;font-weight:900
 }
 .plan[data-tier="premium"] .selected-stamp{color:#F5D68B}
-.plan[data-tier="premium"] .plan-bottom{border-color:#ffffff26}
+.plan[data-tier="premium"] .plan-bottom{border-color:rgba(255,255,255,.15)}
 @media(min-width:600px){
- .plan{flex-basis:73%}
- .plan[data-tier="premium"]{flex-basis:80%}
+  .plan{flex-basis:73%}
+  .plan[data-tier="premium"]{flex-basis:80%}
 }
 
-/* SELECTED PLAN BAR */
+/* ============ SELECTION PANEL ============ */
+
 .selection-panel{
- position:relative;overflow:hidden;margin:6px 0 25px;
- border-radius:19px 19px 6px 19px;padding:15px;
- background:linear-gradient(110deg,#fff,#F0EAFF);
- border:1px solid #DCD0FA;
- box-shadow:var(--shadow2)
+  position:relative;overflow:hidden;margin:6px 0 25px;
+  border-radius:19px 19px 6px 19px;padding:15px;
+  background:linear-gradient(110deg,#fff,#f0f2e6);
+  border:1px solid var(--line);
+  box-shadow:0 10px 28px rgba(22,43,32,.08)
 }
 .selection-panel:after{
- content:"";position:absolute;width:95px;height:95px;left:-34px;top:-50px;
- border-radius:50%;background:#D8FF39;opacity:.3
+  content:"";position:absolute;width:95px;height:95px;left:-34px;top:-50px;
+  border-radius:50%;background:var(--lime);opacity:.3
 }
 .selection-top{display:flex;justify-content:space-between;gap:8px;align-items:center;position:relative;z-index:1}
 .selection-top span{font-size:12px;color:var(--muted);font-weight:800}
-.selection-top b{font-size:13px;color:var(--purple3);font-weight:900}
+.selection-top b{font-size:12px;color:var(--green);font-weight:900;letter-spacing:.5px;direction:ltr}
 .selection-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px;position:relative;z-index:1}
-.selection-name{font-size:19px;font-weight:900}
-.selection-price{font-size:23px;color:var(--purple);font-weight:900;white-space:nowrap}
+.selection-name{font-size:18px;font-weight:900}
+.selection-price{font-size:22px;color:var(--green);font-weight:900;white-space:nowrap}
 .selection-price small{font-size:11px;color:var(--muted)}
 
-/* CALLOUT */
+/* ============ INSIGHT ============ */
+
 .insight{
- display:flex;align-items:flex-start;gap:12px;
- margin:21px 0;padding:15px;
- border:1px solid #C8B6FF;border-radius:18px 18px 6px 18px;
- background:linear-gradient(110deg,#F0E9FF,#fff 75%);
- box-shadow:0 9px 22px #7042F50D
+  display:flex;align-items:flex-start;gap:12px;
+  margin:21px 0;padding:15px;
+  border:1px solid var(--line);border-radius:18px 18px 6px 18px;
+  background:linear-gradient(110deg,#f0f5e0,#fff 75%);
+  box-shadow:0 9px 22px rgba(23,107,75,.05)
 }
 .insight-icon{
- width:39px;height:39px;flex:0 0 39px;
- display:grid;place-items:center;border-radius:13px;
- color:#fff;background:linear-gradient(145deg,#8F6BFF,#5731CB);
- box-shadow:0 7px 16px #7042F536;font-size:19px
+  width:39px;height:39px;flex:0 0 39px;
+  display:grid;place-items:center;border-radius:13px;
+  color:var(--ink);background:var(--lime);
+  box-shadow:0 7px 16px rgba(199,255,0,.30);font-size:18px;font-weight:900
 }
-.insight strong{display:block;font-size:15px;font-weight:900;color:var(--purple3);margin-bottom:3px}
-.insight p{font-size:13px;line-height:1.9;color:#625A72;font-weight:600;margin:0}
+.insight strong{display:block;font-size:15px;font-weight:900;color:var(--green);margin-bottom:3px}
+.insight p{font-size:13px;line-height:1.9;color:#59645d;font-weight:600;margin:0}
 
-/* GUARANTEE */
+/* ============ GUARANTEE ============ */
+
 .guarantee{
- position:relative;overflow:hidden;margin:23px 0;
- border-radius:22px 7px 22px 22px;padding:17px;
- display:flex;align-items:center;gap:13px;
- color:#2B3B32;
- background:
-  radial-gradient(circle at 0 100%,#C6F2DA,transparent 45%),
-  linear-gradient(120deg,#E8FFE9,#F7FFF0 58%,#E5F9D9);
- border:1px solid #B9E8B9;
- box-shadow:0 12px 25px #7ABF8518
+  position:relative;overflow:hidden;margin:23px 0;
+  border-radius:22px 7px 22px 22px;padding:17px;
+  display:flex;align-items:center;gap:13px;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 0 100%,rgba(199,255,0,.35),transparent 45%),
+    linear-gradient(120deg,#eaffd4,#f7fff0 58%,#e0f2d1);
+  border:1px solid rgba(199,255,0,.4);
+  box-shadow:0 12px 25px rgba(23,107,75,.08)
 }
 .guarantee:after{
- content:"✓";position:absolute;left:9px;bottom:-38px;
- font-size:110px;font-weight:900;color:#368F5120
+  content:"✓";position:absolute;left:9px;bottom:-38px;
+  font-size:110px;font-weight:900;color:rgba(23,107,75,.10)
 }
 .guarantee-icon{
- width:53px;height:53px;flex:0 0 53px;
- display:grid;place-items:center;border-radius:17px;
- background:linear-gradient(145deg,#B5F37D,#D8FF39);
- color:#315B2C;font-size:25px;
- box-shadow:0 7px 15px #6AAE4C35,inset 0 1px 2px #fff
+  width:53px;height:53px;flex:0 0 53px;
+  display:grid;place-items:center;border-radius:17px;
+  background:linear-gradient(145deg,#a8d7b8,var(--lime));
+  color:var(--ink);font-size:25px;font-weight:900;
+  box-shadow:0 7px 15px rgba(23,107,75,.18),inset 0 1px 2px rgba(255,255,255,.6)
 }
-.guarantee h3{font-size:17px;font-weight:900;margin:0 0 3px;color:#2D653D}
-.guarantee p{font-size:12px;line-height:1.9;font-weight:700;color:#52715A;margin:0}
+.guarantee h3{font-size:17px;font-weight:900;margin:0 0 3px;color:var(--green)}
+.guarantee p{font-size:12px;line-height:1.9;font-weight:700;color:#556758;margin:0}
 
-/* REVIEWS */
+/* ============ REVIEWS ============ */
+
 .review-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:28px 0 12px}
 .review-head h2{font-size:21px;font-weight:900;margin:0}
-.demo-tag{font-size:11px;font-weight:900;color:#A04E60;background:#FFE8EF;border:1px solid #F9C8D8;border-radius:30px;padding:6px 9px}
+.demo-tag{font-size:11px;font-weight:900;color:#a55a3a;background:#ffe8dd;border:1px solid #ffd0bd;border-radius:30px;padding:6px 10px}
 .review-card{
- position:relative;overflow:hidden;padding:18px;
- border-radius:21px 21px 7px 21px;
- background:linear-gradient(130deg,#fff,#F8F4FF);
- border:1px solid #E3D9F5;
- box-shadow:var(--shadow2);transition:opacity .2s
+  position:relative;overflow:hidden;padding:18px;
+  border-radius:21px 21px 7px 21px;
+  background:linear-gradient(130deg,#fff,#f5f7ee);
+  border:1px solid var(--line);
+  box-shadow:0 10px 28px rgba(22,43,32,.08);
+  transition:opacity .2s
 }
 .review-card:after{
- content:"“";position:absolute;left:15px;top:-28px;
- color:#E9DFFF;font-family:Georgia;font-size:125px;line-height:1
+  content:"“";position:absolute;left:15px;top:-28px;
+  color:#e6efde;font-family:Georgia;font-size:125px;line-height:1
 }
 .review-top{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
-.review-stars{font-size:18px;letter-spacing:2px;color:#D89A35}
-.review-number{font-size:11px;color:var(--muted);font-weight:800}
-.review-text{font-size:14px;line-height:2.05;color:#514963;font-weight:700;margin:11px 0;position:relative;z-index:1}
+.review-stars{font-size:18px;letter-spacing:2px;color:#d89a35}
+.review-number{font-size:11px;color:var(--muted);font-weight:800;direction:ltr}
+.review-text{font-size:14px;line-height:2.05;color:#4a5650;font-weight:700;margin:11px 0;position:relative;z-index:1}
 .review-author{display:flex;align-items:center;gap:9px;position:relative;z-index:1}
 .review-avatar{
- width:35px;height:35px;display:grid;place-items:center;
- border-radius:12px;background:#EAE2FF;color:var(--purple);font-weight:900
+  width:35px;height:35px;display:grid;place-items:center;
+  border-radius:12px;background:var(--green-3);color:var(--green);font-weight:900
 }
 .review-author b{font-size:12px;font-weight:900}
 .review-author small{display:block;color:var(--muted);font-size:10px;font-weight:700}
 .review-dots{display:flex;gap:5px;margin-top:12px}
-.review-dots i{width:7px;height:7px;border-radius:10px;background:#D8D0E8;transition:.2s}
-.review-dots i.active{width:22px;background:var(--purple)}
+.review-dots i{width:7px;height:7px;border-radius:10px;background:#d8dfd5;transition:.2s}
+.review-dots i.active{width:22px;background:var(--green)}
 
-/* PAYMENT SECTION */
+/* ============ SECTION CARD ============ */
+
 .section-card{
- margin-top:30px;padding:17px;
- border-radius:23px 23px 7px 23px;
- background:rgba(255,255,255,.82);
- border:1px solid rgba(112,66,245,.15);
- box-shadow:var(--shadow2)
+  margin-top:30px;padding:17px;
+  border-radius:23px 23px 7px 23px;
+  background:#fff9;
+  border:1px solid var(--line);
+  box-shadow:0 10px 28px rgba(22,43,32,.08);
+  backdrop-filter:blur(10px)
 }
 .section-card-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:14px}
 .section-card-icon{
- width:43px;height:43px;flex:0 0 43px;
- display:grid;place-items:center;border-radius:14px 14px 5px 14px;
- background:#EEE7FF;color:var(--purple);font-size:20px;
- border:1px solid #DDD0FF
+  width:43px;height:43px;flex:0 0 43px;
+  display:grid;place-items:center;border-radius:14px 14px 5px 14px;
+  background:var(--green-3);color:var(--green);font-size:17px;font-weight:900;
+  border:1px solid rgba(23,107,75,.2)
 }
-.section-card-head h2{font-size:21px;line-height:1.5;font-weight:900;margin:0}
+.section-card-head h2{font-size:20px;line-height:1.5;font-weight:900;margin:0}
 .section-card-head p{font-size:13px;line-height:1.8;color:var(--muted);font-weight:600;margin:2px 0 0}
 
-/* BANK CARD */
+/* ============ BANK CARD ============ */
+
 .bank-card{
- position:relative;overflow:hidden;padding:19px;
- border-radius:23px 23px 7px 23px;
- color:#fff;direction:rtl;
- background:
-  radial-gradient(circle at 90% 0%,#7D65B3 0%,transparent 35%),
-  radial-gradient(circle at 0% 100%,#5A4A85 0%,transparent 34%),
-  linear-gradient(130deg,#342A4B,#201A32 68%,#171225);
- box-shadow:0 17px 30px rgba(33,23,54,.23),inset 0 1px 0 #ffffff30;
- border:1px solid #B7A2E5
+  position:relative;overflow:hidden;padding:19px;
+  border-radius:23px 23px 7px 23px;
+  color:#fff;direction:rtl;
+  background:
+    radial-gradient(circle at 90% 0%,#2a4a3a 0%,transparent 35%),
+    radial-gradient(circle at 0% 100%,#163d2a 0%,transparent 34%),
+    linear-gradient(130deg,#222D29,#1a2b22 68%,#0f2318);
+  box-shadow:0 17px 30px rgba(10,18,12,.30),inset 0 1px 0 rgba(255,255,255,.10);
+  border:1px solid rgba(199,255,0,.20)
 }
 .bank-card:before{
- content:"";position:absolute;inset:0;opacity:.13;
- background:repeating-linear-gradient(135deg,transparent 0 13px,#fff 14px,transparent 15px 27px)
+  content:"";position:absolute;inset:0;opacity:.08;
+  background:repeating-linear-gradient(135deg,transparent 0 13px,#C7FF00 14px,transparent 15px 27px)
 }
 .bank-card:after{
- content:"";position:absolute;width:175px;height:175px;border-radius:50%;
- border:1px solid #ffffff30;left:-40px;top:-110px;
- box-shadow:0 0 0 17px #ffffff0b,0 0 0 36px #ffffff08
+  content:"";position:absolute;width:175px;height:175px;border-radius:50%;
+  border:1px solid rgba(199,255,0,.25);left:-40px;top:-110px;
+  box-shadow:0 0 0 17px rgba(199,255,0,.05),0 0 0 36px rgba(199,255,0,.03)
 }
 .bank-top,.bank-number,.bank-bottom{position:relative;z-index:1}
 .bank-top{display:flex;align-items:center;justify-content:space-between}
 .bank-brand{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:900}
 .bank-symbol{
- width:27px;height:27px;border-radius:9px;
- display:grid;place-items:center;background:#F3D78B;color:#3D2C43;font-size:15px
+  width:27px;height:27px;border-radius:9px;
+  display:grid;place-items:center;background:var(--lime);color:var(--ink);font-size:15px;font-weight:900
 }
 .bank-chip{
- width:39px;height:29px;border:1px solid #E7D8AE;border-radius:8px;
- background:linear-gradient(135deg,#F8E6B6,#BDA66C);opacity:.9
+  width:39px;height:29px;border:1px solid rgba(199,255,0,.35);border-radius:8px;
+  background:linear-gradient(135deg,#d9ff4f,#8bad74);opacity:.9
 }
 .bank-number{
- direction:ltr;text-align:center;white-space:nowrap;
- font-size:clamp(19px,5.4vw,25px);letter-spacing:1.5px;
- font-weight:900;margin:27px 0 21px;text-shadow:0 2px 10px #0005
+  direction:ltr;text-align:center;white-space:nowrap;
+  font-size:clamp(19px,5.4vw,25px);letter-spacing:1.5px;
+  font-weight:900;margin:27px 0 21px;text-shadow:0 2px 10px rgba(0,0,0,.3)
 }
 .bank-bottom{display:flex;justify-content:space-between;align-items:end;gap:8px}
-.bank-owner small{display:block;color:#C9C0D8;font-size:11px;font-weight:700;margin-bottom:4px}
+.bank-owner small{display:block;color:#a8d7b8;font-size:11px;font-weight:700;margin-bottom:4px}
 .bank-owner strong{font-size:15px;font-weight:900}
-.bank-network{font-size:12px;letter-spacing:1.3px;font-weight:900;color:#F3D78B;direction:ltr}
-.copy-card{
- display:flex;align-items:center;justify-content:center;gap:8px;
- width:100%;margin-top:11px;padding:14px;
- border:1px solid #C7B5F2;border-radius:13px;
- color:var(--purple3);background:#F1ECFF;
- font-size:14px;font-weight:900;transition:.2s
-}
-.copy-card:hover{background:#E8DEFF;transform:translateY(-1px)}
+.bank-network{font-size:12px;letter-spacing:1.3px;font-weight:900;color:var(--lime);direction:ltr}
 
-/* FORM FIELDS */
+.copy-card{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;margin-top:11px;padding:14px;
+  border:1px solid rgba(23,107,75,.25);border-radius:13px;
+  color:var(--green);background:var(--green-3);
+  font-size:14px;font-weight:900;transition:.2s
+}
+.copy-card:hover{background:#cae4d2;transform:translateY(-1px)}
+
+/* ============ FORM FIELDS ============ */
+
 .form-section{margin-top:29px}
-.form-section h2{font-size:21px;font-weight:900;margin:0}
+.form-section h2{font-size:20px;font-weight:900;margin:0}
 .form-section .subcopy{font-size:13px;line-height:1.9;color:var(--muted);font-weight:600;margin:3px 0 13px}
 .form-box{
- padding:16px;border-radius:20px 20px 7px 20px;
- border:1px solid #E3DCF0;background:#fff;
- box-shadow:var(--shadow2)
+  padding:16px;border-radius:20px 20px 7px 20px;
+  border:1px solid var(--line);background:#fff;
+  box-shadow:0 10px 28px rgba(22,43,32,.08)
 }
 .field{margin-bottom:15px}
-.field label{display:block;font-size:14px;font-weight:900;color:#413650;margin-bottom:7px}
-.field-hint{display:block;font-size:12px;line-height:1.8;color:#837B91;font-weight:600;margin-top:5px}
+.field label{display:block;font-size:14px;font-weight:900;color:var(--ink);margin-bottom:7px}
+.field-hint{display:block;font-size:12px;line-height:1.8;color:#7d877f;font-weight:600;margin-top:5px}
 .field input,.field textarea{
- width:100%;min-height:49px;
- border:1.5px solid #E4DDED;border-radius:13px;
- background:#FCFAFF;color:var(--ink);
- padding:12px 13px;font-size:15px;font-weight:700;
- outline:none;transition:.2s
+  width:100%;min-height:49px;
+  border:1.5px solid #dde3d8;border-radius:13px;
+  background:#fafbf5;color:var(--ink);
+  padding:12px 13px;font-size:15px;font-weight:700;
+  outline:none;transition:.2s
 }
 .field input:focus,.field textarea:focus{
- border-color:var(--purple);background:#fff;
- box-shadow:0 0 0 4px #7042F511
+  border-color:var(--green);background:#fff;
+  box-shadow:0 0 0 4px rgba(23,107,75,.10)
 }
-.field input::placeholder,.field textarea::placeholder{color:#A49CAF;font-weight:500}
-.field input[readonly]{background:#F3EFFF;color:var(--purple3);font-weight:900}
+.field input::placeholder,.field textarea::placeholder{color:#a5ada0;font-weight:500}
+.field input[readonly]{background:#eef4e5;color:var(--green);font-weight:900}
 .field textarea{min-height:100px;resize:vertical;line-height:1.9}
 .input-ltr{direction:ltr;text-align:left}
 .amount-wrap{position:relative}
 .amount-wrap input{padding-left:66px}
 .amount-unit{
- position:absolute;left:12px;top:50%;transform:translateY(-50%);
- font-size:12px;color:#80778E;font-weight:900
-}
-.upload-box{
- position:relative;overflow:hidden;text-align:center;
- border:2px dashed #B9A3F2;border-radius:17px;
- padding:19px 13px;background:
- radial-gradient(circle at 50% 0%,#EEE7FF,transparent 75%),#FCFAFF;
- transition:.2s
-}
-.upload-box.drag{border-color:var(--purple);background:#F1EBFF}
-.upload-box input{
- position:absolute;inset:0;width:100%;height:100%;
- opacity:0;cursor:pointer
-}
-.upload-icon{
- width:49px;height:49px;display:grid;place-items:center;
- margin:0 auto 9px;border-radius:16px;
- background:linear-gradient(145deg,#A88AFF,#7042F5);
- color:#fff;font-size:24px;
- box-shadow:0 8px 17px #7042F533
-}
-.upload-box strong{display:block;font-size:15px;font-weight:900;color:var(--purple3)}
-.upload-box small{display:block;font-size:12px;line-height:1.8;color:#837B91;font-weight:600;margin-top:4px}
-#receiptPreview{display:none;align-items:center;gap:11px;margin-top:11px;padding:10px;background:#F4F0FF;border:1px solid #DED2FF;border-radius:13px}
-#receiptPreview img{width:67px;height:67px;object-fit:cover;border-radius:10px;border:1px solid #D7C9F5}
-#receiptPreview b{font-size:13px;display:block;color:var(--purple3)}
-#receiptPreview span{font-size:11px;color:var(--muted);display:block;margin-top:4px}
-.remove-file{
- margin-right:auto;border:0;background:#FFE8E8;color:#C94D59;
- width:30px;height:30px;border-radius:9px;font-size:16px;font-weight:900
-}
-.primary-button{
- width:100%;border:0;border-radius:15px 15px 6px 15px;
- padding:15px 13px;
- background:linear-gradient(105deg,#8056F7,#6336DD 65%,#512BC0);
- color:#fff;font-size:15px;font-weight:900;
- box-shadow:0 10px 22px #7042F52B,inset 0 1px 0 #ffffff44;
- transition:.2s
-}
-.primary-button:hover{transform:translateY(-2px);box-shadow:0 14px 27px #7042F53D}
-.primary-button:active{transform:scale(.985)}
-.form-hint{
- font-size:12px;line-height:1.9;color:#8B8299;font-weight:600;margin:10px 0 0
+  position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  font-size:12px;color:#7d877f;font-weight:900
 }
 
-/* SERVICE PATH */
+.upload-box{
+  position:relative;overflow:hidden;text-align:center;
+  border:2px dashed rgba(23,107,75,.35);border-radius:17px;
+  padding:19px 13px;
+  background:radial-gradient(circle at 50% 0%,#f0f6e8,transparent 75%),#fafbf5;
+  transition:.2s
+}
+.upload-box.drag{border-color:var(--green);background:#eef5e0}
+.upload-box input{
+  position:absolute;inset:0;width:100%;height:100%;
+  opacity:0;cursor:pointer
+}
+.upload-icon{
+  width:49px;height:49px;display:grid;place-items:center;
+  margin:0 auto 9px;border-radius:16px;
+  background:linear-gradient(145deg,#a8d7b8,#176b4b);
+  color:#fff;font-size:24px;
+  box-shadow:0 8px 17px rgba(23,107,75,.22)
+}
+.upload-box strong{display:block;font-size:15px;font-weight:900;color:var(--green)}
+.upload-box small{display:block;font-size:12px;line-height:1.8;color:#7d877f;font-weight:600;margin-top:4px}
+
+#receiptPreview{display:none;align-items:center;gap:11px;margin-top:11px;padding:10px;background:#eef4e5;border:1px solid #d5e2c6;border-radius:13px}
+#receiptPreview img{width:67px;height:67px;object-fit:cover;border-radius:10px;border:1px solid #c9d6ba}
+#receiptPreview b{font-size:13px;display:block;color:var(--green)}
+#receiptPreview span{font-size:11px;color:var(--muted);display:block;margin-top:4px}
+.remove-file{
+  margin-right:auto;border:0;background:#ffe4e0;color:#c94d40;
+  width:30px;height:30px;border-radius:9px;font-size:16px;font-weight:900
+}
+
+.primary-button{
+  width:100%;border:0;border-radius:15px 15px 6px 15px;
+  padding:15px 13px;
+  background:linear-gradient(105deg,#1f8d63,#176b4b 65%,#0f4a32);
+  color:#fff;font-size:15px;font-weight:900;
+  box-shadow:0 10px 22px rgba(23,107,75,.25),inset 0 1px 0 rgba(255,255,255,.20);
+  transition:.2s
+}
+.primary-button:hover{transform:translateY(-2px);box-shadow:0 14px 27px rgba(23,107,75,.32)}
+.primary-button:active{transform:scale(.985)}
+.form-hint{
+  font-size:12px;line-height:1.9;color:#8b958d;font-weight:600;margin:10px 0 0
+}
+
+/* ============ SERVICE CHOICE ============ */
+
 .service-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:13px 0}
 .service-choice{
- position:relative;text-align:right;padding:13px 11px;
- border:1.5px solid #E4DDED;border-radius:15px;
- background:#FCFAFF;color:var(--ink);transition:.2s
+  position:relative;text-align:right;padding:13px 11px;
+  border:1.5px solid #dde3d8;border-radius:15px;
+  background:#fafbf5;color:var(--ink);transition:.2s
 }
 .service-choice.active{
- border-color:var(--purple);background:#F1EBFF;
- box-shadow:0 0 0 2px #7042F511
+  border-color:var(--green);background:#eef5e0;
+  box-shadow:0 0 0 2px rgba(23,107,75,.10)
 }
 .service-choice strong{display:block;font-size:14px;font-weight:900}
 .service-choice small{display:block;font-size:11px;line-height:1.7;color:var(--muted);font-weight:600;margin-top:4px}
 .service-choice .radio-dot{
- width:18px;height:18px;position:absolute;left:10px;top:12px;
- border:1.5px solid #B8AEC9;border-radius:50%
+  width:18px;height:18px;position:absolute;left:10px;top:12px;
+  border:1.5px solid #b8c4b9;border-radius:50%
 }
-.service-choice.active .radio-dot{border:5px solid var(--purple);background:#fff}
+.service-choice.active .radio-dot{border:5px solid var(--green);background:#fff}
 .service-panel{display:none}
 .service-panel.active{display:block;animation:fadeUp .28s ease}
 .time-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .service-warning{
- padding:11px 12px;border-radius:12px;background:#FFF8E5;
- border:1px solid #F5DDA2;color:#795D20;
- font-size:12px;font-weight:700;line-height:1.9;margin:10px 0 14px
+  padding:11px 12px;border-radius:12px;background:#fff7dc;
+  border:1px solid #f0dd9c;color:#795a20;
+  font-size:12px;font-weight:700;line-height:1.9;margin:10px 0 14px
 }
 
-/* OBJECTION */
+/* ============ SUPPORT ============ */
+
 .support-card{
- margin-top:30px;padding:17px;
- border-radius:22px 22px 7px 22px;
- background:linear-gradient(145deg,#FFF,#F7F3FF);
- border:1px solid #E2D8F5;box-shadow:var(--shadow2)
+  margin-top:30px;padding:17px;
+  border-radius:22px 22px 7px 22px;
+  background:linear-gradient(145deg,#fff,#f5f7ee);
+  border:1px solid var(--line);
+  box-shadow:0 10px 28px rgba(22,43,32,.08)
 }
 .support-head{display:flex;align-items:center;gap:11px;margin-bottom:5px}
 .support-icon{
- width:45px;height:45px;flex:0 0 45px;
- display:grid;place-items:center;border-radius:15px 15px 5px 15px;
- background:#FFE8E6;color:#D85D58;font-size:21px
+  width:45px;height:45px;flex:0 0 45px;
+  display:grid;place-items:center;border-radius:15px 15px 5px 15px;
+  background:#ffe3da;color:#c94d40;font-size:20px;font-weight:900
 }
-.support-head h2{font-size:21px;font-weight:900;margin:0}
+.support-head h2{font-size:20px;font-weight:900;margin:0}
 .support-copy{font-size:13px;line-height:1.9;color:var(--muted);font-weight:600;margin:5px 0 14px}
 .ticket-options{display:grid;gap:9px;margin:12px 0 14px}
 .ticket-option{
- display:flex;align-items:center;gap:11px;text-align:right;
- width:100%;padding:13px;border:1.5px solid #E7DFEF;
- border-radius:14px;background:#fff;color:var(--ink);transition:.2s
+  display:flex;align-items:center;gap:11px;text-align:right;
+  width:100%;padding:13px;border:1.5px solid #e1e6dd;
+  border-radius:14px;background:#fff;color:var(--ink);transition:.2s
 }
 .ticket-option.active{
- border-color:#F17B75;background:#FFF1EF;
- box-shadow:0 0 0 2px #F17B7512
+  border-color:var(--coral);background:#fff2ee;
+  box-shadow:0 0 0 2px rgba(239,118,87,.10)
 }
 .ticket-radio{
- width:20px;height:20px;flex:0 0 20px;
- border:1.5px solid #B8AEC9;border-radius:50%;
- display:grid;place-items:center
+  width:20px;height:20px;flex:0 0 20px;
+  border:1.5px solid #b8c4b9;border-radius:50%;
+  display:grid;place-items:center
 }
-.ticket-option.active .ticket-radio{border:6px solid #F16E65;background:#fff}
+.ticket-option.active .ticket-radio{border:6px solid var(--coral);background:#fff}
 .ticket-option strong{display:block;font-size:14px;font-weight:900}
 .ticket-option small{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-top:3px}
 .support-footnote{
- font-size:12px;line-height:1.9;color:#8B8299;font-weight:600;margin:10px 0 0
+  font-size:12px;line-height:1.9;color:#8b958d;font-weight:600;margin:10px 0 0
 }
 
-/* LAST CTA */
+/* ============ LAST CTA ============ */
+
 .last-cta{
- position:relative;overflow:hidden;margin:28px 0 8px;padding:20px;
- border-radius:25px 25px 7px 25px;
- color:#fff;background:
- radial-gradient(circle at 100% 0%,#A98AFF 0%,transparent 35%),
- linear-gradient(125deg,#5532C2,#342070 70%,#241849);
- box-shadow:0 18px 34px #492B982D
+  position:relative;overflow:hidden;margin:28px 0 8px;padding:20px;
+  border-radius:25px 25px 7px 25px;
+  color:#fff;background:
+    radial-gradient(circle at 100% 0%,rgba(199,255,0,.20) 0%,transparent 35%),
+    linear-gradient(125deg,#176b4b,#0f4a32 70%,#0a3524);
+  box-shadow:0 18px 34px rgba(23,107,75,.25)
 }
 .last-cta:after{
- content:"GROW";position:absolute;left:-10px;bottom:-27px;
- font-size:90px;font-weight:900;direction:ltr;
- color:#ffffff0D;letter-spacing:-5px
+  content:"GROW";position:absolute;left:-10px;bottom:-27px;
+  font-size:90px;font-weight:900;direction:ltr;
+  color:rgba(255,255,255,.05);letter-spacing:-5px
 }
-.last-cta small{font-size:11px;color:#D9CCFF;font-weight:900;letter-spacing:1px;direction:ltr;display:block}
-.last-cta h2{font-size:25px;line-height:1.55;font-weight:900;margin:8px 0;position:relative;z-index:1}
+.last-cta small{font-size:11px;color:#a8d7b8;font-weight:900;letter-spacing:1px;direction:ltr;display:block}
+.last-cta h2{font-size:24px;line-height:1.55;font-weight:900;margin:8px 0;position:relative;z-index:1}
 .last-cta h2 em{font-style:normal;color:var(--lime)}
-.last-cta p{font-size:13px;line-height:1.9;color:#E3DBF8;font-weight:600;margin:0;position:relative;z-index:1}
+.last-cta p{font-size:13px;line-height:1.9;color:#c2d1c7;font-weight:600;margin:0;position:relative;z-index:1}
 .last-cta a{
- display:inline-flex;align-items:center;gap:8px;margin-top:15px;
- padding:11px 16px;border-radius:12px 12px 5px 12px;
- background:var(--lime);color:#33245C;font-size:13px;font-weight:900;
- box-shadow:0 7px 17px #15102B55;position:relative;z-index:1
+  display:inline-flex;align-items:center;gap:8px;margin-top:15px;
+  padding:11px 16px;border-radius:12px 12px 5px 12px;
+  background:var(--lime);color:var(--ink);font-size:13px;font-weight:900;
+  box-shadow:0 7px 17px rgba(0,0,0,.35);position:relative;z-index:1
 }
+
+/* ============ FOOTER ============ */
+
 .footer{
- text-align:center;padding:22px 0 6px;
- color:#8B8299;font-size:12px;font-weight:700;line-height:2
+  text-align:center;padding:22px 0 6px;
+  color:#8b958d;font-size:12px;font-weight:700;line-height:2
 }
-.footer b{color:var(--purple3);font-weight:900}
+.footer b{color:var(--green);font-weight:900}
 
-/* NAV — same four original SVG icons and routes */
+/* ============ BOTTOM NAV — SAME AS HOME ============ */
+
 .bottom-nav{
- position:fixed;z-index:50;bottom:0;left:0;right:0;
- padding:8px 12px calc(8px + env(safe-area-inset-bottom));
- background:rgba(255,255,255,.88);
- backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
- border-top:1px solid rgba(112,66,245,.15);
- box-shadow:0 -8px 30px rgba(56,37,94,.07)
-}
-.nav-inner{
- max-width:540px;margin:auto;
- display:grid;grid-template-columns:repeat(4,1fr);gap:5px
-}
-.nav-item{
- position:relative;min-height:61px;
- display:flex;flex-direction:column;align-items:center;justify-content:center;
- gap:4px;border-radius:14px;color:#817990;
- font-size:12px;font-weight:800;transition:.2s
-}
-.nav-item svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.nav-item.active{
- color:var(--purple);background:linear-gradient(145deg,#F0EAFF,#fff);
- box-shadow:inset 0 0 0 1px #DCD0FF,0 5px 13px #7042F510
-}
-.nav-item.active:before{
- content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
- width:23px;height:3px;border-radius:0 0 5px 5px;background:var(--purple)
+  position:fixed;
+  z-index:30;
+  bottom:0;
+  left:0;
+  right:0;
+  height:76px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:5px;
+  padding:7px 9px;
+  background:var(--ink);
+  border-top:1px solid rgba(255,255,255,.08);
+  box-shadow:0 -10px 34px rgba(8,16,12,.45);
+  max-width:560px;
+  margin:auto;
 }
 
-/* TOAST */
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  color:#aebbb2;
+  font-size:9px;
+  font-weight:800;
+  transition:background .2s,color .2s;
+}
+
+.nav-item svg{width:20px;height:20px;stroke-width:1.8}
+.nav-item.active{background:var(--lime);color:#1c2a20}
+
+/* ============ TOAST ============ */
+
 .toast{
- position:fixed;z-index:100;bottom:100px;left:50%;
- transform:translate(-50%,15px);opacity:0;pointer-events:none;
- width:max-content;max-width:calc(100% - 32px);
- padding:12px 17px;border-radius:14px;
- background:#33245C;color:#fff;font-size:13px;font-weight:900;
- text-align:center;line-height:1.7;
- box-shadow:0 10px 28px #24184935;transition:.25s
+  position:fixed;z-index:100;bottom:100px;left:50%;
+  transform:translate(-50%,15px);opacity:0;pointer-events:none;
+  width:max-content;max-width:calc(100% - 32px);
+  padding:12px 17px;border-radius:14px;
+  background:var(--ink);color:#fff;font-size:13px;font-weight:900;
+  text-align:center;line-height:1.7;
+  box-shadow:0 10px 28px rgba(0,0,0,.35);transition:.25s
 }
 .toast.show{opacity:1;transform:translate(-50%,0)}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
-@keyframes floatSoft{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-.stage-core{animation:floatSoft 4s ease-in-out infinite}
-@media(prefers-reduced-motion:reduce){
- *,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+
+/* ============ RESPONSIVE ============ */
+
+@media(min-width:700px){
+  body{padding:22px 0 calc(var(--nav-h) + 50px)}
+  .page{
+    border-radius:38px;
+    box-shadow:0 30px 90px rgba(20,43,28,.08);
+    overflow:hidden;
+  }
+  .bottom-nav{
+    bottom:22px;
+    border-radius:22px;
+  }
 }
+
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
+
 @media(max-width:370px){
- .page{width:calc(100% - 22px)}
- .header-pill{font-size:10px;padding:8px}
- .brand-name{font-size:20px}
- .brand-photo{width:51px;height:51px;flex-basis:51px}
- .hero h1{font-size:34px}
- .plan{min-width:265px}
- .route-choice{padding:11px 9px}
- .route-choice strong{font-size:13px}
- .stage-visual{width:88px;height:88px;flex-basis:88px}
- .stage-core{width:61px;height:61px}
+  .page{width:calc(100% - 26px)}
+  .hero h1{font-size:34px}
+  .plan{min-width:265px}
+  .route-choice{padding:11px 9px}
+  .route-choice strong{font-size:13px}
+  .stage-visual{width:88px;height:88px;flex-basis:88px}
+  .stage-core{width:61px;height:61px;font-size:30px}
 }
 </style>
 </head>
 
 <body>
-<div class="bg-orb a"></div>
-<div class="bg-orb b"></div>
-<div class="bg-orb c"></div>
 
-<main class="page">
+<div class="grain" aria-hidden="true"></div>
+<div class="bg-orb a" aria-hidden="true"></div>
+<div class="bg-orb b" aria-hidden="true"></div>
+<div class="bg-orb c" aria-hidden="true"></div>
 
-<header class="site-header">
- <a class="brand" href="index.html" aria-label="Growza24">
-  <span class="brand-photo"><img src="1.jpg" alt="Growza24"></span>
-  <span class="brand-copy">
-   <span class="brand-name">Growza<span>24</span></span>
-   <span class="brand-sub">پلتفرم رشد پیج اینستاگرام</span>
+<!-- HEADER — EXACT SAME AS HOME -->
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="Growza24">
+    <img class="brand-logo" src="1.jpg" alt="لوگوی Growza24">
+    <span class="brand-right">
+      <span class="subtitle">پلتفرم رشد <span class="hl">پیج اینستاگرام</span></span>
+    </span>
+  </a>
+
+  <span class="brand-latin" aria-label="Growza24">
+    <span class="g">Growza</span><span class="num">24</span>
   </span>
- </a>
- <div class="header-pill"><i></i> مرکز فعال‌سازی</div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
- <div class="eyebrow"><span class="eyebrow-mark">✦</span> ACTIVATION CENTER / 24</div>
- <h1>وقتشه پیجت رو<br><span class="highlight">یک سطح بالاتر</span> ببری!</h1>
- <p class="hero-copy">
-  فقط دیده‌شدن کافی نیست؛ <strong>توجه جلب کن، مخاطب جذب کن و حضورت رو ماندگارتر کن.</strong>
-  مسیر رشدت رو انتخاب کن و قدم بعدی رو بردار.
- </p>
- <div class="hero-proof">
-  <span class="proof-chip"><b>✦</b> انتخاب هدفمند</span>
-  <span class="proof-chip"><b>↗</b> مسیرهای متنوع رشد</span>
-  <span class="proof-chip"><b>24</b> Growza24</span>
- </div>
+<main class="app">
+<div class="page">
 
- <div class="hero-stage">
-  <div class="stage-top">
-   <span class="stage-label">YOUR NEXT MOVE / 24</span>
-   <span class="stage-live"><i></i> آماده شروعی؟</span>
+<!-- HERO با انیمیشن کلمه‌به‌کلمه -->
+<section class="hero">
+  <div class="eyebrow"><span class="eyebrow-mark">✦</span> ACTIVATION CENTER / 24</div>
+
+  <h1>
+    <span class="line">
+      <span class="word w1">وقتشه</span>
+      <span class="word w2">پیجت</span>
+      <span class="word w3">رو</span>
+    </span>
+    <span class="line">
+      <span class="word w4">یک</span>
+      <span class="word w0 fixed-phrase">سطح</span>
+      <span class="word w5">بالاتر</span>
+      <span class="word w6 highlight">ببری!</span>
+    </span>
+  </h1>
+
+  <p class="hero-copy">
+    فقط دیده‌شدن کافی نیست؛ <strong>توجه جلب کن، مخاطب جذب کن و حضورت رو ماندگارتر کن.</strong>
+    مسیر رشدت رو انتخاب کن و قدم بعدی رو بردار.
+  </p>
+
+  <div class="hero-proof">
+    <span class="proof-chip"><b>✦</b> انتخاب هدفمند</span>
+    <span class="proof-chip"><b>↗</b> مسیرهای متنوع رشد</span>
+    <span class="proof-chip"><b>24</b> Growza24</span>
   </div>
-  <div class="stage-content">
-   <div class="stage-message">
-    <small>یک انتخاب هوشمندانه</small>
-    <strong>از یک قدم کوچک<br>تا <em>رشد بزرگ‌تر</em></strong>
-    <p>پلن مناسب هدفت رو پیدا کن؛ ادامه مسیر با توست.</p>
-   </div>
-   <div class="stage-visual">
-    <div class="stage-ring"></div>
-    <div class="stage-core">↗</div>
-    <span class="stage-float">LEVEL UP</span>
-   </div>
+
+  <div class="hero-stage">
+    <div class="stage-top">
+      <span class="stage-label">YOUR NEXT MOVE / 24</span>
+      <span class="stage-live"><i></i> آماده شروعی؟</span>
+    </div>
+    <div class="stage-content">
+      <div class="stage-message">
+        <small>یک انتخاب هوشمندانه</small>
+        <strong>از یک قدم کوچک<br>تا <em>رشد بزرگ‌تر</em></strong>
+        <p>پلن مناسب هدفت رو پیدا کن؛ ادامه مسیر با توست.</p>
+      </div>
+      <div class="stage-visual">
+        <div class="stage-ring"></div>
+        <div class="stage-core">↗</div>
+        <span class="stage-float">LEVEL UP</span>
+      </div>
+    </div>
+    <div class="stage-bottom">
+      <span>GROW DIFFERENT · GROWZA24</span>
+      <b>01 / CHOOSE YOUR PATH</b>
+    </div>
   </div>
-  <div class="stage-bottom">
-   <span>GROW DIFFERENT · GROWZA24</span>
-   <b>01 / CHOOSE YOUR PATH</b>
-  </div>
- </div>
 </section>
 
 <!-- STEP 01 -->
 <section class="section-intro" id="paths">
- <div class="section-overline">STEP 01 / YOUR DIRECTION</div>
- <h2 class="section-title">اول مسیر <span class="underline">رشدت</span> رو انتخاب کن</h2>
- <p class="section-desc">هدفت رو مشخص کن تا پلن‌های مرتبط با همون مسیر رو ببینی.</p>
+  <div class="section-overline">STEP 01 / YOUR DIRECTION</div>
+  <h2 class="section-title">اول مسیر <span class="underline">رشدت</span> رو انتخاب کن</h2>
+  <p class="section-desc">هدفت رو مشخص کن تا پلن‌های مرتبط با همون مسیر رو ببینی.</p>
 </section>
 
 <div class="route-strip">
- <button class="route-choice active" type="button" data-route="followers" style="--route-tint:#E6DEFF;--route-color:#7042F5">
-  <span class="route-icon">♙</span>
-  <strong>افزایش فالوور</strong>
-  <small>گسترش جامعه دنبال‌کنندگان پیج</small>
-  <span class="route-check">✓</span>
- </button>
- <button class="route-choice" type="button" data-route="reels" style="--route-tint:#FFE4E0;--route-color:#E5655C">
-  <span class="route-icon">▶</span>
-  <strong>افزایش تعامل</strong>
-  <small>دیده‌شدن و تعامل بیشتر محتوا</small>
-  <span class="route-check"></span>
- </button>
+  <button class="route-choice active" type="button" data-route="followers" style="--route-tint:#d7eadb;--route-color:#176b4b">
+    <span class="route-icon">♙</span>
+    <strong>افزایش فالوور</strong>
+    <small>گسترش جامعه دنبال‌کنندگان پیج</small>
+    <span class="route-check">✓</span>
+  </button>
+  <button class="route-choice" type="button" data-route="reels" style="--route-tint:#ffe4dd;--route-color:#c94d40">
+    <span class="route-icon">▶</span>
+    <strong>افزایش تعامل</strong>
+    <small>دیده‌شدن و تعامل بیشتر محتوا</small>
+    <span class="route-check"></span>
+  </button>
 </div>
 
 <!-- STEP 02 -->
 <section class="section-intro" id="plans">
- <div class="section-overline">STEP 02 / FIND YOUR PLAN</div>
- <h2 class="section-title">پلنی انتخاب کن که <span class="underline">به هدفت می‌خوره</span></h2>
- <p class="section-desc">هر کارت یک سطح متفاوت از خدمات را نشان می‌دهد. برای مقایسه، کارت‌ها را افقی جابه‌جا کن.</p>
+  <div class="section-overline">STEP 02 / FIND YOUR PLAN</div>
+  <h2 class="section-title">پلنی انتخاب کن که <span class="underline">به هدفت می‌خوره</span></h2>
+  <p class="section-desc">هر کارت یک سطح متفاوت از خدمات را نشان می‌دهد. برای مقایسه، کارت‌ها را افقی جابه‌جا کن.</p>
 </section>
 
 <!-- FOLLOWERS -->
 <section class="category" id="followers">
- <div class="category-head">
-  <div class="category-title" style="--cat-color:#7042F5;--cat-soft:#EEE8FF;--cat-border:#D9CBFF;--cat-shadow:#7042F515">
-   <div class="category-icon">♙</div>
-   <div><h3>مسیر افزایش فالوور</h3><p>برای بزرگ‌تر کردن جامعه مخاطبان پیج</p></div>
+  <div class="category-head">
+    <div class="category-title" style="--cat-color:#176b4b;--cat-soft:#e0eee4;--cat-border:#c2dccb;--cat-shadow:rgba(23,107,75,.10)">
+      <div class="category-icon">♙</div>
+      <div><h3>مسیر افزایش فالوور</h3><p>برای بزرگ‌تر کردن جامعه مخاطبان پیج</p></div>
+    </div>
+    <span class="swipe-hint">← اسکرول</span>
   </div>
-  <span class="swipe-hint">← اسکرول</span>
- </div>
 
- <div class="plan-track">
-  <article class="plan" data-tier="test" data-plan="پلن تست" data-price="۳۹,۰۰۰" data-route="followers">
-   <div class="plan-top"><span class="plan-name">پلن تست</span><span class="plan-badge">شروع اقتصادی</span></div>
-   <div class="plan-price-row"><strong class="plan-price">۳۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
-   <p class="plan-desc">یک شروع کم‌هزینه برای تجربه خدمات و برداشتن اولین قدم.</p>
-   <div class="plan-divider"></div>
-   <div class="plan-features">
-    <div class="feature"><span class="feature-mark">✓</span> ۵۰۰ فالوور</div>
-    <div class="feature"><span class="feature-mark">✓</span> مناسب برای شروع</div>
-    <div class="feature"><span class="feature-mark">✓</span> بررسی و پیگیری سفارش</div>
-   </div>
-   <div class="plan-bottom">
-    <span class="selected-stamp">✓ انتخاب شده</span>
-    <small>LEVEL 01 · START</small>
-    <button class="plan-button" type="button">انتخاب این پلن ←</button>
-   </div>
-  </article>
+  <div class="plan-track">
+    <article class="plan" data-tier="test" data-plan="پلن تست" data-price="۳۹,۰۰۰" data-route="followers">
+      <div class="plan-top"><span class="plan-name">پلن تست</span><span class="plan-badge">شروع اقتصادی</span></div>
+      <div class="plan-price-row"><strong class="plan-price">۳۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
+      <p class="plan-desc">یک شروع کم‌هزینه برای تجربه خدمات و برداشتن اولین قدم.</p>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="feature"><span class="feature-mark">✓</span> ۵۰۰ فالوور</div>
+        <div class="feature"><span class="feature-mark">✓</span> مناسب برای شروع</div>
+        <div class="feature"><span class="feature-mark">✓</span> بررسی و پیگیری سفارش</div>
+      </div>
+      <div class="plan-bottom">
+        <span class="selected-stamp">✓ انتخاب شده</span>
+        <small>LEVEL 01 · START</small>
+        <button class="plan-button" type="button">انتخاب این پلن ←</button>
+      </div>
+    </article>
 
-  <article class="plan selected" data-tier="gold" data-plan="پلن طلایی" data-price="۹۹,۰۰۰" data-route="followers">
-   <div class="plan-top"><span class="plan-name">پلن طلایی</span><span class="plan-badge">انتخاب محبوب</span></div>
-   <div class="plan-price-row"><strong class="plan-price">۹۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
-   <p class="plan-desc">انتخابی متعادل برای پیج‌هایی که می‌خواهند جدی‌تر رشد کنند.</p>
-   <div class="plan-divider"></div>
-   <div class="plan-features">
-    <div class="feature"><span class="feature-mark">✓</span> ۱,۵۰۰ فالوور</div>
-    <div class="feature"><span class="feature-mark">✓</span> مناسب برای پیج‌های فعال</div>
-    <div class="feature"><span class="feature-mark">✓</span> بررسی سفارش توسط تیم</div>
-   </div>
-   <div class="plan-bottom">
-    <span class="selected-stamp">✓ انتخاب شده</span>
-    <small>LEVEL 02 · GROW</small>
-    <button class="plan-button" type="button">انتخاب این پلن ←</button>
-   </div>
-  </article>
+    <article class="plan selected" data-tier="gold" data-plan="پلن طلایی" data-price="۹۹,۰۰۰" data-route="followers">
+      <div class="plan-top"><span class="plan-name">پلن طلایی</span><span class="plan-badge">انتخاب محبوب</span></div>
+      <div class="plan-price-row"><strong class="plan-price">۹۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
+      <p class="plan-desc">انتخابی متعادل برای پیج‌هایی که می‌خواهند جدی‌تر رشد کنند.</p>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="feature"><span class="feature-mark">✓</span> ۱,۵۰۰ فالوور</div>
+        <div class="feature"><span class="feature-mark">✓</span> مناسب برای پیج‌های فعال</div>
+        <div class="feature"><span class="feature-mark">✓</span> بررسی سفارش توسط تیم</div>
+      </div>
+      <div class="plan-bottom">
+        <span class="selected-stamp">✓ انتخاب شده</span>
+        <small>LEVEL 02 · GROW</small>
+        <button class="plan-button" type="button">انتخاب این پلن ←</button>
+      </div>
+    </article>
 
-  <article class="plan" data-tier="diamond" data-plan="پلن الماس" data-price="۱۹۹,۰۰۰" data-route="followers">
-   <span class="plan-ribbon">ویژه</span>
-   <div class="plan-top"><span class="plan-name">پلن الماس</span><span class="plan-badge">سطح پیشرفته</span></div>
-   <div class="plan-price-row"><strong class="plan-price">۱۹۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
-   <p class="plan-desc">برای کسانی که به رشد بزرگ‌تر فکر می‌کنند و ظرفیت بالاتری می‌خواهند.</p>
-   <div class="plan-divider"></div>
-   <div class="plan-features">
-    <div class="feature"><span class="feature-mark">✓</span> ۴,۰۰۰ فالوور</div>
-    <div class="feature"><span class="feature-mark">✓</span> ظرفیت بالاتر نسبت به پلن‌های پایه</div>
-    <div class="feature"><span class="feature-mark">✓</span> بررسی سفارش توسط تیم</div>
-   </div>
-   <div class="plan-bottom">
-    <span class="selected-stamp">✓ انتخاب شده</span>
-    <small>LEVEL 03 · ADVANCED</small>
-    <button class="plan-button" type="button">انتخاب این پلن ←</button>
-   </div>
-  </article>
- </div>
+    <article class="plan" data-tier="diamond" data-plan="پلن الماس" data-price="۱۹۹,۰۰۰" data-route="followers">
+      <span class="plan-ribbon">ویژه</span>
+      <div class="plan-top"><span class="plan-name">پلن الماس</span><span class="plan-badge">سطح پیشرفته</span></div>
+      <div class="plan-price-row"><strong class="plan-price">۱۹۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
+      <p class="plan-desc">برای کسانی که به رشد بزرگ‌تر فکر می‌کنند و ظرفیت بالاتری می‌خواهند.</p>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="feature"><span class="feature-mark">✓</span> ۴,۰۰۰ فالوور</div>
+        <div class="feature"><span class="feature-mark">✓</span> ظرفیت بالاتر نسبت به پلن‌های پایه</div>
+        <div class="feature"><span class="feature-mark">✓</span> بررسی سفارش توسط تیم</div>
+      </div>
+      <div class="plan-bottom">
+        <span class="selected-stamp">✓ انتخاب شده</span>
+        <small>LEVEL 03 · ADVANCED</small>
+        <button class="plan-button" type="button">انتخاب این پلن ←</button>
+      </div>
+    </article>
+  </div>
 </section>
 
 <!-- REELS -->
 <section class="category" id="reels">
- <div class="category-head">
-  <div class="category-title" style="--cat-color:#E5655C;--cat-soft:#FFE8E4;--cat-border:#FFD0C9;--cat-shadow:#E5655C15">
-   <div class="category-icon">▶</div>
-   <div><h3>مسیر افزایش تعامل با ریلز</h3><p>برای بیشتر دیده‌شدن محتوای ویدیویی</p></div>
+  <div class="category-head">
+    <div class="category-title" style="--cat-color:#c94d40;--cat-soft:#ffe8e2;--cat-border:#ffd0c5;--cat-shadow:rgba(201,77,64,.10)">
+      <div class="category-icon">▶</div>
+      <div><h3>مسیر افزایش تعامل با ریلز</h3><p>برای بیشتر دیده‌شدن محتوای ویدیویی</p></div>
+    </div>
+    <span class="swipe-hint">← اسکرول</span>
   </div>
-  <span class="swipe-hint">← اسکرول</span>
- </div>
 
- <div class="plan-track">
-  <article class="plan" data-tier="reels" data-plan="ورود به اکسپلور" data-price="۴۹,۰۰۰" data-route="reels">
-   <div class="plan-top"><span class="plan-name">ورود به اکسپلور</span><span class="plan-badge">شروع دیده‌شدن</span></div>
-   <div class="plan-price-row"><strong class="plan-price">۴۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
-   <p class="plan-desc">تمرکز روی افزایش تعامل با محتوای ریلز.</p>
-   <div class="plan-divider"></div>
-   <div class="plan-features">
-    <div class="feature"><span class="feature-mark">✓</span> ۱,۵۰۰ تعامل با ریلز</div>
-    <div class="feature"><span class="feature-mark">✓</span> با هدف افزایش شانس دیده‌شدن</div>
-    <div class="feature"><span class="feature-mark">✓</span> بررسی محتوای ثبت‌شده</div>
-   </div>
-   <div class="plan-bottom">
-    <span class="selected-stamp">✓ انتخاب شده</span>
-    <small>REELS · START</small>
-    <button class="plan-button" type="button">انتخاب این پلن ←</button>
-   </div>
-  </article>
+  <div class="plan-track">
+    <article class="plan" data-tier="reels" data-plan="ورود به اکسپلور" data-price="۴۹,۰۰۰" data-route="reels">
+      <div class="plan-top"><span class="plan-name">ورود به اکسپلور</span><span class="plan-badge">شروع دیده‌شدن</span></div>
+      <div class="plan-price-row"><strong class="plan-price">۴۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
+      <p class="plan-desc">تمرکز روی افزایش تعامل با محتوای ریلز.</p>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="feature"><span class="feature-mark">✓</span> ۱,۵۰۰ تعامل با ریلز</div>
+        <div class="feature"><span class="feature-mark">✓</span> با هدف افزایش شانس دیده‌شدن</div>
+        <div class="feature"><span class="feature-mark">✓</span> بررسی محتوای ثبت‌شده</div>
+      </div>
+      <div class="plan-bottom">
+        <span class="selected-stamp">✓ انتخاب شده</span>
+        <small>REELS · START</small>
+        <button class="plan-button" type="button">انتخاب این پلن ←</button>
+      </div>
+    </article>
 
-  <article class="plan" data-tier="reels7" data-plan="اکسپلور ۷ روزه" data-price="۱۲۰,۰۰۰" data-route="reels">
-   <span class="plan-ribbon">پیشنهاد ویژه</span>
-   <div class="plan-top"><span class="plan-name">اکسپلور ۷ روزه</span><span class="plan-badge">پیشرفته</span></div>
-   <div class="plan-price-row"><strong class="plan-price">۱۲۰,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
-   <p class="plan-desc">بسته گسترده‌تر برای همراهی با محتوای تو.</p>
-   <div class="plan-divider"></div>
-   <div class="plan-features">
-    <div class="feature"><span class="feature-mark">✓</span> ۴,۰۰۰ تعامل با ریلز</div>
-    <div class="feature"><span class="feature-mark">✓</span> برنامه با هدف ماندگاری ۷ روزه در اکسپلور</div>
-    <div class="feature"><span class="feature-mark">✓</span> بررسی و پیگیری سفارش</div>
-   </div>
-   <div class="plan-bottom">
-    <span class="selected-stamp">✓ انتخاب شده</span>
-    <small>REELS · ADVANCED</small>
-    <button class="plan-button" type="button">انتخاب این پلن ←</button>
-   </div>
-  </article>
- </div>
+    <article class="plan" data-tier="reels7" data-plan="اکسپلور ۷ روزه" data-price="۱۲۰,۰۰۰" data-route="reels">
+      <span class="plan-ribbon">پیشنهاد ویژه</span>
+      <div class="plan-top"><span class="plan-name">اکسپلور ۷ روزه</span><span class="plan-badge">پیشرفته</span></div>
+      <div class="plan-price-row"><strong class="plan-price">۱۲۰,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
+      <p class="plan-desc">بسته گسترده‌تر برای همراهی با محتوای تو.</p>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="feature"><span class="feature-mark">✓</span> ۴,۰۰۰ تعامل با ریلز</div>
+        <div class="feature"><span class="feature-mark">✓</span> برنامه با هدف ماندگاری ۷ روزه در اکسپلور</div>
+        <div class="feature"><span class="feature-mark">✓</span> بررسی و پیگیری سفارش</div>
+      </div>
+      <div class="plan-bottom">
+        <span class="selected-stamp">✓ انتخاب شده</span>
+        <small>REELS · ADVANCED</small>
+        <button class="plan-button" type="button">انتخاب این پلن ←</button>
+      </div>
+    </article>
+  </div>
 </section>
 
 <!-- PREMIUM -->
 <section class="category" id="premium">
- <div class="category-head">
-  <div class="category-title" style="--cat-color:#7544A7;--cat-soft:#F1E5FF;--cat-border:#DCC1FA;--cat-shadow:#7544A715">
-   <div class="category-icon">✦</div>
-   <div><h3>مسیر حرفه‌ای و ترکیبی</h3><p>ترکیب رشد فالوور و تعامل در یک اشتراک</p></div>
+  <div class="category-head">
+    <div class="category-title" style="--cat-color:#7544a7;--cat-soft:#f1e5ff;--cat-border:#dcc1fa;--cat-shadow:rgba(117,68,167,.10)">
+      <div class="category-icon">✦</div>
+      <div><h3>مسیر حرفه‌ای و ترکیبی</h3><p>ترکیب رشد فالوور و تعامل در یک اشتراک</p></div>
+    </div>
+    <span class="swipe-hint">ویژه</span>
   </div>
-  <span class="swipe-hint">ویژه</span>
- </div>
 
- <div class="plan-track">
-  <article class="plan" data-tier="premium" data-plan="اشتراک پریمیوم" data-price="۱۴۹,۰۰۰" data-route="premium">
-   <span class="plan-ribbon">PREMIUM ✦</span>
-   <div class="plan-top"><span class="plan-name">اشتراک پریمیوم</span><span class="plan-badge">ترکیب دو مسیر</span></div>
-   <div class="plan-price-row"><strong class="plan-price">۱۴۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
-   <p class="plan-desc">برای کسانی که هر دو مسیر رشد را در کنار هم می‌خواهند.</p>
-   <div class="plan-divider"></div>
-   <div class="plan-features">
-    <div class="feature"><span class="feature-mark">✓</span> ۱,۵۰۰ فالوور</div>
-    <div class="feature"><span class="feature-mark">✓</span> ۲,۵۰۰ تعامل با ریلز</div>
-    <div class="feature"><span class="feature-mark">✓</span> همراه با برنامه ورود به اکسپلور</div>
-    <div class="feature"><span class="feature-mark">✓</span> ترکیب دو مسیر رشد در یک پلن</div>
-   </div>
-   <div class="plan-bottom">
-    <span class="selected-stamp">✓ انتخاب شده</span>
-    <small>PREMIUM · COMBINED</small>
-    <button class="plan-button" type="button">انتخاب اشتراک پریمیوم ←</button>
-   </div>
-  </article>
- </div>
+  <div class="plan-track">
+    <article class="plan" data-tier="premium" data-plan="اشتراک پریمیوم" data-price="۱۴۹,۰۰۰" data-route="premium">
+      <span class="plan-ribbon">PREMIUM ✦</span>
+      <div class="plan-top"><span class="plan-name">اشتراک پریمیوم</span><span class="plan-badge">ترکیب دو مسیر</span></div>
+      <div class="plan-price-row"><strong class="plan-price">۱۴۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
+      <p class="plan-desc">برای کسانی که هر دو مسیر رشد را در کنار هم می‌خواهند.</p>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="feature"><span class="feature-mark">✓</span> ۱,۵۰۰ فالوور</div>
+        <div class="feature"><span class="feature-mark">✓</span> ۲,۵۰۰ تعامل با ریلز</div>
+        <div class="feature"><span class="feature-mark">✓</span> همراه با برنامه ورود به اکسپلور</div>
+        <div class="feature"><span class="feature-mark">✓</span> ترکیب دو مسیر رشد در یک پلن</div>
+      </div>
+      <div class="plan-bottom">
+        <span class="selected-stamp">✓ انتخاب شده</span>
+        <small>PREMIUM · COMBINED</small>
+        <button class="plan-button" type="button">انتخاب اشتراک پریمیوم ←</button>
+      </div>
+    </article>
+  </div>
 </section>
 
 <div class="selection-panel" id="selectionPanel">
- <div class="selection-top">
-  <span>پلن انتخاب‌شده برای فعال‌سازی</span>
-  <b>YOUR SELECTION ✦</b>
- </div>
- <div class="selection-bottom">
-  <strong class="selection-name" id="selectionName">پلن طلایی</strong>
-  <strong class="selection-price" id="selectionPrice">۹۹,۰۰۰ <small>تومان</small></strong>
- </div>
+  <div class="selection-top">
+    <span>پلن انتخاب‌شده برای فعال‌سازی</span>
+    <b>YOUR SELECTION ✦</b>
+  </div>
+  <div class="selection-bottom">
+    <strong class="selection-name" id="selectionName">پلن طلایی</strong>
+    <strong class="selection-price" id="selectionPrice">۹۹,۰۰۰ <small>تومان</small></strong>
+  </div>
 </div>
 
 <div class="insight">
- <div class="insight-icon">✳</div>
- <div>
-  <strong>رشد واقعی، نه فقط یک عدد</strong>
-  <p>هدف ما جذب فالوور فیک نیست. همکاران ما با بررسی عملکرد الگوریتم اینستاگرام و شرایط محتوای پیج، برای رشد بهتر آن تلاش می‌کنند.</p>
- </div>
+  <div class="insight-icon">✳</div>
+  <div>
+    <strong>رشد واقعی، نه فقط یک عدد</strong>
+    <p>هدف ما جذب فالوور فیک نیست. همکاران ما با بررسی عملکرد الگوریتم اینستاگرام و شرایط محتوای پیج، برای رشد بهتر آن تلاش می‌کنند.</p>
+  </div>
 </div>
 
 <section class="guarantee">
- <div class="guarantee-icon">✓</div>
- <div>
-  <h3>ضمانت بازگشت وجه</h3>
-  <p>اگر شرایط ضمانت اعلام‌شده برای سفارش شما محقق نشود، درخواست بازگشت وجه مطابق ضوابط مجموعه بررسی خواهد شد.</p>
- </div>
+  <div class="guarantee-icon">✓</div>
+  <div>
+    <h3>ضمانت بازگشت وجه</h3>
+    <p>اگر شرایط ضمانت اعلام‌شده برای سفارش شما محقق نشود، درخواست بازگشت وجه مطابق ضوابط مجموعه بررسی خواهد شد.</p>
+  </div>
 </section>
 
 <!-- REVIEWS -->
 <div class="review-head">
- <h2>صدای کاربران</h2>
- <span class="demo-tag">نمونه نمایشی</span>
+  <h2>صدای کاربران</h2>
+  <span class="demo-tag">نمونه نمایشی</span>
 </div>
 <div class="review-card" id="reviewCard">
- <div class="review-top">
-  <span class="review-stars" id="reviewStars">★★★★☆</span>
-  <span class="review-number" id="reviewNumber">01 / 03</span>
- </div>
- <p class="review-text" id="reviewText">«روند ثبت سفارش خیلی راحت بود. از اینکه مراحل مشخص بود و می‌توانستم وضعیت سفارش را پیگیری کنم، راضی بودم.»</p>
- <div class="review-author">
-  <span class="review-avatar">گ</span>
-  <span><b id="reviewAuthor">کاربر نمونه</b><small id="reviewPlan">پلن تست · متن نمایشی</small></span>
- </div>
- <div class="review-dots"><i class="active"></i><i></i><i></i></div>
+  <div class="review-top">
+    <span class="review-stars" id="reviewStars">★★★★☆</span>
+    <span class="review-number" id="reviewNumber">01 / 03</span>
+  </div>
+  <p class="review-text" id="reviewText">«روند ثبت سفارش خیلی راحت بود. از اینکه مراحل مشخص بود و می‌توانستم وضعیت سفارش را پیگیری کنم، راضی بودم.»</p>
+  <div class="review-author">
+    <span class="review-avatar">گ</span>
+    <span><b id="reviewAuthor">کاربر نمونه</b><small id="reviewPlan">پلن تست · متن نمایشی</small></span>
+  </div>
+  <div class="review-dots"><i class="active"></i><i></i><i></i></div>
 </div>
 
 <!-- STEP 03 PAYMENT -->
 <section class="section-card" id="payment">
- <div class="section-card-head">
-  <div class="section-card-icon">۳</div>
-  <div>
-   <h2>پرداخت و ارسال رسید</h2>
-   <p>مبلغ پلن انتخابی را واریز کن و تصویر واضح رسید یا پیامک بانکی را بفرست.</p>
+  <div class="section-card-head">
+    <div class="section-card-icon">۳</div>
+    <div>
+      <h2>پرداخت و ارسال رسید</h2>
+      <p>مبلغ پلن انتخابی را واریز کن و تصویر واضح رسید یا پیامک بانکی را بفرست.</p>
+    </div>
   </div>
- </div>
 
- <div class="bank-card">
-  <div class="bank-top">
-   <div class="bank-brand"><span class="bank-symbol">✦</span> بانک پاسارگاد</div>
-   <div class="bank-chip"></div>
+  <div class="bank-card">
+    <div class="bank-top">
+      <div class="bank-brand"><span class="bank-symbol">✦</span> بانک پاسارگاد</div>
+      <div class="bank-chip"></div>
+    </div>
+    <div class="bank-number">5022&nbsp;2910&nbsp;9895&nbsp;3209</div>
+    <div class="bank-bottom">
+      <div class="bank-owner"><small>به نام</small><strong>حمید رضا سلیمی</strong></div>
+      <div class="bank-network">PASARGAD</div>
+    </div>
   </div>
-  <div class="bank-number">5022&nbsp;2910&nbsp;9895&nbsp;3209</div>
-  <div class="bank-bottom">
-   <div class="bank-owner"><small>به نام</small><strong>حمید رضا سلیمی</strong></div>
-   <div class="bank-network">PASARGAD</div>
-  </div>
- </div>
- <button class="copy-card" id="copyCard" type="button">▣ کپی شماره کارت</button>
+  <button class="copy-card" id="copyCard" type="button">▣ کپی شماره کارت</button>
 </section>
 
 <section class="form-section">
- <h2>رسید پرداختت رو ثبت کن</h2>
- <p class="subcopy">اطلاعات پلن را بررسی کن و تصویر رسید یا پیامک بانکی را بارگذاری کن.</p>
+  <h2>رسید پرداختت رو ثبت کن</h2>
+  <p class="subcopy">اطلاعات پلن را بررسی کن و تصویر رسید یا پیامک بانکی را بارگذاری کن.</p>
 
- <div class="form-box">
-  <div class="field">
-   <label for="selectedPlan">پلن انتخاب‌شده</label>
-   <input id="selectedPlan" value="پلن طلایی" readonly>
+  <div class="form-box">
+    <div class="field">
+      <label for="selectedPlan">پلن انتخاب‌شده</label>
+      <input id="selectedPlan" value="پلن طلایی" readonly>
+    </div>
+
+    <div class="field">
+      <label for="amount">مبلغ پرداختی</label>
+      <div class="amount-wrap">
+        <input id="amount" value="۹۹,۰۰۰" readonly>
+        <span class="amount-unit">تومان</span>
+      </div>
+      <span class="field-hint">مبلغ متناسب با پلن انتخابی به‌صورت خودکار نمایش داده می‌شود.</span>
+    </div>
+
+    <div class="field">
+      <label>تصویر رسید یا پیامک بانکی</label>
+      <div class="upload-box" id="uploadBox">
+        <input type="file" id="receipt" accept="image/jpeg,image/png,image/webp">
+        <div class="upload-icon">⇧</div>
+        <strong>تصویر رسیدت رو اینجا انتخاب کن</strong>
+        <small>یک تصویر واضح از رسید بانکی یا پیامک واریز<br>کد رهگیری، تاریخ و ساعت باید در تصویر خوانا باشند.</small>
+      </div>
+      <div id="receiptPreview">
+        <img id="receiptImage" alt="پیش‌نمایش رسید">
+        <div><b id="receiptName">تصویر رسید</b><span id="receiptSize"></span></div>
+        <button class="remove-file" type="button" id="removeReceipt" aria-label="حذف تصویر">×</button>
+      </div>
+    </div>
+
+    <button class="primary-button" type="button" id="paymentSubmit">ثبت اطلاعات پرداخت ←</button>
+    <p class="form-hint">در این نسخه، رابط کاربری و انتخاب فایل فعال است؛ برای ارسال واقعی تصویر و اطلاعات پرداخت، اتصال سمت سرور لازم است.</p>
   </div>
-
-  <div class="field">
-   <label for="amount">مبلغ پرداختی</label>
-   <div class="amount-wrap">
-    <input id="amount" value="۹۹,۰۰۰" readonly>
-    <span class="amount-unit">تومان</span>
-   </div>
-   <span class="field-hint">مبلغ متناسب با پلن انتخابی به‌صورت خودکار نمایش داده می‌شود.</span>
-  </div>
-
-  <div class="field">
-   <label>تصویر رسید یا پیامک بانکی</label>
-   <div class="upload-box" id="uploadBox">
-    <input type="file" id="receipt" accept="image/jpeg,image/png,image/webp">
-    <div class="upload-icon">⇧</div>
-    <strong>تصویر رسیدت رو اینجا انتخاب کن</strong>
-    <small>یک تصویر واضح از رسید بانکی یا پیامک واریز<br>کد رهگیری، تاریخ و ساعت باید در تصویر خوانا باشند.</small>
-   </div>
-   <div id="receiptPreview">
-    <img id="receiptImage" alt="پیش‌نمایش رسید">
-    <div><b id="receiptName">تصویر رسید</b><span id="receiptSize"></span></div>
-    <button class="remove-file" type="button" id="removeReceipt" aria-label="حذف تصویر">×</button>
-   </div>
-  </div>
-
-  <button class="primary-button" type="button" id="paymentSubmit">ثبت اطلاعات پرداخت ←</button>
-  <p class="form-hint">در این نسخه، رابط کاربری و انتخاب فایل فعال است؛ برای ارسال واقعی تصویر و اطلاعات پرداخت، اتصال سمت سرور لازم است.</p>
- </div>
 </section>
 
 <!-- STEP 04 SERVICES -->
 <section class="section-card" id="services">
- <div class="section-card-head">
-  <div class="section-card-icon">۴</div>
-  <div>
-   <h2>محدوده خدماتت رو مشخص کن</h2>
-   <p>یکی از دو حالت زیر را انتخاب کن و فقط اطلاعات مربوط به همان حالت را وارد کن.</p>
+  <div class="section-card-head">
+    <div class="section-card-icon">۴</div>
+    <div>
+      <h2>محدوده خدماتت رو مشخص کن</h2>
+      <p>یکی از دو حالت زیر را انتخاب کن و فقط اطلاعات مربوط به همان حالت را وارد کن.</p>
+    </div>
   </div>
- </div>
 
- <div class="service-choice-grid">
-  <button type="button" class="service-choice active" data-service="page">
-   <span class="radio-dot"></span>
-   <strong>آدرس پیج</strong>
-   <small>برای ثبت محدوده خدمات روی یک پیج</small>
-  </button>
-  <button type="button" class="service-choice" data-service="reels">
-   <span class="radio-dot"></span>
-   <strong>ریلزهای آینده</strong>
-   <small>برای ریلزهایی که از زمان مشخص به بعد منتشر می‌کنی</small>
-  </button>
- </div>
-
- <div class="service-panel active" id="pageService">
-  <div class="field">
-   <label for="pageAddress">آدرس پیج اینستاگرام</label>
-   <input id="pageAddress" class="input-ltr" type="url" placeholder="https://instagram.com/yourpage">
-   <span class="field-hint">لینک مستقیم پیج موردنظرت را وارد کن.</span>
+  <div class="service-choice-grid">
+    <button type="button" class="service-choice active" data-service="page">
+      <span class="radio-dot"></span>
+      <strong>آدرس پیج</strong>
+      <small>برای ثبت محدوده خدمات روی یک پیج</small>
+    </button>
+    <button type="button" class="service-choice" data-service="reels">
+      <span class="radio-dot"></span>
+      <strong>ریلزهای آینده</strong>
+      <small>برای ریلزهایی که از زمان مشخص به بعد منتشر می‌کنی</small>
+    </button>
   </div>
- </div>
 
- <div class="service-panel" id="reelsService">
-  <div class="field">
-   <label for="reelsAddress">آدرس ریلزها</label>
-   <textarea id="reelsAddress" class="input-ltr" dir="ltr" placeholder="لینک ریلزها را وارد کن؛ هر لینک در یک خط"></textarea>
-   <span class="field-hint">می‌توانی لینک چند ریلز را در خطوط جداگانه وارد کنی.</span>
+  <div class="service-panel active" id="pageService">
+    <div class="field">
+      <label for="pageAddress">آدرس پیج اینستاگرام</label>
+      <input id="pageAddress" class="input-ltr" type="url" placeholder="https://instagram.com/yourpage">
+      <span class="field-hint">لینک مستقیم پیج موردنظرت را وارد کن.</span>
+    </div>
   </div>
-  <div class="field">
-   <label>شروع محدوده زمانی</label>
-   <div class="time-row">
-    <input type="date" id="reelsDate" aria-label="تاریخ شروع">
-    <input type="time" id="reelsTime" aria-label="ساعت شروع">
-   </div>
-   <span class="field-hint">ریلزهایی که از این تاریخ و ساعت به بعد منتشر می‌کنی در محدوده درخواست قرار می‌گیرند.</span>
-  </div>
- </div>
 
- <div class="service-warning">دقت کن فقط یکی از دو حالت را انتخاب کنی؛ اطلاعات حالت دیگر در درخواستت لحاظ نمی‌شود.</div>
- <button class="primary-button" type="button" id="serviceSubmit">ثبت محدوده خدمات ←</button>
- <p class="form-hint">برای ثبت و ارسال واقعی درخواست خدمات، اتصال به سامانه موردنیاز است.</p>
+  <div class="service-panel" id="reelsService">
+    <div class="field">
+      <label for="reelsAddress">آدرس ریلزها</label>
+      <textarea id="reelsAddress" class="input-ltr" dir="ltr" placeholder="لینک ریلزها را وارد کن؛ هر لینک در یک خط"></textarea>
+      <span class="field-hint">می‌توانی لینک چند ریلز را در خطوط جداگانه وارد کنی.</span>
+    </div>
+    <div class="field">
+      <label>شروع محدوده زمانی</label>
+      <div class="time-row">
+        <input type="date" id="reelsDate" aria-label="تاریخ شروع">
+        <input type="time" id="reelsTime" aria-label="ساعت شروع">
+      </div>
+      <span class="field-hint">ریلزهایی که از این تاریخ و ساعت به بعد منتشر می‌کنی در محدوده درخواست قرار می‌گیرند.</span>
+    </div>
+  </div>
+
+  <div class="service-warning">دقت کن فقط یکی از دو حالت را انتخاب کنی؛ اطلاعات حالت دیگر در درخواستت لحاظ نمی‌شود.</div>
+  <button class="primary-button" type="button" id="serviceSubmit">ثبت محدوده خدمات ←</button>
+  <p class="form-hint">برای ثبت و ارسال واقعی درخواست خدمات، اتصال به سامانه موردنیاز است.</p>
 </section>
 
 <!-- STEP 05 SUPPORT -->
 <section class="support-card" id="support">
- <div class="support-head">
-  <div class="support-icon">✳</div>
-  <h2>نیاز به پیگیری داری؟</h2>
- </div>
- <p class="support-copy">موضوع درخواستت رو مشخص کن و توضیحت رو بنویس تا برای بررسی به تیم مربوطه ارجاع داده شود.</p>
+  <div class="support-head">
+    <div class="support-icon">✳</div>
+    <h2>نیاز به پیگیری داری؟</h2>
+  </div>
+  <p class="support-copy">موضوع درخواستت رو مشخص کن و توضیحت رو بنویس تا برای بررسی به تیم مربوطه ارجاع داده شود.</p>
 
- <div class="ticket-options">
-  <button class="ticket-option" type="button" data-ticket="اعتراض به عملکرد پلن">
-   <span class="ticket-radio"></span>
-   <span><strong>اعتراض به عملکرد پلن</strong><small>نتیجه سفارش مطابق انتظارم نبوده</small></span>
-  </button>
-  <button class="ticket-option" type="button" data-ticket="عدم فعال‌سازی سفارش">
-   <span class="ticket-radio"></span>
-   <span><strong>عدم فعال‌سازی سفارش</strong><small>پرداخت انجام شده اما پلن فعال نشده</small></span>
-  </button>
-  <button class="ticket-option" type="button" data-ticket="درخواست بررسی و بازگشت وجه">
-   <span class="ticket-radio"></span>
-   <span><strong>درخواست بررسی و بازگشت وجه</strong><small>می‌خواهم سفارش و شرایط ضمانت بررسی شود</small></span>
-  </button>
- </div>
+  <div class="ticket-options">
+    <button class="ticket-option" type="button" data-ticket="اعتراض به عملکرد پلن">
+      <span class="ticket-radio"></span>
+      <span><strong>اعتراض به عملکرد پلن</strong><small>نتیجه سفارش مطابق انتظارم نبوده</small></span>
+    </button>
+    <button class="ticket-option" type="button" data-ticket="عدم فعال‌سازی سفارش">
+      <span class="ticket-radio"></span>
+      <span><strong>عدم فعال‌سازی سفارش</strong><small>پرداخت انجام شده اما پلن فعال نشده</small></span>
+    </button>
+    <button class="ticket-option" type="button" data-ticket="درخواست بررسی و بازگشت وجه">
+      <span class="ticket-radio"></span>
+      <span><strong>درخواست بررسی و بازگشت وجه</strong><small>می‌خواهم سفارش و شرایط ضمانت بررسی شود</small></span>
+    </button>
+  </div>
 
- <div class="field">
-  <label for="ticketDescription">شرح درخواست یا اعتراض</label>
-  <textarea id="ticketDescription" placeholder="موضوع را با جزئیات لازم توضیح بده..."></textarea>
- </div>
- <button class="primary-button" type="button" id="ticketSubmit">ثبت درخواست پیگیری ←</button>
- <p class="support-footnote">پس از اتصال سامانه، موضوع انتخابی و توضیحات همراه درخواست برای مدیر ارسال می‌شود. در این نسخه ثبت واقعی هنوز متصل نیست.</p>
+  <div class="field">
+    <label for="ticketDescription">شرح درخواست یا اعتراض</label>
+    <textarea id="ticketDescription" placeholder="موضوع را با جزئیات لازم توضیح بده..."></textarea>
+  </div>
+  <button class="primary-button" type="button" id="ticketSubmit">ثبت درخواست پیگیری ←</button>
+  <p class="support-footnote">پس از اتصال سامانه، موضوع انتخابی و توضیحات همراه درخواست برای مدیر ارسال می‌شود. در این نسخه ثبت واقعی هنوز متصل نیست.</p>
 </section>
 
 <!-- FINAL CTA -->
 <section class="last-cta">
- <small>GROWZA24 / YOUR NEXT MOVE</small>
- <h2>وقتشه برای رشد پیجت<br><em>یک قدم جلوتر</em> بری!</h2>
- <p>پلن مناسب رو انتخاب کن، رسیدت رو بفرست و محدوده خدماتت رو مشخص کن.</p>
- <a href="#plans">برگشت به انتخاب پلن <span>↗</span></a>
+  <small>GROWZA24 / YOUR NEXT MOVE</small>
+  <h2>وقتشه برای رشد پیجت<br><em>یک قدم جلوتر</em> بری!</h2>
+  <p>پلن مناسب رو انتخاب کن، رسیدت رو بفرست و محدوده خدماتت رو مشخص کن.</p>
+  <a href="#plans">برگشت به انتخاب پلن <span>↗</span></a>
 </section>
 
 <footer class="footer">
- <b>GROWZA24 · GROW DIFFERENT</b><br>
- پلتفرم رشد پیج اینستاگرام
+  <b>GROWZA24 · GROW DIFFERENT</b><br>
+  پلتفرم رشد پیج اینستاگرام
 </footer>
 
+</div>
 </main>
 
-<!-- ORIGINAL FOUR-ITEM NAV -->
-<nav class="bottom-nav">
- <div class="nav-inner">
+<!-- BOTTOM NAV — SAME AS HOME -->
+<nav class="bottom-nav" aria-label="ناوبری اصلی">
+
   <a class="nav-item" href="index.html">
-   <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>
-   <span>خانه</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/>
+    </svg>
+    <span>خانه</span>
   </a>
+
   <a class="nav-item" href="guide.html">
-   <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/><path d="M4 5.5v12"/><path d="M8 8h8m-8 4h7"/></svg>
-   <span>راهنما</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/>
+      <path d="M4 6h13M8 10h8M8 14h6"/>
+    </svg>
+    <span>راهنما</span>
   </a>
-  <a class="nav-item active" href="activation.html">
-   <svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-13h-7z"/></svg>
-   <span>فعال‌سازی</span>
+
+  <a class="nav-item active" href="activation.html" aria-current="page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5l3 2"/>
+    </svg>
+    <span>فعال‌سازی</span>
   </a>
+
   <a class="nav-item" href="performance.html">
-   <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-8"/></svg>
-   <span>عملکرد</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19V5m0 14h16"/>
+      <path d="m7 15 4-4 3 2 5-7"/>
+    </svg>
+    <span>عملکرد</span>
   </a>
- </div>
+
 </nav>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -1298,86 +1546,81 @@ const toast = $('#toast');
 let toastTimer;
 
 function showToast(message){
- toast.textContent = message;
- toast.classList.add('show');
- clearTimeout(toastTimer);
- toastTimer = setTimeout(()=>toast.classList.remove('show'),2800);
-}
-
-function toPersianNumber(value){
- return String(value).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[Number(d)]);
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove('show'),2800);
 }
 
 function normalizeDigits(value){
- return String(value).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
-  .replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+  return String(value)
+    .replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+    .replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));
 }
 
 /* PLAN SELECTION */
 let selectedPlan = {
- name:'پلن طلایی',
- price:'۹۹,۰۰۰',
- rawPrice:'99000'
+  name:'پلن طلایی',
+  price:'۹۹,۰۰۰',
+  rawPrice:'99000'
 };
 
 function selectPlan(card){
- $$('.plan').forEach(p=>p.classList.remove('selected'));
- card.classList.add('selected');
+  $$('.plan').forEach(p=>p.classList.remove('selected'));
+  card.classList.add('selected');
 
- selectedPlan = {
-  name:card.dataset.plan,
-  price:card.dataset.price,
-  rawPrice:normalizeDigits(card.dataset.price).replace(/,/g,'')
- };
+  selectedPlan = {
+    name:card.dataset.plan,
+    price:card.dataset.price,
+    rawPrice:normalizeDigits(card.dataset.price).replace(/,/g,'')
+  };
 
- $('#selectedPlan').value = selectedPlan.name;
- $('#amount').value = selectedPlan.price;
- $('#selectionName').textContent = selectedPlan.name;
- $('#selectionPrice').innerHTML = selectedPlan.price+' <small>تومان</small>';
+  $('#selectedPlan').value = selectedPlan.name;
+  $('#amount').value = selectedPlan.price;
+  $('#selectionName').textContent = selectedPlan.name;
+  $('#selectionPrice').innerHTML = selectedPlan.price+' <small>تومان</small>';
 
- showToast('پلن «'+selectedPlan.name+'» انتخاب شد');
-
- // Keep selected plan visible in the payment summary.
- $('#selectionPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+  showToast('پلن «'+selectedPlan.name+'» انتخاب شد');
+  $('#selectionPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
 $$('.plan-button').forEach(button=>{
- button.addEventListener('click',()=>{
-  const card = button.closest('.plan');
-  selectPlan(card);
- });
+  button.addEventListener('click',()=>{
+    const card = button.closest('.plan');
+    selectPlan(card);
+  });
 });
 
-/* ROUTE FILTER / NAVIGATION */
+/* ROUTE FILTER */
 $$('.route-choice').forEach(button=>{
- button.addEventListener('click',()=>{
-  $$('.route-choice').forEach(item=>item.classList.remove('active'));
-  button.classList.add('active');
+  button.addEventListener('click',()=>{
+    $$('.route-choice').forEach(item=>item.classList.remove('active'));
+    button.classList.add('active');
 
-  const route = button.dataset.route;
-  const target = route === 'followers' ? '#followers' : '#reels';
-  document.querySelector(target).scrollIntoView({behavior:'smooth',block:'start'});
- });
+    const route = button.dataset.route;
+    const target = route === 'followers' ? '#followers' : '#reels';
+    document.querySelector(target).scrollIntoView({behavior:'smooth',block:'start'});
+  });
 });
 
 /* COPY BANK CARD */
 $('#copyCard').addEventListener('click',async()=>{
- const number = '5022291098953209';
- try{
-  if(navigator.clipboard && window.isSecureContext){
-   await navigator.clipboard.writeText(number);
-  }else{
-   const temp = document.createElement('textarea');
-   temp.value = number;
-   document.body.appendChild(temp);
-   temp.select();
-   document.execCommand('copy');
-   temp.remove();
+  const number = '5022291098953209';
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(number);
+    }else{
+      const temp = document.createElement('textarea');
+      temp.value = number;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      temp.remove();
+    }
+    showToast('شماره کارت کپی شد');
+  }catch(error){
+    showToast('کپی خودکار ممکن نشد؛ شماره کارت را دستی انتخاب کن');
   }
-  showToast('شماره کارت کپی شد');
- }catch(error){
-  showToast('کپی خودکار ممکن نشد؛ شماره کارت را دستی انتخاب کن');
- }
 });
 
 /* RECEIPT IMAGE */
@@ -1385,183 +1628,184 @@ let receiptObjectUrl = null;
 const receiptInput = $('#receipt');
 
 function clearReceipt(){
- if(receiptObjectUrl){
-  URL.revokeObjectURL(receiptObjectUrl);
-  receiptObjectUrl = null;
- }
- receiptInput.value = '';
- $('#receiptPreview').style.display = 'none';
- $('#receiptImage').removeAttribute('src');
+  if(receiptObjectUrl){
+    URL.revokeObjectURL(receiptObjectUrl);
+    receiptObjectUrl = null;
+  }
+  receiptInput.value = '';
+  $('#receiptPreview').style.display = 'none';
+  $('#receiptImage').removeAttribute('src');
 }
 
 receiptInput.addEventListener('change',()=>{
- const file = receiptInput.files && receiptInput.files[0];
- if(!file) return;
+  const file = receiptInput.files && receiptInput.files[0];
+  if(!file) return;
 
- if(!file.type.startsWith('image/')){
-  clearReceipt();
-  showToast('لطفاً یک تصویر معتبر انتخاب کن');
-  return;
- }
+  if(!file.type.startsWith('image/')){
+    clearReceipt();
+    showToast('لطفاً یک تصویر معتبر انتخاب کن');
+    return;
+  }
 
- if(!['image/jpeg','image/png','image/webp'].includes(file.type)){
-  clearReceipt();
-  showToast('فرمت مجاز: JPG، PNG یا WEBP');
-  return;
- }
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)){
+    clearReceipt();
+    showToast('فرمت مجاز: JPG، PNG یا WEBP');
+    return;
+  }
 
- if(receiptObjectUrl) URL.revokeObjectURL(receiptObjectUrl);
- receiptObjectUrl = URL.createObjectURL(file);
+  if(receiptObjectUrl) URL.revokeObjectURL(receiptObjectUrl);
+  receiptObjectUrl = URL.createObjectURL(file);
 
- $('#receiptImage').src = receiptObjectUrl;
- $('#receiptName').textContent = file.name;
- $('#receiptSize').textContent = (file.size/1024/1024).toFixed(2)+' مگابایت';
- $('#receiptPreview').style.display = 'flex';
+  $('#receiptImage').src = receiptObjectUrl;
+  $('#receiptName').textContent = file.name;
+  $('#receiptSize').textContent = (file.size/1024/1024).toFixed(2)+' مگابایت';
+  $('#receiptPreview').style.display = 'flex';
 });
 
 $('#removeReceipt').addEventListener('click',clearReceipt);
 
 $('#uploadBox').addEventListener('dragover',event=>{
- event.preventDefault();
- $('#uploadBox').classList.add('drag');
+  event.preventDefault();
+  $('#uploadBox').classList.add('drag');
 });
 $('#uploadBox').addEventListener('dragleave',()=>{
- $('#uploadBox').classList.remove('drag');
+  $('#uploadBox').classList.remove('drag');
 });
 $('#uploadBox').addEventListener('drop',event=>{
- event.preventDefault();
- $('#uploadBox').classList.remove('drag');
- const file = event.dataTransfer.files && event.dataTransfer.files[0];
- if(!file) return;
- const transfer = new DataTransfer();
- transfer.items.add(file);
- receiptInput.files = transfer.files;
- receiptInput.dispatchEvent(new Event('change'));
+  event.preventDefault();
+  $('#uploadBox').classList.remove('drag');
+  const file = event.dataTransfer.files && event.dataTransfer.files[0];
+  if(!file) return;
+  const transfer = new DataTransfer();
+  transfer.items.add(file);
+  receiptInput.files = transfer.files;
+  receiptInput.dispatchEvent(new Event('change'));
 });
 
-/* PAYMENT SUBMIT — no fake success */
+/* PAYMENT SUBMIT */
 $('#paymentSubmit').addEventListener('click',()=>{
- if(!selectedPlan.name){
-  showToast('ابتدا یک پلن را انتخاب کن');
-  return;
- }
- if(!receiptInput.files.length){
-  showToast('تصویر رسید یا پیامک بانکی را انتخاب کن');
-  return;
- }
- showToast('رابط آماده است؛ ارسال واقعی نیازمند اتصال سرور است.');
+  if(!selectedPlan.name){
+    showToast('ابتدا یک پلن را انتخاب کن');
+    return;
+  }
+  if(!receiptInput.files.length){
+    showToast('تصویر رسید یا پیامک بانکی را انتخاب کن');
+    return;
+  }
+  showToast('رابط آماده است؛ ارسال واقعی نیازمند اتصال سرور است.');
 });
 
 /* SERVICE MODE */
 let selectedService = 'page';
 
 $$('.service-choice').forEach(button=>{
- button.addEventListener('click',()=>{
-  $$('.service-choice').forEach(item=>item.classList.remove('active'));
-  button.classList.add('active');
-  selectedService = button.dataset.service;
+  button.addEventListener('click',()=>{
+    $$('.service-choice').forEach(item=>item.classList.remove('active'));
+    button.classList.add('active');
+    selectedService = button.dataset.service;
 
-  $('#pageService').classList.toggle('active',selectedService==='page');
-  $('#reelsService').classList.toggle('active',selectedService==='reels');
- });
+    $('#pageService').classList.toggle('active',selectedService==='page');
+    $('#reelsService').classList.toggle('active',selectedService==='reels');
+  });
 });
 
 $('#serviceSubmit').addEventListener('click',()=>{
- if(selectedService==='page'){
-  const address = $('#pageAddress').value.trim();
-  if(!address){
-   showToast('آدرس پیج را وارد کن');
-   $('#pageAddress').focus();
-   return;
-  }
-  if(!/^https?:\/\//i.test(address)){
-   showToast('آدرس پیج را به‌صورت لینک کامل وارد کن');
-   $('#pageAddress').focus();
-   return;
-  }
- }else{
-  const links = $('#reelsAddress').value.trim();
-  const date = $('#reelsDate').value;
-  const time = $('#reelsTime').value;
+  if(selectedService==='page'){
+    const address = $('#pageAddress').value.trim();
+    if(!address){
+      showToast('آدرس پیج را وارد کن');
+      $('#pageAddress').focus();
+      return;
+    }
+    if(!/^https?:\/\//i.test(address)){
+      showToast('آدرس پیج را به‌صورت لینک کامل وارد کن');
+      $('#pageAddress').focus();
+      return;
+    }
+  }else{
+    const links = $('#reelsAddress').value.trim();
+    const date = $('#reelsDate').value;
+    const time = $('#reelsTime').value;
 
-  if(!links){
-   showToast('آدرس ریلزها را وارد کن');
-   $('#reelsAddress').focus();
-   return;
+    if(!links){
+      showToast('آدرس ریلزها را وارد کن');
+      $('#reelsAddress').focus();
+      return;
+    }
+    if(!date || !time){
+      showToast('تاریخ و ساعت شروع را مشخص کن');
+      return;
+    }
   }
-  if(!date || !time){
-   showToast('تاریخ و ساعت شروع را مشخص کن');
-   return;
-  }
- }
- showToast('اطلاعات آماده است؛ ارسال واقعی نیازمند اتصال سامانه است.');
+  showToast('اطلاعات آماده است؛ ارسال واقعی نیازمند اتصال سامانه است.');
 });
 
 /* OBJECTION */
 let selectedTicket = '';
 
 $$('.ticket-option').forEach(button=>{
- button.addEventListener('click',()=>{
-  $$('.ticket-option').forEach(item=>item.classList.remove('active'));
-  button.classList.add('active');
-  selectedTicket = button.dataset.ticket;
- });
+  button.addEventListener('click',()=>{
+    $$('.ticket-option').forEach(item=>item.classList.remove('active'));
+    button.classList.add('active');
+    selectedTicket = button.dataset.ticket;
+  });
 });
 
 $('#ticketSubmit').addEventListener('click',()=>{
- if(!selectedTicket){
-  showToast('موضوع درخواستت را انتخاب کن');
-  return;
- }
- if(!$('#ticketDescription').value.trim()){
-  showToast('شرح درخواست را بنویس');
-  $('#ticketDescription').focus();
-  return;
- }
- showToast('فرم آماده است؛ برای ارسال درخواست باید به سامانه متصل شود.');
+  if(!selectedTicket){
+    showToast('موضوع درخواستت را انتخاب کن');
+    return;
+  }
+  if(!$('#ticketDescription').value.trim()){
+    showToast('شرح درخواست را بنویس');
+    $('#ticketDescription').focus();
+    return;
+  }
+  showToast('فرم آماده است؛ برای ارسال درخواست باید به سامانه متصل شود.');
 });
 
-/* DEMO REVIEW ROTATION — explicitly marked as sample */
+/* DEMO REVIEW ROTATION */
 const reviews = [
- {
-  stars:'★★★★☆',
-  text:'«روند ثبت سفارش خیلی راحت بود. از اینکه مراحل مشخص بود و می‌توانستم وضعیت سفارش را پیگیری کنم، راضی بودم.»',
-  author:'کاربر نمونه',
-  plan:'پلن تست · متن نمایشی'
- },
- {
-  stars:'★★★☆☆',
-  text:'«ظاهر برنامه مرتب و کار با آن ساده بود. بخش انتخاب پلن‌ها کمک کرد راحت‌تر تصمیم بگیرم.»',
-  author:'کاربر نمونه',
-  plan:'پلن طلایی · متن نمایشی'
- },
- {
-  stars:'★★★★☆',
-  text:'«اینکه امکان ارسال رسید و ثبت اطلاعات پرداخت وجود دارد، تجربه کار را منظم‌تر می‌کند.»',
-  author:'کاربر نمونه',
-  plan:'اشتراک پریمیوم · متن نمایشی'
- }
+  {
+    stars:'★★★★☆',
+    text:'«روند ثبت سفارش خیلی راحت بود. از اینکه مراحل مشخص بود و می‌توانستم وضعیت سفارش را پیگیری کنم، راضی بودم.»',
+    author:'کاربر نمونه',
+    plan:'پلن تست · متن نمایشی'
+  },
+  {
+    stars:'★★★☆☆',
+    text:'«ظاهر برنامه مرتب و کار با آن ساده بود. بخش انتخاب پلن‌ها کمک کرد راحت‌تر تصمیم بگیرم.»',
+    author:'کاربر نمونه',
+    plan:'پلن طلایی · متن نمایشی'
+  },
+  {
+    stars:'★★★★☆',
+    text:'«اینکه امکان ارسال رسید و ثبت اطلاعات پرداخت وجود دارد، تجربه کار را منظم‌تر می‌کند.»',
+    author:'کاربر نمونه',
+    plan:'اشتراک پریمیوم · متن نمایشی'
+  }
 ];
 let reviewIndex = 0;
 
 setInterval(()=>{
- reviewIndex = (reviewIndex+1)%reviews.length;
- const review = reviews[reviewIndex];
- const card = $('#reviewCard');
- card.style.opacity = '.35';
+  reviewIndex = (reviewIndex+1)%reviews.length;
+  const review = reviews[reviewIndex];
+  const card = $('#reviewCard');
+  card.style.opacity = '.35';
 
- setTimeout(()=>{
-  $('#reviewStars').textContent = review.stars;
-  $('#reviewText').textContent = review.text;
-  $('#reviewAuthor').textContent = review.author;
-  $('#reviewPlan').textContent = review.plan;
-  $('#reviewNumber').textContent = '0'+(reviewIndex+1)+' / 03';
-  $$('.review-dots i').forEach((dot,index)=>{
-   dot.classList.toggle('active',index===reviewIndex);
-  });
-  card.style.opacity = '1';
- },180);
+  setTimeout(()=>{
+    $('#reviewStars').textContent = review.stars;
+    $('#reviewText').textContent = review.text;
+    $('#reviewAuthor').textContent = review.author;
+    $('#reviewPlan').textContent = review.plan;
+    $('#reviewNumber').textContent = '0'+(reviewIndex+1)+' / 03';
+    $$('.review-dots i').forEach((dot,index)=>{
+      dot.classList.toggle('active',index===reviewIndex);
+    });
+    card.style.opacity = '1';
+  },180);
 },5500);
 </script>
+
 </body>
-</html>
+     </html>

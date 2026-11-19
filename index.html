@@ -920,7 +920,9 @@ body.header-ready .bottom-nav{
 .reveal.in{opacity:1;transform:none}
 [data-tilt]{transform-style:preserve-3d}
 
-/* VANTA BIRDS INTRO */
+/* ============================================
+   VANTA BIRDS INTRO — ظاهر شدن سریع پرندگان (نیم‌ثانیه)
+   ============================================ */
 
 #birds-intro{
   position:fixed;
@@ -953,12 +955,23 @@ body.header-ready .bottom-nav{
   z-index:2;
 }
 
+/* کانواس پرندگان: از محو در ۰.۵ ثانیه ظاهر می‌شود */
 #birds-intro .vanta-canvas{
   position:absolute!important;
   inset:0!important;
   width:100%!important;
   height:100%!important;
   display:block;
+  opacity:0;
+  filter:brightness(.55) saturate(.8);
+  transition:
+    opacity 500ms cubic-bezier(.22,1,.36,1),
+    filter 500ms cubic-bezier(.22,1,.36,1);
+}
+
+body.hero-ready #birds-intro .vanta-canvas{
+  opacity:1;
+  filter:brightness(1) saturate(1);
 }
 
 #birds-intro.is-bg{
@@ -1046,6 +1059,7 @@ body.hero-ready .hero h1 .accent:after{
     opacity:1;
     transform:none;
   }
+  #birds-intro .vanta-canvas{opacity:1;filter:none;transition:none}
 }
 </style>
 </head>
@@ -1309,6 +1323,14 @@ body.hero-ready .hero h1 .accent:after{
     <span>خانه</span>
   </a>
 
+  <a class="nav-item" href="guide.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/>
+      <path d="M4 6h13M8 10h8M8 14h6"/>
+    </svg>
+    <span>راهنما</span>
+  </a>
+
   <a class="nav-item" href="activation.html">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="9"/>
@@ -1323,14 +1345,6 @@ body.hero-ready .hero h1 .accent:after{
       <path d="m7 15 4-4 3 2 5-7"/>
     </svg>
     <span>عملکرد</span>
-  </a>
-
-  <a class="nav-item" href="guide.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/>
-      <path d="M4 6h13M8 10h8M8 14h6"/>
-    </svg>
-    <span>راهنما</span>
   </a>
 
 </nav>
@@ -1382,7 +1396,6 @@ body.hero-ready .hero h1 .accent:after{
     followersEl.textContent = "0";
     engagementsEl.textContent = "0";
 
-    /* شمارنده ۱ — فالوور تا ۲۰۰۰ → ۲ بار کانفتی */
     followersInstance = new countUp.CountUp(followersEl, FOLLOWERS_TARGET, {
       duration: 2.2,
       useEasing: true,
@@ -1395,7 +1408,6 @@ body.hero-ready .hero h1 .accent:after{
     });
     if(!followersInstance.error) followersInstance.start();
 
-    /* شمارنده ۲ — تعامل تا ۵۰۰۰۰ → ۲ بار کانفتی */
     setTimeout(() => {
       engagementsInstance = new countUp.CountUp(engagementsEl, ENGAGEMENTS_TARGET, {
         duration: 3,
@@ -1465,7 +1477,6 @@ body.hero-ready .hero h1 .accent:after{
       });
     }
 
-    /* اسکرول نرم به بخش THE GROWTH ENGINE */
     const scrollBtn = document.getElementById("scrollToGrowthBtn");
     const growthSection = document.getElementById("growthEngine");
 
@@ -1486,7 +1497,6 @@ body.hero-ready .hero h1 .accent:after{
       });
     }
 
-    /* راه‌اندازی رصد کارت شمارنده */
     watchLiveCard();
   }
 

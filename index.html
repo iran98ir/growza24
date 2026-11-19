@@ -326,10 +326,7 @@ main.app{padding-top:96px}
   to{transform:skewX(-12deg) scaleX(1)}
 }
 
-/* «رشد پیج» داخل جمله و زودتر — ۰.۰۵ ثانیه */
 .hero h1 .w0{animation-delay:.05s}
-
-/* بقیه کلمات ~۱ ثانیه بعد */
 .hero h1 .w1{animation-delay:1.05s}
 .hero h1 .w2{animation-delay:1.20s}
 .hero h1 .w3{animation-delay:1.35s}
@@ -341,30 +338,22 @@ body.hero-ready .hero h1 .accent:after{
   animation-play-state:running;
 }
 
-/* نمایش تدریجی اجزای هرو پس از پایان انیمیشن پرندگان */
-
 .hero-kicker,
 .hero-copy,
-.hero-actions,
-.hero-stage,
-.scroll-note{
+.hero-actions{
   opacity:0;
   transform:translateY(18px);
 }
 
 body.hero-ready .hero-kicker,
 body.hero-ready .hero-copy,
-body.hero-ready .hero-actions,
-body.hero-ready .hero-stage,
-body.hero-ready .scroll-note{
+body.hero-ready .hero-actions{
   animation:heroContentReveal .85s cubic-bezier(.16,1,.3,1) forwards;
 }
 
 body.hero-ready .hero-kicker{animation-delay:1.05s}
 body.hero-ready .hero-copy{animation-delay:1.30s}
 body.hero-ready .hero-actions{animation-delay:1.50s}
-body.hero-ready .hero-stage{animation-delay:1.65s}
-body.hero-ready .scroll-note{animation-delay:1.85s}
 
 @keyframes heroContentReveal{
   from{opacity:0;transform:translateY(18px)}
@@ -422,148 +411,6 @@ body.hero-ready .scroll-note{animation-delay:1.85s}
 }
 
 .secondary-btn svg{width:17px}
-
-/* هرو استیج — شفاف، بدون پس‌زمینه، بدون حاشیه */
-
-.hero-stage{
-  height:232px;
-  position:relative;
-  margin:27px -4px 0;
-  overflow:hidden;
-  border-radius:30px;
-  background:transparent;
-  border:none;
-  box-shadow:none;
-}
-
-.stage-grid{
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(rgba(23,107,75,.09) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(23,107,75,.09) 1px,transparent 1px);
-  background-size:28px 28px;
-  mask-image:linear-gradient(120deg,#000,transparent 85%);
-}
-
-.stage-label{
-  position:absolute;
-  top:17px;
-  right:18px;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:1px;
-  color:#426d57;
-}
-
-.stage-index{
-  position:absolute;
-  top:15px;
-  left:18px;
-  font-size:10px;
-  color:#64776b;
-  font-weight:800;
-}
-
-.orbit{
-  position:absolute;
-  width:192px;
-  height:192px;
-  border:1px solid #176b4b38;
-  border-radius:50%;
-  left:50%;
-  top:54%;
-  transform:translate(-50%,-50%);
-  animation:orbit 24s linear infinite;
-}
-
-.orbit:before,.orbit:after{
-  content:"";
-  position:absolute;
-  border:1px solid #176b4b30;
-  border-radius:50%;
-  inset:17px;
-}
-
-.orbit:after{inset:39px;border-style:dashed}
-
-.orbit-node{
-  position:absolute;
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background:var(--coral);
-  top:20px;
-  left:28px;
-  box-shadow:0 0 0 7px #ef765724;
-}
-
-.core-mark{
-  position:absolute;
-  left:50%;
-  top:54%;
-  transform:translate(-50%,-50%);
-  width:92px;
-  height:92px;
-  border-radius:29px;
-  background:var(--green);
-  display:grid;
-  place-items:center;
-  color:var(--lime);
-  box-shadow:0 16px 30px #176b4b40;
-  rotate:-8deg;
-}
-
-.core-mark svg{width:52px;height:52px}
-
-.float-tag{
-  position:absolute;
-  z-index:2;
-  padding:9px 12px;
-  border-radius:12px;
-  background:#fffefaed;
-  border:1px solid #fff;
-  box-shadow:0 9px 24px #1b3a2a16;
-  font-size:10px;
-  font-weight:900;
-  backdrop-filter:blur(12px);
-}
-
-.tag-a{right:20px;bottom:30px;rotate:-5deg}
-.tag-b{left:17px;top:82px;rotate:5deg}
-.tag-c{left:42px;bottom:25px;background:var(--lime)}
-
-.stage-path{
-  position:absolute;
-  right:50%;
-  top:50%;
-  width:220px;
-  height:90px;
-  border-top:2px dashed #176b4b5c;
-  border-radius:50%;
-  transform:translate(50%,-15%) rotate(-16deg);
-}
-
-.scroll-note{
-  position:absolute;
-  left:0;
-  top:285px;
-  writing-mode:vertical-rl;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  color:#7a867d;
-  font-size:9px;
-  font-weight:800;
-  letter-spacing:1px;
-}
-
-.scroll-note:after{
-  content:"";
-  height:40px;
-  width:1px;
-  background:linear-gradient(var(--coral),transparent);
-}
 
 /* SECTIONS */
 
@@ -726,76 +573,6 @@ body.hero-ready .scroll-note{animation-delay:1.85s}
 .metric-icon svg{width:15px}
 .metric strong{display:block;font-size:18px;margin-top:10px;font-weight:900}
 .metric small{font-size:10px;color:var(--muted);font-weight:700}
-
-/* ROUTES */
-
-.routes{display:grid;gap:12px}
-
-.route-card{
-  position:relative;
-  min-height:178px;
-  padding:18px;
-  border-radius:25px;
-  overflow:hidden;
-  border:1px solid #ffffff;
-  background:var(--white);
-  box-shadow:0 12px 30px #182b2010;
-  transition:transform .25s;
-}
-
-.route-card:active{transform:scale(.985)}
-.route-card.primary-route{background:var(--green);color:white}
-
-.route-card:before{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  border:1px solid currentColor;
-  opacity:.12;
-  border-radius:50%;
-  left:-55px;
-  bottom:-95px;
-  box-shadow:0 0 0 20px #ffffff08,0 0 0 43px #ffffff06;
-}
-
-.route-no{font-size:10px;letter-spacing:1px;font-weight:900;opacity:.65}
-.route-card h3{font-size:21px;margin:12px 0 5px;font-weight:900}
-
-.route-card p{
-  font-size:12px;
-  line-height:1.9;
-  margin:0;
-  max-width:260px;
-  opacity:.75;
-  font-weight:600;
-}
-
-.route-arrow{
-  position:absolute;
-  left:17px;
-  bottom:17px;
-  width:38px;
-  height:38px;
-  border-radius:13px;
-  display:grid;
-  place-items:center;
-  background:var(--lime);
-  color:var(--ink);
-}
-
-.route-arrow svg{width:19px}
-
-.route-symbol{
-  position:absolute;
-  left:27px;
-  top:26px;
-  width:75px;
-  height:75px;
-  opacity:.95;
-}
-
-.route-symbol svg{width:100%;height:100%}
 
 /* FEATURES */
 
@@ -1022,12 +799,7 @@ body.header-ready .bottom-nav{
 .reveal.in{opacity:1;transform:none}
 [data-tilt]{transform-style:preserve-3d}
 
-@keyframes orbit{
-  to{transform:translate(-50%,-50%) rotate(360deg)}
-}
-
-/* VANTA BIRDS INTRO
-   — پس‌زمینه هرو (زیر محتوا)، ادامه‌دار، بدون تخریب */
+/* VANTA BIRDS INTRO */
 
 #birds-intro{
   position:fixed;
@@ -1038,14 +810,13 @@ body.header-ready .bottom-nav{
   max-width:560px;
   height:min(680px,100svh);
   margin:0 auto;
-  z-index:0;                 /* زیر هرو */
+  z-index:0;
   overflow:hidden;
   background:#f4f5ef;
   opacity:1;
   visibility:visible;
   pointer-events:none;
   clip-path:inset(0);
-  /* fade فقط موقع تبدیل به پس‌زمینه ثابت */
   transition:
     opacity 1.15s cubic-bezier(.16,1,.3,1),
     visibility 0s linear 1.15s;
@@ -1069,7 +840,6 @@ body.header-ready .bottom-nav{
   display:block;
 }
 
-/* وقتی به پس‌زمینه هرو تبدیل می‌شود — محو نمی‌شود */
 #birds-intro.is-bg{
   z-index:0;
   opacity:1;
@@ -1120,7 +890,6 @@ body.hero-ready .hero h1 .accent:after{
     overflow:hidden;
   }
   .hero{min-height:590px}
-  .hero-stage{height:250px}
   #birds-intro{
     top:22px;
     border-radius:38px 38px 0 0;
@@ -1130,7 +899,6 @@ body.hero-ready .hero h1 .accent:after{
 @media(max-width:380px){
   .app{padding-left:14px;padding-right:14px}
   .hero h1{font-size:43px}
-  .hero-stage{height:210px}
   .section h2{font-size:24px}
   .primary-btn,.secondary-btn{padding-inline:13px;font-size:12px}
   .brand-latin{font-size:19px}
@@ -1150,9 +918,7 @@ body.hero-ready .hero h1 .accent:after{
   .hero h1 .accent:after{transform:skewX(-12deg) scaleX(1)}
   .hero-kicker,
   .hero-copy,
-  .hero-actions,
-  .hero-stage,
-  .scroll-note{
+  .hero-actions{
     opacity:1;
     transform:none;
   }
@@ -1222,27 +988,6 @@ body.hero-ready .hero h1 .accent:after{
       <a class="secondary-btn" href="guide.html">چطور کار می‌کند؟</a>
     </div>
 
-    <div class="hero-stage" aria-label="نمای گرافیکی مسیر رشد">
-      <div class="stage-grid"></div>
-      <span class="stage-label">GROWTH / SIGNAL MAP</span>
-      <span class="stage-index">FIG. 024 — 01</span>
-      <div class="stage-path"></div>
-      <div class="orbit"><i class="orbit-node"></i></div>
-
-      <div class="core-mark">
-        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M10 48V16M10 48h45"/>
-          <path d="m16 39 11-12 9 6 16-19"/>
-          <path d="M42 14h10v10"/>
-        </svg>
-      </div>
-
-      <span class="float-tag tag-a">هدفمند، نه تصادفی</span>
-      <span class="float-tag tag-b">شناخت سیگنال‌ها</span>
-      <span class="float-tag tag-c">GROW / 24</span>
-    </div>
-
-    <div class="scroll-note">SCROLL TO EXPLORE</div>
   </section>
 
   <section class="section reveal">
@@ -1327,61 +1072,6 @@ body.hero-ready .hero h1 .accent:after{
         <strong>تحلیل عملکرد</strong>
         <small>نشانه‌ها را درست بخوان</small>
       </article>
-    </div>
-  </section>
-
-  <section class="section reveal">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">CHOOSE YOUR DIRECTION</div>
-        <h2>از کجا شروع می‌کنی؟</h2>
-      </div>
-      <div class="section-note">دو مسیر، یک هدف: رشد آگاهانه‌تر.</div>
-    </div>
-
-    <div class="routes">
-      <a class="route-card primary-route" href="activation.html">
-        <span class="route-no">01 / ACTIVATE</span>
-
-        <div class="route-symbol">
-          <svg viewBox="0 0 90 90" fill="none" stroke="#C7FF00" stroke-width="1.5">
-            <circle cx="45" cy="45" r="31"/>
-            <circle cx="45" cy="45" r="21" stroke-dasharray="3 5"/>
-            <path d="M45 5v17M45 68v17M5 45h17M68 45h17M45 45l20-20"/>
-            <circle cx="45" cy="45" r="5" fill="#C7FF00"/>
-          </svg>
-        </div>
-
-        <h3>فعال‌سازی مسیر رشد</h3>
-        <p>مسیر مناسب را انتخاب کن و قدم اول را با آگاهی بردار.</p>
-
-        <span class="route-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M19 12H5m7 7-7-7 7-7"/>
-          </svg>
-        </span>
-      </a>
-
-      <a class="route-card" href="performance.html">
-        <span class="route-no">02 / INSIGHT</span>
-
-        <div class="route-symbol">
-          <svg viewBox="0 0 90 90" fill="none" stroke="#4858d7" stroke-width="1.7">
-            <path d="M12 70V18M12 70h68"/>
-            <path d="m20 59 16-18 13 8 23-30"/>
-            <path d="M57 19h15v15"/>
-          </svg>
-        </div>
-
-        <h3>بررسی عملکرد</h3>
-        <p>وضعیت و روند عملکردت را دنبال کن و تصمیم دقیق‌تری بگیر.</p>
-
-        <span class="route-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M19 12H5m7 7-7-7 7-7"/>
-          </svg>
-        </span>
-      </a>
     </div>
   </section>
 
@@ -1556,7 +1246,7 @@ body.hero-ready .hero h1 .accent:after{
 
     if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
       document.querySelectorAll(
-        ".route-card,.metric,.feature"
+        ".metric,.feature"
       ).forEach(el=>{
         el.addEventListener("pointerdown",()=>{
           el.style.transform="scale(.985)";
@@ -1571,12 +1261,6 @@ body.hero-ready .hero h1 .accent:after{
     }
   }
 
-  /*
-    revealPage:
-    - افکت پرندگان را نابود نمی‌کنیم؛ فقط به «پس‌زمینه هرو» تبدیلش می‌کنیم.
-    - هدر و ناوبری پایین با هم ظاهر می‌شوند.
-    - هرو حالت «آماده» می‌گیرد تا محتوا روی انیمیشن ظاهر شود.
-  */
   function revealPage(){
     if(finished)return;
     finished=true;
@@ -1584,18 +1268,14 @@ body.hero-ready .hero h1 .accent:after{
     clearTimeout(fallbackTimer);
     clearTimeout(finishTimer);
 
-    /* پرندگان را نکش — فقط لایه را ثابت نگه دار و z-index را پایین ببر */
     if(intro){
       intro.classList.add("is-bg");
     }
 
-    /* باز کردن قفل صفحه */
     body.classList.remove("intro-lock");
 
-    /* هدر + ناوبری پایین با هم */
     showHeader();
 
-    /* ۱ ثانیه صبر، سپس انیمیشن تیتر و محتوا روی پس‌زمینه پرندگان */
     setTimeout(()=>{
       body.classList.add("hero-ready");
     },1000);
@@ -1644,15 +1324,12 @@ body.hero-ready .hero h1 .accent:after{
         scale:1,
         scaleMobile:1,
 
-        /* پس‌زمینه دقیقاً هم‌رنگ سایت */
         backgroundColor:0xf4f5ef,
 
-        /* رنگ‌های هماهنگ با هویت گروزای */
         color1:0x176b4b,
         color2:0x8bad74,
         colorMode:"lerp",
 
-        /* تنظیمات حرکت و تراکم پرندگان */
         birdSize:1.15,
         wingSpan:25,
         speedLimit:3.5,
@@ -1667,8 +1344,6 @@ body.hero-ready .hero h1 .accent:after{
         revealPage();
         return;
       }
-
-      /* پرندگان هرگز destroy نمی‌شوند — موتور ادامه دارد */
 
       finishTimer=setTimeout(()=>{
         revealPage();
@@ -1694,14 +1369,8 @@ body.hero-ready .hero h1 .accent:after{
     window.addEventListener("load",initBirds,{once:true});
   }
 
-  document.addEventListener("visibilitychange",()=>{
-    if(document.hidden && birdsEffect){
-      return;
-    }
-  });
-
 })();
 </script>
 
 </body>
-  </html>
+      </html>

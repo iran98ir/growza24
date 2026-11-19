@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
@@ -239,13 +238,14 @@ body.header-ready .topbar{
 
 main.app{padding-top:96px}
 
-/* HERO */
+/* HERO — بدون هیچ پس‌زمینه */
 
 .hero{
   position:relative;
   padding:23px 0 16px;
   min-height:560px;
   isolation:isolate;
+  background:transparent;
 }
 
 .hero-kicker{
@@ -291,9 +291,6 @@ main.app{padding-top:96px}
 
 .hero h1 .fixed-phrase{
   display:inline-block;
-  opacity:1;
-  transform:none;
-  animation:none;
   white-space:nowrap;
 }
 
@@ -315,7 +312,7 @@ main.app{padding-top:96px}
   transform:skewX(-12deg) scaleX(0);
   transform-origin:right;
   animation:accentReveal 1.15s cubic-bezier(.16,1,.3,1) forwards;
-  animation-delay:1.65s;
+  animation-delay:2.35s;
   animation-play-state:paused;
 }
 
@@ -328,11 +325,15 @@ main.app{padding-top:96px}
   to{transform:skewX(-12deg) scaleX(1)}
 }
 
-.hero h1 .w1{animation-delay:.15s}
-.hero h1 .w2{animation-delay:.34s}
-.hero h1 .w3{animation-delay:.53s}
-.hero h1 .w4{animation-delay:.78s}
-.hero h1 .w5{animation-delay:1.12s}
+/* «رشد پیج» زودتر — ۰.۰۵ ثانیه */
+.hero h1 .w0{animation-delay:.05s}
+
+/* بقیه کلمات ~۱ ثانیه بعد */
+.hero h1 .w1{animation-delay:1.05s}
+.hero h1 .w2{animation-delay:1.20s}
+.hero h1 .w3{animation-delay:1.35s}
+.hero h1 .w4{animation-delay:1.55s}
+.hero h1 .w5{animation-delay:1.85s}
 
 body.hero-ready .hero h1 .word,
 body.hero-ready .hero h1 .accent:after{
@@ -358,11 +359,11 @@ body.hero-ready .scroll-note{
   animation:heroContentReveal .85s cubic-bezier(.16,1,.3,1) forwards;
 }
 
-body.hero-ready .hero-kicker{animation-delay:.05s}
-body.hero-ready .hero-copy{animation-delay:.45s}
-body.hero-ready .hero-actions{animation-delay:.65s}
-body.hero-ready .hero-stage{animation-delay:.8s}
-body.hero-ready .scroll-note{animation-delay:1s}
+body.hero-ready .hero-kicker{animation-delay:1.05s}
+body.hero-ready .hero-copy{animation-delay:1.30s}
+body.hero-ready .hero-actions{animation-delay:1.50s}
+body.hero-ready .hero-stage{animation-delay:1.65s}
+body.hero-ready .scroll-note{animation-delay:1.85s}
 
 @keyframes heroContentReveal{
   from{opacity:0;transform:translateY(18px)}
@@ -421,15 +422,17 @@ body.hero-ready .scroll-note{animation-delay:1s}
 
 .secondary-btn svg{width:17px}
 
+/* هرو استیج — شفاف، بدون پس‌زمینه، بدون حاشیه */
+
 .hero-stage{
   height:232px;
   position:relative;
   margin:27px -4px 0;
   overflow:hidden;
   border-radius:30px;
-  background:linear-gradient(135deg,#dcebdc 0%,#f1f3e8 52%,#dce5f0 100%);
-  border:1px solid #ffffff;
-  box-shadow:var(--shadow);
+  background:transparent;
+  border:none;
+  box-shadow:none;
 }
 
 .stage-grid{
@@ -1005,8 +1008,7 @@ body.hero-ready .scroll-note{animation-delay:1s}
   to{transform:translate(-50%,-50%) rotate(360deg)}
 }
 
-/* VANTA BIRDS INTRO
-   فقط در محدوده بالایی هرو؛ بدون پوشاندن تمام صفحه */
+/* VANTA BIRDS INTRO */
 
 #birds-intro{
   position:fixed;
@@ -1134,8 +1136,6 @@ body.hero-ready .hero h1 .accent:after{
     transform:none;
   }
 }
-
-/* اگر کتابخانه یا WebGL در دستگاهی اجرا نشود، سایت قفل نمی‌ماند */
 </style>
 </head>
 
@@ -1170,6 +1170,10 @@ body.hero-ready .hero h1 .accent:after{
 
     <h1>
       <span class="line">
+        <span class="word w0 fixed-phrase">رشد پیج</span>
+      </span>
+
+      <span class="line">
         <span class="word w1">آیا</span>
         <span class="word w2">نیاز</span>
         <span class="word w3">فوری</span>
@@ -1177,7 +1181,6 @@ body.hero-ready .hero h1 .accent:after{
 
       <span class="line">
         <span class="word w4">به</span>
-        <span class="fixed-phrase">رشد پیج</span>
         <span class="word w5 accent">داری؟</span>
       </span>
     </h1>
@@ -1572,7 +1575,11 @@ body.hero-ready .hero h1 .accent:after{
       if(intro)intro.remove();
 
       body.classList.remove("intro-lock");
-      body.classList.add("hero-ready");
+
+      // ۱ ثانیه صبر، سپس انیمیشن تیتر و محتوا شروع شود
+      setTimeout(()=>{
+        body.classList.add("hero-ready");
+      },1000);
 
       startPage();
     },1150);
@@ -1596,11 +1603,6 @@ body.hero-ready .hero h1 .accent:after{
       revealPage();
       return;
     }
-
-    /*
-      اگر فایل Vanta یا Three.js بارگذاری نشد،
-      صفحه پس از زمان مشخص آزاد می‌شود.
-    */
 
     if(!window.VANTA || !window.VANTA.BIRDS || !window.THREE){
       showHeader();
@@ -1648,11 +1650,6 @@ body.hero-ready .hero h1 .accent:after{
         return;
       }
 
-      /*
-        هدر در ثانیه پنجم نمایش داده می‌شود.
-        افکت پرندگان تا ثانیه هشتم ادامه دارد.
-      */
-
       setTimeout(showHeader,5000);
 
       finishTimer=setTimeout(()=>{
@@ -1665,8 +1662,6 @@ body.hero-ready .hero h1 .accent:after{
       revealPage();
     }
   }
-
-  /* شروع کنترل‌شده پس از آماده‌شدن صفحه */
 
   fallbackTimer=setTimeout(()=>{
     if(!finished){
@@ -1681,11 +1676,8 @@ body.hero-ready .hero h1 .accent:after{
     window.addEventListener("load",initBirds,{once:true});
   }
 
-  /* مدیریت بازگشت از حالت پس‌زمینه */
-
   document.addEventListener("visibilitychange",()=>{
     if(document.hidden && birdsEffect){
-      /* Vanta مدیریت چرخه رندر را خودش انجام می‌دهد */
       return;
     }
   });
@@ -1694,4 +1686,4 @@ body.hero-ready .hero h1 .accent:after{
 </script>
 
 </body>
-</html>
+          </html>

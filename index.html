@@ -1,15 +1,20 @@
+
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#222D29">
+<meta name="theme-color" content="#f4f5ef">
 <meta name="description" content="گروزای ۲۴؛ ابزارهای هوشمند برای رشد هدفمند اینستاگرام">
 <title>گروزای ۲۴ | رشد، اما با امضا</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- کتابخانه اصلی Vanta Birds و نسخه سازگار Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.birds.min.js"></script>
 
 <style>
 :root{
@@ -99,7 +104,6 @@ button,a{-webkit-tap-highlight-color:transparent}
   box-shadow:0 10px 34px rgba(8,16,12,.45);
   max-width:560px;
   margin:auto;
-
   opacity:0;
   visibility:hidden;
   transform:translateY(-24px);
@@ -241,6 +245,7 @@ main.app{padding-top:96px}
   position:relative;
   padding:23px 0 16px;
   min-height:560px;
+  isolation:isolate;
 }
 
 .hero-kicker{
@@ -334,7 +339,7 @@ body.hero-ready .hero h1 .accent:after{
   animation-play-state:running;
 }
 
-/* نمایش تدریجی اجزای هرو پس از خروج پرنده‌ها */
+/* نمایش تدریجی اجزای هرو پس از پایان انیمیشن پرندگان */
 
 .hero-kicker,
 .hero-copy,
@@ -1000,23 +1005,52 @@ body.hero-ready .scroll-note{animation-delay:1s}
   to{transform:translate(-50%,-50%) rotate(360deg)}
 }
 
-/* BIRDS INTRO */
+/* VANTA BIRDS INTRO
+   فقط در محدوده بالایی هرو؛ بدون پوشاندن تمام صفحه */
 
 #birds-intro{
   position:fixed;
-  inset:0;
+  top:0;
+  left:0;
+  right:0;
+  width:100%;
+  max-width:560px;
+  height:min(680px,100svh);
+  margin:0 auto;
   z-index:1000;
   overflow:hidden;
-  background:#222D29;
+  background:#f4f5ef;
   opacity:1;
   visibility:visible;
   pointer-events:none;
+  clip-path:inset(0);
+  transition:
+    opacity 1.15s cubic-bezier(.16,1,.3,1),
+    visibility 0s linear 1.15s;
 }
 
-#birds-canvas{
+#birds-intro:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 48%,transparent 30%,rgba(244,245,239,.22) 100%);
+  z-index:2;
+}
+
+#birds-intro .vanta-canvas{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
   display:block;
-  width:100%;
-  height:100%;
+}
+
+#birds-intro.is-finished{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
 
 body.intro-lock{
@@ -1042,13 +1076,6 @@ body.intro-lock .bottom-nav{
   pointer-events:none;
 }
 
-#birds-intro.is-finished{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-  transition:opacity .35s ease,visibility 0s linear .35s;
-}
-
 body.intro-lock .hero h1 .word,
 body.intro-lock .hero h1 .accent:after{
   animation-play-state:paused;
@@ -1071,6 +1098,10 @@ body.hero-ready .hero h1 .accent:after{
   }
   .hero{min-height:590px}
   .hero-stage{height:250px}
+  #birds-intro{
+    top:22px;
+    border-radius:38px 38px 0 0;
+  }
 }
 
 @media(max-width:380px){
@@ -1103,15 +1134,15 @@ body.hero-ready .hero h1 .accent:after{
     transform:none;
   }
 }
+
+/* اگر کتابخانه یا WebGL در دستگاهی اجرا نشود، سایت قفل نمی‌ماند */
 </style>
 </head>
 
-<!-- قفل صفحه از همان ابتدای بارگذاری؛ جلوگیری از نمایش لحظه‌ای محتوا -->
 <body class="intro-lock">
 
-<div id="birds-intro" aria-hidden="true">
-  <canvas id="birds-canvas"></canvas>
-</div>
+<!-- لایه پرندگان فقط برای شروع سایت -->
+<div id="birds-intro" aria-hidden="true"></div>
 
 <div class="grain" aria-hidden="true"></div>
 
@@ -1474,8 +1505,12 @@ body.hero-ready .hero h1 .accent:after{
   "use strict";
 
   const body = document.body;
-  const canvas = document.getElementById("birds-canvas");
   const intro = document.getElementById("birds-intro");
+
+  let birdsEffect = null;
+  let finished = false;
+  let fallbackTimer = null;
+  let finishTimer = null;
 
   function startPage(){
     const items=document.querySelectorAll(".reveal");
@@ -1515,421 +1550,148 @@ body.hero-ready .hero h1 .accent:after{
     }
   }
 
-  const reducedMotion=window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  /* اگر افکت قابل اجرا نبود، صفحه بدون گیرکردن نمایش داده شود */
-
-  if(!canvas || !intro){
-    body.classList.remove("intro-lock");
-    body.classList.add("header-ready","hero-ready");
-    startPage();
-    return;
-  }
-
-  const ctx=canvas.getContext("2d",{alpha:false});
-
-  if(!ctx){
-    intro.remove();
-    body.classList.remove("intro-lock");
-    body.classList.add("header-ready","hero-ready");
-    startPage();
-    return;
-  }
-
-  if(reducedMotion){
-    intro.remove();
-    body.classList.remove("intro-lock");
-    body.classList.add("header-ready","hero-ready");
-    startPage();
-    return;
-  }
-
-  let width=window.innerWidth;
-  let height=window.innerHeight;
-  let dpr=Math.min(window.devicePixelRatio||1,1.7);
-
-  let raf=0;
-  let startTime=performance.now();
-  let lastTime=startTime;
-  let phase="flock";
-  let finished=false;
-  let hidden=document.hidden;
-
-  const count=Math.min(42,Math.max(24,Math.round(width/12)));
-  const birds=[];
-
-  const random=(a,b)=>a+Math.random()*(b-a);
-  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-  const length=(x,y)=>Math.sqrt(x*x+y*y);
-
-  function resize(){
-    width=window.innerWidth;
-    height=window.innerHeight;
-    dpr=Math.min(window.devicePixelRatio||1,1.7);
-
-    canvas.width=Math.round(width*dpr);
-    canvas.height=Math.round(height*dpr);
-
-    canvas.style.width=width+"px";
-    canvas.style.height=height+"px";
-
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-  }
-
-  window.addEventListener("resize",resize,{passive:true});
-  resize();
-
-  class Bird{
-    constructor(){
-      this.x=random(width*.12,width*.88);
-      this.y=random(height*.15,height*.85);
-
-      this.vx=random(-1.5,1.5);
-      this.vy=random(-1.2,1.2);
-
-      this.ax=0;
-      this.ay=0;
-
-      this.size=random(3.2,5.8);
-      this.wing=random(0,Math.PI*2);
-      this.wingSpeed=random(7,12);
-
-      this.color=Math.random()>.5
-        ?"rgba(199,255,0,.92)"
-        :"rgba(215,234,219,.88)";
-
-      this.targetX=0;
-      this.targetY=0;
-      this.exited=false;
-    }
-
-    force(x,y){
-      this.ax+=x;
-      this.ay+=y;
-    }
-
-    flock(all){
-      let sepX=0,sepY=0;
-      let aliX=0,aliY=0;
-      let cohX=0,cohY=0;
-
-      let sepN=0,aliN=0,cohN=0;
-
-      for(const other of all){
-        if(other===this || other.exited) continue;
-
-        const dx=this.x-other.x;
-        const dy=this.y-other.y;
-        const dist=length(dx,dy);
-
-        if(dist<.01) continue;
-
-        if(dist<34){
-          sepX+=dx/dist;
-          sepY+=dy/dist;
-          sepN++;
-        }
-
-        if(dist<105){
-          aliX+=other.vx;
-          aliY+=other.vy;
-          aliN++;
-        }
-
-        if(dist<135){
-          cohX+=other.x;
-          cohY+=other.y;
-          cohN++;
-        }
-      }
-
-      if(sepN){
-        this.force((sepX/sepN)*.055,(sepY/sepN)*.055);
-      }
-
-      if(aliN){
-        this.force(
-          ((aliX/aliN)-this.vx)*.018,
-          ((aliY/aliN)-this.vy)*.018
-        );
-      }
-
-      if(cohN){
-        this.force(
-          ((cohX/cohN)-this.x)*.00055,
-          ((cohY/cohN)-this.y)*.00055
-        );
-      }
-
-      const margin=85;
-
-      if(this.x<margin)this.force(.035,0);
-      if(this.x>width-margin)this.force(-.035,0);
-      if(this.y<margin)this.force(0,.035);
-      if(this.y>height-margin)this.force(0,-.035);
-    }
-
-    setExitTarget(){
-      const dx0=this.x-width*.5;
-      const dy0=this.y-height*.5;
-      const len=length(dx0,dy0)||1;
-
-      let dx=dx0/len+random(-.28,.28);
-      let dy=dy0/len+random(-.24,.24);
-
-      const n=length(dx,dy)||1;
-
-      dx/=n;
-      dy/=n;
-
-      /*
-        هر پرنده به یک مسیر خروج واقعی هدایت می‌شود.
-        مسیرها رو به بیرون کادر هستند و هیچ پرنده‌ای برنمی‌گردد.
-      */
-
-      const distance=Math.max(width,height)*1.2+220;
-
-      this.targetX=this.x+dx*distance;
-      this.targetY=this.y+dy*distance;
-    }
-
-    flyOut(dt){
-      if(this.exited)return;
-
-      const dx=this.targetX-this.x;
-      const dy=this.targetY-this.y;
-      const dist=length(dx,dy)||1;
-
-      const desiredSpeed=4.6;
-      const desiredX=dx/dist*desiredSpeed;
-      const desiredY=dy/dist*desiredSpeed;
-
-      this.ax+=(desiredX-this.vx)*.055;
-      this.ay+=(desiredY-this.vy)*.055;
-
-      this.vx+=this.ax*dt;
-      this.vy+=this.ay*dt;
-
-      const speed=length(this.vx,this.vy);
-      const maxSpeed=5.6;
-
-      if(speed>maxSpeed){
-        this.vx=this.vx/speed*maxSpeed;
-        this.vy=this.vy/speed*maxSpeed;
-      }
-
-      this.x+=this.vx*dt;
-      this.y+=this.vy*dt;
-
-      this.ax=0;
-      this.ay=0;
-
-      const margin=100;
-
-      if(
-        this.x < -margin ||
-        this.x > width+margin ||
-        this.y < -margin ||
-        this.y > height+margin
-      ){
-        this.exited=true;
-      }
-    }
-
-    update(all,dt){
-      if(this.exited)return;
-
-      if(phase==="exit"){
-        this.flyOut(dt);
-      }else{
-        this.flock(all);
-
-        this.vx+=this.ax*dt;
-        this.vy+=this.ay*dt;
-
-        const speed=length(this.vx,this.vy);
-        const maxSpeed=2.8;
-
-        if(speed>maxSpeed){
-          this.vx=this.vx/speed*maxSpeed;
-          this.vy=this.vy/speed*maxSpeed;
-        }
-
-        this.x+=this.vx*dt;
-        this.y+=this.vy*dt;
-
-        this.ax=0;
-        this.ay=0;
-
-        const margin=45;
-
-        if(this.x<margin)this.vx+=.035*dt;
-        if(this.x>width-margin)this.vx-=.035*dt;
-        if(this.y<margin)this.vy+=.035*dt;
-        if(this.y>height-margin)this.vy-=.035*dt;
-      }
-
-      this.wing+=this.wingSpeed*.016*dt;
-    }
-
-    draw(){
-      if(this.exited)return;
-
-      const angle=Math.atan2(this.vy,this.vx);
-      const flap=Math.sin(this.wing)*.85;
-
-      ctx.save();
-      ctx.translate(this.x,this.y);
-      ctx.rotate(angle);
-
-      ctx.strokeStyle=this.color;
-      ctx.lineWidth=this.size*.48;
-      ctx.lineCap="round";
-      ctx.lineJoin="round";
-
-      ctx.beginPath();
-
-      ctx.moveTo(-this.size*1.5,0);
-      ctx.quadraticCurveTo(
-        -this.size*.15,
-        -this.size*(2.1+flap),
-        this.size*2.7,
-        -this.size*.2
-      );
-
-      ctx.moveTo(-this.size*1.5,0);
-      ctx.quadraticCurveTo(
-        -this.size*.15,
-        this.size*(2.1+flap),
-        this.size*2.7,
-        this.size*.2
-      );
-
-      ctx.stroke();
-      ctx.restore();
-    }
-  }
-
-  for(let i=0;i<count;i++){
-    birds.push(new Bird());
-  }
-
-  function draw(){
-    ctx.fillStyle="#222D29";
-    ctx.fillRect(0,0,width,height);
-
-    for(const bird of birds){
-      bird.draw();
-    }
-  }
-
-  function beginExit(){
-    if(phase!=="flock")return;
-
-    phase="exit";
-
-    birds.forEach(bird=>bird.setExitTarget());
-  }
-
-  function finish(){
+  function revealPage(){
     if(finished)return;
-
     finished=true;
 
-    /* توقف کامل حلقه انیمیشن */
+    clearTimeout(fallbackTimer);
+    clearTimeout(finishTimer);
 
-    cancelAnimationFrame(raf);
-    raf=0;
+    if(birdsEffect){
+      try{
+        birdsEffect.destroy();
+      }catch(e){}
+      birdsEffect=null;
+    }
 
-    ctx.fillStyle="#222D29";
-    ctx.fillRect(0,0,width,height);
-
-    intro.classList.add("is-finished");
-
-    /*
-      پس از محو شدن لایه آغازین:
-      هدر باقی می‌ماند، محتوا نمایش داده می‌شود،
-      و عنصر Canvas برای همیشه حذف می‌شود.
-    */
+    if(intro){
+      intro.classList.add("is-finished");
+    }
 
     setTimeout(()=>{
-      intro.remove();
-      window.removeEventListener("resize",resize);
+      if(intro)intro.remove();
 
       body.classList.remove("intro-lock");
       body.classList.add("hero-ready");
 
       startPage();
-    },380);
+    },1150);
   }
 
-  function frame(now){
-    if(finished || hidden)return;
-
-    const elapsed=(now-startTime)/1000;
-    const dt=clamp((now-lastTime)/16.667,.5,2);
-
-    lastTime=now;
-
-    /* هدر دقیقاً از ثانیه پنجم وارد می‌شود */
-
-    if(elapsed>=5 && !body.classList.contains("header-ready")){
+  function showHeader(){
+    if(!body.classList.contains("header-ready")){
       body.classList.add("header-ready");
     }
+  }
 
-    /*
-      پرندگان بعد از ظاهرشدن هدر همچنان پرواز می‌کنند.
-      خروج از ثانیه ۸.۲ آغاز می‌شود؛ هرو هنوز مخفی است.
-    */
+  function initBirds(){
+    if(finished)return;
 
-    if(elapsed>=8.2 && phase==="flock"){
-      beginExit();
-    }
+    const reducedMotion=window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-    for(const bird of birds){
-      bird.update(birds,dt);
-    }
-
-    draw();
-
-    /*
-      تنها زمانی هرو ظاهر می‌شود که آخرین پرنده
-      به‌طور کامل از محدوده قابل مشاهده خارج شده باشد.
-    */
-
-    if(phase==="exit" && birds.every(bird=>bird.exited)){
-      finish();
+    if(reducedMotion){
+      showHeader();
+      revealPage();
       return;
     }
 
-    raf=requestAnimationFrame(frame);
+    /*
+      اگر فایل Vanta یا Three.js بارگذاری نشد،
+      صفحه پس از زمان مشخص آزاد می‌شود.
+    */
+
+    if(!window.VANTA || !window.VANTA.BIRDS || !window.THREE){
+      showHeader();
+      revealPage();
+      return;
+    }
+
+    try{
+      birdsEffect=window.VANTA.BIRDS({
+        el:"#birds-intro",
+
+        THREE:window.THREE,
+
+        mouseControls:true,
+        touchControls:true,
+        gyroControls:false,
+
+        minHeight:200,
+        minWidth:200,
+
+        scale:1,
+        scaleMobile:1,
+
+        /* پس‌زمینه دقیقاً هم‌رنگ سایت */
+        backgroundColor:0xf4f5ef,
+
+        /* رنگ‌های هماهنگ با هویت گروزای */
+        color1:0x176b4b,
+        color2:0x8bad74,
+        colorMode:"lerp",
+
+        /* تنظیمات حرکت و تراکم پرندگان */
+        birdSize:1.15,
+        wingSpan:25,
+        speedLimit:3.5,
+        separation:28,
+        alignment:24,
+        cohesion:22,
+        quantity:3
+      });
+
+      if(!birdsEffect){
+        showHeader();
+        revealPage();
+        return;
+      }
+
+      /*
+        هدر در ثانیه پنجم نمایش داده می‌شود.
+        افکت پرندگان تا ثانیه هشتم ادامه دارد.
+      */
+
+      setTimeout(showHeader,5000);
+
+      finishTimer=setTimeout(()=>{
+        revealPage();
+      },8200);
+
+    }catch(error){
+      console.error("Vanta Birds initialization failed:",error);
+      showHeader();
+      revealPage();
+    }
   }
 
-  function animate(){
-    if(finished || hidden)return;
+  /* شروع کنترل‌شده پس از آماده‌شدن صفحه */
 
-    lastTime=performance.now();
-    raf=requestAnimationFrame(frame);
+  fallbackTimer=setTimeout(()=>{
+    if(!finished){
+      showHeader();
+      revealPage();
+    }
+  },12000);
+
+  if(document.readyState==="complete"){
+    initBirds();
+  }else{
+    window.addEventListener("load",initBirds,{once:true});
   }
+
+  /* مدیریت بازگشت از حالت پس‌زمینه */
 
   document.addEventListener("visibilitychange",()=>{
-    hidden=document.hidden;
-
-    if(hidden){
-      cancelAnimationFrame(raf);
-      raf=0;
-    }else{
-      animate();
+    if(document.hidden && birdsEffect){
+      /* Vanta مدیریت چرخه رندر را خودش انجام می‌دهد */
+      return;
     }
   });
-
-  draw();
-  animate();
 
 })();
 </script>
 
 </body>
-      </html>
+</html>

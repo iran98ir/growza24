@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f4f5ef">
+<meta name="theme-color" content="#222D29">
 <meta name="description" content="گروزای ۲۴؛ ابزارهای هوشمند برای رشد هدفمند اینستاگرام">
 <title>گروزای ۲۴ | رشد، اما با امضا</title>
 
@@ -741,7 +741,6 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
   font-weight:600;
 }
 
-/* لینک غیرکلیک‌پذیر «مسیر رشدت را انتخاب کن» */
 .manifesto .manifesto-link{
   display:inline-flex;
   align-items:center;
@@ -759,7 +758,7 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
 
 .manifesto-link svg{width:16px}
 
-/* ===== GUIDE STRIP 3D — جلب توجه بیشتر، حفظ سبکی ===== */
+/* ===== GUIDE STRIP 3D ===== */
 
 .guide-strip{
   display:flex;
@@ -920,7 +919,9 @@ body.header-ready .bottom-nav{
 .reveal.in{opacity:1;transform:none}
 [data-tilt]{transform-style:preserve-3d}
 
-/* VANTA BIRDS INTRO */
+/* ============================================
+   VANTA BIRDS INTRO — شروع از رنگ تیره و روشن شدن آرام
+   ============================================ */
 
 #birds-intro{
   position:fixed;
@@ -933,7 +934,7 @@ body.header-ready .bottom-nav{
   margin:0 auto;
   z-index:0;
   overflow:hidden;
-  background:#f4f5ef;
+  background:#222D29;
   opacity:1;
   visibility:visible;
   pointer-events:none;
@@ -943,6 +944,23 @@ body.header-ready .bottom-nav{
     visibility 0s linear 1.15s;
 }
 
+/* لایه پوششی تیره که در ابتدا کل صحنه را می‌پوشاند و خیلی آرام محو می‌شود */
+#birds-intro .intro-dark-veil{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  background:#222D29;
+  opacity:1;
+  pointer-events:none;
+  transition:opacity 4500ms cubic-bezier(.22,1,.36,1);
+  will-change:opacity;
+}
+
+body.hero-ready #birds-intro .intro-dark-veil{
+  opacity:0;
+}
+
+/* گرادیان نهایی روی پرندگان */
 #birds-intro:after{
   content:"";
   position:absolute;
@@ -959,6 +977,17 @@ body.header-ready .bottom-nav{
   width:100%!important;
   height:100%!important;
   display:block;
+  /* خودِ کانواس هم از محو شروع می‌شود */
+  opacity:0;
+  filter:brightness(.35) saturate(.6);
+  transition:
+    opacity 4200ms cubic-bezier(.22,1,.36,1),
+    filter 4200ms cubic-bezier(.22,1,.36,1);
+}
+
+body.hero-ready #birds-intro .vanta-canvas{
+  opacity:1;
+  filter:brightness(1) saturate(1);
 }
 
 #birds-intro.is-bg{
@@ -1046,13 +1075,17 @@ body.hero-ready .hero h1 .accent:after{
     opacity:1;
     transform:none;
   }
+  #birds-intro .intro-dark-veil{opacity:0;transition:none}
+  #birds-intro .vanta-canvas{opacity:1;filter:none;transition:none}
 }
 </style>
 </head>
 
 <body class="intro-lock">
 
-<div id="birds-intro" aria-hidden="true"></div>
+<div id="birds-intro" aria-hidden="true">
+  <div class="intro-dark-veil"></div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 
@@ -1382,7 +1415,6 @@ body.hero-ready .hero h1 .accent:after{
     followersEl.textContent = "0";
     engagementsEl.textContent = "0";
 
-    /* شمارنده ۱ — فالوور تا ۲۰۰۰ → ۲ بار کانفتی */
     followersInstance = new countUp.CountUp(followersEl, FOLLOWERS_TARGET, {
       duration: 2.2,
       useEasing: true,
@@ -1395,7 +1427,6 @@ body.hero-ready .hero h1 .accent:after{
     });
     if(!followersInstance.error) followersInstance.start();
 
-    /* شمارنده ۲ — تعامل تا ۵۰۰۰۰ → ۲ بار کانفتی */
     setTimeout(() => {
       engagementsInstance = new countUp.CountUp(engagementsEl, ENGAGEMENTS_TARGET, {
         duration: 3,
@@ -1465,7 +1496,6 @@ body.hero-ready .hero h1 .accent:after{
       });
     }
 
-    /* اسکرول نرم به بخش THE GROWTH ENGINE */
     const scrollBtn = document.getElementById("scrollToGrowthBtn");
     const growthSection = document.getElementById("growthEngine");
 
@@ -1486,7 +1516,6 @@ body.hero-ready .hero h1 .accent:after{
       });
     }
 
-    /* راه‌اندازی رصد کارت شمارنده */
     watchLiveCard();
   }
 
@@ -1505,9 +1534,10 @@ body.hero-ready .hero h1 .accent:after{
 
     showHeader();
 
+    /* شروع فرایند روشن شدن آرام پس‌زمینه و ظاهر شدن پرندگان */
     setTimeout(() => {
       body.classList.add("hero-ready");
-    }, 1000);
+    }, 600);
 
     startPage();
   }
@@ -1548,7 +1578,7 @@ body.hero-ready .hero h1 .accent:after{
         minWidth: 200,
         scale: 1,
         scaleMobile: 1,
-        backgroundColor: 0xf4f5ef,
+        backgroundColor: 0x222D29,
         color1: 0x176b4b,
         color2: 0x8bad74,
         colorMode: "lerp",
@@ -1567,6 +1597,7 @@ body.hero-ready .hero h1 .accent:after{
         return;
       }
 
+      /* زمان کلی صحنه: پرندگان به آرامی ظاهر می‌شوند، سپس صفحه آزاد می‌شود */
       finishTimer = setTimeout(() => {
         revealPage();
       }, 8200);
@@ -1595,4 +1626,4 @@ body.hero-ready .hero h1 .accent:after{
 </script>
 
 </body>
-</html>
+  </html>

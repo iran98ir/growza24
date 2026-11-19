@@ -13,6 +13,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.birds.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/countup.js@2.10.1/dist/countUp.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
 <style>
 :root{
@@ -452,132 +454,189 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
   line-height:1.8;
 }
 
-.signal-panel{
+/* ====== کارت شمارنده‌ها (جایگزین signal-panel) ====== */
+
+.live-card{
   position:relative;
-  padding:19px;
-  border-radius:27px;
-  background:var(--ink);
-  color:white;
+  padding:26px 22px 22px;
+  border-radius:0;
+  background:linear-gradient(160deg,#1f2b25 0%,#222D29 55%,#163d2a 100%);
+  color:#fff;
   overflow:hidden;
-  box-shadow:0 18px 40px #151b1820;
+  box-shadow:0 26px 60px #151b1840;
 }
 
-.signal-panel:before{
+.live-card:before{
   content:"";
   position:absolute;
-  width:230px;
-  height:230px;
-  border:1px solid #ffffff18;
+  top:-50%;
+  right:-30%;
+  width:320px;
+  height:320px;
   border-radius:50%;
-  left:-82px;
-  top:-110px;
-  box-shadow:0 0 0 22px #ffffff08,0 0 0 48px #ffffff06;
+  background:radial-gradient(circle,#C7FF0030,transparent 65%);
+  filter:blur(20px);
+  animation:liveGlow 9s ease-in-out infinite;
+  pointer-events:none;
 }
 
-.signal-top{
-  display:flex;
+.live-card:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#C7FF0060,transparent);
+  pointer-events:none;
+}
+
+@keyframes liveGlow{
+  0%,100%{transform:translate(0,0)}
+  50%{transform:translate(-30px,30px)}
+}
+
+.live-badge{
+  display:inline-flex;
   align-items:center;
-  justify-content:space-between;
+  gap:6px;
   position:relative;
-}
-
-.signal-top span{font-size:11px;color:#c2d1c7;font-weight:700}
-
-.signal-chip{
-  background:#C7FF00;
-  color:#1c3528;
-  border-radius:999px;
-  padding:6px 10px;
-  font-size:10px;
+  z-index:2;
+  background:#C7FF0018;
+  border:1px solid #C7FF0050;
+  color:var(--lime);
+  font-size:9px;
   font-weight:900;
+  letter-spacing:1.4px;
+  padding:5px 10px;
+  margin-bottom:14px;
 }
 
-.signal-title{
-  font-size:20px;
+.live-badge .dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--lime);
+  animation:liveBlink 1.4s ease-in-out infinite;
+}
+
+@keyframes liveBlink{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 #C7FF0080}
+  50%{opacity:.6;box-shadow:0 0 0 6px #C7FF0000}
+}
+
+.live-title{
+  position:relative;
+  z-index:2;
+  font-size:17px;
   font-weight:900;
   line-height:1.6;
-  margin:18px 0 5px;
-  position:relative;
+  margin:0 0 22px;
+  color:#fff;
 }
 
-.signal-sub{
-  font-size:12px;
-  line-height:1.9;
-  color:#c2cec5;
-  position:relative;
-  margin:0;
+.live-title em{
+  font-style:normal;
+  color:var(--lime);
 }
 
-.signal-visual{height:90px;margin-top:14px;position:relative}
-.signal-visual svg{width:100%;height:100%;overflow:visible}
-
-.signal-foot{
+.live-row{
+  position:relative;
+  z-index:2;
   display:flex;
+  align-items:baseline;
   justify-content:space-between;
-  align-items:center;
-  border-top:1px solid #ffffff20;
-  padding-top:13px;
-  margin-top:8px;
-  color:#d3ded5;
-  font-size:10px;
-  font-weight:700;
-}
-
-.signal-foot b{color:var(--lime);font-size:12px}
-
-.metrics{
-  display:grid;
-  grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:11px;
+  padding:14px 0;
+  border-bottom:1px solid #ffffff15;
 }
 
-.metric{
-  padding:15px;
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:#fff9;
-  min-height:103px;
-  position:relative;
-  overflow:hidden;
+.live-row:last-of-type{
+  border-bottom:none;
 }
 
-.metric:after{
-  content:"";
-  position:absolute;
-  width:52px;
-  height:52px;
-  border:1px solid #176b4b25;
-  border-radius:17px;
-  left:-15px;
-  bottom:-18px;
-  rotate:24deg;
+.live-label{
+  flex:1;
+  min-width:0;
 }
 
-.metric-top{
+.live-label b{
+  display:block;
+  font-size:12px;
+  font-weight:900;
+  color:#e8f2ea;
+  margin-bottom:3px;
+}
+
+.live-label small{
+  font-size:10px;
+  color:#8fbfa1;
+  font-weight:600;
+  letter-spacing:.3px;
+}
+
+.live-num{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  color:var(--muted);
+  align-items:baseline;
+  gap:4px;
+  flex-shrink:0;
+}
+
+.live-num .val{
+  font-size:44px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:-1.6px;
+  background:linear-gradient(180deg,#fff,#C7FF00);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-variant-numeric:tabular-nums;
+  text-shadow:0 0 30px #C7FF0033;
+}
+
+.live-num .unit{
   font-size:10px;
   font-weight:800;
+  color:#8fbfa1;
+  letter-spacing:.4px;
+  padding-bottom:2px;
 }
 
-.metric-icon{
-  width:27px;
-  height:27px;
-  border-radius:9px;
-  background:var(--green-3);
-  display:grid;
-  place-items:center;
-  color:var(--green);
+.live-foot{
+  position:relative;
+  z-index:2;
+  margin-top:20px;
+  padding-top:16px;
+  border-top:1px solid #ffffff18;
+  text-align:center;
+  font-size:12px;
+  font-weight:700;
+  color:#c2d1c7;
+  line-height:1.9;
 }
 
-.metric-icon svg{width:15px}
-.metric strong{display:block;font-size:18px;margin-top:10px;font-weight:900}
-.metric small{font-size:10px;color:var(--muted);font-weight:700}
+.live-foot em{
+  font-style:normal;
+  color:var(--lime);
+  font-weight:900;
+}
 
-/* FEATURES */
+.live-ornament{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:1;
+  opacity:.35;
+  pointer-events:none;
+}
+
+.live-ornament svg{
+  width:44px;
+  height:44px;
+}
+
+/* ====== FEATURES ====== */
 
 .features{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
@@ -906,6 +965,7 @@ body.hero-ready .hero h1 .accent:after{
   .primary-btn,.secondary-btn{padding-inline:13px;font-size:12px}
   .brand-latin{font-size:19px}
   .brand-right .subtitle{font-size:12.5px}
+  .live-num .val{font-size:36px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -980,7 +1040,6 @@ body.hero-ready .hero h1 .accent:after{
     </p>
 
     <div class="hero-actions">
-      <!-- دکمه‌ها جابجا شدند: اول «رشد سریع چگونه است ؟» سپس «شروع مسیر رشد» با فلش به پایین -->
       <button type="button" class="secondary-btn" id="quickGrowthBtn">رشد سریع چگونه است ؟</button>
 
       <button type="button" class="primary-btn" id="scrollToGrowthBtn">
@@ -1002,47 +1061,49 @@ body.hero-ready .hero h1 .accent:after{
       <div class="section-note">از اقدام تا بررسی نتیجه؛ یک مسیر روشن.</div>
     </div>
 
-    <div class="signal-panel">
-      <div class="signal-top">
-        <span>نقشه تصمیم‌گیری رشد</span>
-        <b class="signal-chip">G24 / SYSTEM</b>
-      </div>
-
-      <h3 class="signal-title">هر حرکت، یک نشانه دارد.</h3>
-
-      <p class="signal-sub">
-        به‌جای حرکت‌های پراکنده، مسیرت را بر اساس هدف و بازخورد دنبال کن.
-      </p>
-
-      <div class="signal-visual">
-        <svg viewBox="0 0 440 100" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="area" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0" stop-color="#C7FF00" stop-opacity=".34"/>
-              <stop offset="1" stop-color="#C7FF00" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-
-          <path d="M0 78 C35 72 42 55 75 62 S118 78 150 49 S203 58 232 37 S277 48 310 27 S365 40 440 8 L440 100 L0 100Z" fill="url(#area)"/>
-
-          <path d="M0 78 C35 72 42 55 75 62 S118 78 150 49 S203 58 232 37 S277 48 310 27 S365 40 440 8"
-            fill="none" stroke="#C7FF00" stroke-width="3" stroke-linecap="round"/>
-
-          <g fill="#222D29" stroke="#C7FF00" stroke-width="2">
-            <circle cx="75" cy="62" r="4"/>
-            <circle cx="150" cy="49" r="4"/>
-            <circle cx="232" cy="37" r="4"/>
-            <circle cx="310" cy="27" r="4"/>
-            <circle cx="440" cy="8" r="4"/>
-          </g>
-
-          <path d="M0 94H440" stroke="#ffffff25" stroke-dasharray="3 6"/>
+    <!-- ===== کارت جدید: شمارنده‌های زنده ===== -->
+    <div class="live-card" id="liveCard" aria-label="آمار رشد زنده">
+      <span class="live-ornament" aria-hidden="true">
+        <svg viewBox="0 0 44 44" fill="none" stroke="#C7FF00" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 38V6M6 38h32"/>
+          <path d="m10 30 8-9 6 4 12-15"/>
+          <path d="M30 10h8v8"/>
         </svg>
+      </span>
+
+      <span class="live-badge">
+        <i class="dot"></i>
+        LIVE / 24
+      </span>
+
+      <h3 class="live-title">
+        آنچه ما می‌توانیم برای شما انجام دهیم:
+      </h3>
+
+      <div class="live-row">
+        <div class="live-label">
+          <b>فالوورهای جدید شما</b>
+          <small>رشد پیوسته و واقعی</small>
+        </div>
+        <div class="live-num">
+          <span class="val" id="followersNum">0</span>
+          <span class="unit">تا ۲٬۰۰۰</span>
+        </div>
       </div>
 
-      <div class="signal-foot">
-        <span>هدف‌گذاری ← اقدام ← بازبینی</span>
-        <b>مسیر اختصاصی تو</b>
+      <div class="live-row">
+        <div class="live-label">
+          <b>تعامل با محتوای شما</b>
+          <small>لایک، کامنت، سیو و بازدید</small>
+        </div>
+        <div class="live-num">
+          <span class="val" id="engagementsNum">0</span>
+          <span class="unit">تا ۵۰٬۰۰۰</span>
+        </div>
+      </div>
+
+      <div class="live-foot">
+        فقط کافیست <em>آنچه با اهداف شما مطابقت دارد</em> انتخاب نمایید.
       </div>
     </div>
 
@@ -1226,53 +1287,189 @@ body.hero-ready .hero h1 .accent:after{
   let fallbackTimer = null;
   let finishTimer = null;
 
-  function startPage(){
-    const items=document.querySelectorAll(".reveal");
+  /* ---- شمارنده‌های زنده ---- */
+  const followersEl = document.getElementById("followersNum");
+  const engagementsEl = document.getElementById("engagementsNum");
+  const liveCard = document.getElementById("liveCard");
+
+  const FOLLOWERS_TARGET = 2000;
+  const ENGAGEMENTS_TARGET = 50000;
+
+  let countersStarted = false;
+  let followersInstance = null;
+  let engagementsInstance = null;
+
+  function formatThousands(n){
+    return n.toLocaleString("en-US");
+  }
+
+  function runCounters(){
+    if(countersStarted) return;
+    countersStarted = true;
+
+    followersEl.textContent = "0";
+    engagementsEl.textContent = "0";
+
+    /* شمارنده فالوور — ۲.۲ ثانیه */
+    followersInstance = new countUp.CountUp(followersEl, FOLLOWERS_TARGET, {
+      duration: 2.2,
+      useEasing: true,
+      useGrouping: true,
+      separator: ",",
+      onComplete: () => {
+        /* بعد از رسیدن فالوور، انفجار کوچیک روی کارت */
+        burstOnCard(30, 0.35);
+      }
+    });
+    if(!followersInstance.error) followersInstance.start();
+
+    /* شمارنده تعامل — ۳ ثانیه، بعد از فالوور */
+    setTimeout(() => {
+      engagementsInstance = new countUp.CountUp(engagementsEl, ENGAGEMENTS_TARGET, {
+        duration: 3,
+        useEasing: true,
+        useGrouping: true,
+        separator: ",",
+        onComplete: () => {
+          /* بعد از رسیدن تعامل، ۴ انفجار جشن پشت سر هم */
+          celebrateFourBursts();
+        }
+      });
+      if(!engagementsInstance.error) engagementsInstance.start();
+    }, 400);
+  }
+
+  /* ---- کانفتی ---- */
+  const CONFETTI_COLORS = ["#C7FF00", "#176b4b", "#a8d7b8", "#ffffff", "#ef7657"];
+
+  function burstOnCard(count, originY){
+    if(!liveCard) return;
+    const r = liveCard.getBoundingClientRect();
+    const x = (r.left + r.width / 2) / window.innerWidth;
+    confetti({
+      particleCount: count,
+      spread: 75,
+      startVelocity: 32,
+      origin: { x, y: originY },
+      colors: CONFETTI_COLORS,
+      scalar: 0.9
+    });
+  }
+
+  function celebrateFourBursts(){
+    if(!liveCard) return;
+    const r = liveCard.getBoundingClientRect();
+    const cx = (r.left + r.width / 2) / window.innerWidth;
+    const cy = (r.top + r.height / 2) / window.innerHeight;
+
+    /* ۴ انفجار با تاخیر کوتاه، شبیه ۴ بار زدن دکمه جشن */
+    const bursts = [
+      { x: 0.2, y: 0.7, angle: 60,  delay: 0    },
+      { x: 0.8, y: 0.7, angle: 120, delay: 180  },
+      { x: 0.5, y: 0.5, angle: 90,  delay: 360  },
+      { x: cx,  y: cy,  angle: 90,  delay: 540  }
+    ];
+
+    bursts.forEach(b => {
+      setTimeout(() => {
+        confetti({
+          particleCount: 70,
+          spread: 100,
+          startVelocity: 42,
+          angle: b.angle,
+          origin: { x: b.x, y: b.y },
+          colors: CONFETTI_COLORS
+        });
+      }, b.delay);
+    });
+
+    /* یک موج ممتد کوتاه برای حس جشن */
+    const end = Date.now() + 900;
+    (function frame(){
+      confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.8 },
+        colors: CONFETTI_COLORS
+      });
+      confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.8 },
+        colors: CONFETTI_COLORS
+      });
+      if(Date.now() < end) requestAnimationFrame(frame);
+    })();
+  }
+
+  function watchLiveCard(){
+    if(!liveCard) return;
 
     if("IntersectionObserver" in window){
-      const io=new IntersectionObserver(entries=>{
-        entries.forEach(entry=>{
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            runCounters();
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+
+      io.observe(liveCard);
+    } else {
+      /* fallback */
+      setTimeout(runCounters, 600);
+    }
+  }
+
+  function startPage(){
+    const items = document.querySelectorAll(".reveal");
+
+    if("IntersectionObserver" in window){
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
           if(entry.isIntersecting){
             entry.target.classList.add("in");
             io.unobserve(entry.target);
           }
         });
-      },{
-        threshold:.12,
-        rootMargin:"0px 0px -35px 0px"
+      }, {
+        threshold: .12,
+        rootMargin: "0px 0px -35px 0px"
       });
 
-      items.forEach(item=>io.observe(item));
-    }else{
-      items.forEach(item=>item.classList.add("in"));
+      items.forEach(item => io.observe(item));
+    } else {
+      items.forEach(item => item.classList.add("in"));
     }
 
     if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
       document.querySelectorAll(
         ".metric,.feature"
-      ).forEach(el=>{
-        el.addEventListener("pointerdown",()=>{
-          el.style.transform="scale(.985)";
+      ).forEach(el => {
+        el.addEventListener("pointerdown", () => {
+          el.style.transform = "scale(.985)";
         });
 
-        ["pointerup","pointercancel","pointerleave"].forEach(evt=>{
-          el.addEventListener(evt,()=>{
-            el.style.transform="";
+        ["pointerup","pointercancel","pointerleave"].forEach(evt => {
+          el.addEventListener(evt, () => {
+            el.style.transform = "";
           });
         });
       });
     }
 
-    /* ---- اسکرول نرم به بخش THE GROWTH ENGINE ---- */
+    /* اسکرول نرم به بخش THE GROWTH ENGINE */
     const scrollBtn = document.getElementById("scrollToGrowthBtn");
     const growthSection = document.getElementById("growthEngine");
 
     if(scrollBtn && growthSection){
-      scrollBtn.addEventListener("click", (e)=>{
+      scrollBtn.addEventListener("click", (e) => {
         e.preventDefault();
-
-        const headerH = 76;   /* ارتفاع هدر ثابت */
-        const gap = 14;       /* فاصله تنفسی زیر هدر */
+        const headerH = 76;
+        const gap = 14;
         const targetY =
           growthSection.getBoundingClientRect().top +
           window.pageYOffset -
@@ -1284,11 +1481,14 @@ body.hero-ready .hero h1 .accent:after{
         });
       });
     }
+
+    /* راه‌اندازی رصد کارت شمارنده */
+    watchLiveCard();
   }
 
   function revealPage(){
-    if(finished)return;
-    finished=true;
+    if(finished) return;
+    finished = true;
 
     clearTimeout(fallbackTimer);
     clearTimeout(finishTimer);
@@ -1301,9 +1501,9 @@ body.hero-ready .hero h1 .accent:after{
 
     showHeader();
 
-    setTimeout(()=>{
+    setTimeout(() => {
       body.classList.add("hero-ready");
-    },1000);
+    }, 1000);
 
     startPage();
   }
@@ -1315,9 +1515,9 @@ body.hero-ready .hero h1 .accent:after{
   }
 
   function initBirds(){
-    if(finished)return;
+    if(finished) return;
 
-    const reducedMotion=window.matchMedia(
+    const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
@@ -1334,34 +1534,27 @@ body.hero-ready .hero h1 .accent:after{
     }
 
     try{
-      birdsEffect=window.VANTA.BIRDS({
-        el:"#birds-intro",
-
-        THREE:window.THREE,
-
-        mouseControls:true,
-        touchControls:true,
-        gyroControls:false,
-
-        minHeight:200,
-        minWidth:200,
-
-        scale:1,
-        scaleMobile:1,
-
-        backgroundColor:0xf4f5ef,
-
-        color1:0x176b4b,
-        color2:0x8bad74,
-        colorMode:"lerp",
-
-        birdSize:1.15,
-        wingSpan:25,
-        speedLimit:3.5,
-        separation:28,
-        alignment:24,
-        cohesion:22,
-        quantity:3
+      birdsEffect = window.VANTA.BIRDS({
+        el: "#birds-intro",
+        THREE: window.THREE,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200,
+        minWidth: 200,
+        scale: 1,
+        scaleMobile: 1,
+        backgroundColor: 0xf4f5ef,
+        color1: 0x176b4b,
+        color2: 0x8bad74,
+        colorMode: "lerp",
+        birdSize: 1.15,
+        wingSpan: 25,
+        speedLimit: 3.5,
+        separation: 28,
+        alignment: 24,
+        cohesion: 22,
+        quantity: 3
       });
 
       if(!birdsEffect){
@@ -1370,28 +1563,28 @@ body.hero-ready .hero h1 .accent:after{
         return;
       }
 
-      finishTimer=setTimeout(()=>{
+      finishTimer = setTimeout(() => {
         revealPage();
-      },8200);
+      }, 8200);
 
     }catch(error){
-      console.error("Vanta Birds initialization failed:",error);
+      console.error("Vanta Birds initialization failed:", error);
       showHeader();
       revealPage();
     }
   }
 
-  fallbackTimer=setTimeout(()=>{
+  fallbackTimer = setTimeout(() => {
     if(!finished){
       showHeader();
       revealPage();
     }
-  },12000);
+  }, 12000);
 
-  if(document.readyState==="complete"){
+  if(document.readyState === "complete"){
     initBirds();
-  }else{
-    window.addEventListener("load",initBirds,{once:true});
+  } else {
+    window.addEventListener("load", initBirds, { once: true });
   }
 
 })();

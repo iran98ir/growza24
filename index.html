@@ -454,7 +454,7 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
   line-height:1.8;
 }
 
-/* ====== کارت شمارنده‌ها (جایگزین signal-panel) ====== */
+/* ====== کارت شمارنده‌ها — تمام‌عرض ====== */
 
 .live-card{
   position:relative;
@@ -464,6 +464,17 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
   color:#fff;
   overflow:hidden;
   box-shadow:0 26px 60px #151b1840;
+  margin-inline:calc(50% - 50vw);
+  width:100vw;
+  max-width:100vw;
+}
+
+@media(min-width:700px){
+  .live-card{
+    margin-inline:0;
+    width:auto;
+    max-width:none;
+  }
 }
 
 .live-card:before{
@@ -513,9 +524,7 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
 }
 
 .live-badge .dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
+  width:6px;height:6px;border-radius:50%;
   background:var(--lime);
   animation:liveBlink 1.4s ease-in-out infinite;
 }
@@ -526,117 +535,124 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
 }
 
 .live-title{
-  position:relative;
-  z-index:2;
-  font-size:17px;
-  font-weight:900;
-  line-height:1.6;
-  margin:0 0 22px;
-  color:#fff;
+  position:relative;z-index:2;
+  font-size:17px;font-weight:900;
+  line-height:1.6;margin:0 0 22px;color:#fff;
 }
 
-.live-title em{
-  font-style:normal;
-  color:var(--lime);
-}
+.live-title em{font-style:normal;color:var(--lime)}
 
 .live-row{
-  position:relative;
-  z-index:2;
-  display:flex;
-  align-items:baseline;
-  justify-content:space-between;
-  gap:10px;
-  padding:14px 0;
+  position:relative;z-index:2;
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:10px;padding:14px 0;
   border-bottom:1px solid #ffffff15;
 }
 
-.live-row:last-of-type{
-  border-bottom:none;
-}
+.live-row:last-of-type{border-bottom:none}
 
-.live-label{
-  flex:1;
-  min-width:0;
-}
-
+.live-label{flex:1;min-width:0}
 .live-label b{
-  display:block;
-  font-size:12px;
-  font-weight:900;
-  color:#e8f2ea;
-  margin-bottom:3px;
+  display:block;font-size:12px;font-weight:900;
+  color:#e8f2ea;margin-bottom:3px;
 }
-
 .live-label small{
-  font-size:10px;
-  color:#8fbfa1;
-  font-weight:600;
-  letter-spacing:.3px;
+  font-size:10px;color:#8fbfa1;
+  font-weight:600;letter-spacing:.3px;
 }
 
 .live-num{
-  display:flex;
-  align-items:baseline;
-  gap:4px;
-  flex-shrink:0;
+  display:flex;align-items:baseline;gap:4px;flex-shrink:0;
 }
 
 .live-num .val{
-  font-size:44px;
-  font-weight:900;
-  line-height:1;
+  font-size:44px;font-weight:900;line-height:1;
   letter-spacing:-1.6px;
   background:linear-gradient(180deg,#fff,#C7FF00);
-  -webkit-background-clip:text;
-  background-clip:text;
+  -webkit-background-clip:text;background-clip:text;
   color:transparent;
   font-variant-numeric:tabular-nums;
   text-shadow:0 0 30px #C7FF0033;
 }
 
 .live-num .unit{
-  font-size:10px;
-  font-weight:800;
-  color:#8fbfa1;
-  letter-spacing:.4px;
-  padding-bottom:2px;
+  font-size:10px;font-weight:800;color:#8fbfa1;
+  letter-spacing:.4px;padding-bottom:2px;
 }
 
 .live-foot{
-  position:relative;
-  z-index:2;
-  margin-top:20px;
-  padding-top:16px;
+  position:relative;z-index:2;
+  margin-top:20px;padding-top:16px;
   border-top:1px solid #ffffff18;
   text-align:center;
-  font-size:12px;
-  font-weight:700;
-  color:#c2d1c7;
-  line-height:1.9;
+  font-size:12px;font-weight:700;
+  color:#c2d1c7;line-height:1.9;
 }
 
-.live-foot em{
-  font-style:normal;
-  color:var(--lime);
-  font-weight:900;
-}
+.live-foot em{font-style:normal;color:var(--lime);font-weight:900}
 
 .live-ornament{
+  position:absolute;top:14px;left:14px;z-index:1;
+  opacity:.35;pointer-events:none;
+}
+
+.live-ornament svg{width:44px;height:44px}
+
+/* METRICS */
+
+.metrics{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:11px;
+}
+
+.metric{
+  padding:15px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:#fff9;
+  min-height:103px;
+  position:relative;
+  overflow:hidden;
+}
+
+.metric:after{
+  content:"";
   position:absolute;
-  top:14px;
-  left:14px;
-  z-index:1;
-  opacity:.35;
-  pointer-events:none;
+  width:52px;
+  height:52px;
+  border:1px solid #176b4b25;
+  border-radius:17px;
+  left:-15px;
+  bottom:-18px;
+  rotate:24deg;
 }
 
-.live-ornament svg{
-  width:44px;
-  height:44px;
+.metric-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
 }
 
-/* ====== FEATURES ====== */
+.metric-icon{
+  width:27px;
+  height:27px;
+  border-radius:9px;
+  background:var(--green-3);
+  display:grid;
+  place-items:center;
+  color:var(--green);
+}
+
+.metric-icon svg{width:15px}
+.metric strong{display:block;font-size:18px;margin-top:10px;font-weight:900}
+.metric small{font-size:10px;color:var(--muted);font-weight:700}
+
+/* FEATURES */
 
 .features{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
@@ -1061,7 +1077,6 @@ body.hero-ready .hero h1 .accent:after{
       <div class="section-note">از اقدام تا بررسی نتیجه؛ یک مسیر روشن.</div>
     </div>
 
-    <!-- ===== کارت جدید: شمارنده‌های زنده ===== -->
     <div class="live-card" id="liveCard" aria-label="آمار رشد زنده">
       <span class="live-ornament" aria-hidden="true">
         <svg viewBox="0 0 44 44" fill="none" stroke="#C7FF00" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1287,7 +1302,7 @@ body.hero-ready .hero h1 .accent:after{
   let fallbackTimer = null;
   let finishTimer = null;
 
-  /* ---- شمارنده‌های زنده ---- */
+  /* ---- شمارنده‌ها + ۴ انفجار کانفتی ---- */
   const followersEl = document.getElementById("followersNum");
   const engagementsEl = document.getElementById("engagementsNum");
   const liveCard = document.getElementById("liveCard");
@@ -1299,8 +1314,20 @@ body.hero-ready .hero h1 .accent:after{
   let followersInstance = null;
   let engagementsInstance = null;
 
-  function formatThousands(n){
-    return n.toLocaleString("en-US");
+  const CONFETTI_COLORS = ["#C7FF00", "#176b4b", "#a8d7b8", "#ffffff", "#ef7657"];
+
+  function fireBurst(){
+    if(!liveCard) return;
+    const r = liveCard.getBoundingClientRect();
+    const cx = (r.left + r.width / 2) / window.innerWidth;
+    const cy = (r.top + r.height / 2) / window.innerHeight;
+    confetti({
+      particleCount: 60,
+      spread: 90,
+      startVelocity: 40,
+      origin: { x: cx, y: cy },
+      colors: CONFETTI_COLORS
+    });
   }
 
   function runCounters(){
@@ -1310,20 +1337,20 @@ body.hero-ready .hero h1 .accent:after{
     followersEl.textContent = "0";
     engagementsEl.textContent = "0";
 
-    /* شمارنده فالوور — ۲.۲ ثانیه */
+    /* شمارنده ۱ — فالوور تا ۲۰۰۰ → ۲ بار کانفتی */
     followersInstance = new countUp.CountUp(followersEl, FOLLOWERS_TARGET, {
       duration: 2.2,
       useEasing: true,
       useGrouping: true,
       separator: ",",
       onComplete: () => {
-        /* بعد از رسیدن فالوور، انفجار کوچیک روی کارت */
-        burstOnCard(30, 0.35);
+        fireBurst();
+        setTimeout(fireBurst, 220);
       }
     });
     if(!followersInstance.error) followersInstance.start();
 
-    /* شمارنده تعامل — ۳ ثانیه، بعد از فالوور */
+    /* شمارنده ۲ — تعامل تا ۵۰۰۰۰ → ۲ بار کانفتی */
     setTimeout(() => {
       engagementsInstance = new countUp.CountUp(engagementsEl, ENGAGEMENTS_TARGET, {
         duration: 3,
@@ -1331,82 +1358,16 @@ body.hero-ready .hero h1 .accent:after{
         useGrouping: true,
         separator: ",",
         onComplete: () => {
-          /* بعد از رسیدن تعامل، ۴ انفجار جشن پشت سر هم */
-          celebrateFourBursts();
+          fireBurst();
+          setTimeout(fireBurst, 220);
         }
       });
       if(!engagementsInstance.error) engagementsInstance.start();
     }, 400);
   }
 
-  /* ---- کانفتی ---- */
-  const CONFETTI_COLORS = ["#C7FF00", "#176b4b", "#a8d7b8", "#ffffff", "#ef7657"];
-
-  function burstOnCard(count, originY){
-    if(!liveCard) return;
-    const r = liveCard.getBoundingClientRect();
-    const x = (r.left + r.width / 2) / window.innerWidth;
-    confetti({
-      particleCount: count,
-      spread: 75,
-      startVelocity: 32,
-      origin: { x, y: originY },
-      colors: CONFETTI_COLORS,
-      scalar: 0.9
-    });
-  }
-
-  function celebrateFourBursts(){
-    if(!liveCard) return;
-    const r = liveCard.getBoundingClientRect();
-    const cx = (r.left + r.width / 2) / window.innerWidth;
-    const cy = (r.top + r.height / 2) / window.innerHeight;
-
-    /* ۴ انفجار با تاخیر کوتاه، شبیه ۴ بار زدن دکمه جشن */
-    const bursts = [
-      { x: 0.2, y: 0.7, angle: 60,  delay: 0    },
-      { x: 0.8, y: 0.7, angle: 120, delay: 180  },
-      { x: 0.5, y: 0.5, angle: 90,  delay: 360  },
-      { x: cx,  y: cy,  angle: 90,  delay: 540  }
-    ];
-
-    bursts.forEach(b => {
-      setTimeout(() => {
-        confetti({
-          particleCount: 70,
-          spread: 100,
-          startVelocity: 42,
-          angle: b.angle,
-          origin: { x: b.x, y: b.y },
-          colors: CONFETTI_COLORS
-        });
-      }, b.delay);
-    });
-
-    /* یک موج ممتد کوتاه برای حس جشن */
-    const end = Date.now() + 900;
-    (function frame(){
-      confetti({
-        particleCount: 2,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0, y: 0.8 },
-        colors: CONFETTI_COLORS
-      });
-      confetti({
-        particleCount: 2,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1, y: 0.8 },
-        colors: CONFETTI_COLORS
-      });
-      if(Date.now() < end) requestAnimationFrame(frame);
-    })();
-  }
-
   function watchLiveCard(){
     if(!liveCard) return;
-
     if("IntersectionObserver" in window){
       const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1416,10 +1377,8 @@ body.hero-ready .hero h1 .accent:after{
           }
         });
       }, { threshold: 0.4 });
-
       io.observe(liveCard);
     } else {
-      /* fallback */
       setTimeout(runCounters, 600);
     }
   }

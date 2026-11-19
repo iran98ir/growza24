@@ -69,7 +69,7 @@ button{font-family:inherit}
   margin:auto;
 }
 
-/* ============ HEADER — EXACT SAME AS HOME ============ */
+/* ============ HEADER ============ */
 
 .topbar{
   position:fixed;
@@ -203,7 +203,7 @@ button{font-family:inherit}
 
 main.app{padding-top:96px}
 
-/* ============ HERO WITH WORD REVEAL ANIMATION ============ */
+/* ============ HERO ============ */
 
 .hero{
   position:relative;
@@ -244,7 +244,6 @@ main.app{padding-top:96px}
   letter-spacing:2px;
 }
 
-/* تیتر با انیمیشن کلمه‌به‌کلمه — دقیقاً مثل صفحه اصلی */
 .hero h1{
   font-size:clamp(37px,10vw,55px);
   line-height:1.35;
@@ -303,7 +302,6 @@ main.app{padding-top:96px}
   to{transform:skewX(-12deg) scaleX(1)}
 }
 
-/* تأخیر کلمات — همون تایمینگ صفحه اصلی */
 .hero h1 .w0{animation-delay:.05s}
 .hero h1 .w1{animation-delay:1.05s}
 .hero h1 .w2{animation-delay:1.20s}
@@ -780,6 +778,28 @@ main.app{padding-top:96px}
   animation:answerIn .25s ease both;
 }
 .faq-answer strong{color:var(--ink);font-weight:900}
+.faq-answer p{margin:0 0 10px}
+.faq-answer p:last-child{margin-bottom:0}
+.faq-answer ul{
+  margin:6px 0 10px;
+  padding-right:20px;
+  list-style:disc;
+}
+.faq-answer li{
+  margin-bottom:5px;
+  line-height:2;
+}
+.faq-answer .note-block{
+  display:block;
+  background:#f6f8ec;
+  border-right:3px solid var(--lime);
+  padding:10px 12px;
+  margin:10px 0;
+  border-radius:8px;
+  font-size:12.5px;
+  color:#4a5650;
+}
+.faq-answer .note-block strong{color:var(--green)}
 
 @keyframes answerIn{
   from{opacity:0;transform:translateY(5px)}
@@ -938,7 +958,7 @@ main.app{padding-top:96px}
 }
 .footer strong{color:var(--green)}
 
-/* ============ BOTTOM NAV — EXACT SAME AS HOME ============ */
+/* ============ BOTTOM NAV ============ */
 
 .bottom-nav{
   position:fixed;
@@ -1013,7 +1033,7 @@ main.app{padding-top:96px}
 
 <div class="grain" aria-hidden="true"></div>
 
-<!-- ============ HEADER — SAME AS HOME ============ -->
+<!-- HEADER -->
 <header class="topbar">
   <a class="brand" href="index.html" aria-label="Growza24">
     <img class="brand-logo" src="1.jpg" alt="لوگوی Growza24">
@@ -1028,10 +1048,9 @@ main.app{padding-top:96px}
 </header>
 
 <main class="app">
-
 <div class="page">
 
-  <!-- HERO با انیمیشن کلمه‌به‌کلمه -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-topline">
       <div class="eyebrow">GROW SMARTER / 24</div>
@@ -1152,167 +1171,214 @@ main.app{padding-top:96px}
       <details class="faq-item">
         <summary>
           <span class="faq-num">01</span>
-          <span class="faq-question">Growza24 دقیقاً چه کاری برای پیجت انجام می‌دهد؟</span>
+          <span class="faq-question">چه مسیرهایی برای رشد پیج اینستاگرام من توسط شما ارائه می شود ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          Growza24 یک <strong>پلتفرم رشد پیج اینستاگرام</strong> است که برای افزایش مخاطبان واقعی و تقویت تعامل با محتوای پیج طراحی شده. تو متناسب با هدف خودت، مسیر رشد رو انتخاب می‌کنی.
+          <p>سه روش توسط <strong>Growza24</strong> به شما پیشنهاد می شود :</p>
+          <ul>
+            <li><strong>افزایش فالوور:</strong> گسترش جامعه دنبال‌کنندگان پیج.</li>
+            <li><strong>افزایش تعامل:</strong> تمرکز بر بازدید، لایک، ذخیره، کامنت و بازنشر.</li>
+            <li><strong>روش ترکیبی:</strong> ترکیب دو مسیر بالا برای رشد سریع‌تر.</li>
+          </ul>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">02</span>
-          <span class="faq-question">چه مسیرهای رشدی در پلتفرم وجود دارد؟</span>
+          <span class="faq-question">روش افزایش فالوور چیست ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          دو مسیر اصلی:
-          <br><strong>افزایش فالوور:</strong> گسترش جامعه دنبال‌کنندگان پیج.
-          <br><strong>افزایش تعامل:</strong> تمرکز بر بازدید، لایک، ذخیره، کامنت و بازنشر.
+          <p>افزایش فالوور: گسترش جامعه دنبال‌کنندگان پیج. افزایش تعامل: تمرکز بر بازدید، لایک، ذخیره، کامنت و بازنشر.</p>
+          <p>در این روش پس از ثبت درخواست توسط شما بلافاصله ظرف <strong>۳ الی ۷ روز</strong> تعداد فالوورهای شما توسط افراد واقعی طرف قرارداد با ما فالوو خواهد شد.</p>
+
+          <div class="note-block">
+            <strong>نکته :</strong> این افراد هرگز اکانت‌های فیک و غیر واقعی نیستند و هرگز هیچ‌گونه مشکلی برای پیج شما ایجاد نخواهند کرد؛ زیرا کارشناسان ما در مجموعه تمامی عملکرد اعضا را بررسی می‌کنند و هر روزه با دقت دستورالعمل‌های جدید الگوریتم اینستاگرام را ملاک قرار می‌دهند.
+          </div>
+
+          <p>این افراد عموما با انگیزه‌های مالی و طبق قرارداد فیمابین، شما را فالوو می‌کنند؛ بنابراین مشتری یا مخاطب هدف شما نیستند و صرفا جهت بالا بردن تعداد فالوورها این اقدام صورت می‌گیرد.</p>
+
+          <p>جمعیت این اعضا فعال در حال حاضر بیش از <strong>۶ هزار نفر</strong> است و فالوو شدن شما توسط این افراد اختیاری یا سلیقه‌ای نیست؛ بلکه در ازای دریافت وجه حتما و قطعا وظایف محول شده را انجام خواهند داد. این افراد عموما عضو خانواده بزرگ دفتر تبلیغاتی پا هستند و در زمینه تبلیغات کلیکی بنرهای وب‌سایت‌ها فعال هستند و نیز در کانال‌های واتساپ و تلگرام مجموعه فعالیت دارند.</p>
+
+          <p>همچنین درخواست شما به شکل یک کارت لینک‌دار برای تعداد مشخصی از این اعضا ارسال می‌گردد و با سازوکارهایی همچون محاسبه تعداد کلیک بر روی لینک درخواست شما، عملکرد اعضا سنجیده می‌شود و هرگز پس از دریافت وجه، فالوو کردن اختیاری نیست و تعهد ما به شما رسیدن به عدد فالوورهای تعیین‌شده در زمان اعلام‌شده است.</p>
+
+          <p>بنابراین اگر اعلام شود ظرف ۳ الی ۷ روز کاری، ۵۰۰ نفر شما را فالوو خواهند کرد، بدین معناست که حتما در زمان تعیین‌شده بیش از ۵۰۰ فالوور جدید برای شما ثبت خواهد شد و این افراد باید تماما واقعی باشند و هرگز حق آنفالوو را نخواهند داشت. اگر این فرایند منجر به بروز محدودیتی بر روی پیج شما شود، مسئولیت آن به عهده ماست؛ زیرا ما این مسیر را با آگاهی کامل و تجربه بسیار ارائه خواهیم داد.</p>
+
+          <div class="note-block">
+            <strong>نکته :</strong> روش اول تنها در صورتی که شما نیاز فوری به افزایش فالوور دارید ارائه می‌شود و در غیر این صورت پیشنهاد نمی‌شود.
+          </div>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">03</span>
-          <span class="faq-question">آیا فقط یکی از مسیرها را می‌توانم انتخاب کنم؟</span>
+          <span class="faq-question">روش دوم را شرح دهید.</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          بله. هدف تو تعیین‌کننده مسیر انتخابی است. با توجه به نیاز فعلی پیج، مسیر افزایش دنبال‌کننده یا افزایش تعامل را انتخاب کن. شرایط و گزینه‌ها در صفحه فعال‌سازی نمایش داده می‌شوند.
+          <p>در این روش هدف صرفا بالا بردن تعداد فالوورها نیست. ما هرگز به دنبال مخاطب غیر واقعی نیستیم.</p>
+
+          <p>در این روش پس از ثبت درخواست توسط شما، امکان وارد کردن <strong>۱ الی ۱۰ لینک محتوا</strong> برای شما فعال می‌شود. کافیست لینک آدرس محتوایی که منتشر نموده‌اید را بلافاصله در بخش عملکرد وارد نمایید و دکمه ثبت را بزنید.</p>
+
+          <p>محتوای شما بلافاصله در اختیار اعضا قرار خواهد گرفت و اعضا به عنوان غیرفالوور با محتوای شما تعامل برقرار می‌کنند و <strong>۳ مورد از ۶ مورد زیر</strong> را انجام می‌دهند :</p>
+
+          <ul>
+            <li>تماشای چندباره حلقه فیلم شما</li>
+            <li>کاهش نرخ پرش</li>
+            <li>لایک</li>
+            <li>کامنت مرتبط، نه اسپم و کوتاه و تکراری</li>
+            <li>ذخیره</li>
+            <li>بازنشر یا repost / پاسخ با برچسب / ارسال به بیش از ۲ نفر</li>
+          </ul>
+
+          <p>شما فقط یک چای یا قهوه بنوشید و از افزایش تعاملات با محتوای خود لذت ببرید.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">04</span>
-          <span class="faq-question">برای شروع چه کاری باید انجام بدهم؟</span>
+          <span class="faq-question">روش دوم چگونه باعث رشد پیج می شود ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          وارد بخش <strong>فعال‌سازی</strong> شو، مسیر موردنظر را انتخاب کن و اطلاعات درخواستی را با دقت تکمیل کن. مراحل بعدی در همان صفحه نمایش داده می‌شود.
+          <p><strong>ضمانت ما ورود محتوای شما به اکسپلور است.</strong></p>
+
+          <p>به عبارتی وقتی افراد به عنوان یک غیرفالوور با حلقه فیلم شما تعامل برقرار می‌کنند، این محتوا از نظر اینستاگرام ارزشمند تلقی می‌شود؛ مخصوصا در ساعات اول پس از انتشار.</p>
+
+          <p>فقط <strong>۱۰۰ تعامل</strong> منجر به حضور محتوای شما به اکسپلور خواهد شد؛ درحالی‌که ما در کمترین حالت بیش از <strong>۵۰۰ تعامل</strong> برقرار خواهیم نمود.</p>
+
+          <p>پس ضمانت اجرا با ماست.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">05</span>
-          <span class="faq-question">آیا باید رمز عبور اینستاگرام را بدهم؟</span>
+          <span class="faq-question">مسیر سوم ترکیبی چه مزیتی دارد ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          برای حفظ امنیت حساب، رمز عبور اینستاگرامت را در اختیار هیچ شخص یا پلتفرم غیرضروری قرار نده. فقط اطلاعاتی را وارد کن که در فرم رسمی فعال‌سازی درخواست شده‌اند.
+          <p>همچنان معتبرترین مسیر برای رشد درست و عقلانی و منطبق با الگوریتم اینستاگرام، <strong>مسیر دوم</strong> است. مسیر سوم ترکیبی از روش اول و دوم برای افزایش سرعت رشد پیج است و برای کسب‌وکارهای نوپا مناسب است.</p>
+
+          <p>کمک ما جهت بهبود رشد پیج‌های اینستاگرام، مشابه خودرویی است که روشن نمی‌شود و در ابتدا نیاز به هل دادن و کمک دارد. به محض ورود یکی از محتواهای شما به اکسپلور، بلافاصله روزانه هزاران بازدید از محتوا خواهید داشت.</p>
+
+          <p>توجه کنید ماندن در اکسپلور مستلزم ساخت محتوای جذاب یا حرفه‌ای است و با تعاملات دستوری دوام نخواهد آورد. نهایت تلاش ما در این مجموعه و آنچه قابل تضمین است، در گران‌ترین پکیج‌ها ضمانت <strong>۷ روز ماندن در اکسپلور</strong> است که این کار برابر با حداقل <strong>۷ هزار بازدید در ۷ روز</strong> است.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">06</span>
-          <span class="faq-question">آیا پیج‌های فروشگاهی و کاری هم می‌توانند استفاده کنند؟</span>
+          <span class="faq-question">سه روش پیشنهادی شما بهتر است یا سایر روش‌ها ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          بله. کسب‌وکارها، فروشگاه‌ها، تولیدکنندگان محتوا، صفحات شخصی و برندها می‌توانند با توجه به هدف و شرایط پیج خود، گزینه مناسب را بررسی و انتخاب کنند.
+          <p>ما هرگز روش‌های دیگر جذب مخاطب را انکار یا رد نمی‌کنیم؛ اما دوره جذب مخاطب با تبلیغات زرد و کلیشه‌ای و یا توسط سلبریتی‌ها رو به پایان است. اکنون روش‌های علمی بیشترین کارایی را دارند و بشدت شفاف‌تر از گذاشتن پست مشترک و پذیرش آگهی هستند؛ زیرا در آن روش‌ها تعداد مخاطب جذب‌شده عدد واضح و مشخصی نیست، مخاطبان صرفا به‌خاطر سلبریتی‌های محترم پیج شما را فالوو می‌کنند و مبالغ پرداختی هم رقم‌های بسیار بالاتری است.</p>
+
+          <p>آنچه ما انجام می‌دهیم مشخص است: ورود محتوای شما به اکسپلور برای جذب فالوورهای واقعی و مخاطب هدف با روش‌های علمی و طبق قوانین اینستاگرام، با پذیرش مسئولیت و ارزش صفحه شما در اینستاگرام و ضمانت بازگشت وجه و اجرای تعهدات، منطبق با تبلیغات و مطالب درج‌شده در این صفحه.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">07</span>
-          <span class="faq-question">افزایش تعامل دقیقاً شامل چه مواردی می‌شود؟</span>
+          <span class="faq-question">چرا نحوه پرداخت کارت به کارت است ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          تعامل می‌تواند شامل <strong>تماشای محتوا، لایک، ذخیره، کامنت و بازنشر</strong> باشد. نوع فعالیت‌های قابل ارائه و جزئیات هر گزینه در زمان فعال‌سازی مشخص می‌شود.
+          <p>برای حفظ حریم خصوصی و راحتی بیشتر شما، پرداخت به‌صورت کارت به کارت انجام می‌شود. پس از واریز، تصویر رسید یا پیامک بانکی را در بخش پرداخت بارگذاری می‌کنید تا سفارش شما سریع‌تر بررسی و فعال شود.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">08</span>
-          <span class="faq-question">آیا می‌توانم برای یک پست یا ریلز مشخص درخواست ثبت کنم؟</span>
+          <span class="faq-question">چه ضمانتی برای اجرای تعهدات خود دارید ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          در مسیر خدمات مرتبط با تعامل محتوا، نوع محتوا و لینک موردنیاز بر اساس فرم فعال‌سازی تعیین می‌شود. اگر امکان انتخاب محتوای مشخص در گزینه انتخابی تو وجود داشته باشد، در همان مرحله راهنمایی می‌شوی.
+          <p>مطابق شرایط اعلام‌شده در همین صفحه، تعهد می‌دهیم که سفارش شما در بازه زمانی تعیین‌شده و با همان تعداد و کیفیت توافق‌شده اجرا شود. در صورت محقق نشدن شرایط، درخواست بازگشت وجه شما مطابق ضوابط مجموعه بررسی خواهد شد.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">09</span>
-          <span class="faq-question">آیا نتیجه رشد برای همه پیج‌ها یکسان است؟</span>
+          <span class="faq-question">چرا بخش پشتیبانی محدود است ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          خیر. نتیجه به عواملی مانند موضوع پیج، کیفیت محتوا، وضعیت فعلی حساب، مخاطبان هدف و نوع خدمات انتخابی بستگی دارد. هیچ میزان رشدی را نمی‌توان برای همه پیج‌ها یکسان تضمین کرد.
+          <p>بخش پشتیبانی برای پیگیری موارد ضروری و مشخص در نظر گرفته شده تا تمرکز تیم روی اجرای دقیق سفارش‌ها حفظ شود. برای همین، فرم‌های پشتیبانی محدود و هدفمند طراحی شده‌اند. اگر با موضوعی مواجه شدی، از همین بخش موضوع را دقیق ثبت کن تا سریع‌تر بررسی شود.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">10</span>
-          <span class="faq-question">از کجا می‌توانم وضعیت درخواستم را پیگیری کنم؟</span>
+          <span class="faq-question">اگر به هر دلیلی از عملکرد شما راضی نبودم چه باید کرد ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          بخش <strong>عملکرد</strong> برای پیگیری وضعیت فعالیت‌ها در نظر گرفته شده. پس از ثبت درخواست، اطلاعات و وضعیت قابل نمایش بر اساس امکانات فعال پلتفرم در این بخش ارائه می‌شود.
+          <p>ابتدا از بخش <strong>پشتیبانی</strong> موضوع را همراه با جزئیات ثبت کن. تیم ما درخواست شما را بررسی می‌کند و مطابق شرایط ضمانت و ضوابط اعلام‌شده، نتیجه را اعلام خواهد کرد.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">11</span>
-          <span class="faq-question">آیا برای ثبت درخواست باید پیجم عمومی باشد؟</span>
+          <span class="faq-question">چرا بخش عملکرد در ابتدا خاموش است ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          دسترسی به محتوای پیج برای اجرای برخی خدمات ضروری است. شرایط مربوط به عمومی یا خصوصی بودن حساب را پیش از فعال‌سازی بررسی کن و مطابق توضیحات همان خدمت اقدام کن.
+          <p>بخش عملکرد پس از ثبت و تایید سفارش شما فعال می‌شود. این کار باعث می‌شود اطلاعات مربوط به سفارش شما با دقت ثبت شود و امکان پیگیری دقیق‌تر فراهم باشد.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">12</span>
-          <span class="faq-question">آیا می‌توانم چند درخواست مختلف ثبت کنم؟</span>
+          <span class="faq-question">آیا برای ثبت درخواست باید پیجم عمومی باشد ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          امکان ثبت درخواست‌های مختلف به قوانین هر خدمت و شرایط حساب تو بستگی دارد. پیش از ثبت درخواست جدید، وضعیت درخواست‌های قبلی و محدودیت‌های احتمالی را در پلتفرم بررسی کن.
+          <p>دسترسی به محتوای پیج برای اجرای برخی خدمات ضروری است. شرایط مربوط به عمومی یا خصوصی بودن حساب را پیش از فعال‌سازی بررسی کن و مطابق توضیحات همان خدمت اقدام کن.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">13</span>
-          <span class="faq-question">هزینه خدمات و شرایط انتخاب چگونه مشخص می‌شود؟</span>
+          <span class="faq-question">آیا می‌توانم چند درخواست مختلف ثبت کنم ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          جزئیات خدمات، گزینه‌های انتخابی و هزینه‌های هر مورد باید پیش از نهایی‌کردن درخواست در صفحه فعال‌سازی بررسی شوند. قبل از پرداخت، مشخصات سفارش را با دقت مطالعه کن.
+          <p>امکان ثبت درخواست‌های مختلف به قوانین هر خدمت و شرایط حساب تو بستگی دارد. پیش از ثبت درخواست جدید، وضعیت درخواست‌های قبلی و محدودیت‌های احتمالی را در پلتفرم بررسی کن.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">14</span>
-          <span class="faq-question">اگر با مشکل مواجه شوم چه کار کنم؟</span>
+          <span class="faq-question">هزینه خدمات و شرایط انتخاب چگونه مشخص می‌شود ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          ابتدا اطلاعات واردشده و وضعیت اتصال خود را بررسی کن. اگر مشکل ادامه داشت، از مسیر ارتباطی پشتیبانی که در پلتفرم معرفی شده، موضوع را همراه با توضیح و اطلاعات درخواستت پیگیری کن.
+          <p>جزئیات خدمات، گزینه‌های انتخابی و هزینه‌های هر مورد باید پیش از نهایی‌کردن درخواست در صفحه فعال‌سازی بررسی شوند. قبل از پرداخت، مشخصات سفارش را با دقت مطالعه کن.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>
           <span class="faq-num">15</span>
-          <span class="faq-question">بهترین زمان برای شروع رشد پیج چه زمانی است؟</span>
+          <span class="faq-question">شما که هستید ؟</span>
           <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </summary>
         <div class="faq-answer">
-          اگر برای پیج خود هدف مشخصی داری، از همین حالا برای آن برنامه‌ریزی کن. رشد مؤثر فقط به افزایش اعداد محدود نیست؛ <strong>کیفیت محتوا، شناخت مخاطب و استمرار</strong> نقش مهمی دارند.
+          <p>ما پیش‌تر اپلیکیشن دیگری داشتیم و <strong>۳ سال سابقه</strong> داریم که همه از بین رفت. برای کسب اطلاعات بیشتر، پکیج قبلی را مطالعه کنید.</p>
         </div>
       </details>
 
@@ -1357,10 +1423,9 @@ main.app{padding-top:96px}
   </footer>
 
 </div>
-
 </main>
 
-<!-- BOTTOM NAV — SAME AS HOME -->
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav" aria-label="ناوبری اصلی">
 
   <a class="nav-item" href="index.html">
@@ -1407,4 +1472,4 @@ document.querySelectorAll('.faq-item').forEach(item=>{
 </script>
 
 </body>
-          </html>
+  </html>

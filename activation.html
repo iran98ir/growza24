@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -294,29 +293,78 @@ main.app{padding-top:96px}
 .amount-wrap input{padding-left:66px}
 .amount-unit{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:12px;color:#7d877f;font-weight:900}
 
-/* CUSTOM PLAN SELECT */
-.plan-select-wrap{position:relative}
-.plan-select-wrap:after{
-  content:"⌄";position:absolute;left:15px;top:50%;
-  transform:translateY(-58%);font-size:23px;color:var(--green);
-  pointer-events:none;font-weight:900
+/* CUSTOM PLAN DROPDOWN */
+.plan-dropdown{position:relative;width:100%;z-index:40}
+.plan-dropdown-trigger{
+  width:100%;min-height:59px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px 14px;border:1.5px solid #cbdccc;border-radius:15px;
+  background:linear-gradient(110deg,#f5f9ef,#fff);color:var(--green);
+  text-align:right;transition:border-color .2s,box-shadow .2s,background .2s
 }
-.field select.plan-select{
-  appearance:none;-webkit-appearance:none;
-  width:100%;min-height:54px;
-  padding:12px 14px 12px 42px;
-  border:1.5px solid #cbdccc;border-radius:14px;
-  background:linear-gradient(110deg,#f5f9ef,#fff);
-  color:var(--green);font-size:14px;font-weight:900;
-  cursor:pointer;
+.plan-dropdown.open .plan-dropdown-trigger,
+.plan-dropdown-trigger:focus-visible{
+  border-color:var(--green);background:#fff;
+  box-shadow:0 0 0 4px rgba(23,107,75,.10)
 }
-.field select.plan-select optgroup{
-  background:#eaf1e6;color:#176b4b;font-weight:900;
+.plan-dropdown-main{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0}
+.plan-dropdown-caption{font-size:10px;font-weight:800;color:#89958a}
+.plan-dropdown-current{font-size:14px;font-weight:900;color:var(--green);line-height:1.5}
+.plan-dropdown-price{font-size:12px;font-weight:900;color:#68766b;white-space:nowrap}
+.plan-dropdown-arrow{
+  width:31px;height:31px;flex:0 0 31px;display:grid;place-items:center;
+  border-radius:10px;background:#e5f0e4;color:var(--green);
+  font-size:20px;font-weight:900;transition:transform .22s
 }
-.field select.plan-select option{
-  background:#fff;color:#222D29;font-weight:700;padding:12px;
+.plan-dropdown.open .plan-dropdown-arrow{transform:rotate(180deg)}
+.plan-dropdown-menu{
+  position:absolute;top:calc(100% + 9px);right:0;left:0;z-index:100;
+  display:none;max-height:390px;overflow-y:auto;overscroll-behavior:contain;
+  padding:8px;border:1px solid #dce6d9;border-radius:17px;
+  background:#fffefa;box-shadow:0 18px 42px rgba(22,43,32,.18);
+  scrollbar-width:thin;scrollbar-color:#b9cdbb transparent
 }
-.field select.plan-select option:checked{background:#d7eadb;color:#176b4b}
+.plan-dropdown.open .plan-dropdown-menu{display:block;animation:planMenuIn .18s ease-out}
+@keyframes planMenuIn{
+  from{opacity:0;transform:translateY(-6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.plan-option-group + .plan-option-group{
+  margin-top:8px;padding-top:8px;border-top:1px solid #e8eee5
+}
+.plan-option-group-title{
+  display:flex;align-items:center;gap:8px;
+  padding:5px 9px 8px;color:#718074;font-size:11px;font-weight:900
+}
+.plan-option-group-title:before{
+  content:"";width:16px;height:2px;border-radius:4px;background:var(--group-color,#176b4b)
+}
+.plan-option{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:10px 10px;border:1px solid transparent;border-radius:11px;
+  background:transparent;color:var(--ink);text-align:right;transition:.18s
+}
+.plan-option:hover{background:#f3f7ef}
+.plan-option.active{background:#edf5e9;border-color:#d3e4d1}
+.plan-option-info{display:flex;flex-direction:column;gap:3px;min-width:0}
+.plan-option-name{font-size:13px;font-weight:900;color:#26372d}
+.plan-option-detail{font-size:10px;font-weight:600;color:#78847a;line-height:1.7}
+.plan-option-price{
+  flex:0 0 auto;padding:5px 8px;border-radius:8px;
+  background:#edf3e8;color:#176b4b;font-size:11px;font-weight:900;white-space:nowrap
+}
+.plan-option.active .plan-option-price{background:#176b4b;color:#fff}
+.plan-option-check{
+  display:none;width:17px;height:17px;flex:0 0 17px;
+  align-items:center;justify-content:center;border-radius:50%;
+  background:#176b4b;color:#fff;font-size:10px;font-weight:900
+}
+.plan-option.active .plan-option-check{display:flex}
+.plan-select-native{
+  position:absolute!important;width:1px!important;height:1px!important;
+  padding:0!important;margin:-1px!important;overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;white-space:nowrap!important;
+  border:0!important;opacity:0!important;pointer-events:none!important
+}
 
 .upload-box{position:relative;overflow:hidden;text-align:center;border:2px dashed rgba(23,107,75,.35);border-radius:17px;padding:19px 13px;background:radial-gradient(circle at 50% 0%,#f0f6e8,transparent 75%),#fafbf5;transition:.2s}
 .upload-box.drag{border-color:var(--green);background:#eef5e0}
@@ -375,6 +423,10 @@ main.app{padding-top:96px}
   .route-choice strong{font-size:13px}
   .stage-visual{width:88px;height:88px;flex-basis:88px}
   .stage-core{width:61px;height:61px;font-size:30px}
+  .plan-option{padding:9px 7px;gap:6px}
+  .plan-option-name{font-size:12px}
+  .plan-option-detail{font-size:9px}
+  .plan-option-price{font-size:10px;padding:5px 6px}
 }
 </style>
 </head>
@@ -714,26 +766,110 @@ main.app{padding-top:96px}
       <input id="phone" name="phone" type="tel" class="input-ltr" placeholder="09xxxxxxxxx" autocomplete="tel" inputmode="numeric" required>
     </div>
 
-    <!-- انتخاب پلن -->
+    <!-- انتخاب پلن با منوی کرکره‌ای -->
     <div class="field">
-      <label for="planSelect">انتخاب پلن</label>
-      <div class="plan-select-wrap">
-        <select id="planSelect" class="plan-select" name="plan" required>
-          <option value="" disabled>یک پلن را انتخاب کن</option>
-          <optgroup label="پلن‌های افزایش فالوور">
-            <option value="پلن اول">پلن اول | خرید ۱۵۰۰ فالوور واقعی — ۳۹,۰۰۰ تومان</option>
-            <option value="پلن نقره ای">پلن نقره ای | خرید ۵ هزار فالوور واقعی — ۹۹,۰۰۰ تومان</option>
-            <option value="پلن الماس">پلن الماس | خرید ۱۰ هزار فالوور واقعی — ۱۹۹,۰۰۰ تومان</option>
-          </optgroup>
-          <optgroup label="پلن‌های افزایش تعامل">
-            <option value="شروع دیده شدن">شروع دیده شدن | ۴۵۰۰ تعامل با ۳ محتوا — ۴۹,۰۰۰ تومان</option>
-            <option value="پلن پیشرفته">پلن پیشرفته | ۲۰ هزار تعامل تا ۷ محتوا — ۱۲۰,۰۰۰ تومان</option>
-          </optgroup>
-          <optgroup label="پلن ترکیبی">
-            <option value="اشتراک پریمیوم">پلن پریمیوم | ۲۵۰۰ فالوور + ۴۵۰۰ تعامل با محتوا — ۱۴۹,۰۰۰ تومان</option>
-          </optgroup>
-        </select>
+      <label for="planDropdownTrigger">انتخاب پلن</label>
+
+      <div class="plan-dropdown" id="planDropdown">
+        <button
+          class="plan-dropdown-trigger"
+          id="planDropdownTrigger"
+          type="button"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-controls="planDropdownMenu"
+        >
+          <span class="plan-dropdown-main">
+            <span class="plan-dropdown-caption">پلن انتخاب‌شده</span>
+            <span class="plan-dropdown-current" id="dropdownPlanName">پلن نقره ای</span>
+          </span>
+          <span style="display:flex;align-items:center;gap:10px">
+            <span class="plan-dropdown-price" id="dropdownPlanPrice">۹۹,۰۰۰ تومان</span>
+            <span class="plan-dropdown-arrow">⌄</span>
+          </span>
+        </button>
+
+        <div class="plan-dropdown-menu" id="planDropdownMenu" role="listbox" aria-label="فهرست پلن‌ها">
+
+          <div class="plan-option-group">
+            <div class="plan-option-group-title" style="--group-color:#279C91">پلن‌های افزایش فالوور</div>
+
+            <button class="plan-option" type="button" role="option" data-plan="پلن اول" aria-selected="false">
+              <span class="plan-option-info">
+                <span class="plan-option-name">پلن اول</span>
+                <span class="plan-option-detail">خرید ۱۵۰۰ فالوور واقعی · مناسب برای شروع</span>
+              </span>
+              <span class="plan-option-price">۳۹,۰۰۰ تومان</span>
+              <span class="plan-option-check">✓</span>
+            </button>
+
+            <button class="plan-option active" type="button" role="option" data-plan="پلن نقره ای" aria-selected="true">
+              <span class="plan-option-info">
+                <span class="plan-option-name">پلن نقره ای</span>
+                <span class="plan-option-detail">خرید ۵ هزار فالوور واقعی · انتخاب متعادل</span>
+              </span>
+              <span class="plan-option-price">۹۹,۰۰۰ تومان</span>
+              <span class="plan-option-check">✓</span>
+            </button>
+
+            <button class="plan-option" type="button" role="option" data-plan="پلن الماس" aria-selected="false">
+              <span class="plan-option-info">
+                <span class="plan-option-name">پلن الماس</span>
+                <span class="plan-option-detail">خرید ۱۰ هزار فالوور واقعی · سطح پیشرفته</span>
+              </span>
+              <span class="plan-option-price">۱۹۹,۰۰۰ تومان</span>
+              <span class="plan-option-check">✓</span>
+            </button>
+          </div>
+
+          <div class="plan-option-group">
+            <div class="plan-option-group-title" style="--group-color:#F16E65">پلن‌های افزایش تعامل با ریلز</div>
+
+            <button class="plan-option" type="button" role="option" data-plan="شروع دیده شدن" aria-selected="false">
+              <span class="plan-option-info">
+                <span class="plan-option-name">شروع دیده شدن</span>
+                <span class="plan-option-detail">۴۵۰۰ تعامل با ۳ محتوا · شروع تعامل</span>
+              </span>
+              <span class="plan-option-price">۴۹,۰۰۰ تومان</span>
+              <span class="plan-option-check">✓</span>
+            </button>
+
+            <button class="plan-option" type="button" role="option" data-plan="پلن پیشرفته" aria-selected="false">
+              <span class="plan-option-info">
+                <span class="plan-option-name">پلن پیشرفته</span>
+                <span class="plan-option-detail">۲۰ هزار تعامل با حداکثر ۷ محتوا</span>
+              </span>
+              <span class="plan-option-price">۱۲۰,۰۰۰ تومان</span>
+              <span class="plan-option-check">✓</span>
+            </button>
+          </div>
+
+          <div class="plan-option-group">
+            <div class="plan-option-group-title" style="--group-color:#A56BDE">اشتراک حرفه‌ای و ترکیبی</div>
+
+            <button class="plan-option" type="button" role="option" data-plan="اشتراک پریمیوم" aria-selected="false">
+              <span class="plan-option-info">
+                <span class="plan-option-name">اشتراک پریمیوم</span>
+                <span class="plan-option-detail">۲۵۰۰ فالوور + ۴۵۰۰ تعامل با محتوا</span>
+              </span>
+              <span class="plan-option-price">۱۴۹,۰۰۰ تومان</span>
+              <span class="plan-option-check">✓</span>
+            </button>
+          </div>
+
+        </div>
       </div>
+
+      <select id="planSelect" class="plan-select-native" name="plan" tabindex="-1" aria-hidden="true">
+        <option value="">یک پلن را انتخاب کن</option>
+        <option value="پلن اول">پلن اول</option>
+        <option value="پلن نقره ای" selected>پلن نقره ای</option>
+        <option value="پلن الماس">پلن الماس</option>
+        <option value="شروع دیده شدن">شروع دیده شدن</option>
+        <option value="پلن پیشرفته">پلن پیشرفته</option>
+        <option value="اشتراک پریمیوم">اشتراک پریمیوم</option>
+      </select>
+
       <span class="field-hint">با انتخاب هر پلن، مبلغ پرداختی به‌صورت خودکار به‌روزرسانی می‌شود.</span>
     </div>
 
@@ -853,6 +989,33 @@ let selectedPlan = {
   rawPrice:'99000'
 };
 
+function closePlanDropdown(){
+  const dropdown = $('#planDropdown');
+  const trigger = $('#planDropdownTrigger');
+
+  dropdown.classList.remove('open');
+  trigger.setAttribute('aria-expanded','false');
+}
+
+function openPlanDropdown(){
+  const dropdown = $('#planDropdown');
+  const trigger = $('#planDropdownTrigger');
+
+  dropdown.classList.add('open');
+  trigger.setAttribute('aria-expanded','true');
+}
+
+function updateDropdownSelection(name,price){
+  $('#dropdownPlanName').textContent = name;
+  $('#dropdownPlanPrice').textContent = price+' تومان';
+
+  $$('.plan-option').forEach(option=>{
+    const active = option.dataset.plan === name;
+    option.classList.toggle('active',active);
+    option.setAttribute('aria-selected',active ? 'true' : 'false');
+  });
+}
+
 function updateSelectedPlan(name,price){
   selectedPlan = {
     name:name,
@@ -867,6 +1030,8 @@ function updateSelectedPlan(name,price){
 
   const selector = $('#planSelect');
   if(selector) selector.value = name;
+
+  updateDropdownSelection(name,price);
 }
 
 function selectPlan(card){
@@ -886,7 +1051,56 @@ $$('.plan-button').forEach(button=>{
   });
 });
 
-/* انتخاب پلن از منوی داخل فرم */
+/* باز و بسته شدن منوی کرکره‌ای */
+$('#planDropdownTrigger').addEventListener('click',()=>{
+  const dropdown = $('#planDropdown');
+
+  if(dropdown.classList.contains('open')){
+    closePlanDropdown();
+  }else{
+    openPlanDropdown();
+  }
+});
+
+/* انتخاب پلن از داخل منوی کرکره‌ای */
+$$('.plan-option').forEach(option=>{
+  option.addEventListener('click',()=>{
+    const name = option.dataset.plan;
+    const price = planPrices[name];
+
+    if(!price) return;
+
+    const card = $$('.plan').find(p=>p.dataset.plan===name);
+
+    if(card){
+      $$('.plan').forEach(p=>p.classList.remove('selected'));
+      card.classList.add('selected');
+    }
+
+    updateSelectedPlan(name,price);
+    closePlanDropdown();
+    showToast('پلن «'+name+'» انتخاب شد');
+  });
+});
+
+/* بستن منو با لمس بیرون از آن */
+document.addEventListener('click',event=>{
+  const dropdown = $('#planDropdown');
+
+  if(dropdown && !dropdown.contains(event.target)){
+    closePlanDropdown();
+  }
+});
+
+/* بستن منو با کلید Escape */
+document.addEventListener('keydown',event=>{
+  if(event.key === 'Escape'){
+    closePlanDropdown();
+    $('#planDropdownTrigger').focus();
+  }
+});
+
+/* انتخاب پلن از منوی داخلی فرم */
 $('#planSelect').addEventListener('change',function(){
   const name = this.value;
   const price = planPrices[name];
@@ -903,6 +1117,9 @@ $('#planSelect').addEventListener('change',function(){
   updateSelectedPlan(name,price);
   showToast('پلن «'+name+'» انتخاب شد');
 });
+
+/* هماهنگ‌سازی مقدار اولیه */
+updateSelectedPlan('پلن نقره ای','۹۹,۰۰۰');
 
 $$('.route-choice').forEach(button=>{
   button.addEventListener('click',()=>{
@@ -1016,7 +1233,7 @@ $('#paymentSubmit').addEventListener('click',()=>{
 
   if(!$('#planSelect').value){
     showToast('لطفاً یک پلن انتخاب کن');
-    $('#planSelect').focus();
+    $('#planDropdownTrigger').focus();
     return;
   }
 
@@ -1086,4 +1303,4 @@ setInterval(()=>{
 </script>
 
 </body>
-</html>
+  </html>

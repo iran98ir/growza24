@@ -474,16 +474,15 @@ main.app{padding-top:96px}
   background:#fff9;border:1px solid var(--line);border-radius:20px;padding:6px 10px
 }
 
-/* ============ PLAN TRACK (plan cards KEEP original colors) ============ */
+/* ============ PLAN TRACK ============ */
 .plan-track{
   display:flex;gap:13px;overflow-x:auto;overflow-y:visible;
   scroll-snap-type:x mandatory;scrollbar-width:none;
-  padding:5px 2px 18px;
+  padding:22px 2px 18px;
   overscroll-behavior-inline:contain;
 }
 .plan-track::-webkit-scrollbar{display:none}
 
-/* Plan cards — تم رنگی مستقل و اصیل حفظ می‌شود */
 .plan{
   --accent:#7042F5;--accent-soft:#EEE8FF;--accent-dark:#40258F;
   flex:0 0 86%;max-width:390px;min-width:280px;
@@ -589,15 +588,26 @@ main.app{padding-top:96px}
   background:linear-gradient(110deg,#FFE9A7,#E7B85F);
   box-shadow:0 9px 23px rgba(231,184,95,.28)
 }
+
+/* Ribbon — refactored so it sits ABOVE the card content */
 .plan-ribbon{
-  position:absolute;left:-29px;top:16px;transform:rotate(-37deg);
+  position:absolute;
+  top:-1px;
+  left:14px;
+  transform:translateY(-50%);
   background:#D8FF39;color:#34235E;
-  font-size:10px;font-weight:900;padding:6px 34px;
-  box-shadow:0 5px 12px rgba(36,22,66,.2)
+  font-size:10px;font-weight:900;
+  padding:6px 14px;
+  border-radius:0 0 10px 10px;
+  box-shadow:0 5px 12px rgba(36,22,66,.2);
+  z-index:3;
+  line-height:1.2;
+  letter-spacing:.3px;
 }
-.plan[data-tier="diamond"] .plan-ribbon{background:#D8FF39}
+.plan[data-tier="diamond"] .plan-ribbon{background:#D8FF39;color:#34235E}
 .plan[data-tier="reels7"] .plan-ribbon{background:#BBD0FF;color:#173B8B}
 .plan[data-tier="premium"] .plan-ribbon{background:#F5D68B;color:#482B68}
+
 .plan.selected .selected-stamp{display:inline-flex}
 .selected-stamp{
   display:none;align-items:center;gap:5px;
@@ -860,73 +870,6 @@ main.app{padding-top:96px}
   font-size:12px;line-height:1.9;color:#8b958d;font-weight:600;margin:10px 0 0
 }
 
-/* ============ SERVICE CHOICE ============ */
-
-.service-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:13px 0}
-.service-choice{
-  position:relative;text-align:right;padding:13px 11px;
-  border:1.5px solid #dde3d8;border-radius:15px;
-  background:#fafbf5;color:var(--ink);transition:.2s
-}
-.service-choice.active{
-  border-color:var(--green);background:#eef5e0;
-  box-shadow:0 0 0 2px rgba(23,107,75,.10)
-}
-.service-choice strong{display:block;font-size:14px;font-weight:900}
-.service-choice small{display:block;font-size:11px;line-height:1.7;color:var(--muted);font-weight:600;margin-top:4px}
-.service-choice .radio-dot{
-  width:18px;height:18px;position:absolute;left:10px;top:12px;
-  border:1.5px solid #b8c4b9;border-radius:50%
-}
-.service-choice.active .radio-dot{border:5px solid var(--green);background:#fff}
-.service-panel{display:none}
-.service-panel.active{display:block;animation:fadeUp .28s ease}
-.time-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.service-warning{
-  padding:11px 12px;border-radius:12px;background:#fff7dc;
-  border:1px solid #f0dd9c;color:#795a20;
-  font-size:12px;font-weight:700;line-height:1.9;margin:10px 0 14px
-}
-
-/* ============ SUPPORT ============ */
-
-.support-card{
-  margin-top:30px;padding:17px;
-  border-radius:22px 22px 7px 22px;
-  background:linear-gradient(145deg,#fff,#f5f7ee);
-  border:1px solid var(--line);
-  box-shadow:0 10px 28px rgba(22,43,32,.08)
-}
-.support-head{display:flex;align-items:center;gap:11px;margin-bottom:5px}
-.support-icon{
-  width:45px;height:45px;flex:0 0 45px;
-  display:grid;place-items:center;border-radius:15px 15px 5px 15px;
-  background:#ffe3da;color:#c94d40;font-size:20px;font-weight:900
-}
-.support-head h2{font-size:20px;font-weight:900;margin:0}
-.support-copy{font-size:13px;line-height:1.9;color:var(--muted);font-weight:600;margin:5px 0 14px}
-.ticket-options{display:grid;gap:9px;margin:12px 0 14px}
-.ticket-option{
-  display:flex;align-items:center;gap:11px;text-align:right;
-  width:100%;padding:13px;border:1.5px solid #e1e6dd;
-  border-radius:14px;background:#fff;color:var(--ink);transition:.2s
-}
-.ticket-option.active{
-  border-color:var(--coral);background:#fff2ee;
-  box-shadow:0 0 0 2px rgba(239,118,87,.10)
-}
-.ticket-radio{
-  width:20px;height:20px;flex:0 0 20px;
-  border:1.5px solid #b8c4b9;border-radius:50%;
-  display:grid;place-items:center
-}
-.ticket-option.active .ticket-radio{border:6px solid var(--coral);background:#fff}
-.ticket-option strong{display:block;font-size:14px;font-weight:900}
-.ticket-option small{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-top:3px}
-.support-footnote{
-  font-size:12px;line-height:1.9;color:#8b958d;font-weight:600;margin:10px 0 0
-}
-
 /* ============ LAST CTA ============ */
 
 .last-cta{
@@ -961,7 +904,7 @@ main.app{padding-top:96px}
 }
 .footer b{color:var(--green);font-weight:900}
 
-/* ============ BOTTOM NAV — SAME AS HOME ============ */
+/* ============ BOTTOM NAV ============ */
 
 .bottom-nav{
   position:fixed;
@@ -1049,7 +992,6 @@ main.app{padding-top:96px}
 <div class="bg-orb b" aria-hidden="true"></div>
 <div class="bg-orb c" aria-hidden="true"></div>
 
-<!-- HEADER — EXACT SAME AS HOME -->
 <header class="topbar">
   <a class="brand" href="index.html" aria-label="Growza24">
     <img class="brand-logo" src="1.jpg" alt="لوگوی Growza24">
@@ -1066,7 +1008,6 @@ main.app{padding-top:96px}
 <main class="app">
 <div class="page">
 
-<!-- HERO با انیمیشن کلمه‌به‌کلمه -->
 <section class="hero">
   <div class="eyebrow"><span class="eyebrow-mark">✦</span> ACTIVATION CENTER / 24</div>
 
@@ -1119,7 +1060,6 @@ main.app{padding-top:96px}
   </div>
 </section>
 
-<!-- STEP 01 -->
 <section class="section-intro" id="paths">
   <div class="section-overline">STEP 01 / YOUR DIRECTION</div>
   <h2 class="section-title">اول مسیر <span class="underline">رشدت</span> رو انتخاب کن</h2>
@@ -1141,7 +1081,6 @@ main.app{padding-top:96px}
   </button>
 </div>
 
-<!-- STEP 02 -->
 <section class="section-intro" id="plans">
   <div class="section-overline">STEP 02 / FIND YOUR PLAN</div>
   <h2 class="section-title">پلنی انتخاب کن که <span class="underline">به هدفت می‌خوره</span></h2>
@@ -1159,14 +1098,15 @@ main.app{padding-top:96px}
   </div>
 
   <div class="plan-track">
-    <article class="plan" data-tier="test" data-plan="پلن تست" data-price="۳۹,۰۰۰" data-route="followers">
-      <div class="plan-top"><span class="plan-name">پلن تست</span><span class="plan-badge">شروع اقتصادی</span></div>
+    <article class="plan" data-tier="test" data-plan="پلن اول" data-price="۳۹,۰۰۰" data-route="followers">
+      <div class="plan-top"><span class="plan-name">پلن اول</span><span class="plan-badge">شروع اقتصادی</span></div>
       <div class="plan-price-row"><strong class="plan-price">۳۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
       <p class="plan-desc">یک شروع کم‌هزینه برای تجربه خدمات و برداشتن اولین قدم.</p>
       <div class="plan-divider"></div>
       <div class="plan-features">
-        <div class="feature"><span class="feature-mark">✓</span> ۵۰۰ فالوور</div>
+        <div class="feature"><span class="feature-mark">✓</span> ۱۵۰۰ دنبال کننده جدید</div>
         <div class="feature"><span class="feature-mark">✓</span> مناسب برای شروع</div>
+        <div class="feature"><span class="feature-mark">✓</span> ظرف ۳ الی ۷ روز</div>
         <div class="feature"><span class="feature-mark">✓</span> بررسی و پیگیری سفارش</div>
       </div>
       <div class="plan-bottom">
@@ -1176,14 +1116,15 @@ main.app{padding-top:96px}
       </div>
     </article>
 
-    <article class="plan selected" data-tier="gold" data-plan="پلن طلایی" data-price="۹۹,۰۰۰" data-route="followers">
-      <div class="plan-top"><span class="plan-name">پلن طلایی</span><span class="plan-badge">انتخاب محبوب</span></div>
+    <article class="plan selected" data-tier="gold" data-plan="پلن نقره ای" data-price="۹۹,۰۰۰" data-route="followers">
+      <div class="plan-top"><span class="plan-name">پلن نقره ای</span><span class="plan-badge">انتخاب محبوب</span></div>
       <div class="plan-price-row"><strong class="plan-price">۹۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
       <p class="plan-desc">انتخابی متعادل برای پیج‌هایی که می‌خواهند جدی‌تر رشد کنند.</p>
       <div class="plan-divider"></div>
       <div class="plan-features">
-        <div class="feature"><span class="feature-mark">✓</span> ۱,۵۰۰ فالوور</div>
-        <div class="feature"><span class="feature-mark">✓</span> مناسب برای پیج‌های فعال</div>
+        <div class="feature"><span class="feature-mark">✓</span> ۵۰۰۰ دنبال کننده جدید</div>
+        <div class="feature"><span class="feature-mark">✓</span> مناسب برای کسب و کارهای جدید</div>
+        <div class="feature"><span class="feature-mark">✓</span> ظرف ۱۵ روز</div>
         <div class="feature"><span class="feature-mark">✓</span> بررسی سفارش توسط تیم</div>
       </div>
       <div class="plan-bottom">
@@ -1200,8 +1141,9 @@ main.app{padding-top:96px}
       <p class="plan-desc">برای کسانی که به رشد بزرگ‌تر فکر می‌کنند و ظرفیت بالاتری می‌خواهند.</p>
       <div class="plan-divider"></div>
       <div class="plan-features">
-        <div class="feature"><span class="feature-mark">✓</span> ۴,۰۰۰ فالوور</div>
+        <div class="feature"><span class="feature-mark">✓</span> ۱۰ هزار فالور</div>
         <div class="feature"><span class="feature-mark">✓</span> ظرفیت بالاتر نسبت به پلن‌های پایه</div>
+        <div class="feature"><span class="feature-mark">✓</span> در مدت ۳۰ روز برای جلوگیری از محدودیتهای احتمالی اینستاگرام</div>
         <div class="feature"><span class="feature-mark">✓</span> بررسی سفارش توسط تیم</div>
       </div>
       <div class="plan-bottom">
@@ -1224,14 +1166,15 @@ main.app{padding-top:96px}
   </div>
 
   <div class="plan-track">
-    <article class="plan" data-tier="reels" data-plan="ورود به اکسپلور" data-price="۴۹,۰۰۰" data-route="reels">
-      <div class="plan-top"><span class="plan-name">ورود به اکسپلور</span><span class="plan-badge">شروع دیده‌شدن</span></div>
+    <article class="plan" data-tier="reels" data-plan="ورود تضمینی به اکسپلور" data-price="۴۹,۰۰۰" data-route="reels">
+      <div class="plan-top"><span class="plan-name">ورود تضمینی به اکسپلور</span><span class="plan-badge">شروع دیده‌شدن</span></div>
       <div class="plan-price-row"><strong class="plan-price">۴۹,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
-      <p class="plan-desc">تمرکز روی افزایش تعامل با محتوای ریلز.</p>
+      <p class="plan-desc">تمرکز روی افزایش تعامل با محتوای ریلز یا حلقه فیلم شما بلافاصله پس از انتشار</p>
       <div class="plan-divider"></div>
       <div class="plan-features">
-        <div class="feature"><span class="feature-mark">✓</span> ۱,۵۰۰ تعامل با ریلز</div>
-        <div class="feature"><span class="feature-mark">✓</span> با هدف افزایش شانس دیده‌شدن</div>
+        <div class="feature"><span class="feature-mark">✓</span> ۴۵۰۰ تعامل با ریلز شامل ارسال به دیگران بازنشر سیو لایک کامنت و تماشای چند باره</div>
+        <div class="feature"><span class="feature-mark">✓</span> تضمین دیده شدن توسط مخاطبان واقعی در اکسپلور روزانه بیش از ۱۰۰۰ نفر</div>
+        <div class="feature"><span class="feature-mark">✓</span> مدت ماندن در اکسپلور ۲ الی ۳ روز با حمایت ما. اگر محتوا جذاب باشد بعد از قطع حمایت در اکسپلور خواهد ماند</div>
         <div class="feature"><span class="feature-mark">✓</span> بررسی محتوای ثبت‌شده</div>
       </div>
       <div class="plan-bottom">
@@ -1241,15 +1184,15 @@ main.app{padding-top:96px}
       </div>
     </article>
 
-    <article class="plan" data-tier="reels7" data-plan="اکسپلور ۷ روزه" data-price="۱۲۰,۰۰۰" data-route="reels">
+    <article class="plan" data-tier="reels7" data-plan="پلن الماس : حداقل ۷ روزه در اکسپلور" data-price="۱۲۰,۰۰۰" data-route="reels">
       <span class="plan-ribbon">پیشنهاد ویژه</span>
-      <div class="plan-top"><span class="plan-name">اکسپلور ۷ روزه</span><span class="plan-badge">پیشرفته</span></div>
+      <div class="plan-top"><span class="plan-name">پلن الماس : حداقل ۷ روزه در اکسپلور</span><span class="plan-badge">پیشرفته</span></div>
       <div class="plan-price-row"><strong class="plan-price">۱۲۰,۰۰۰</strong><span class="plan-price-unit">تومان</span></div>
       <p class="plan-desc">بسته گسترده‌تر برای همراهی با محتوای تو.</p>
       <div class="plan-divider"></div>
       <div class="plan-features">
-        <div class="feature"><span class="feature-mark">✓</span> ۴,۰۰۰ تعامل با ریلز</div>
-        <div class="feature"><span class="feature-mark">✓</span> برنامه با هدف ماندگاری ۷ روزه در اکسپلور</div>
+        <div class="feature"><span class="feature-mark">✓</span> ۲۰ هزار تعامل با ریلز شامل ارسال به دیگران بازنشر سیو لایک کامنت و تماشای چند باره</div>
+        <div class="feature"><span class="feature-mark">✓</span> برنامه با هدف ماندگاری ۷ روزه در اکسپلور با حمایت پلتفرم رشد</div>
         <div class="feature"><span class="feature-mark">✓</span> بررسی و پیگیری سفارش</div>
       </div>
       <div class="plan-bottom">
@@ -1279,9 +1222,13 @@ main.app{padding-top:96px}
       <p class="plan-desc">برای کسانی که هر دو مسیر رشد را در کنار هم می‌خواهند.</p>
       <div class="plan-divider"></div>
       <div class="plan-features">
-        <div class="feature"><span class="feature-mark">✓</span> ۱,۵۰۰ فالوور</div>
-        <div class="feature"><span class="feature-mark">✓</span> ۲,۵۰۰ تعامل با ریلز</div>
+        <div class="feature"><span class="feature-mark">✓</span> ۲۵۰۰ فالوور</div>
+        <div class="feature"><span class="feature-mark">✓</span> ۴۵۰۰ تعامل با ریلز</div>
         <div class="feature"><span class="feature-mark">✓</span> همراه با برنامه ورود به اکسپلور</div>
+        <div class="feature"><span class="feature-mark">✓</span> طی ۷ الی ۱۰ روز</div>
+        <div class="feature"><span class="feature-mark">✓</span> ورود قطعی به اکسپلور</div>
+        <div class="feature"><span class="feature-mark">✓</span> ۳ روز ماندن قطعی در اکسپلور</div>
+        <div class="feature"><span class="feature-mark">✓</span> بازدید از نمایه شما و فالوو همزمان توسط پلتفرم رشد</div>
         <div class="feature"><span class="feature-mark">✓</span> ترکیب دو مسیر رشد در یک پلن</div>
       </div>
       <div class="plan-bottom">
@@ -1299,7 +1246,7 @@ main.app{padding-top:96px}
     <b>YOUR SELECTION ✦</b>
   </div>
   <div class="selection-bottom">
-    <strong class="selection-name" id="selectionName">پلن طلایی</strong>
+    <strong class="selection-name" id="selectionName">پلن نقره ای</strong>
     <strong class="selection-price" id="selectionPrice">۹۹,۰۰۰ <small>تومان</small></strong>
   </div>
 </div>
@@ -1320,7 +1267,6 @@ main.app{padding-top:96px}
   </div>
 </section>
 
-<!-- REVIEWS -->
 <div class="review-head">
   <h2>صدای کاربران</h2>
   <span class="demo-tag">نمونه نمایشی</span>
@@ -1338,7 +1284,6 @@ main.app{padding-top:96px}
   <div class="review-dots"><i class="active"></i><i></i><i></i></div>
 </div>
 
-<!-- STEP 03 PAYMENT -->
 <section class="section-card" id="payment">
   <div class="section-card-head">
     <div class="section-card-icon">۳</div>
@@ -1369,7 +1314,7 @@ main.app{padding-top:96px}
   <div class="form-box">
     <div class="field">
       <label for="selectedPlan">پلن انتخاب‌شده</label>
-      <input id="selectedPlan" value="پلن طلایی" readonly>
+      <input id="selectedPlan" value="پلن نقره ای" readonly>
     </div>
 
     <div class="field">
@@ -1401,90 +1346,6 @@ main.app{padding-top:96px}
   </div>
 </section>
 
-<!-- STEP 04 SERVICES -->
-<section class="section-card" id="services">
-  <div class="section-card-head">
-    <div class="section-card-icon">۴</div>
-    <div>
-      <h2>محدوده خدماتت رو مشخص کن</h2>
-      <p>یکی از دو حالت زیر را انتخاب کن و فقط اطلاعات مربوط به همان حالت را وارد کن.</p>
-    </div>
-  </div>
-
-  <div class="service-choice-grid">
-    <button type="button" class="service-choice active" data-service="page">
-      <span class="radio-dot"></span>
-      <strong>آدرس پیج</strong>
-      <small>برای ثبت محدوده خدمات روی یک پیج</small>
-    </button>
-    <button type="button" class="service-choice" data-service="reels">
-      <span class="radio-dot"></span>
-      <strong>ریلزهای آینده</strong>
-      <small>برای ریلزهایی که از زمان مشخص به بعد منتشر می‌کنی</small>
-    </button>
-  </div>
-
-  <div class="service-panel active" id="pageService">
-    <div class="field">
-      <label for="pageAddress">آدرس پیج اینستاگرام</label>
-      <input id="pageAddress" class="input-ltr" type="url" placeholder="https://instagram.com/yourpage">
-      <span class="field-hint">لینک مستقیم پیج موردنظرت را وارد کن.</span>
-    </div>
-  </div>
-
-  <div class="service-panel" id="reelsService">
-    <div class="field">
-      <label for="reelsAddress">آدرس ریلزها</label>
-      <textarea id="reelsAddress" class="input-ltr" dir="ltr" placeholder="لینک ریلزها را وارد کن؛ هر لینک در یک خط"></textarea>
-      <span class="field-hint">می‌توانی لینک چند ریلز را در خطوط جداگانه وارد کنی.</span>
-    </div>
-    <div class="field">
-      <label>شروع محدوده زمانی</label>
-      <div class="time-row">
-        <input type="date" id="reelsDate" aria-label="تاریخ شروع">
-        <input type="time" id="reelsTime" aria-label="ساعت شروع">
-      </div>
-      <span class="field-hint">ریلزهایی که از این تاریخ و ساعت به بعد منتشر می‌کنی در محدوده درخواست قرار می‌گیرند.</span>
-    </div>
-  </div>
-
-  <div class="service-warning">دقت کن فقط یکی از دو حالت را انتخاب کنی؛ اطلاعات حالت دیگر در درخواستت لحاظ نمی‌شود.</div>
-  <button class="primary-button" type="button" id="serviceSubmit">ثبت محدوده خدمات ←</button>
-  <p class="form-hint">برای ثبت و ارسال واقعی درخواست خدمات، اتصال به سامانه موردنیاز است.</p>
-</section>
-
-<!-- STEP 05 SUPPORT -->
-<section class="support-card" id="support">
-  <div class="support-head">
-    <div class="support-icon">✳</div>
-    <h2>نیاز به پیگیری داری؟</h2>
-  </div>
-  <p class="support-copy">موضوع درخواستت رو مشخص کن و توضیحت رو بنویس تا برای بررسی به تیم مربوطه ارجاع داده شود.</p>
-
-  <div class="ticket-options">
-    <button class="ticket-option" type="button" data-ticket="اعتراض به عملکرد پلن">
-      <span class="ticket-radio"></span>
-      <span><strong>اعتراض به عملکرد پلن</strong><small>نتیجه سفارش مطابق انتظارم نبوده</small></span>
-    </button>
-    <button class="ticket-option" type="button" data-ticket="عدم فعال‌سازی سفارش">
-      <span class="ticket-radio"></span>
-      <span><strong>عدم فعال‌سازی سفارش</strong><small>پرداخت انجام شده اما پلن فعال نشده</small></span>
-    </button>
-    <button class="ticket-option" type="button" data-ticket="درخواست بررسی و بازگشت وجه">
-      <span class="ticket-radio"></span>
-      <span><strong>درخواست بررسی و بازگشت وجه</strong><small>می‌خواهم سفارش و شرایط ضمانت بررسی شود</small></span>
-    </button>
-  </div>
-
-  <div class="field">
-    <label for="ticketDescription">شرح درخواست یا اعتراض</label>
-    <textarea id="ticketDescription" placeholder="موضوع را با جزئیات لازم توضیح بده..."></textarea>
-  </div>
-  <button class="primary-button" type="button" id="ticketSubmit">ثبت درخواست پیگیری ←</button>
-  <p class="support-footnote">پس از اتصال سامانه، موضوع انتخابی و توضیحات همراه درخواست برای مدیر ارسال می‌شود. در این نسخه ثبت واقعی هنوز متصل نیست.</p>
-</section>
-
-<!-- FINAL CTA -->
 <section class="last-cta">
   <small>GROWZA24 / YOUR NEXT MOVE</small>
   <h2>وقتشه برای رشد پیجت<br><em>یک قدم جلوتر</em> بری!</h2>
@@ -1500,7 +1361,6 @@ main.app{padding-top:96px}
 </div>
 </main>
 
-<!-- BOTTOM NAV — SAME AS HOME -->
 <nav class="bottom-nav" aria-label="ناوبری اصلی">
 
   <a class="nav-item" href="index.html">
@@ -1558,9 +1418,8 @@ function normalizeDigits(value){
     .replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));
 }
 
-/* PLAN SELECTION */
 let selectedPlan = {
-  name:'پلن طلایی',
+  name:'پلن نقره ای',
   price:'۹۹,۰۰۰',
   rawPrice:'99000'
 };
@@ -1591,7 +1450,6 @@ $$('.plan-button').forEach(button=>{
   });
 });
 
-/* ROUTE FILTER */
 $$('.route-choice').forEach(button=>{
   button.addEventListener('click',()=>{
     $$('.route-choice').forEach(item=>item.classList.remove('active'));
@@ -1603,7 +1461,6 @@ $$('.route-choice').forEach(button=>{
   });
 });
 
-/* COPY BANK CARD */
 $('#copyCard').addEventListener('click',async()=>{
   const number = '5022291098953209';
   try{
@@ -1623,7 +1480,6 @@ $('#copyCard').addEventListener('click',async()=>{
   }
 });
 
-/* RECEIPT IMAGE */
 let receiptObjectUrl = null;
 const receiptInput = $('#receipt');
 
@@ -1682,7 +1538,6 @@ $('#uploadBox').addEventListener('drop',event=>{
   receiptInput.dispatchEvent(new Event('change'));
 });
 
-/* PAYMENT SUBMIT */
 $('#paymentSubmit').addEventListener('click',()=>{
   if(!selectedPlan.name){
     showToast('ابتدا یک پلن را انتخاب کن');
@@ -1695,63 +1550,9 @@ $('#paymentSubmit').addEventListener('click',()=>{
   showToast('رابط آماده است؛ ارسال واقعی نیازمند اتصال سرور است.');
 });
 
-/* SERVICE MODE */
-let selectedService = 'page';
-
-$$('.service-choice').forEach(button=>{
-  button.addEventListener('click',()=>{
-    $$('.service-choice').forEach(item=>item.classList.remove('active'));
-    button.classList.add('active');
-    selectedService = button.dataset.service;
-
-    $('#pageService').classList.toggle('active',selectedService==='page');
-    $('#reelsService').classList.toggle('active',selectedService==='reels');
-  });
-});
-
-$('#serviceSubmit').addEventListener('click',()=>{
-  if(selectedService==='page'){
-    const address = $('#pageAddress').value.trim();
-    if(!address){
-      showToast('آدرس پیج را وارد کن');
-      $('#pageAddress').focus();
-      return;
-    }
-    if(!/^https?:\/\//i.test(address)){
-      showToast('آدرس پیج را به‌صورت لینک کامل وارد کن');
-      $('#pageAddress').focus();
-      return;
-    }
-  }else{
-    const links = $('#reelsAddress').value.trim();
-    const date = $('#reelsDate').value;
-    const time = $('#reelsTime').value;
-
-    if(!links){
-      showToast('آدرس ریلزها را وارد کن');
-      $('#reelsAddress').focus();
-      return;
-    }
-    if(!date || !time){
-      showToast('تاریخ و ساعت شروع را مشخص کن');
-      return;
-    }
-  }
-  showToast('اطلاعات آماده است؛ ارسال واقعی نیازمند اتصال سامانه است.');
-});
-
-/* OBJECTION */
 let selectedTicket = '';
 
-$$('.ticket-option').forEach(button=>{
-  button.addEventListener('click',()=>{
-    $$('.ticket-option').forEach(item=>item.classList.remove('active'));
-    button.classList.add('active');
-    selectedTicket = button.dataset.ticket;
-  });
-});
-
-$('#ticketSubmit').addEventListener('click',()=>{
+$('#ticketSubmit') && $('#ticketSubmit').addEventListener('click',()=>{
   if(!selectedTicket){
     showToast('موضوع درخواستت را انتخاب کن');
     return;
@@ -1764,7 +1565,6 @@ $('#ticketSubmit').addEventListener('click',()=>{
   showToast('فرم آماده است؛ برای ارسال درخواست باید به سامانه متصل شود.');
 });
 
-/* DEMO REVIEW ROTATION */
 const reviews = [
   {
     stars:'★★★★☆',
@@ -1808,4 +1608,4 @@ setInterval(()=>{
 </script>
 
 </body>
-  </html>
+          </html>

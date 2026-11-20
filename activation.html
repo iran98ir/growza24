@@ -406,6 +406,68 @@ main.app{padding-top:96px}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
 
+/* MODAL SUCCESS */
+.modal-overlay{
+  position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;
+  background:rgba(21,27,24,.55);backdrop-filter:blur(6px);
+  padding:20px;
+}
+.modal-overlay.show{display:flex;animation:modalFadeIn .25s ease-out}
+@keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
+.modal-box{
+  position:relative;overflow:hidden;width:100%;max-width:400px;
+  background:var(--white);border-radius:28px 28px 8px 28px;
+  padding:28px 22px 22px;text-align:center;
+  box-shadow:0 30px 70px rgba(10,18,12,.35),inset 0 1px 0 rgba(255,255,255,.9);
+  animation:modalSlideUp .35s cubic-bezier(.16,1,.3,1);
+}
+@keyframes modalSlideUp{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-box:before{
+  content:"";position:absolute;top:-60px;right:-60px;width:160px;height:160px;
+  border-radius:50%;background:var(--lime);opacity:.18;pointer-events:none;
+}
+.modal-box:after{
+  content:"";position:absolute;bottom:-40px;left:-40px;width:100px;height:100px;
+  border-radius:50%;background:var(--green-2);opacity:.25;pointer-events:none;
+}
+.modal-success-icon{
+  width:72px;height:72px;margin:0 auto 16px;display:grid;place-items:center;
+  border-radius:50%;background:linear-gradient(145deg,#d9ff4f,var(--lime) 58%,#a6d923);
+  color:var(--ink);font-size:34px;font-weight:900;
+  box-shadow:0 12px 28px rgba(199,255,0,.35),inset 0 2px 3px rgba(255,255,255,.6);
+  position:relative;z-index:1;
+}
+.modal-box h3{
+  font-size:22px;font-weight:900;color:var(--ink);margin:0 0 6px;
+  position:relative;z-index:1;
+}
+.modal-box h3 em{font-style:normal;color:var(--green)}
+.modal-box p{
+  font-size:14px;line-height:2.05;color:var(--muted);font-weight:600;
+  margin:0 0 20px;position:relative;z-index:1;
+}
+.modal-box p strong{color:var(--green);font-weight:900}
+.modal-close-btn{
+  position:relative;z-index:1;width:100%;border:0;
+  border-radius:15px 15px 6px 15px;padding:14px;
+  background:linear-gradient(105deg,#1f8d63,#176b4b 65%,#0f4a32);
+  color:#fff;font-size:15px;font-weight:900;
+  box-shadow:0 10px 22px rgba(23,107,75,.25);
+  transition:.2s;
+}
+.modal-close-btn:hover{transform:translateY(-2px);box-shadow:0 14px 27px rgba(23,107,75,.32)}
+
+/* SUBMIT LOADING */
+.primary-button.loading{
+  pointer-events:none;opacity:.85;position:relative;
+}
+.primary-button.loading:after{
+  content:"";position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:20px;height:20px;border:2.5px solid rgba(255,255,255,.3);
+  border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
+
 /* RESPONSIVE */
 @media(min-width:700px){
   body{padding:22px 0 calc(var(--nav-h) + 50px)}
@@ -903,7 +965,7 @@ main.app{padding-top:96px}
     </div>
 
     <button class="primary-button" type="button" id="paymentSubmit">ثبت اطلاعات پرداخت ←</button>
-    <p class="form-hint">در این نسخه، رابط کاربری و انتخاب فایل فعال است؛ برای ارسال واقعی تصویر و اطلاعات پرداخت، اتصال سمت سرور لازم است.</p>
+    <p class="form-hint">با ثبت اطلاعات، درخواست شما برای بررسی تیم Growza24 ارسال می‌شود.</p>
   </div>
 </section>
 
@@ -953,6 +1015,18 @@ main.app{padding-top:96px}
 </nav>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- MODAL SUCCESS -->
+<div class="modal-overlay" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+  <div class="modal-box">
+    <div class="modal-success-icon">✓</div>
+    <h3 id="successTitle">درخواست شما <em>ثبت شد</em>!</h3>
+    <p>
+      به زودی صفحه عملکرد برای شما فعال خواهد شد و می‌توانید از <strong>پلن خریداری شده</strong> و سایر امکانات این بخش بهره‌مند شوید.
+    </p>
+    <button class="modal-close-btn" id="modalCloseBtn" type="button">متوجه شدم</button>
+  </div>
+</div>
 
 <script>
 const $ = (selector, root=document) => root.querySelector(selector);
@@ -1209,7 +1283,13 @@ $('#uploadBox').addEventListener('drop',event=>{
   receiptInput.dispatchEvent(new Event('change'));
 });
 
-$('#paymentSubmit').addEventListener('click',()=>{
+/* SUBMIT WITH LOADING + SUCCESS MODAL */
+const submitBtn = $('#paymentSubmit');
+let isSubmitting = false;
+
+submitBtn.addEventListener('click',()=>{
+  if(isSubmitting) return;
+
   const fullName = $('#fullName').value.trim();
   const phone = normalizeDigits($('#phone').value).replace(/\s/g,'');
 
@@ -1242,22 +1322,54 @@ $('#paymentSubmit').addEventListener('click',()=>{
     return;
   }
 
-  showToast('رابط آماده است؛ ارسال واقعی نیازمند اتصال سرور است.');
+  /* Start loading */
+  isSubmitting = true;
+  submitBtn.classList.add('loading');
+  const originalText = submitBtn.innerHTML;
+  submitBtn.innerHTML = 'در حال ارسال درخواست...';
+
+  /* Simulate sending — after 2.2s show success modal */
+  setTimeout(()=>{
+    isSubmitting = false;
+    submitBtn.classList.remove('loading');
+    submitBtn.innerHTML = originalText;
+
+    /* Show success modal */
+    const modal = $('#successModal');
+    modal.classList.add('show');
+
+    /* Prevent body scroll while modal is open */
+    document.body.style.overflow = 'hidden';
+
+    /* Clear form fields (optional) */
+    $('#fullName').value = '';
+    $('#phone').value = '';
+    clearReceipt();
+
+  }, 2200);
 });
 
-let selectedTicket = '';
+/* Close modal */
+$('#modalCloseBtn').addEventListener('click',()=>{
+  const modal = $('#successModal');
+  modal.classList.remove('show');
+  document.body.style.overflow = '';
+});
 
-$('#ticketSubmit') && $('#ticketSubmit').addEventListener('click',()=>{
-  if(!selectedTicket){
-    showToast('موضوع درخواستت را انتخاب کن');
-    return;
+/* Also close modal when clicking overlay background */
+$('#successModal').addEventListener('click',(e)=>{
+  if(e.target === $('#successModal')){
+    $('#successModal').classList.remove('show');
+    document.body.style.overflow = '';
   }
-  if(!$('#ticketDescription').value.trim()){
-    showToast('شرح درخواست را بنویس');
-    $('#ticketDescription').focus();
-    return;
+});
+
+/* Close modal with Escape */
+document.addEventListener('keydown',(e)=>{
+  if(e.key === 'Escape' && $('#successModal').classList.contains('show')){
+    $('#successModal').classList.remove('show');
+    document.body.style.overflow = '';
   }
-  showToast('فرم آماده است؛ برای ارسال درخواست باید به سامانه متصل شود.');
 });
 
 const reviews = [
@@ -1303,4 +1415,4 @@ setInterval(()=>{
 </script>
 
 </body>
-  </html>
+                               </html>

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4f5ef">
+<title>عملکرد | Growza24</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#f4f5ef;--paper-2:#e9eee5;--ink:#222D29;--muted:#69736b;
+  --green:#176b4b;--green-2:#a8d7b8;--green-3:#d7eadb;--lime:#C7FF00;
+  --blue:#4858d7;--coral:#ef7657;--line:rgba(21,27,24,.13);
+  --white:#fffefa;--shadow:0 22px 60px rgba(22,43,32,.10);--nav-h:78px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{
+  margin:0;color:var(--ink);font-family:"Vazirmatn",Tahoma,sans-serif;
+  background:var(--paper);padding-bottom:calc(var(--nav-h) + 30px);overflow-x:hidden
+}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(ellipse at 4% 13%,rgba(168,215,184,.35),transparent 28%),radial-gradient(ellipse at 94% 38%,rgba(72,88,215,.08),transparent 25%),radial-gradient(ellipse at 18% 84%,rgba(239,118,87,.08),transparent 22%)
+}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E")}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid rgba(23,107,75,.35);outline-offset:3px}
+.page{width:min(100% - 36px,560px);margin:auto;position:relative}
+.bg-orb{position:fixed;z-index:-1;pointer-events:none;border-radius:50%;filter:blur(70px);opacity:.35}
+.bg-orb.a{width:210px;height:210px;right:-140px;top:230px;background:#a8d7b8}
+.bg-orb.b{width:180px;height:180px;left:-120px;top:68%;background:#ffc4b0}
+.bg-orb.c{width:150px;height:150px;right:25%;bottom:4%}
+
+/* HEADER — exactly like activation page */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:1002;height:76px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 18px;
+  background:var(--ink);border-bottom:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 34px rgba(8,16,12,.45);max-width:560px;margin:auto
+}
+.topbar .brand{display:flex;align-items:center;gap:11px;min-width:0}
+.brand-logo{width:52px;height:52px;border-radius:16px;object-fit:cover;background:var(--green);box-shadow:0 8px 22px rgba(0,0,0,.5),0 0 0 2px rgba(199,255,0,.35)}
+.brand-right{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:0;min-width:0;align-self:center;padding-top:22px}
+.brand-right .subtitle{color:#fff;font-size:13.8px;font-weight:600;line-height:1.2;white-space:nowrap}
+.hl{position:relative;display:inline-block;padding-bottom:2px}
+.hl:after{content:"";position:absolute;right:0;left:0;bottom:-1px;height:2px;background:var(--lime);border-radius:2px}
+.brand-latin{font-family:"Vazirmatn",sans-serif;font-size:22px;font-weight:900;letter-spacing:-.5px;line-height:1;white-space:nowrap;direction:ltr;display:inline-block;perspective:900px}
+.brand-latin .g{color:#0a0d0b;text-shadow:0 0 6px rgba(255,255,255,.9),0 0 12px rgba(255,255,255,.75),0 0 22px rgba(255,255,255,.55),0 0 30px rgba(199,255,0,.35)}
+.brand-latin .num{display:inline-block;position:relative;isolation:isolate;overflow:hidden;color:var(--lime);text-shadow:0 0 8px rgba(199,255,0,.48),0 0 18px rgba(199,255,0,.18)}
+.brand-latin .num:after{content:"";position:absolute;top:-15%;bottom:-15%;left:-70%;width:48%;pointer-events:none;background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,.08) 20%,rgba(255,255,255,.95) 48%,rgba(255,255,255,.35) 65%,transparent 100%);filter:blur(1px);transform:skewX(-20deg);animation:numLuxuryShine 10s ease-in-out infinite}
+@keyframes numLuxuryShine{0%,80%{left:-70%;opacity:0}83%{opacity:1}90%{left:130%;opacity:1}93%,100%{left:130%;opacity:0}}
+main.app{padding-top:96px}
+
+/* LOCKED BANNER — full width, no rounded */
+.locked-banner{
+  position:relative;
+  width:100vw;
+  margin-right:calc(50% - 50vw);
+  margin-left:calc(50% - 50vw);
+  background:linear-gradient(110deg,#1a2b22,#222D29 55%,#163d2a);
+  color:#fff;
+  padding:16px 20px;
+  text-align:center;
+  border-radius:0;
+  box-shadow:0 10px 28px rgba(10,18,12,.25),inset 0 1px 0 rgba(255,255,255,.10);
+  margin-bottom:20px;
+  overflow:hidden;
+}
+.locked-banner:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 90% 0%,rgba(199,255,0,.18),transparent 45%),radial-gradient(circle at 0% 100%,rgba(239,118,87,.15),transparent 40%);
+}
+.locked-banner-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.lock-icon{
+  width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;
+  background:rgba(199,255,0,.15);border:1px solid rgba(199,255,0,.45);
+  border-radius:11px;color:var(--lime);font-size:17px;font-weight:900;
+  box-shadow:0 0 18px rgba(199,255,0,.18);
+}
+.locked-banner-text{font-size:13px;font-weight:800;line-height:1.8;color:#e6ece7;text-align:right}
+.locked-banner-text b{color:var(--lime);font-weight:900}
+.locked-banner-text small{display:block;color:#a8d7b8;font-size:11px;font-weight:700;margin-top:3px;letter-spacing:.3px}
+
+/* HERO SECTION (like activation) */
+.hero{padding:16px 0 6px;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--green);font-size:12px;font-weight:900;letter-spacing:.2px}
+.eyebrow-mark{width:22px;height:22px;display:grid;place-items:center;color:var(--ink);background:var(--lime);border-radius:7px;font-size:13px;font-weight:900}
+.hero h1{font-size:clamp(31px,8.2vw,46px);line-height:1.35;font-weight:900;letter-spacing:-2px;margin:16px 0 11px;max-width:520px}
+.hero h1 .highlight{position:relative;display:inline-block;z-index:0}
+.hero h1 .highlight:after{content:"";position:absolute;right:0;left:-4px;bottom:4px;height:11px;background:var(--lime);z-index:-1;transform:skewX(-12deg)}
+.hero-copy{color:#59645d;font-size:15px;line-height:2;font-weight:500;margin:0;max-width:480px}
+.hero-copy strong{color:var(--ink);font-weight:900}
+
+/* HERO STAGE */
+.hero-stage{position:relative;margin:20px 0 20px;overflow:hidden;border-radius:29px 29px 9px 29px;padding:20px;color:#fff;background:radial-gradient(circle at 83% 14%,rgba(199,255,0,.24),transparent 23%),radial-gradient(circle at 8% 100%,rgba(239,118,87,.26),transparent 32%),linear-gradient(125deg,#1f2b25 0%,#222D29 55%,#163d2a 100%);box-shadow:0 22px 44px rgba(21,27,24,.28),inset 0 1px 0 rgba(255,255,255,.15);isolation:isolate}
+.hero-stage:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.14;background-image:linear-gradient(#C7FF00 1px,transparent 1px),linear-gradient(90deg,#C7FF00 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(110deg,transparent 0%,#000 80%)}
+.hero-stage:after{content:"24";position:absolute;left:10px;bottom:-51px;font-size:170px;line-height:1;font-weight:900;color:rgba(199,255,0,.06);direction:ltr;letter-spacing:-12px}
+.stage-top{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+.stage-label{font-size:11px;letter-spacing:1.5px;font-weight:900;color:#a8d7b8;direction:ltr}
+.stage-live{display:flex;align-items:center;gap:6px;background:rgba(199,255,0,.12);border:1px solid rgba(199,255,0,.35);border-radius:30px;padding:6px 9px;font-size:11px;font-weight:800;color:var(--lime)}
+.stage-live i{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+.stage-content{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
+.stage-message{max-width:68%}
+.stage-message small{display:block;color:#a8d7b8;font-size:12px;font-weight:800}
+.stage-message strong{display:block;font-size:clamp(20px,5.2vw,26px);line-height:1.6;font-weight:900;margin-top:4px}
+.stage-message strong em{font-style:normal;color:var(--lime)}
+.stage-message p{font-size:12px;color:#c2d1c7;line-height:1.9;margin:6px 0 0}
+.stage-visual{width:100px;height:100px;flex:0 0 100px;position:relative;display:grid;place-items:center}
+.stage-ring{position:absolute;inset:4px;border:1px solid rgba(199,255,0,.4);border-radius:30px;transform:rotate(45deg);box-shadow:0 0 0 8px rgba(199,255,0,.06),0 0 0 17px rgba(199,255,0,.04)}
+.stage-core{width:64px;height:64px;border-radius:21px;display:grid;place-items:center;color:var(--ink);font-size:30px;font-weight:900;background:linear-gradient(145deg,#d9ff4f,var(--lime) 58%,#a6d923);box-shadow:0 12px 28px rgba(0,0,0,.5),inset 0 2px 3px rgba(255,255,255,.6);animation:floatSoft 4s ease-in-out infinite}
+.stage-float{position:absolute;right:-2px;top:3px;background:#fff;color:var(--green);border-radius:10px;padding:5px 8px;font-size:10px;font-weight:900;box-shadow:0 6px 14px rgba(0,0,0,.35);transform:rotate(-7deg)}
+.stage-bottom{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:11px;border-top:1px solid rgba(255,255,255,.18)}
+.stage-bottom span{font-size:11px;color:#a8d7b8;font-weight:700}
+.stage-bottom b{font-size:12px;color:var(--lime);font-weight:900}
+@keyframes floatSoft{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* SECTION INTRO */
+.section-intro{margin:26px 0 14px}
+.section-overline{display:flex;align-items:center;gap:8px;color:var(--green);font-size:11px;font-weight:900;letter-spacing:1px}
+.section-overline:before{content:"";width:23px;height:2px;border-radius:5px;background:var(--coral)}
+.section-title{font-size:clamp(21px,5.8vw,27px);line-height:1.5;font-weight:900;letter-spacing:-.7px;margin:6px 0 4px}
+.section-title .underline{text-decoration:underline;text-decoration-color:var(--lime);text-decoration-thickness:5px;text-underline-offset:4px}
+.section-desc{font-size:13px;color:var(--muted);line-height:1.9;font-weight:600;margin:0}
+
+/* FORM CARD (locked) */
+.form-card{
+  position:relative;overflow:hidden;margin:0 0 22px;
+  border-radius:22px 22px 7px 22px;padding:17px;
+  background:linear-gradient(145deg,#fff,#f5f7ef 70%,#eef2e5);
+  border:1px solid var(--line);box-shadow:0 12px 28px rgba(22,43,32,.08);
+}
+.form-card:before{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-70px;top:-90px;background:radial-gradient(circle,#d7eadb,transparent 70%);pointer-events:none}
+.form-card-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:16px;position:relative;z-index:1}
+.form-card-icon{width:43px;height:43px;flex:0 0 43px;display:grid;place-items:center;border-radius:14px 14px 5px 14px;background:var(--green-3);color:var(--green);font-size:17px;font-weight:900;border:1px solid rgba(23,107,75,.2)}
+.form-card-head h2{font-size:18px;line-height:1.5;font-weight:900;margin:0}
+.form-card-head p{font-size:12px;line-height:1.8;color:var(--muted);font-weight:600;margin:2px 0 0}
+
+.field{margin-bottom:14px;position:relative;z-index:1}
+.field label{display:block;font-size:13.5px;font-weight:900;color:var(--ink);margin-bottom:7px}
+.field-hint{display:block;font-size:11.5px;line-height:1.8;color:#7d877f;font-weight:600;margin-top:5px}
+.field input,.field textarea{
+  width:100%;min-height:48px;border:1.5px solid #dde3d8;border-radius:13px;
+  background:#fafbf5;color:var(--ink);padding:12px 13px;font-size:14.5px;font-weight:700;outline:none;transition:.2s
+}
+.field input::placeholder,.field textarea::placeholder{color:#a5ada0;font-weight:500}
+.field textarea{min-height:92px;resize:vertical;line-height:1.9}
+.input-ltr{direction:ltr;text-align:left}
+
+/* DISABLED state for locked inputs */
+.locked-input{
+  opacity:.75;
+  cursor:not-allowed;
+  filter:grayscale(.15);
+}
+.locked-input:focus{border-color:#dde3d8!important;box-shadow:none!important;background:#fafbf5!important}
+.lock-badge{
+  position:absolute;left:11px;top:50%;transform:translateY(-50%);
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(23,107,75,.10);border:1px solid rgba(23,107,75,.18);
+  color:var(--green);border-radius:8px;padding:4px 8px;
+  font-size:10px;font-weight:900;white-space:nowrap;pointer-events:none;
+}
+.field.with-lock{position:relative}
+.field.with-lock input{padding-left:82px}
+
+/* manager empty box */
+.manager-box{
+  position:relative;overflow:hidden;
+  border:2px dashed rgba(23,107,75,.30);
+  border-radius:15px;padding:22px 16px;
+  background:repeating-linear-gradient(45deg,#fafbf5,#fafbf5 10px,#f4f7ef 10px,#f4f7ef 20px);
+  text-align:center;
+}
+.manager-box:before{
+  content:"";position:absolute;top:-40px;right:-40px;width:100px;height:100px;
+  border-radius:50%;background:var(--lime);opacity:.18;
+}
+.manager-box-icon{
+  width:44px;height:44px;margin:0 auto 10px;display:grid;place-items:center;
+  border-radius:14px;background:linear-gradient(145deg,#d7eadb,#a8d7b8);
+  color:var(--green);font-size:19px;font-weight:900;
+  box-shadow:0 8px 16px rgba(23,107,75,.15),inset 0 1px 0 rgba(255,255,255,.6);
+  position:relative;z-index:1;
+}
+.manager-box strong{display:block;font-size:14px;font-weight:900;color:var(--green);position:relative;z-index:1}
+.manager-box small{display:block;font-size:11.5px;line-height:1.85;color:#6f7a71;font-weight:600;margin-top:6px;position:relative;z-index:1;max-width:340px;margin-left:auto;margin-right:auto}
+.manager-empty-tag{
+  display:inline-flex;align-items:center;gap:6px;margin-top:11px;
+  padding:5px 11px;border-radius:20px;
+  background:rgba(23,107,75,.09);border:1px solid rgba(23,107,75,.18);
+  color:var(--green);font-size:10.5px;font-weight:900;
+  position:relative;z-index:1;
+}
+.manager-empty-tag i{width:7px;height:7px;border-radius:50%;background:var(--coral);box-shadow:0 0 8px rgba(239,118,87,.6)}
+
+/* CHAT (WhatsApp-style) */
+.chat-shell{
+  position:relative;overflow:hidden;
+  margin:0 0 22px;
+  border-radius:22px 22px 7px 22px;
+  background:linear-gradient(145deg,#f6f8ef,#eef2e5);
+  border:1px solid var(--line);
+  box-shadow:0 14px 32px rgba(22,43,32,.10);
+  display:flex;flex-direction:column;
+}
+.chat-header{
+  display:flex;align-items:center;gap:11px;
+  padding:12px 15px;
+  background:linear-gradient(110deg,#1a2b22,#222D29 60%,#163d2a);
+  color:#fff;position:relative;overflow:hidden;
+}
+.chat-header:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0%,rgba(199,255,0,.18),transparent 55%);pointer-events:none}
+.chat-avatar{
+  width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;
+  border-radius:12px 12px 4px 12px;
+  background:linear-gradient(145deg,#d9ff4f,var(--lime) 58%,#a6d923);
+  color:var(--ink);font-size:18px;font-weight:900;
+  box-shadow:0 6px 14px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.55);
+  position:relative;z-index:1;
+}
+.chat-header-info{flex:1;min-width:0;position:relative;z-index:1}
+.chat-header-info b{display:block;font-size:13.5px;font-weight:900;color:#fff}
+.chat-header-info small{display:flex;align-items:center;gap:5px;font-size:10.5px;color:#a8d7b8;font-weight:700;margin-top:2px}
+.chat-header-info small i{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime)}
+.chat-header-badge{
+  position:relative;z-index:1;font-size:10px;font-weight:900;
+  background:rgba(199,255,0,.12);border:1px solid rgba(199,255,0,.30);
+  color:var(--lime);padding:5px 9px;border-radius:20px;white-space:nowrap;
+}
+.chat-body{
+  padding:16px 14px 18px;
+  min-height:340px;max-height:440px;overflow-y:auto;
+  display:flex;flex-direction:column;gap:9px;
+  background-image:
+    radial-gradient(circle at 8% 12%,rgba(168,215,184,.20),transparent 32%),
+    radial-gradient(circle at 92% 88%,rgba(199,255,0,.10),transparent 30%);
+  scrollbar-width:thin;scrollbar-color:#b9cdbb transparent;
+}
+.chat-body::-webkit-scrollbar{width:5px}
+.chat-body::-webkit-scrollbar-thumb{background:#b9cdbb;border-radius:10px}
+
+.chat-day{
+  align-self:center;font-size:10px;font-weight:800;color:#7d877f;
+  background:rgba(255,255,255,.85);border:1px solid var(--line);
+  padding:4px 11px;border-radius:20px;margin-bottom:2px;
+}
+
+.msg{max-width:82%;padding:10px 13px;font-size:13px;line-height:1.85;font-weight:600;position:relative;animation:msgIn .35s ease-out}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.msg-user{
+  align-self:flex-start;
+  background:linear-gradient(120deg,#176b4b,#0f4a32);
+  color:#fff;
+  border-radius:16px 16px 16px 5px;
+  box-shadow:0 6px 16px rgba(23,107,75,.20);
+}
+.msg-user .msg-time{display:block;font-size:9.5px;color:#a8d7b8;text-align:left;margin-top:3px;direction:ltr}
+
+.msg-support{
+  align-self:flex-end;
+  background:#fff;
+  color:var(--ink);
+  border-radius:16px 16px 5px 16px;
+  box-shadow:0 6px 16px rgba(22,43,32,.10);
+  border:1px solid var(--line);
+}
+.msg-support .msg-time{display:block;font-size:9.5px;color:#8b958d;text-align:right;margin-top:3px;direction:ltr}
+
+.msg-system{
+  align-self:center;max-width:92%;
+  background:rgba(199,255,0,.12);
+  border:1px solid rgba(199,255,0,.30);
+  color:var(--green);
+  border-radius:12px;
+  font-size:11.5px;font-weight:800;text-align:center;
+  padding:9px 14px;line-height:1.9;
+}
+
+.typing{
+  align-self:flex-end;
+  display:inline-flex;align-items:center;gap:5px;
+  background:#fff;border-radius:16px 16px 5px 16px;
+  padding:11px 14px;border:1px solid var(--line);
+  box-shadow:0 6px 16px rgba(22,43,32,.10);
+}
+.typing i{width:6px;height:6px;border-radius:50%;background:#a8b0a6;animation:typingBounce 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.15s}
+.typing i:nth-child(3){animation-delay:.3s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+
+.chat-input-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 12px;background:#fffefa;
+  border-top:1px solid var(--line);
+  opacity:.68;
+}
+.chat-input-bar input{
+  flex:1;border:1px solid #dde3d8;border-radius:22px;
+  padding:10px 15px;font-size:12.5px;font-weight:600;
+  background:#f5f7ef;color:#8b958d;cursor:not-allowed;
+}
+.chat-input-bar button{
+  width:38px;height:38px;flex:0 0 38px;border:0;border-radius:50%;
+  background:#dde3d8;color:#a5ada0;font-size:15px;
+  display:grid;place-items:center;cursor:not-allowed;
+}
+
+/* 4 BUTTONS */
+.action-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:11px;
+  margin:0 0 22px;
+}
+.action-btn{
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;gap:10px;
+  padding:14px 12px;border:1px solid var(--line);
+  border-radius:17px 17px 6px 17px;
+  background:linear-gradient(145deg,#fff,#f5f7ef);
+  color:var(--ink);text-align:right;
+  box-shadow:0 8px 20px rgba(22,43,32,.07);
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  font-weight:900;
+}
+.action-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(22,43,32,.12)}
+.action-btn:active{transform:scale(.985)}
+.action-btn-icon{
+  width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;
+  border-radius:11px 11px 4px 11px;
+  font-size:16px;font-weight:900;
+}
+.action-btn-text{min-width:0}
+.action-btn-text strong{display:block;font-size:12.5px;font-weight:900;line-height:1.45}
+.action-btn-text small{display:block;font-size:10px;font-weight:700;color:var(--muted);margin-top:2px;line-height:1.5}
+
+.action-start{--a-color:#176b4b;--a-soft:#d7eadb;--a-border:rgba(23,107,75,.25)}
+.action-start .action-btn-icon{background:var(--a-soft);color:var(--a-color)}
+.action-start{border-color:var(--a-border)}
+
+.action-consult{--a-color:#4858d7;--a-soft:#e0e5ff;--a-border:rgba(72,88,215,.22)}
+.action-consult .action-btn-icon{background:var(--a-soft);color:var(--a-color)}
+.action-consult{border-color:var(--a-border)}
+
+.action-refund{--a-color:#c94d40;--a-soft:#ffe4dd;--a-border:rgba(201,77,64,.22)}
+.action-refund .action-btn-icon{background:var(--a-soft);color:var(--a-color)}
+.action-refund{border-color:var(--a-border)}
+
+.action-object{--a-color:#a5761d;--a-soft:#fff0cb;--a-border:rgba(165,118,29,.22)}
+.action-object .action-btn-icon{background:var(--a-soft);color:var(--a-color)}
+.action-object{border-color:var(--a-border)}
+
+/* FOOTER */
+.footer{text-align:center;padding:18px 0 6px;color:#8b958d;font-size:12px;font-weight:700;line-height:2}
+.footer b{color:var(--green);font-weight:900}
+
+/* BOTTOM NAV — identical */
+.bottom-nav{position:fixed;z-index:30;bottom:0;left:0;right:0;height:76px;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:7px 9px;background:var(--ink);border-top:1px solid rgba(255,255,255,.08);box-shadow:0 -10px 34px rgba(8,16,12,.45);max-width:560px;margin:auto}
+.nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#aebbb2;font-size:9px;font-weight:800;transition:background .2s,color .2s}
+.nav-item svg{width:20px;height:20px;stroke-width:1.8}
+.nav-item.active{background:var(--lime);color:#1c2a20}
+
+/* TOAST */
+.toast{position:fixed;z-index:3000;bottom:100px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;width:max-content;max-width:calc(100% - 32px);padding:12px 17px;border-radius:14px;background:var(--ink);color:#fff;font-size:13px;font-weight:900;text-align:center;line-height:1.7;box-shadow:0 10px 28px rgba(0,0,0,.35);transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* RESPONSIVE */
+@media(min-width:700px){
+  body{padding:22px 0 calc(var(--nav-h) + 50px)}
+  .page{border-radius:38px;box-shadow:0 30px 90px rgba(20,43,28,.08);overflow:hidden}
+  .bottom-nav{bottom:22px;border-radius:22px}
+  .locked-banner{border-radius:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+}
+@media(max-width:370px){
+  .page{width:calc(100% - 26px)}
+  .hero h1{font-size:30px}
+  .stage-visual{width:84px;height:84px;flex-basis:84px}
+  .stage-core{width:56px;height:56px;font-size:27px}
+  .action-btn{padding:12px 10px;gap:8px}
+  .action-btn-icon{width:32px;height:32px;flex-basis:32px;font-size:14px}
+  .action-btn-text strong{font-size:11.5px}
+  .action-btn-text small{font-size:9.5px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="bg-orb a" aria-hidden="true"></div>
+<div class="bg-orb b" aria-hidden="true"></div>
+<div class="bg-orb c" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="Growza24">
+    <img class="brand-logo" src="1.jpg" alt="لوگوی Growza24">
+    <span class="brand-right">
+      <span class="subtitle">پلتفرم رشد <span class="hl">پیج اینستاگرام</span></span>
+    </span>
+  </a>
+  <span class="brand-latin" aria-label="Growza24">
+    <span class="g">Growza</span><span class="num">24</span>
+  </span>
+</header>
+
+<main class="app">
+<div class="page">
+
+<!-- LOCKED BANNER -->
+<div class="locked-banner" role="status">
+  <div class="locked-banner-inner">
+    <div class="lock-icon">🔒</div>
+    <div class="locked-banner-text">
+      <b>پس از خرید اشتراک، این صفحه برای شما فعال می‌شود</b>
+      <small>GROWZA24 · PERFORMANCE CENTER</small>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow"><span class="eyebrow-mark">✦</span> PERFORMANCE CENTER / 24</div>
+
+  <h1>
+    اینجا <span class="highlight">عملکرد</span><br>
+    پیجت رو می‌بینی
+  </h1>
+
+  <p class="hero-copy">
+    صفحه اختصاصی عملکرد <strong>Growza24</strong>؛ جایی که پلن اختصاصی، گزارش رشد و ارتباط مستقیم با تیم پشتیبانی در یک محیط لوکس و امن در اختیار شما قرار می‌گیرد.
+  </p>
+</section>
+
+<!-- HERO STAGE -->
+<div class="hero-stage">
+  <div class="stage-top">
+    <span class="stage-label">PERFORMANCE / LOCKED</span>
+    <span class="stage-live"><i></i> در انتظار فعال‌سازی</span>
+  </div>
+  <div class="stage-content">
+    <div class="stage-message">
+      <small>یک قدم تا شروع</small>
+      <strong>با خرید اشتراک<br>این صفحه <em>زنده</em> می‌شود</strong>
+      <p>پلن اختصاصی، گزارش رشد و پشتیبانی اختصاصی.</p>
+    </div>
+    <div class="stage-visual">
+      <div class="stage-ring"></div>
+      <div class="stage-core">🔒</div>
+      <span class="stage-float">LOCKED</span>
+    </div>
+  </div>
+  <div class="stage-bottom">
+    <span>GROW DIFFERENT · GROWZA24</span>
+    <b>02 / PERFORMANCE</b>
+  </div>
+</div>
+
+<!-- FORM -->
+<section class="section-intro">
+  <div class="section-overline">STEP 01 / YOUR DETAILS</div>
+  <h2 class="section-title">اطلاعات <span class="underline">اختصاصی</span> شما</h2>
+  <p class="section-desc">این اطلاعات پس از فعال‌سازی اشتراک قابل ویرایش و ارسال خواهد بود.</p>
+</section>
+
+<div class="form-card">
+  <div class="form-card-head">
+    <div class="form-card-icon">✎</div>
+    <div>
+      <h2>مشخصات و پلن شما</h2>
+      <p>پس از فعال‌سازی، این اطلاعات در اختیار تیم Growza24 قرار می‌گیرد.</p>
+    </div>
+  </div>
+
+  <div class="field with-lock">
+    <label for="cardNumber">شماره کارت خود را وارد کنید</label>
+    <input id="cardNumber" type="text" class="input-ltr locked-input" placeholder="#### #### #### ####" inputmode="numeric" readonly disabled>
+    <span class="lock-badge">🔒 قفل</span>
+    <span class="field-hint">برای بازگشت وجه و تسویه، شماره کارت معتبر خود را ثبت کنید.</span>
+  </div>
+
+  <div class="field with-lock">
+    <label for="instagramPage">آدرس پیج اینستاگرام خود را با دقت وارد کنید</label>
+    <input id="instagramPage" type="text" class="input-ltr locked-input" placeholder="@yourpage" readonly disabled>
+    <span class="lock-badge">🔒 قفل</span>
+    <span class="field-hint">این آدرس مبنای اجرای پلن و گزارش عملکرد خواهد بود.</span>
+  </div>
+
+  <div class="field">
+    <label>کارت‌های پلن شما</label>
+    <div class="action-grid" style="margin-bottom:0">
+      <div class="action-btn action-start" style="cursor:not-allowed">
+        <span class="action-btn-icon">♙</span>
+        <span class="action-btn-text">
+          <strong>افزایش فالوورها</strong>
+          <small>پلن اختصاصی فالوور</small>
+        </span>
+      </div>
+      <div class="action-btn action-consult" style="cursor:not-allowed">
+        <span class="action-btn-icon">▶</span>
+        <span class="action-btn-text">
+          <strong>افزایش تعاملات</strong>
+          <small>پلن اختصاصی ریلز</small>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANAGER BOX (empty) -->
+  <div class="field" style="margin-bottom:0">
+    <label>شرح عملکرد پلن اختصاصی شما</label>
+    <div class="manager-box" aria-label="هنوز خالی است">
+      <div class="manager-box-icon">✎</div>
+      <strong>هنوز خالی است</strong>
+      <small>این کادر توسط مدیران Growza24 پس از فعال‌سازی اشتراک شما تکمیل می‌شود.</small>
+      <div class="manager-empty-tag"><i></i> در انتظار پاسخ مدیران</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT (WhatsApp style) -->
+<section class="section-intro">
+  <div class="section-overline">STEP 02 / DIRECT SUPPORT</div>
+  <h2 class="section-title">چت <span class="underline">پشتیبانی</span> شما</h2>
+  <p class="section-desc">ارسال پیام فقط پس از فعال‌سازی اشتراک مقدور است.</p>
+</section>
+
+<div class="chat-shell">
+  <div class="chat-header">
+    <div class="chat-avatar">✦</div>
+    <div class="chat-header-info">
+      <b>پشتیبانی Growza24</b>
+      <small><i></i> آنلاین · پاسخ‌گویی سریع</small>
+    </div>
+    <span class="chat-header-badge">🔒 قفل</span>
+  </div>
+
+  <div class="chat-body" id="chatBody">
+    <div class="chat-day">امروز</div>
+
+    <div class="msg msg-support">
+      سلام و درود 👋 به مرکز عملکرد Growza24 خوش آمدید.
+      <span class="msg-time">--:--</span>
+    </div>
+
+    <div class="msg msg-support">
+      در حال حاضر این صفحه برای شما غیرفعال است. برای استفاده از چت پشتیبانی و سایر امکانات، ابتدا یک پلن را فعال‌سازی کنید.
+      <span class="msg-time">--:--</span>
+    </div>
+
+    <div class="msg msg-system">
+      با یکی از ۴ دکمهٔ زیر می‌توانید پیام خود را به تیم پشتیبانی ارسال کنید.
+    </div>
+  </div>
+
+  <div class="chat-input-bar" aria-hidden="true">
+    <input type="text" placeholder="ارسال پیام پس از فعال‌سازی اشتراک..." readonly>
+    <button type="button" aria-label="ارسال (قفل)" disabled>➤</button>
+  </div>
+</div>
+
+<!-- 4 BUTTONS -->
+<section class="section-intro" style="margin-top:6px">
+  <div class="section-overline">STEP 03 / QUICK ACTIONS</div>
+  <h2 class="section-title">ارتباط <span class="underline">سریع</span> با تیم</h2>
+  <p class="section-desc">هر دکمه پیامی آماده به پشتیبانی ارسال می‌کند و پاسخ فوری دریافت می‌کنید.</p>
+</section>
+
+<div class="action-grid" style="margin-bottom:26px">
+
+  <button class="action-btn action-start" type="button" data-action="start">
+    <span class="action-btn-icon">↗</span>
+    <span class="action-btn-text">
+      <strong>ثبت شروع رشد</strong>
+      <small>درخواست فوری رشد پیج</small>
+    </span>
+  </button>
+
+  <button class="action-btn action-consult" type="button" data-action="consult">
+    <span class="action-btn-icon">✦</span>
+    <span class="action-btn-text">
+      <strong>نیاز به مشاوره</strong>
+      <small>دریافت مشاوره تخصصی</small>
+    </span>
+  </button>
+
+  <button class="action-btn action-refund" type="button" data-action="refund">
+    <span class="action-btn-icon">↺</span>
+    <span class="action-btn-text">
+      <strong>بازگشت وجه</strong>
+      <small>درخواست بازگشت مبلغ</small>
+    </span>
+  </button>
+
+  <button class="action-btn action-object" type="button" data-action="object">
+    <span class="action-btn-icon">⚑</span>
+    <span class="action-btn-text">
+      <strong>اعتراض به عملکرد</strong>
+      <small>ثبت اعتراض رسمی</small>
+    </span>
+  </button>
+
+</div>
+
+<footer class="footer">
+  <b>GROWZA24 · GROW DIFFERENT</b><br>
+  پلتفرم رشد پیج اینستاگرام
+</footer>
+
+</div>
+</main>
+
+<nav class="bottom-nav" aria-label="ناوبری اصلی">
+  <a class="nav-item" href="index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/>
+    </svg>
+    <span>خانه</span>
+  </a>
+  <a class="nav-item" href="guide.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/>
+      <path d="M4 6h13M8 10h8M8 14h6"/>
+    </svg>
+    <span>راهنما</span>
+  </a>
+  <a class="nav-item" href="activation.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5l3 2"/>
+    </svg>
+    <span>فعال‌سازی</span>
+  </a>
+  <a class="nav-item active" href="performance.html" aria-current="page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19V5m0 14h16"/>
+      <path d="m7 15 4-4 3 2 5-7"/>
+    </svg>
+    <span>عملکرد</span>
+  </a>
+</nav>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+
+const toast = $('#toast');
+let toastTimer;
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove('show'),2800);
+}
+
+const chatBody = $('#chatBody');
+
+function nowTime(){
+  const d = new Date();
+  const h = String(d.getHours()).padStart(2,'0');
+  const m = String(d.getMinutes()).padStart(2,'0');
+  return h+':'+m;
+}
+
+function scrollChatToBottom(){
+  chatBody.scrollTo({top: chatBody.scrollHeight, behavior:'smooth'});
+}
+
+function appendUserMessage(text){
+  const div = document.createElement('div');
+  div.className = 'msg msg-user';
+  div.innerHTML = text + '<span class="msg-time">'+nowTime()+'</span>';
+  chatBody.appendChild(div);
+  scrollChatToBottom();
+}
+
+function appendTyping(){
+  const div = document.createElement('div');
+  div.className = 'typing';
+  div.id = 'typingIndicator';
+  div.innerHTML = '<i></i><i></i><i></i>';
+  chatBody.appendChild(div);
+  scrollChatToBottom();
+  return div;
+}
+
+function appendSupportMessage(text, delay=900){
+  const typing = appendTyping();
+  setTimeout(()=>{
+    typing.remove();
+    const div = document.createElement('div');
+    div.className = 'msg msg-support';
+    div.innerHTML = text + '<span class="msg-time">'+nowTime()+'</span>';
+    chatBody.appendChild(div);
+    scrollChatToBottom();
+  }, delay);
+}
+
+const replies = {
+  start:{
+    user:'اینجانب اشتراک خریداری کرده‌ام و اکنون فوراً می‌خواهم پیجم رشد کند.',
+    support:'شما هنوز فعال‌سازی را انجام نداده‌اید. پس از خرید اشتراک، می‌توانید برای رشد پیج خود مجدداً تلاش کنید و تیم Growza24 در کوتاه‌ترین زمان ممکن پیگیری خواهد کرد. ✦'
+  },
+  consult:{
+    user:'اینجانب نیاز به مشاوره فوری در خصوص رشد پیج خود دارم.',
+    support:'مشاوره تنها برای اعضایی که مشترک شده‌اند و یک پلن را فعال‌سازی کرده‌اند مقدور است. پس از خرید اشتراک، امکان ارسال پیام در بخش چت اپلیکیشن، مشاوره تلفنی یا چت واتساب برای شما فراهم خواهد شد و شماره تماس در اختیار شما قرار می‌گیرد.'
+  },
+  refund:{
+    user:'اینجانب از عملکرد شما ناراضی هستم و یا به هر دلیل، طبق ضمانت بی‌قید و شرط شما تقاضای بازگشت فوری وجه را دارم.',
+    support:'شما هنوز اشتراکی خریداری نکرده‌اید؛ تعهد ما به شما پابرجاست. در صورت خرید اشتراک و پلن، هر زمان که به هر دلیلی منصرف شوید — حتی اگر ما به تعهدات خود عمل نموده باشیم — می‌توانید درخواست بازگشت وجه را ثبت نمایید. مبلغ عیناً به شماره کارت اعلامی شما بازگردانده خواهد شد.'
+  },
+  object:{
+    user:'اینجانب از عملکرد پلتفرم رشد پیج رضایت ندارم؛ لطفاً موضوع را فوراً بررسی نمایید.',
+    support:'هدف ما رضایتمندی شماست، اما در حال حاضر شما هیچ پلنی خریداری نکرده‌اید و عضو مجموعه نیستید. اگر پس از فعال‌سازی اشتراک، نسبت به انجام تعهدات و عملکرد مجموعه اعتراضی داشتید، با قید فوریت به اعتراض شما رسیدگی می‌شود.'
+  }
+};
+
+$$('.action-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const key = btn.dataset.action;
+    const data = replies[key];
+    if(!data) return;
+
+    appendUserMessage(data.user);
+    setTimeout(()=>appendSupportMessage(data.support, 1100), 500);
+    showToast('پیام شما به پشتیبانی ارسال شد');
+  });
+});
+
+/* Locked inputs — no editing */
+$$('.locked-input').forEach(inp=>{
+  inp.addEventListener('focus',()=>inp.blur());
+  inp.addEventListener('click',()=>showToast('این بخش پس از فعال‌سازی اشتراک قابل ویرایش است'));
+});
+</script>
+
+</body>
+    </html>

@@ -389,6 +389,21 @@ main.app{padding-top:96px}
   .action-btn-text strong{font-size:11.5px}
   .action-btn-text small{font-size:9.5px}
 }
+
+/* ADDED: DISABLED SUBMIT BUTTON */
+.submit-link-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;min-height:50px;margin-top:12px;
+  border:1.5px solid #dde3d8;border-radius:13px;
+  background:#eef2e5;color:#a5ada0;
+  font-size:14px;font-weight:900;
+  cursor:not-allowed;pointer-events:none;opacity:.85;
+}
+.submit-link-hint{
+  display:block;margin-top:8px;
+  font-size:11.5px;line-height:1.8;font-weight:600;color:#7d877f;
+  text-align:center;
+}
 </style>
 </head>
 
@@ -523,6 +538,11 @@ main.app{padding-top:96px}
       <div class="manager-empty-tag"><i></i> در انتظار پاسخ مدیران</div>
     </div>
   </div>
+
+  <button class="submit-link-btn" type="button" disabled aria-disabled="true">
+    🔒 ثبت لینک
+  </button>
+  <span class="submit-link-hint">تعداد نامحدود ثبت لینک</span>
 </div>
 
 <!-- CHAT (WhatsApp style) -->

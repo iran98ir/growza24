@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
@@ -361,13 +362,89 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
   to{opacity:1;transform:translateY(0)}
 }
 
+/* HERO COPY — PREMIUM READABILITY */
+
 .hero-copy{
-  font-size:16px;
-  line-height:2.05;
-  color:#59645d;
-  max-width:420px;
-  font-weight:500;
+  position:relative;
+  font-size:18px;
+  line-height:2.15;
+  color:#35463b;
+  max-width:510px;
+  font-weight:600;
   margin:0;
+  padding:21px 18px 20px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.96),
+      rgba(237,243,233,.94)
+    );
+  border:1px solid rgba(23,107,75,.15);
+  border-right:5px solid var(--green);
+  border-radius:19px;
+  box-shadow:
+    0 14px 34px rgba(22,43,32,.075),
+    0 3px 8px rgba(22,43,32,.025),
+    inset 0 1px 0 rgba(255,255,255,.95);
+  text-align:right;
+  text-align-last:right;
+  overflow:hidden;
+}
+
+.hero-copy p{
+  margin:0 0 17px;
+}
+
+.hero-copy p:last-child{
+  margin-bottom:0;
+}
+
+.hero-copy strong{
+  color:#125d40;
+  font-weight:900;
+  background:
+    linear-gradient(
+      to top,
+      rgba(199,255,0,.34) 0%,
+      rgba(199,255,0,.34) 35%,
+      transparent 35%
+    );
+  padding:0 2px;
+  border-radius:2px;
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
+}
+
+.hero-copy .copy-question{
+  display:block;
+  margin-top:22px;
+  padding:15px 14px;
+  border-radius:13px;
+  background:linear-gradient(135deg,rgba(23,107,75,.10),rgba(168,215,184,.17));
+  border:1px solid rgba(23,107,75,.14);
+  border-right:3px solid var(--green);
+  color:#263b30;
+  font-weight:800;
+  text-align:right;
+  text-align-last:right;
+}
+
+.hero-copy .copy-question strong{
+  color:#125d40;
+}
+
+/* MOBILE TEXT READABILITY */
+
+@media(max-width:380px){
+  .hero-copy{
+    font-size:17px;
+    line-height:2.12;
+    padding:18px 14px 19px;
+  }
+
+  .hero-copy .copy-question{
+    padding:13px 11px;
+  }
 }
 
 .hero-actions{
@@ -454,7 +531,7 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
   line-height:1.8;
 }
 
-/* ====== کارت شمارنده‌ها — تمام‌عرض ====== */
+/* LIVE CARD */
 
 .live-card{
   position:relative;
@@ -758,7 +835,7 @@ body.hero-ready .hero-actions{animation-delay:1.50s}
 
 .manifesto-link svg{width:16px}
 
-/* ===== GUIDE STRIP 3D ===== */
+/* GUIDE STRIP 3D */
 
 .guide-strip{
   display:flex;
@@ -919,9 +996,7 @@ body.header-ready .bottom-nav{
 .reveal.in{opacity:1;transform:none}
 [data-tilt]{transform-style:preserve-3d}
 
-/* ============================================
-   VANTA BIRDS INTRO — بدون محو شدگی
-   ============================================ */
+/* VANTA BIRDS INTRO */
 
 #birds-intro{
   position:fixed;
@@ -954,7 +1029,6 @@ body.header-ready .bottom-nav{
   z-index:2;
 }
 
-/* کانواس پرندگان — بدون محو شدگی، بلافاصله نمایان */
 #birds-intro .vanta-canvas{
   position:absolute!important;
   inset:0!important;
@@ -1096,13 +1170,38 @@ body.hero-ready .hero h1 .accent:after{
       </span>
     </h1>
 
-    <p class="hero-copy">
-      رشد اصولی و ماندگار پیج اینستاگرام، پیش از هر چیز به شناخت درست الگوریتم‌ها و رعایت دستورالعمل‌های اینستاگرام وابسته است. اما گاهی برای رسیدن به نتیجه‌ای سریع‌تر، به راهکاری فراتر از روش‌های معمول نیاز دارید.
+    <div class="hero-copy">
 
-      <br><br>
+      <p>
+        با <strong>Growza24</strong>، برای رشد پیج اینستاگرام شما
+        <strong>سه مسیر</strong> در نظر گرفته‌ایم؛
+        سه انتخاب با <strong>دو دستاورد ارزشمند</strong>:
+      </p>
 
-      ما این امکان را فراهم کرده‌ایم تا با دو روش متفاوت و مطابق با قوانین اینستاگرام، مسیر رشد پیج خود را متناسب با نیازتان انتخاب کنید.
-    </p>
+      <p>
+        در مسیر نخست، <strong>تعداد معینی فالوور</strong>،
+        بدون هیچ قید و شرطی به جمع دنبال‌کنندگان پیج شما افزوده می‌شود.
+      </p>
+
+      <p>
+        در مسیر دوم، پس از تهیه اشتراک، یک حلقه فیلم در پیج خود منتشر می‌کنید و
+        <strong>Growza24 آن را به اکسپلور می‌برد.</strong>
+      </p>
+
+      <p>
+        و در مسیر سوم، از <strong>هر دو مزیت</strong> بهره‌مند خواهید شد؛
+        هم <strong>افزایش تعداد فالوورها</strong> و هم
+        <strong>راه‌یابی محتوای شما به اکسپلور.</strong>
+      </p>
+
+      <p class="copy-question">
+        دوست دارید از <strong>جزئیات این روش‌ها</strong>،
+        <strong>چگونگی اجرای آن‌ها</strong> و
+        <strong>تضمین‌هایی</strong> که همراهشان ارائه می‌شود،
+        بیشتر بدانید؟
+      </p>
+
+    </div>
 
     <div class="hero-actions">
       <button type="button" class="secondary-btn" id="quickGrowthBtn">رشد سریع چگونه است ؟</button>
@@ -1594,4 +1693,4 @@ body.hero-ready .hero h1 .accent:after{
 </script>
 
 </body>
-  </html>
+</html>
